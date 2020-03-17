@@ -1,0 +1,56 @@
+@font-face {
+	font-family: "Vollkorn";
+	src: url("../fonts/Vollkorn-Regular.eot");
+	src: url("../fonts/Vollkorn-Regular.woff2") format("woff2"), url("../fonts/Vollkorn-Regular.woff") format("woff"), url("../fonts/Vollkorn-Regular.ttf") format("truetype");
+}
+@font-face {
+	font-family: "Vollkorn";
+	font-weight: bold;
+	src: url("../fonts/Vollkorn-Bold.eot");
+	src: local("Vollkorn Bold"), url("../fonts/Vollkorn-Bold.woff2") format("woff2"), url("../fonts/Vollkorn-Bold.woff") format("woff"), url("../fonts/Vollkorn-Bold.ttf") format("truetype");
+}		
+body {
+	font:11pt/20pt "Vollkorn"; 
+	text-rendering: optimizeLegibility;
+	font-variant-ligatures: common-ligatures;
+	font-kerning: normal;
+	font-feature-settings: "liga";
+	background-color:#f2f2f2;
+	color:#333;
+	margin: auto;
+	padding: 0;
+	width:96%;
+	max-width: 800px;
+}
+a, a:active, a:visited {
+	color: #176fa1;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+.centerText {
+	text-align: center;
+}
+.justifyText {
+	text-align: justify;
+}
+.green {
+	color: #008800;
+}
+.footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	background-color: white;
+	z-index: 1;
+}
+h1 {
+	border-bottom: 1px solid #d8d8d8;
+	padding: 5px;
+	font-size: 1.5em;
+	max-width: 400px;
+	margin: auto;
+	letter-spacing: 0.05em;
+}
