@@ -30,7 +30,7 @@ ymax = int(4.0/3.0*STATS_max)
 a = 1.0
 b = 0.30
 f(x) = a * exp( b * x )
-fit f(x) './cases_jena.dat' using (($1 - xmin_o) / 86400):2 via a, b
+fit f(x) './cases_jena.dat' using (($1 - xmin_o) / 86400):2 via b
 
 # R2
 stats './cases_jena.dat' using 2:(f($2)) name "A" nooutput
@@ -59,7 +59,7 @@ set key at graph 0.98, 0.02 right bottom
 # latest update
 update_str = "letztes Update: " . system("date +%d.%m.%Y\\ %H\\:%M")
 set label 1 at graph 0.03, 0.95 update_str left textcolor ls 0 font ",12"
-label_trend = sprintf("\\~&{/*0.5 .}e^{%.3f} mit {/Arial-Italic R}^2 = %.3f", b, A_correlation)
+label_trend = sprintf("\\~&{/*0.5 .}e^{%.3f{/Arial-Italic x}} mit {/Arial-Italic R}^2 = %.3f", b, A_correlation)
 set label 2 at graph 0.50, 0.50 label_trend center textcolor ls 0 font ",12"
 
 # data
