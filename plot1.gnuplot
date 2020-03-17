@@ -5,7 +5,7 @@ set minussign
 set output 'plot1.png'
 
 # margins
-set lmargin 10.25
+set lmargin 12.25
 set rmargin 2.80
 set tmargin 0.75
 set bmargin 3.75
@@ -30,8 +30,8 @@ set xtics out nomirror
 set mxtics 1
 
 # y-axis setup
-set ylabel 'Bestätigte Fälle in Jena'
-set format y '%.0f'
+set ylabel 'bestätigte Fälle in Jena'
+set format y '%6.0f'
 set ytics out nomirror
 set mytics 2
 
