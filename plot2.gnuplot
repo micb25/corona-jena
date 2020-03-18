@@ -1,21 +1,6 @@
-set terminal pngcairo enhanced font "Arial,12" fontscale 1.0 size 800, 600 background rgb '#f2f2f2' dl 2.0
-set encoding utf8
-set minussign
+load "template.gnuplot"
 
 set output 'plot2.png'
-set fit quiet logfile '/dev/null'
-
-# margins
-set lmargin 12.25
-set rmargin 2.80
-set tmargin 0.75
-set bmargin 3.75
-
-# colors and plot style
-set style line  1 lc rgb '#0000FF' lt 1 lw 1 pt 7 ps 1.50 
-set style line  2 lc rgb '#000000' lt 1 lw 1 pt 7 ps 1.50 dt "."
-set style line  10 lc rgb '#000000' lw 1 lt 0
-set style line  11 lc rgb '#aaaaaa' lw 1 lt 0
 
 # stats for y
 stats "<awk '{ print $1 }' ./cases_jena.dat" using 1 nooutput
@@ -54,10 +39,6 @@ set format y '%6.0f'
 set yrange [ymin:ymax]
 set ytics out nomirror
 set mytics 2
-
-# grid
-set grid xtics mxtics ls 10, ls 11
-set grid ytics mytics ls 10, ls 11
 
 # key
 set key at graph 0.98, 0.02 right bottom
