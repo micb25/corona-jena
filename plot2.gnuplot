@@ -51,8 +51,8 @@ set key at graph 0.02, 0.98 left top invert spacing 1.5 box ls 3
 # latest update
 update_str = "letztes Update: " . system("date +%d.%m.\\ %H\\:%M")
 # label_trend = sprintf("\\~&{/*0.5 .}e^{%.3f{/Arial-Italic x}} mit {/Arial-Italic R}^2 = %.3f", b, A_correlation)
-label_trend = sprintf("\\~&{/*0.5 .}%.3f e^{%.3f{/Arial-Italic x}}", a, b)
-set label 2 at graph 0.50, 0.50 label_trend center textcolor ls 0
+label_trend = sprintf("f({/Arial-Italic x}) = (%.3f±%.3f) e^{(%.3f±%.3f) {/Arial-Italic x}}", a, a_err, b, b_err)
+set label 2 at graph 0.02, 0.60 label_trend left textcolor ls 0
 
 # data
 plot  \

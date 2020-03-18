@@ -19,18 +19,19 @@ set xtics out nomirror
 set mxtics 1
 
 # y-axis setup
-set ylabel 'bestätigte Fälle in Jena'
+set ylabel 'kumulierte Fälle in Jena'
 set format y '%6.0f'
 set ytics out nomirror
 set mytics 2
 
 # key
-unset key
+set key at graph 0.02, 0.98 left top invert spacing 1.5 box ls 3
 
 # latest update
-update_str = "letztes Update: " . system("date +%d.%m.%Y\\ %H\\:%M")
-set label 1 at graph 0.98, 0.95 update_str right textcolor ls 0
+update_str = "letztes Update: " . system("date +%d.%m.\\ %H\\:%M")
 
 # data
 plot  \
-  "<awk '!_[$2]++' ./cases_jena.dat" using 1:2 with linespoints ls 1 title "Bestätigte Fälle"
+  1/0 notitle, \
+  "<awk '!_[$2]++' ./cases_jena.dat" using 1:2 with linespoints ls 1 title "bestätigte Fälle", \
+  1/0 lc rgb '#f2f2f2' title update_str
