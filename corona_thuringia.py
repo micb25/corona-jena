@@ -1,0 +1,53 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
+import time, requests, re, os
+
+DATAFILE = os.path.dirname(os.path.realpath(__file__)) + "/cases_thuringia.dat"
+
+def strToTimestamp(datetimestr):    
+    s = datetimestr.replace("Uhr", "").strip()
+    
+    months = {"Januar": "1", "Februar": "2", "März": "3", "April": "4", "Mai": "5", "Juni": "6", "Juli": "7", "August": "8", "September": "9", "Oktober": "10", "November": "11", "Dezember": "12" }    
+    for key in months.keys():
+        s = s.replace(key, months[key])
+            
+    try:    
+        struct_time = time.strptime(s, "%d. %m %Y, %H")
+        return int(time.mktime(struct_time))
+    except:
+        return False
+
+def getNumbers():
+    url          = "https://www.landesregierung-thueringen.de/corona-bulletin"
+    headers      = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
+
+    date_pattern = re.compile(r"\<div.*\<strong\>Zahlen, Daten \(Stand: (.*)\)\<\/strong\>.*\<table.*\<\/table\>.*<table.*\<tbody\>(.*)\<\/tbody\>.*<\/table\>.*\<\/div\>")
+    num_pattern  = re.compile(r"\<tr\>\<th scope=\"row\">([A-Za-z\s\-äöüÄÖÜ]{1,})\<\/th\>\<td\>([0-9]{1,})\<\/td\>\<td\>([0-9]{1,})\<\/td\>\<td\>([0-9]{1,})\<\/td\>\<td\>([0-9]{1,})\<\/td\>\<td\>([0-9]{1,})\<\/td\>\<td\>([0-9]{1,})\<\/td\><\/tr\>") # 
+    
+    res = ""
+    
+    try:
+        r = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0)
+        pd = date_pattern.findall( r.text )
+        pd.reverse()
+    
+        for p in pd:
+            dt = strToTimestamp(p[0])
+            if dt is not False:
+                ps = num_pattern.findall( p[1].replace("&nbsp;", "0") )       
+                for d in ps:
+                    res = res + "%i,%s,%i,%i,%i,%i,%i,%i\n" % (dt, d[0], int(d[1]), int(d[2]), int(d[3]), int(d[4]), int(d[5]), int(d[6]))
+                            
+        return res
+    except:
+        return False
+    
+if __name__ == "__main__":
+
+    n = getNumbers()
+    
+    if n != False:
+        f = open(DATAFILE, 'a')
+        f.write(n) 
+        f.close()
