@@ -35,6 +35,10 @@ set format y '%6.0f'
 set ytics out nomirror
 set mytics 2
 
+# grid
+set grid xtics lc rgb "#303030" lw 1 lt 0
+set grid ytics lc rgb "#303030" lw 1 lt 0
+
 # key
 unset key
 

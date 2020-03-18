@@ -53,6 +53,10 @@ set yrange [ymin:ymax]
 set ytics out nomirror
 set mytics 2
 
+# grid
+set grid xtics lc rgb "#303030" lw 1 lt 0
+set grid ytics lc rgb "#303030" lw 1 lt 0
+
 # key
 set key at graph 0.98, 0.02 right bottom
 
