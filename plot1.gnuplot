@@ -33,4 +33,4 @@ set label 1 at graph 0.98, 0.95 update_str right textcolor ls 0
 
 # data
 plot  \
-  './cases_jena.dat' using 1:2 with linespoints ls 1 title "Bestätigte Fälle"
+  "<awk '!_[$2]++' ./cases_jena.dat" using 1:2 with linespoints ls 1 title "Bestätigte Fälle"

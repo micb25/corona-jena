@@ -3,13 +3,13 @@ load "template.gnuplot"
 set output 'plot2.png'
 
 # stats for y
-stats "<awk '{ print $1 }' ./cases_jena.dat" using 1 nooutput
+stats "<awk '!_[$2]++' ./cases_jena.dat" using 1 nooutput
 xmin = int(STATS_min) - 1 * 86400
 xmin_o = int(STATS_min)
 xmax = int(STATS_max) + 8 * 86400
 
 # stats for y
-stats "<awk '{ print $2 }' ./cases_jena.dat" using 1 nooutput
+stats "<awk '!_[$2]++' ./cases_jena.dat" using 1 nooutput
 ymin = 0
 ymax = int(4.0/3.0*STATS_max)
 
@@ -17,10 +17,14 @@ ymax = int(4.0/3.0*STATS_max)
 a = 1.0
 b = 0.30
 f(x) = a * exp( b * x )
-fit f(x) './cases_jena.dat' using (($1 - xmin_o) / 86400):2 via a, b
+fit f(x) "<awk '!_[$2]++' ./cases_jena.dat" using (($1 - xmin_o) / 86400):2 via a, b
+
+ferr(x) = sqrt( (a_err*exp(b*x))*(a_err*exp(b*x)) + (b_err*a*b*exp(b*x))*(b_err*a*b*exp(b*x)) )
+fmin(x) = f(x) - ferr(x)
+fmax(x) = f(x) + ferr(x)
 
 # R2
-stats './cases_jena.dat' using (f(($1 - xmin_o) / 86400)):2 name "A" nooutput
+stats "<awk '!_[$2]++' ./cases_jena.dat" using (f(($1 - xmin_o) / 86400)):2 name "A" nooutput
 
 ymax = f( (xmax - xmin_o) / 86400 )
 
@@ -41,7 +45,7 @@ set ytics out nomirror
 set mytics 2
 
 # key
-set key at graph 0.02, 0.98 left top spacing 1.5 box ls 3
+set key at graph 0.02, 0.98 left top invert spacing 1.5 box ls 3
 
 # latest update
 update_str = "letztes Update: " . system("date +%d.%m.\\ %H\\:%M")
@@ -51,6 +55,8 @@ set label 2 at graph 0.50, 0.50 label_trend center textcolor ls 0
 
 # data
 plot  \
-  1/0 lc rgb '#f2f2f2' title update_str, \
-  './cases_jena.dat' using 1:2 with linespoints ls 1 title "bestätigte Fälle", \
-  f((x - xmin_o)/86400) w l ls 2 title "exponentieller Trend"
+  '+' using 1:(fmin(($1 - xmin_o)/86400)):(fmax((x - xmin_o)/86400)) with filledcurves closed ls 2 title "Fehlerbereich Trend", \
+  f((x - xmin_o)/86400) w l ls 2 title "exponentieller Trend", \
+  "<awk '!_[$2]++' ./cases_jena.dat" using 1:2 with linespoints ls 1 title "bestätigte Fälle", \
+  1/0 lc rgb '#f2f2f2' title update_str
+  
