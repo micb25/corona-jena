@@ -29,7 +29,7 @@ unset key
 
 # latest update
 update_str = "letztes Update: " . system("date +%d.%m.%Y\\ %H\\:%M")
-set label 1 at graph 0.98, 0.95 update_str right textcolor ls 0 font ",12"
+set label 1 at graph 0.98, 0.95 update_str right textcolor ls 0
 
 # data
 plot  \

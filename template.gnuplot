@@ -1,4 +1,4 @@
-set terminal pngcairo enhanced font "Arial,12" fontscale 1.0 size 800, 600 background rgb '#f2f2f2' dl 2.0
+set terminal pngcairo enhanced font "Arial,14" fontscale 1.0 size 800, 600 background rgb '#f2f2f2' dl 2.0
 set encoding utf8
 set minussign
 
@@ -13,6 +13,7 @@ set bmargin 3.75
 # colors and plot style
 set style line  1 lc rgb '#0000FF' lt 1 lw 1 pt 7 ps 1.50 
 set style line  2 lc rgb '#000000' lt 1 lw 1 pt 7 ps 1.50 dt "."
+set style line  3 lc rgb '#000000' lt 1 lw 1 pt 7 ps 1.50
 set style line  10 lc rgb '#000000' lw 1 lt 1 dt "  .  "
 set style line  11 lc rgb '#aaaaaa' lw 1 lt 1 dt "  .  "
 

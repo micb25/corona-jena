@@ -41,15 +41,15 @@ set ytics out nomirror
 set mytics 2
 
 # key
-set key at graph 0.98, 0.02 right bottom
+set key at graph 0.02, 0.98 left top spacing 1.5 box ls 3
 
 # latest update
-update_str = "letztes Update: " . system("date +%d.%m.%Y\\ %H\\:%M")
-set label 1 at graph 0.03, 0.95 update_str left textcolor ls 0 font ",12"
+update_str = "letztes Update: " . system("date +%d.%m.\\ %H\\:%M")
 label_trend = sprintf("\\~&{/*0.5 .}e^{%.3f{/Arial-Italic x}} mit {/Arial-Italic R}^2 = %.3f", b, A_correlation)
-set label 2 at graph 0.50, 0.50 label_trend center textcolor ls 0 font ",12"
+set label 2 at graph 0.50, 0.50 label_trend center textcolor ls 0
 
 # data
 plot  \
+  1/0 lc rgb '#f2f2f2' title update_str, \
   './cases_jena.dat' using 1:2 with linespoints ls 1 title "bestätigte Fälle", \
   f((x - xmin_o)/86400) w l ls 2 title "exponentieller Trend"
