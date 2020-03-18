@@ -14,6 +14,8 @@ set bmargin 3.75
 # colors and plot style
 set style line  1 lc rgb '#0000FF' lt 1 lw 1 pt 7 ps 1.50 
 set style line  2 lc rgb '#000000' lt 1 lw 1 pt 7 ps 1.50 dt "."
+set style line  10 lc rgb '#000000' lw 1 lt 0
+set style line  11 lc rgb '#aaaaaa' lw 1 lt 0
 
 # stats for y
 stats "<awk '{ print $1 }' ./cases_jena.dat" using 1 nooutput
@@ -54,8 +56,8 @@ set ytics out nomirror
 set mytics 2
 
 # grid
-set grid xtics lc rgb "#303030" lw 1 lt 0
-set grid ytics lc rgb "#303030" lw 1 lt 0
+set grid xtics mxtics ls 10, ls 11
+set grid ytics mytics ls 10, ls 11
 
 # key
 set key at graph 0.98, 0.02 right bottom
