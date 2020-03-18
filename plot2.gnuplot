@@ -7,6 +7,7 @@ stats "<awk '!_[$2]++' ./cases_jena.dat" using 1 nooutput
 xmin = int(STATS_min) - 1 * 86400
 xmin_o = int(STATS_min)
 xmax = int(STATS_max) + 8 * 86400
+xmax_o = int(STATS_max)
 
 # stats for y
 stats "<awk '!_[$2]++' ./cases_jena.dat" using 1 nooutput
@@ -55,8 +56,9 @@ set label 2 at graph 0.50, 0.50 label_trend center textcolor ls 0
 
 # data
 plot  \
-  '+' using 1:(fmin(($1 - xmin_o)/86400)):(fmax((x - xmin_o)/86400)) with filledcurves closed ls 2 title "Fehlerbereich Trend", \
-  f((x - xmin_o)/86400) w l ls 2 title "exponentieller Trend", \
+  [xmin:xmax] 1/0 notitle, \
+  [xmax_o:] '+' using 1:(fmin(($1 - xmin_o)/86400)):(fmax((x - xmin_o)/86400)) with filledcurves closed ls 2 title "Fehlerbereich Trend", \
+  [xmax_o:] f((x - xmin_o)/86400) w l ls 2 title "exponentieller Trend", \
   "<awk '!_[$2]++' ./cases_jena.dat" using 1:2 with linespoints ls 1 title "bestätigte Fälle", \
   1/0 lc rgb '#f2f2f2' title update_str
   
