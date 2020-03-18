@@ -1,4 +1,4 @@
-set terminal pngcairo enhanced font "Arial,14" fontscale 1.0 size 800, 600 background rgb '#f2f2f2' dl 2.0
+set terminal pngcairo enhanced font "./fonts/Vollkorn-Regular.ttf,14" fontscale 1.0 size 800, 600 background rgb '#f2f2f2' dl 2.0
 set encoding utf8
 set minussign
 
