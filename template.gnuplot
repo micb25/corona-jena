@@ -15,6 +15,8 @@ set bmargin 3.75
 set style line  1 lc rgb '#0000FF' lt 1 lw 1 pt 7 ps 1.50 dt "."
 set style line  2 lc rgb '#000000' lt 1 lw 1 pt 7 ps 1.50 dt "."
 set style line  3 lc rgb '#000000' lt 1 lw 1 pt 7 ps 1.50
+set style line  4 lc rgb '#005000' lt 1 lw 1 pt 7 ps 1.50 dt "."
+set style line  5 lc rgb '#000000' lt 1 lw 1 pt 7 ps 1.50 dt "."
 set style line  10 lc rgb '#000000' lw 1 lt 1 dt "  .  "
 set style line  11 lc rgb '#aaaaaa' lw 1 lt 1 dt "  .  "
 
