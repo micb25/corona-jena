@@ -1,4 +1,4 @@
-set terminal pngcairo enhanced transparent truecolor font "./fonts/Vollkorn-Regular.ttf,14" fontscale 1.0 size 800, 600 dl 2.0 
+set terminal pngcairo enhanced transparent truecolor font "Linux Libertine O,16" size 800, 600 dl 2.0 
 set encoding utf8
 set minussign
 
