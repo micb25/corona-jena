@@ -15,14 +15,9 @@ unset xlabel
 set xdata time
 set timefmt "%s"
 set format x "%d.%m."
-set xtics out nomirror
-set mxtics 1
 
 # y-axis setup
 set ylabel 'kumulierte Fälle in Jena'
-set format y '%6.0f'
-set ytics out nomirror
-set mytics 2
 
 # key
 set key at graph 0.02, 0.98 left top invert spacing 1.5 box ls 3

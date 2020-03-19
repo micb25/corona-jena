@@ -26,3 +26,11 @@ set grid ytics mytics ls 10, ls 11
 set samples 30
 set style increment default
 set style fill transparent solid 0.20 border
+
+# axes
+set xtics out nomirror
+set mxtics 2
+
+set format y '%6.0f'
+set ytics out nomirror
+set mytics 2
