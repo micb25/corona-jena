@@ -103,3 +103,11 @@ h1 {
 .navDropdown:hover .navLinks {
 	display: block;
 }
+@media (max-width: 800px) {
+	body {  
+		margin-top: 1em; 
+	}
+	.navBar {
+		right: 5px;
+	}
+}
