@@ -2,7 +2,7 @@
 [![Issues](https://img.shields.io/github/issues/micb25/corona-jena.svg)](https://github.com/micb25/corona-jena/issues)
 
 # corona-jena
-A small webcrawler and gnuplot visualization that helps to track the number of Corona cases in Jena, Germany. Currently, the crawler runs every hour on my web server.
+A small webcrawler and gnuplot visualization that helps to track the number of Corona cases in Thuringia. Currently, the crawler runs every hour on my web server.
 
 ## Resources
 
@@ -20,4 +20,4 @@ The project uses the following official numbers as provided by the state of Thur
 - awk
 
 ## Miscellaneous
-Bugs? Wishes? Suggestions? Please add them all to the [bug tracker](https://github.com/micb25/corona-jena/issues).
+Bugs? Wishes? Suggestions? Please let me know and add them all to the [bug tracker](https://github.com/micb25/corona-jena/issues).
