@@ -54,3 +54,52 @@ h1 {
 	margin: auto;
 	letter-spacing: 0.05em;
 }
+.navBar {
+	background-color: #666;
+	height: auto;
+	position: fixed;
+	right: calc(50% - 400px);
+	top: 0px;
+	z-index: 2;
+}
+.navDropdown {
+	float: left;
+	overflow: hidden;
+	display: block;
+}
+.navButton {
+	font-size: 16px;
+	border: none;
+	outline: none;
+	color: white;
+	padding: 10px 12px;
+	background-color: inherit;
+	font-family: inherit;
+	margin: 0;
+}
+.navDropdown:hover .navButton {
+	background-color: #176fa1;
+}
+.navLinks {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5);
+	z-index: 1;
+	right: 0;
+}
+.navLinks a {
+	float: none;
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	text-align: left;
+}
+.navLinks a:hover {
+	background-color: #ddd;
+}
+.navDropdown:hover .navLinks {
+	display: block;
+}
