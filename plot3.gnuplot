@@ -50,7 +50,7 @@ set xtics out nomirror
 set mxtics 2
 
 # y-axis setup
-set ylabel 'kumulierte Fälle in Jena'
+set ylabel 'Gesamtzahl der Fälle in Jena'
 set format y '%6.0f'
 set yrange [ymin:125000]
 set ytics out nomirror

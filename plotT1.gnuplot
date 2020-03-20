@@ -17,7 +17,7 @@ set timefmt "%s"
 set format x "%d.%m."
 
 # y-axis setup
-set ylabel 'kumulierte Fälle in Thüringen'
+set ylabel 'Gesamtzahl der Fälle in Thüringen'
 
 # key
 set key at graph 0.02, 0.98 left top spacing 1.5 box ls 3

@@ -29,7 +29,7 @@ set timefmt "%s"
 set format x "%d.%m."
 
 # y-axis setup
-set ylabel 'kumulierte Fälle in Weimar'
+set ylabel 'Gesamtzahl der Fälle in Weimar'
 
 # key
 set key at graph 0.02, 0.98 left top invert spacing 1.5 box ls 3

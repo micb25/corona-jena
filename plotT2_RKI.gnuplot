@@ -33,7 +33,7 @@ set format x "%d.%m."
 set xrange [xmin:xmax]
 
 # y-axis setup
-set ylabel 'kumulierte Fälle in Thüringen'
+set ylabel 'Gesamtzahl der Fälle in Thüringen'
 set yrange [ymin:ymax]
 
 # key
