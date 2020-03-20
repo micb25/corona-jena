@@ -8,11 +8,12 @@ A small webcrawler and gnuplot visualization that helps to track the number of C
 
 The project uses the following official numbers as provided by the state of Thuringia or the local authorities:
 
-| City / Province | URL                                                                                                                    |
-|-----------------|------------------------------------------------------------------------------------------------------------------------|
-| Jena            | [https://gesundheit.jena.de/de/coronavirus](https://gesundheit.jena.de/de/coronavirus)                                 |
-| Weimar          | [https://stadt.weimar.de/aktuell/coronavirus](https://stadt.weimar.de/aktuell/coronavirus)                           |
-| Thuringia       | [https://www.landesregierung-thueringen.de/corona-bulletin](https://www.landesregierung-thueringen.de/corona-bulletin) |
+| City / Province | URL                                                                                                                                                          |
+|-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Jena            | [https://gesundheit.jena.de/de/coronavirus](https://gesundheit.jena.de/de/coronavirus)                                                                       |
+| Weimar          | [https://stadt.weimar.de/aktuell/coronavirus](https://stadt.weimar.de/aktuell/coronavirus)                                                                   |
+| Thuringia       | [https://www.landesregierung-thueringen.de/corona-bulletin](https://www.landesregierung-thueringen.de/corona-bulletin)                                       |
+| Thuringia (RKI) | [https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html](https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html) |
 
 ## Requirements 
 - Python 3
