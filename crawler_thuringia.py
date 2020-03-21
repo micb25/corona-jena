@@ -25,6 +25,9 @@ def getNumbers():
     date_pattern = re.compile(r"\<div.*\<strong\>Zahlen, Daten \(Stand: (.*)\)\<\/strong\>.*\<table.*\<\/table\>.*<table.*\<tbody\>(.*)\<\/tbody\>.*<\/table\>.*\<\/div\>")
     num_pattern  = re.compile(r"\<tr\>\<th scope=\"row\">([A-Za-z\s\-äöüÄÖÜ]{1,})\<\/th\>\<td\>([0-9]{1,})\<\/td\>\<td\>([0-9]{1,})\<\/td\>\<td\>([0-9]{1,})\<\/td\>\<td\>([0-9]{1,})\<\/td\>\<td\>([0-9]{1,})\<\/td\>\<td\>([0-9]{1,})\<\/td\><\/tr\>") # 
     
+    # new layout, since 21.03.2020
+    num_pattern2 = re.compile(r"\<tr\>\<th scope=\"row\">([A-Za-z\s\-äöüÄÖÜ]{1,})\<\/th\>\<td\>([0-9]{1,})\<\/td\>\<td\>([0-9]{1,})\<\/td\>\<td\>([0-9]{1,})\<\/td\>\<td\>([0-9]{1,})\<\/td\>\<td\>([0-9]{1,})\<\/td\>\<td\>([0-9]{1,})\<\/td\>\<td\>([0-9]{1,})\<\/td\><\/tr\>") # 
+    
     res = ""
     
     try:
@@ -35,9 +38,17 @@ def getNumbers():
         for p in pd:
             dt = strToTimestamp(p[0])
             if dt is not False:
-                ps = num_pattern.findall( p[1].replace("&nbsp;", "0") )       
+                
+                # old layout
+                ps = num_pattern.findall( p[1].replace("&nbsp;", "0") )             
                 for d in ps:
                     res = res + "%i,%s,%i,%i,%i,%i,%i,%i\n" % (dt, d[0], int(d[1]), int(d[2]), int(d[3]), int(d[4]), int(d[5]), int(d[6]))
+                
+                # fix for data since 21.03.2020
+                if ( len(ps) == 0 ):
+                    ps = num_pattern2.findall( p[1].replace("&nbsp;", "0") )
+                    for d in ps:
+                        res = res + "%i,%s,%i,%i,%i,%i,%i,%i\n" % (dt, d[0], int(d[3]), int(d[2]), int(d[4]), int(d[5]), int(d[6]), int(d[7]))
                             
         return res
     except:
