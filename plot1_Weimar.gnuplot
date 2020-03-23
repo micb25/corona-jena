@@ -9,7 +9,7 @@ xmax_th = STATS_max + 1.5 * 86400
 
 stats "<awk '{ print $1 }' ./cases_weimar.dat" using 1 nooutput
 xmin_we = STATS_min - 1.5 * 86400
-xmax_we = STATS_min + 1.5 * 86400
+xmax_we = STATS_max + 1.5 * 86400
 
 set xrange [ xmin_th < xmin_we ? xmin_th : xmin_we : xmax_th > xmax_we ? xmax_th : xmax_we ]
 
