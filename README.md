@@ -4,6 +4,8 @@
 # corona-jena
 A small webcrawler and gnuplot visualization that helps to track the number of Corona cases in Thuringia. Currently, the crawler runs every hour on my web server.
 
+Official numbers of confirmed COVID19 patients from federal authorities like the Robert Koch institute are unfortunately connected with a certain delay. Therefore, a main idea of this project is to obtain case numbers on a local level in order to have a more accurate picture of the situation as well as plotting the data as a function over time. From my point of view, this might be much more useful for people and easier to understand things like exponential growth than large tables with a lot of numbers.
+
 ## Resources
 
 The project uses the following official numbers as provided by the state of Thuringia or the local authorities:
