@@ -40,6 +40,7 @@ update_str = "letztes Update: " . system("date +%d.%m.\\ %H\\:%M")
 # data
 plot  \
   1/0 notitle, \
-  "<awk -F, '{if ($2==\"Weimar\")a[$1]+=$4}END{for(i in a) print int(i/86400)*86400,a[i]}' cases_thuringia.dat | sort -n -k1" using 1:2 with linespoints ls 6 title "bestätigte Fälle (Land)", \
   "<awk '!_[$2]++' ./cases_weimar.dat" using 1:2 with linespoints ls 1 title "bestätigte Fälle (Stadt Weimar)", \
   1/0 lc rgb '#f2f2f2' title update_str
+
+# "<awk -F, '{if ($2==\"Weimar\")a[$1]+=$4}END{for(i in a) print int(i/86400)*86400,a[i]}' cases_thuringia.dat | sort -n -k1" using 1:2 with linespoints ls 6 title "bestätigte Fälle (Land)", \
