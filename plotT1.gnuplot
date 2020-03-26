@@ -30,5 +30,5 @@ plot  \
   1/0 notitle, \
   1/0 lc rgb '#f2f2f2' title update_str, \
   "<awk -F, '{a[$1]+=$4}END{for(i in a) print int(i/86400)*86400,a[i]}' cases_thuringia.dat | sort -n -k1" using 1:2 with linespoints ls 1 title "bestätigte Fälle", \
-  "<awk -F, '{if ( $1 < 1585180800 ) a[$1]+=$8}END{for(i in a) print int(i/86400)*86400,a[i]}' cases_thuringia.dat | sort -n -k1" using 1:2 with linespoints ls 4 title "Genesene", \
+  "<awk -F, '{if ( $1 < 1585180800 ) a[$1]+=$8}END{for(i in a) print int(i/86400)*86400,a[i]}' cases_thuringia.dat | sort -n -k1" using 1:2 with linespoints ls 4 title "Genesene (bis 25.03.)", \
   "<awk -F, '{a[$1]+=$7}END{for(i in a) print int(i/86400)*86400,a[i]}' cases_thuringia.dat | sort -n -k1" using 1:2 with linespoints ls 5 title "Verstorbene"
