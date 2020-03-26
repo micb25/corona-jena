@@ -68,8 +68,6 @@ def getNumbers():
 if __name__ == "__main__":
 
     n = getNumbers()
-    print(n)
-    exit
     
     if n != False:
         f = open(DATAFILE, 'a')
