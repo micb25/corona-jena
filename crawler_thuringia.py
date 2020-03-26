@@ -26,7 +26,7 @@ def getNumbers():
     url          = "https://www.landesregierung-thueringen.de/corona-bulletin"
     headers      = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
 
-    date_pattern = re.compile(r"\<div.*\<strong\>Zahlen, Daten \(Stand: (.*)\)\<\/strong\>.*\<table.*\<\/table\>.*<table.*\<tbody\>(.*)\<\/tbody\>.*<\/table\>.*\<\/div\>")
+    date_pattern = re.compile(r"\<strong\>Zahlen, Daten \(Stand: (.*?)\)\<\/strong\>.*?\<table.*?\<\/table\>.*?<table.*?\<tbody\>(.*?)\<\/tbody\>")
     num_pattern  = re.compile(r"\<tr\>\<th scope=\"row\">([A-Za-z\s\-äöüÄÖÜ]{1,})\<\/th\>\<td\>([0-9]{1,})\<\/td\>\<td\>([0-9]{1,})\<\/td\>\<td\>([0-9]{1,})\<\/td\>\<td\>([0-9]{1,})\<\/td\>\<td\>([0-9]{1,})\<\/td\>\<td\>([0-9]{1,})\<\/td\><\/tr\>") # 
     
     # new layout, since 21.03.2020
@@ -36,9 +36,9 @@ def getNumbers():
     
     try:
         r = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0)
-        pd = date_pattern.findall( r.text )
+        pd = date_pattern.findall( r.text.replace("\n", "").replace("\r", "") )
         pd.reverse()
-    
+        
         for p in pd:
             dt = strToTimestamp(p[0])
             if dt is not False:
@@ -46,7 +46,14 @@ def getNumbers():
                 # old layout
                 ps = num_pattern.findall( p[1].replace("&nbsp;", "0") )             
                 for d in ps:
-                    res = res + "%i,%s,%i,%i,%i,%i,%i,%i\n" % (dt, d[0], int(d[1]), int(d[2]), int(d[3]), int(d[4]), int(d[5]), int(d[6]))
+                    
+                    # fix for data since 26.03.2020:
+                    # number of recovered people is not included any more
+                    
+                    if ( dt < 1585180800 ):
+                        res = res + "%i,%s,%i,%i,%i,%i,%i,%i\n" % (dt, d[0], int(d[1]), int(d[2]), int(d[3]), int(d[4]), int(d[5]), int(d[6]))
+                    else:
+                        res = res + "%i,%s,%i,%i,%i,%i,%i,%i\n" % (dt, d[0], int(d[3]), int(d[2]), int(d[4]), int(d[5]), int(d[6]), 0)
                 
                 # fix for data since 21.03.2020
                 if ( len(ps) == 0 ):
@@ -61,6 +68,8 @@ def getNumbers():
 if __name__ == "__main__":
 
     n = getNumbers()
+    print(n)
+    exit
     
     if n != False:
         f = open(DATAFILE, 'a')
