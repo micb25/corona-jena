@@ -18,6 +18,15 @@ def getNumber():
         ps1 = num_pattern_A.findall( r.text )
         ps2 = num_pattern_G.findall( r.text )
         ps3 = num_pattern_T.findall( r.text )
+        
+        if ( len(ps1) == 1 ) and ( len(ps2) == 0 ) and ( len(ps3) == 0 ):
+            return (int(ps1[0]), 0, 0)
+        
+        if ( len(ps1) == 1 ) and ( len(ps2) == 1 ) and ( len(ps3) == 0 ):
+            return (int(ps1[0]), int(ps2[0]), 0)
+        
+        if ( len(ps1) == 1 ) and ( len(ps2) == 0 ) and ( len(ps3) == 1 ):
+            return (int(ps1[0]), 0, int(ps3[0]))
     
         if ( len(ps1) == 1 ) and ( len(ps2) == 1 ) and ( len(ps3) == 1 ):
             return (int(ps1[0]), int(ps2[0]), int(ps3[0]))
