@@ -40,15 +40,16 @@ set yrange [ymin:ymax]
 set key at graph 0.02, 0.98 left top invert spacing 1.5 box ls 3
 
 label_trend = sprintf("f({/Arial-Italic x}) = (%.3f±%.3f) e^{(%.3f±%.3f) {/Arial-Italic x}}", a, a_err, b, b_err)
-set label 2 at graph 0.02, 0.60 label_trend left textcolor ls 0
+set label 2 at graph 0.02, 0.40 label_trend left textcolor ls 0
 
 set mxtics 7
 
 # data
 plot  \
   [xmin:xmax] 1/0 notitle, \
+  1/0 lc rgb '#f2f2f2' title "{/*0.75 Quelle: Robert Koch-Institut}", \
+  1/0 lc rgb '#f2f2f2' title update_str, \
   [xmax_o:] '+' using 1:(fmin(($1 - xmin_o)/86400)):(fmax((x - xmin_o)/86400)) with filledcurves closed ls 2 title "Fehlerbereich Trend", \
   f((x - xmin_o)/86400) w l ls 2 title "exponentieller Trend", \
-  "<awk '!_[$2]++' ../data/cases_thuringia_rki.dat" using 1:2 with linespoints ls 1 title "bestätigte Fälle (RKI)", \
-  1/0 lc rgb '#f2f2f2' title update_str
+  "<awk '!_[$2]++' ../data/cases_thuringia_rki.dat" using 1:2 with linespoints ls 1 title "bestätigte Fälle"
   

@@ -33,5 +33,7 @@ set key at graph 0.02, 0.98 left top invert spacing 1.5 box ls 3
 # data
 plot  \
   1/0 notitle, \
-  "<awk '!_[$2]++' ../data/cases_weimar.dat" using 1:2 with linespoints ls 1 title "bestätigte Fälle (Stadt Weimar)", \
-  1/0 lc rgb '#f2f2f2' title update_str
+  1/0 lc rgb '#f2f2f2' title "{/*0.75 Quelle: Stadt Weimar}", \
+  1/0 lc rgb '#f2f2f2' title update_str, \
+  "<awk '!_[$2]++' ../data/cases_weimar.dat | tail -n 1" using 1:2:($2) with labels point pt 7 center offset char -0.3, 0.8 tc ls 1 notitle, \
+  "<awk '!_[$2]++' ../data/cases_weimar.dat" using 1:2 with linespoints ls 1 title "bestätigte Fälle"
