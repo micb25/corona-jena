@@ -5,11 +5,12 @@ import time, requests, os
 
 DATAFILE = os.path.dirname(os.path.realpath(__file__)) + "/cases_jena.dat"
 
-def getNumber():
+def getNumbers():
     url = 'https://opendata.jena.de/dataset/2cc7773d-beba-43ad-9808-a420a67ffcb3/resource/d3ba07b6-fb19-451b-b902-5b18d8e8cbad/download/corona_erkrankungen_jena.csv'
-
+    headers = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
+    
     try:
-        lines = requests.get(url).text.splitlines()
+        lines = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0).text.splitlines()
         data  = lines[-1].split(',')
         return (int(data[1]), int(data[2]), int(data[3]))
     
@@ -17,7 +18,7 @@ def getNumber():
         return False  
     
 if __name__ == "__main__":
-    n = getNumber()
+    n = getNumbers()
     
     if n != False:
         f = open(DATAFILE, 'a')
