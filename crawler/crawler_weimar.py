@@ -3,7 +3,7 @@
 
 import time, requests, re, os
 
-DATAFILE = os.path.dirname(os.path.realpath(__file__)) + "/cases_weimar.dat"
+DATAFILE = os.path.dirname(os.path.realpath(__file__)) + "/../data/cases_weimar.dat"
 
 def getNumber():
     url          = "https://stadt.weimar.de/aktuell/coronavirus/"
