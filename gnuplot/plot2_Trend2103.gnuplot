@@ -1,12 +1,12 @@
 load "template.gnuplot"
 
-set output 'plot2_Trend2103.png'
+set output '../plot2_Trend2103.png'
 
 # stats for x
-stats "<awk '!_[$2]++' ./cases_jena.dat" using 1 nooutput
+stats "<awk '!_[$2]++' ../data/cases_jena.dat" using 1 nooutput
 xmin = int(STATS_min) - 1 * 86400
 xmin_o = int(STATS_min)
-xmax = int(STATS_max) + 8 * 86400
+xmax = int(STATS_max) + 1 * 86400
 xmax_o = int(STATS_max)
 xmax_t = int(STATS_max) - 3 * 86400
 
@@ -14,7 +14,7 @@ xmax_t = int(STATS_max) - 3 * 86400
 a = 1.0
 b = 0.30
 f(x) = a * exp( b * x )
-fit f(x) "<awk '!_[$2]++' ./cases_jena.dat" using (($1 - xmin_o) / 86400):2 via a, b
+fit f(x) "<awk '!_[$2]++' ../data/cases_jena.dat" using (($1 - xmin_o) / 86400):2 via a, b
 
 ferr(x) = sqrt( (a_err*exp(b*x))*(a_err*exp(b*x)) + (b_err*a*b*exp(b*x))*(b_err*a*b*exp(b*x)) )
 fmin(x) = f(x) - ferr(x)
@@ -23,14 +23,14 @@ fmax(x) = f(x) + ferr(x)
 ao = 1.0
 bo = 0.30
 fo(x) = ao * exp( bo * x )
-fit fo(x) "<awk '!_[$2]++' ./cases_jena_2103.dat" using (($1 - xmin_o) / 86400):2 via ao, bo
+fit fo(x) "<awk '!_[$2]++' ../data/cases_jena_2103.dat" using (($1 - xmin_o) / 86400):2 via ao, bo
 
 foerr(x) = sqrt( (ao_err*exp(bo*x))*(ao_err*exp(bo*x)) + (bo_err*ao*bo*exp(bo*x))*(bo_err*ao*bo*exp(bo*x)) )
 fomin(x) = fo(x) - foerr(x)
 fomax(x) = fo(x) + foerr(x)
 
 # R2
-stats "<awk '!_[$2]++' ./cases_jena.dat" using (f(($1 - xmin_o) / 86400)):2 name "A" nooutput
+stats "<awk '!_[$2]++' ../data/cases_jena.dat" using (f(($1 - xmin_o) / 86400)):2 name "A" nooutput
 
 ymin = 0
 ymax = 0.75 * f( (xmax - xmin_o) / 86400 )
@@ -61,6 +61,6 @@ plot  \
   [xmin:xmax] 1/0 notitle, \
   '+' using 1:(fomin(($1 - xmin_o)/86400)):(fomax((x - xmin_o)/86400)) with filledcurves closed ls 2 title "Fehlerbereich Trend (21.03.)", \
   fo((x - xmin_o)/86400) w l ls 2 title "exponentieller Trend (21.03.)", \
-  "<awk '!_[$2]++' ./cases_jena.dat" using 1:2 with linespoints ls 1 title "bestätigte Fälle", \
+  "<awk '!_[$2]++' ../data/cases_jena.dat" using 1:2 with linespoints ls 1 title "bestätigte Fälle", \
   1/0 lc rgb '#f2f2f2' title update_str
   
