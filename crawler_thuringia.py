@@ -26,7 +26,7 @@ def getNumbers():
     url          = "https://www.landesregierung-thueringen.de/corona-bulletin"
     headers      = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
 
-    date_pattern = re.compile(r"\<strong\>Zahlen, Daten \(Stand: (.*?)\)\<\/strong\>.*?\<table.*?\<\/table\>.*?<table.*?\<tbody\>(.*?)\<\/tbody\>")
+    date_pattern = re.compile(r"\<strong\>.*?\s\(Stand: (.*?)\)\<\/strong\>.*?\<table.*?\<\/table\>.*?<table.*?\<tbody\>(.*?)\<\/tbody\>")
     num_pattern  = re.compile(r"\<tr\>\<th scope=\"row\">([A-Za-z\s\-äöüÄÖÜ]{1,})\<\/th\>\<td\>([0-9]{1,})\<\/td\>\<td\>([0-9]{1,})\<\/td\>\<td\>([0-9]{1,})\<\/td\>\<td\>([0-9]{1,})\<\/td\>\<td\>([0-9]{1,})\<\/td\>\<td\>([0-9]{1,})\<\/td\><\/tr\>") # 
     
     # new layout, since 21.03.2020
@@ -53,13 +53,17 @@ def getNumbers():
                     if ( dt < 1585180800 ):
                         res = res + "%i,%s,%i,%i,%i,%i,%i,%i\n" % (dt, d[0], int(d[1]), int(d[2]), int(d[3]), int(d[4]), int(d[5]), int(d[6]))
                     else:
-                        res = res + "%i,%s,%i,%i,%i,%i,%i,%i\n" % (dt, d[0], int(d[3]), int(d[2]), int(d[4]), int(d[5]), int(d[6]), 0)
+                        res = res + "%i,%s,%i,%i,%i,%i,%i,%i\n" % (dt, d[0], int(d[3]), int(d[2]), int(d[4]), int(d[5]), int(d[6]), 0)                    
                 
                 # fix for data since 21.03.2020
                 if ( len(ps) == 0 ):
                     ps = num_pattern2.findall( p[1].replace("&nbsp;", "0") )
                     for d in ps:
-                        res = res + "%i,%s,%i,%i,%i,%i,%i,%i\n" % (dt, d[0], int(d[3]), int(d[2]), int(d[4]), int(d[5]), int(d[6]), int(d[7]))
+                        # fix for data since 27.03.
+                        if ( dt < 1585299600 ):
+                            res = res + "%i,%s,%i,%i,%i,%i,%i,%i\n" % (dt, d[0], int(d[3]), int(d[2]), int(d[4]), int(d[5]), int(d[6]), int(d[7]))
+                        else:
+                            res = res + "%i,%s,%i,%i,%i,%i,%i,%i\n" % (dt, d[0], int(d[3]), int(d[2]), int(d[5]), int(d[6]), int(d[7]), 0)
                             
         return res
     except:
