@@ -21,7 +21,7 @@ update_str = "letztes Update: " . system("date +%d.%m.\\ %H\\:%M")
 stats "<cat ./cases_jena.dat " u 2 prefix "A" nooutput
 
 # get max. recovered
-stats "<cat ./cases_jena.dat " u 3 prefix "B" 
+stats "<cat ./cases_jena.dat " u 3 prefix "B" nooutput
 
 # get max. dead
 stats "<cat ./cases_jena.dat " u 4 prefix "C" nooutput
