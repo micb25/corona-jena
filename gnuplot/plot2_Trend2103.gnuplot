@@ -50,9 +50,6 @@ set yrange [ymin:ymax]
 # key
 set key at graph 0.02, 0.98 left top invert spacing 1.5 box ls 3
 
-# latest update
-update_str = "letztes Update: " . system("date +%d.%m.\\ %H\\:%M")
-
 label_trend = sprintf("f({/Arial-Italic x}) = (%.3f±%.3f) e^{(%.3f±%.3f) {/Arial-Italic x}}", ao, ao_err, bo, bo_err)
 set label 2 at graph 0.02, 0.60 label_trend left textcolor ls 0
 

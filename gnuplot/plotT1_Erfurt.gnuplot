@@ -22,9 +22,6 @@ set ylabel 'Gesamtzahl der Fälle in Erfurt'
 # key
 set key at graph 0.02, 0.98 left top spacing 1.5 box ls 3
 
-# latest update
-update_str = "letztes Update: " . system("date +%d.%m.\\ %H\\:%M")
-
 # data
 plot  \
   1/0 notitle, \

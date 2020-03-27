@@ -37,3 +37,6 @@ set mxtics 2
 set format y '%6.0f'
 set ytics out nomirror
 set mytics 2
+
+# latest update
+update_str = "letztes Update: " . system("date +%d.%m.\\ %H\\:%M")
