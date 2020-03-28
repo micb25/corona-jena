@@ -43,8 +43,8 @@ pos = 90
 
 plot \
      "<awk -F, '{a[$1]+=$4;b[$1]+=$8;c[$1]+=$7}END{for(i in a) print int(i/86400)*86400,a[i],b[i],c[i]}' ../data/cases_thuringia.dat | sort -n -k1 | tail -n 1" u (xpos):(ypos(0)):(sprintf("%i bestätigte Fälle in Thüringen", $2)) w labels left offset 2.5, 0, \
-     "<awk -F, '{a[$1]+=$4;b[$1]+=$8;c[$1]+=$7}END{for(i in a) print int(i/86400)*86400,a[i],b[i],c[i]}' ../data/cases_thuringia.dat | sort -n -k1 | tail -n 1" u (centerX):(centerY):(radius):(pos):(pos=pos+angle($2-B_max-$4)) w circle fc rgb "#004d7e", \
-     '+' u (xpos):(ypos(1)) w p pt 5 ps 4 lc rgb "#004d7e", \
+     "<awk -F, '{a[$1]+=$4;b[$1]+=$8;c[$1]+=$7}END{for(i in a) print int(i/86400)*86400,a[i],b[i],c[i]}' ../data/cases_thuringia.dat | sort -n -k1 | tail -n 1" u (centerX):(centerY):(radius):(pos):(pos=pos+angle($2-B_max-$4)) w circle fc rgb "#0059e4", \
+     '+' u (xpos):(ypos(1)) w p pt 5 ps 4 lc rgb "#0059e4", \
      "<awk -F, '{a[$1]+=$4;b[$1]+=$8;c[$1]+=$7}END{for(i in a) print int(i/86400)*86400,a[i],b[i],c[i]}' ../data/cases_thuringia.dat | sort -n -k1 | tail -n 1" u (xpos):(ypos(1)):(sprintf("%i aktive Fälle* (%.1f%%)", $2 - B_max - $4, 100*($2-B_max-$4)/A_sum)) w labels left offset 2.5, 0, \
      "<awk -F, '{a[$1]+=$4;b[$1]+=$8;c[$1]+=$7}END{for(i in a) print int(i/86400)*86400,a[i],b[i],c[i]}' ../data/cases_thuringia.dat | sort -n -k1 | tail -n 1" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(B_max)) w circle fc rgb "#006000", \
      '+' u (xpos):(ypos(2)) w p pt 5 ps 4 lc rgb "#006000", \
