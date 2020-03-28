@@ -36,7 +36,7 @@ def getNumbers():
     
     try:
         r = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0)
-        pd = date_pattern.findall( r.text.replace("\n", "").replace("\r", "") )
+        pd = date_pattern.findall( r.text.replace("\n", "").replace("\r", "").replace("<p>", "").replace("</p>", "") )
         pd.reverse()
         
         for p in pd:
