@@ -39,4 +39,4 @@ set ytics out nomirror
 set mytics 2
 
 # latest update
-update_str = "{/*0.75 letztes Update: " . system("date +%d.%m.\\ %H\\:%M") . "}"
+update_str = "{/*0.75 letztes Update: " . system("date +%d.%m.,\\ %H\\:%M") . " Uhr}"
