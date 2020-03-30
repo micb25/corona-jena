@@ -35,5 +35,7 @@ plot  \
   1/0 notitle, \
   1/0 lc rgb '#f2f2f2' title "{/*0.75 Quelle: Stadt Weimar}", \
   1/0 lc rgb '#f2f2f2' title update_str, \
+  "<awk '!_[$3]++' ../data/cases_weimar.dat | tail -n 1" using 1:3:($3) with labels point pt 7 center offset char -0.3, 0.8 tc ls 4 notitle, \
   "<awk '!_[$2]++' ../data/cases_weimar.dat | tail -n 1" using 1:2:($2) with labels point pt 7 center offset char -0.3, 0.8 tc ls 1 notitle, \
+  "<awk '!_[$3]++' ../data/cases_weimar.dat" using 1:3 with linespoints ls 4 title "Genesene", \
   "<awk '!_[$2]++' ../data/cases_weimar.dat" using 1:2 with linespoints ls 1 title "bestätigte Fälle"
