@@ -15,7 +15,7 @@ unset tics
 unset border
 
 # latest update
-update_str = "letztes Update: " . system("date +%d.%m.\\ %H\\:%M")
+update_str = "letztes Update: " . system("date +%d.%m.,\\ %H\\:%M") . " Uhr"
 
 # get sum
 stats "<awk -F, '{a[$1]+=$4;b[$1]+=$8;c[$1]+=$7}END{for(i in a) print int(i/86400)*86400,a[i],b[i],c[i]}' ../data/cases_thuringia.dat | sort -n -k1 | tail -n 1" u 2 prefix "A" nooutput

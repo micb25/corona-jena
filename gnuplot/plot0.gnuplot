@@ -15,7 +15,7 @@ unset tics
 unset border
 
 # latest update
-update_str = "letztes Update: " . system("date +%d.%m.\\ %H\\:%M")
+update_str = "letztes Update: " . system("date +%d.%m.,\\ %H\\:%M") . " Uhr"
 
 # gets sum of infected people
 stats "<cat ../data/cases_jena.dat " u 2 prefix "A" nooutput
