@@ -8,7 +8,7 @@ from datetime import datetime
 def value_to_color(i, imax):
     try:
         # simple blue color gradient
-        val = int( 255 - int( 223.0 * float(i) / float(imax) ) )
+        val = int( 254 - int( 223.0 * float(i) / float(imax) ) )
         return "#{:02x}{:02x}ff".format( val, val )
     except:
         return "#ffffff"
