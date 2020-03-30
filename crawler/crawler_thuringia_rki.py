@@ -13,7 +13,6 @@ def getRKINumbers():
     
     try:
         r = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0)
-
         s = re.sub(r"(rowspan|colspan|class)=\"[A-Za-z0-9]*\"", "", r.text)
         
         pd1 = num_pattern_DA.findall( s )
@@ -23,10 +22,8 @@ def getRKINumbers():
         struct_time = time.strptime(pd1[0], "%d.%m.%Y")
         date = int(time.mktime(struct_time))
         
-        s = re.sub(r"[\.\+\s]", "", s)        
-        
-        ps1 = num_pattern_TH.findall( s )        
-                
+        s = re.sub(r"[\.\+\s]", "", s)
+        ps1 = num_pattern_TH.findall( s )
         if len(ps1) != 1:
             return False
                 
