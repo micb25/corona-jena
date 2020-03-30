@@ -22,6 +22,7 @@ if __name__ == "__main__":
     TEMPLATE = SCRIPTPATH + "/TH.svg.template"
     SVGFILE  = SCRIPTPATH + "/map_th.svg"
     PNGFILE  = SCRIPTPATH + "/../map_th.png"
+    PNGFILET = SCRIPTPATH + "/../map_th.tmp.png"
     
     # list of placeholders for the colors in the SVG template
     replace_array  = {
@@ -94,7 +95,9 @@ if __name__ == "__main__":
             svg.close()
         
         # create png
-        os.system( "convert -resize 800x628 -transparent white {} {}".format(SVGFILE, PNGFILE) )
+        os.system( "convert -resize 800x628 -transparent white {} {}".format(SVGFILE, PNGFILET) )
+        os.system( "convert {} gradient.png -gravity northwest -geometry +552+95 -composite {}".format(PNGFILET, PNGFILE) )
+        os.system( "rm -f {}".format(PNGFILET) )
         
     except:
         print("Error occured!")
