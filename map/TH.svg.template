@@ -609,7 +609,7 @@
        id="tspan956"
        x="852.69458"
        y="531.97003"
-       style="font-size:20px;line-height:0%;font-family:Linux Libertine O;fill:#000000">%MIN_VAL%</tspan></text>
+       style="font-size:26px;line-height:0%;font-family:Linux Libertine O;fill:#000000">%MIN_VAL%</tspan></text>
 <text
      xml:space="preserve"
      style="font-size:20px;line-height:0%;font-family:Linux Libertine O;fill:#000000"
@@ -620,7 +620,7 @@
        id="tspan956-9"
        x="852.69458"
        y="415.17795"
-       style="font-size:20px;line-height:0%;font-family:Linux Libertine O;fill:#000000">%MAX_VAL%</tspan></text>
+       style="font-size:26px;line-height:0%;font-family:Linux Libertine O;fill:#000000">%MAX_VAL%</tspan></text>
 <text
      xml:space="preserve"
      style="font-size:20px;line-height:0%;font-family:Linux Libertine O;fill:#000000"
@@ -631,7 +631,7 @@
        id="tspan956-9-6"
        x="852.69458"
        y="473.57401"
-       style="font-size:20px;line-height:0%;font-family:Linux Libertine O;fill:#000000">%MID_VAL%</tspan></text>
+       style="font-size:26px;line-height:0%;font-family:Linux Libertine O;fill:#000000">%MID_VAL%</tspan></text>
 <text
      xml:space="preserve"
      style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;line-height:125%;font-family:Arial;-inkscape-font-specification:'Arial, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:center;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
