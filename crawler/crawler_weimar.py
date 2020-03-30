@@ -47,7 +47,6 @@ def getNumber():
 if __name__ == "__main__":
 
     n = getNumber()
-    print(n)
     
     if n != False:
         f = open(DATAFILE, 'a')
