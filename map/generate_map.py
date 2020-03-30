@@ -83,9 +83,9 @@ if __name__ == "__main__":
 
         # change labels
         svgdata = svgdata.replace("%TITLE%", "Fallzahlen nach Landkreis/Stadt")
-        svgdata = svgdata.replace("%MIN_VAL%", "0")
-        svgdata = svgdata.replace("%MID_VAL%", str(int(max_cases/2)))
-        svgdata = svgdata.replace("%MAX_VAL%", str(max_cases))
+        svgdata = svgdata.replace("%MIN_VAL%", "0 Fälle")
+        svgdata = svgdata.replace("%MID_VAL%", "%i Fälle" % (int(max_cases/2)))
+        svgdata = svgdata.replace("%MAX_VAL%", "%i Fälle" % (max_cases))
         now = datetime.fromtimestamp(timestamp)
         svgdata = svgdata.replace("%DATE%", now.strftime("letzte Aktualisierung: %d.%m.%Y"))
             
