@@ -21,8 +21,9 @@ def getGeraNumbers():
         
         num_t = int(ps1[0]) if ( len(ps1) >= 1 ) else 0
         num_r = int(ps2[0]) if ( len(ps2) >= 1 ) else 0
+        num_d = 0
         
-        return (num_t, num_r)
+        return (num_t, num_r, num_d)
     
     except:
         return False
@@ -34,5 +35,5 @@ if __name__ == "__main__":
     
     if (n != False) and ( n[0] > 0 ):
         f = open(DATAFILE, 'a')
-        f.write("%-16i %-8i %-8i\n" % (int(time.time()), n[0], n[1]))
+        f.write("%-16i %-8i %-8i %-8i\n" % (int(time.time()), n[0], n[1], n[2]))
         f.close()
