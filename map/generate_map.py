@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import os
+from datetime import datetime
 
 
 def value_to_color(i, imax):
@@ -78,6 +79,14 @@ if __name__ == "__main__":
         for k, r in replace_array.items():
             area_color = value_to_color(area_data[k], max_cases)
             svgdata = svgdata.replace(r, area_color)
+
+        # change labels
+        svgdata = svgdata.replace("%TITLE%", "Fallzahlen nach Landkreis/Stadt")
+        svgdata = svgdata.replace("%MIN_VAL%", "0")
+        svgdata = svgdata.replace("%MID_VAL%", str(int(max_cases/2)))
+        svgdata = svgdata.replace("%MAX_VAL%", str(max_cases))
+        now = datetime.now()
+        svgdata = svgdata.replace("%DATE%", now.strftime("letztes Update: %d.%m., %H:%M Uhr"))
             
         # write SVG file
         with open(SVGFILE, "w") as svg:
@@ -89,4 +98,3 @@ if __name__ == "__main__":
         
     except:
         print("Error occured!")
-    
