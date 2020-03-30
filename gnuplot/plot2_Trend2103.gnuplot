@@ -23,7 +23,7 @@ fmax(x) = f(x) + ferr(x)
 ao = 1.0
 bo = 0.30
 fo(x) = ao * exp( bo * x )
-fit fo(x) "<awk '!_[$2]++' ../data/cases_jena_2103.dat" using (($1 - xmin_o) / 86400):2 via ao, bo
+fit fo(x) "<awk '!_[$2]++' ../data/cases_jena.dat | awk '{if ($1 <= 1584900002) print $0 }'" using (($1 - xmin_o) / 86400):2 via ao, bo
 
 foerr(x) = sqrt( (ao_err*exp(bo*x))*(ao_err*exp(bo*x)) + (bo_err*ao*bo*exp(bo*x))*(bo_err*ao*bo*exp(bo*x)) )
 fomin(x) = fo(x) - foerr(x)
