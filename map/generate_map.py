@@ -86,8 +86,8 @@ if __name__ == "__main__":
         svgdata = svgdata.replace("%MIN_VAL%", "0")
         svgdata = svgdata.replace("%MID_VAL%", str(int(max_cases/2)))
         svgdata = svgdata.replace("%MAX_VAL%", str(max_cases))
-        now = datetime.now()
-        svgdata = svgdata.replace("%DATE%", now.strftime("letztes Update: %d.%m., %H:%M Uhr"))
+        now = datetime.fromtimestamp(timestamp)
+        svgdata = svgdata.replace("%DATE%", now.strftime("letzte Aktualisierung: %d.%m.%Y"))
             
         # write SVG file
         with open(SVGFILE, "w") as svg:
