@@ -45,8 +45,7 @@ set label 2 at graph 0.02, 0.60 label_trend left textcolor ls 0
 
 # data
 plot  \
-  [xmin:xmax] 1/0 notitle, \
-  1/0 lc rgb '#f2f2f2' title update_str, \
+  [xmin:xmax] 1/0 lc rgb '#f2f2f2' title update_str, \
   '+' using 1:(fmin(($1 - xmin_o)/86400)):(fmax((x - xmin_o)/86400)) with filledcurves closed ls 2 title "stat. Fehlerbereich sigmoidaler Trend", \
   f((x - xmin_o)/86400) w l ls 2 title "sigmoidaler Trend", \
   "<awk '!_[$2]++' ../data/cases_thuringia_rki.dat" using 1:2 with linespoints ls 1 title "bestätigte Fälle"

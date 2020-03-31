@@ -24,7 +24,6 @@ set key at graph 0.02, 0.98 left top invert spacing 1.5 box ls 3
 
 # data
 plot  \
-  1/0 notitle, \
   1/0 lc rgb '#f2f2f2' title "{/*0.75 Quelle: Thüringer Landesregierung}", \
   1/0 lc rgb '#f2f2f2' title update_str, \
   "<awk -F, '{if ($2==\"Weimar\")a[$1]+=$7}END{for(i in a) print int(i/86400)*86400,a[i]}' ../data/cases_thuringia.dat | sort -n -k1 | tail -n 1" using 1:2:($2) with labels point pt 7 center offset char -0.3, 0.8 tc ls 5 notitle, \

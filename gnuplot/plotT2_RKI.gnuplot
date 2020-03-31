@@ -46,8 +46,7 @@ set mxtics 7
 
 # data
 plot  \
-  [xmin:xmax] 1/0 notitle, \
-  1/0 lc rgb '#f2f2f2' title "{/*0.75 Quelle: Robert Koch-Institut}", \
+  [xmin:xmax] 1/0 lc rgb '#f2f2f2' title "{/*0.75 Quelle: Robert Koch-Institut}", \
   1/0 lc rgb '#f2f2f2' title update_str, \
   [xmax_o:] '+' using 1:(fmin(($1 - xmin_o)/86400)):(fmax((x - xmin_o)/86400)) with filledcurves closed ls 2 title "Fehlerbereich Trend", \
   f((x - xmin_o)/86400) w l ls 2 title "exponentieller Trend", \
