@@ -21,7 +21,7 @@ if __name__ == "__main__":
     DATAFILE = SCRIPTPATH + "/../data/cases_thuringia.dat"
     TEMPLATE = SCRIPTPATH + "/TH.svg.template"
     SVGFILE  = SCRIPTPATH + "/map_th.svg"
-    PNGFILE  = SCRIPTPATH + "/../map_th.png"
+    JPGFILE  = SCRIPTPATH + "/../map_th.jpg"
     PNGFILET = SCRIPTPATH + "/../map_th.tmp.png"
     
     # list of placeholders for the colors in the SVG template
@@ -96,7 +96,7 @@ if __name__ == "__main__":
         
         # create png
         os.system( "convert -resize 800x628 -transparent white {} {}".format(SVGFILE, PNGFILET) )
-        os.system( "convert {} gradient.png -gravity northwest -geometry +552+95 -composite -quality 80 {}".format(PNGFILET, PNGFILE) )
+        os.system( "convert {} gradient.png -gravity northwest -geometry +552+95 -composite -quality 90 {}".format(PNGFILET, JPGFILE) )
         os.system( "rm -f {}".format(PNGFILET) )
         
     except:
