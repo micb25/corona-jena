@@ -121,7 +121,7 @@ if __name__ == "__main__":
             svg.close()
         
         # create png
-        os.system( "convert -resize 800x628 -transparent white {} {}".format(SVGFILE, PNGFILET) )
+        os.system( "convert -resize 800x628 -background '#f2f2f2' -alpha remove -alpha off {} {}".format(SVGFILE, PNGFILET) )
         os.system( "convert {} gradient.png -gravity northwest -geometry +552+95 -composite -quality 90 {}".format(PNGFILET, JPGFILE) )
         os.system( "rm -f {}".format(PNGFILET) )
         
