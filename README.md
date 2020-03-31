@@ -20,6 +20,19 @@ The project uses the following official numbers as provided by the state of Thur
 | Thuringia       | [https://www.landesregierung-thueringen.de/corona-bulletin](https://www.landesregierung-thueringen.de/corona-bulletin)                                       |
 | Thuringia (RKI) | [https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html](https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html) |
 
+## Additional Resources (not used yet)
+
+| City / Province | URL                                                                                                                                                          |
+|-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Landkreis Altenburger Land | [https://www.altenburgerland.de/sixcms/detail.php?&_nav_id1=2508&_lang=de&id=371691](https://www.altenburgerland.de/sixcms/detail.php?&_nav_id1=2508&_lang=de&id=371691) |
+| Landkreis Greiz        | [https://www.landkreis-greiz.de/landkreis-greiz/aktuell/nachrichten-details/?tx_ttnews%5Btt_news%5D=224&cHash=74595518f951c32f22d04b7591d643fe](https://www.landkreis-greiz.de/landkreis-greiz/aktuell/nachrichten-details/?tx_ttnews%5Btt_news%5D=224&cHash=74595518f951c32f22d04b7591d643fe) |
+| Ilm-Kreis | [https://www.ilm-kreis.de/Landkreis/Ver%C3%B6ffentlichungen/Pressearchiv/index.php?ModID=255&NavID=2778.25&text=Coronavirus](https://www.ilm-kreis.de/Landkreis/Ver%C3%B6ffentlichungen/Pressearchiv/index.php?ModID=255&NavID=2778.25&text=Coronavirus) |
+| Saale-Holzland-Kreis | [https://www.saaleholzlandkreis.de/corona-virus/aktuelle-infos/](https://www.saaleholzlandkreis.de/corona-virus/aktuelle-infos/) |
+| Saale-Orla-Kreis | [https://www.saale-orla-kreis.de/sok/](https://www.saale-orla-kreis.de/sok/) |
+| Landkreis Saalfeld-Rudolstadt | [http://www.kreis-slf.de/landratsamt/](http://www.kreis-slf.de/landratsamt/) |
+
+
+
 ## Requirements 
 - Python 3
 - gnuplot (version >= 5.0)
