@@ -21,8 +21,8 @@ if __name__ == "__main__":
     DATAFILE = SCRIPTPATH + "/../data/cases_thuringia.dat"
     TEMPLATE = SCRIPTPATH + "/TH.svg.template"
     SVGFILE  = SCRIPTPATH + "/map_th.svg"
-    PNGFILE  = SCRIPTPATH + "/../map_th_inc.png"
-    PNGFILET = SCRIPTPATH + "/../map_th_inc.tmp.png"
+    PNGFILE  = SCRIPTPATH + "/../map_th_ser.png"
+    PNGFILET = SCRIPTPATH + "/../map_th_ser.tmp.png"
     
     # list of placeholders for the colors in the SVG template
     replace_array  = {
@@ -68,10 +68,10 @@ if __name__ == "__main__":
             ds = l.split(",")
             if ( len(ds) == 8 ):
                 if ( int(ds[0]) == timestamp ):
-                    area_data[ds[1]] = int(ds[2])
-                    sum_cases += int(ds[2])
-                    if ( int(ds[2]) > max_cases ):
-                        max_cases = int(ds[2])
+                    area_data[ds[1]] = int(ds[5])
+                    sum_cases += int(ds[5])
+                    if ( int(ds[5]) > max_cases ):
+                        max_cases = int(ds[5])
 
         # read SVG template
         with open(TEMPLATE, "r") as df:
@@ -82,10 +82,10 @@ if __name__ == "__main__":
             svgdata = svgdata.replace(r, area_color)
 
         # change labels
-        svgdata = svgdata.replace("%TITLE%", "Entwicklung der Fallzahlen zum Vortag")
-        svgdata = svgdata.replace("%MIN_VAL%", "+0 Fälle")
-        svgdata = svgdata.replace("%MID_VAL%", "+%i Fälle" % (int(max_cases/2)))
-        svgdata = svgdata.replace("%MAX_VAL%", "+%i Fälle" % (max_cases))
+        svgdata = svgdata.replace("%TITLE%", "schwere Verläufe nach Landkreis/Stadt")
+        svgdata = svgdata.replace("%MIN_VAL%", "0 Fälle")
+        svgdata = svgdata.replace("%MID_VAL%", "%i Fälle" % (int(max_cases/2)))
+        svgdata = svgdata.replace("%MAX_VAL%", "%i Fälle" % (max_cases))
         now = datetime.fromtimestamp(timestamp)
         svgdata = svgdata.replace("%DATE%", now.strftime("letzte Aktualisierung: %d.%m.%Y"))
             

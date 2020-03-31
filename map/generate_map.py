@@ -96,7 +96,7 @@ if __name__ == "__main__":
         
         # create png
         os.system( "convert -resize 800x628 -transparent white {} {}".format(SVGFILE, PNGFILET) )
-        os.system( "convert {} gradient.png -gravity northwest -geometry +552+95 -composite {}".format(PNGFILET, PNGFILE) )
+        os.system( "convert {} gradient.png -gravity northwest -geometry +552+95 -composite -quality 80 {}".format(PNGFILET, PNGFILE) )
         os.system( "rm -f {}".format(PNGFILET) )
         
     except:
