@@ -7,9 +7,10 @@ from datetime import datetime
 
 def value_to_color(i, imax):
     try:
-        # simple yellow color gradient
-        val = int( 254 - int( 223.0 * float(i) / float(imax) ) )
-        return "#ffff{:02x}".format( val, val )
+        # simple orange color gradient
+        val1 = int( 254 - int( 115.0 * float(i) / float(imax) ) )
+        val2 = int( 254 - int( 223.0 * float(i) / float(imax) ) )
+        return "#ff{:02x}{:02x}".format( val1, val2 )
     except:
         return "#ffffff"
 
@@ -96,7 +97,7 @@ if __name__ == "__main__":
         
         # create png
         os.system( "convert -resize 800x628 -background '#f2f2f2' -alpha remove -alpha off {} {}".format(SVGFILE, PNGFILET) )
-        os.system( "convert {} gradient_y.png -gravity northwest -geometry +552+95 -composite -quality 70 {}".format(PNGFILET, JPGFILE) )
+        os.system( "convert {} gradient_o.png -gravity northwest -geometry +552+95 -composite -quality 70 {}".format(PNGFILET, JPGFILE) )
         os.system( "rm -f {}".format(PNGFILET) )
         
     except:
