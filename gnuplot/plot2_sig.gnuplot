@@ -16,7 +16,7 @@ b = 1.0
 c = 1.0
 d = 1.0
 f(x) = a / ( 1 + exp(  - b * ( x - c ) ) )
-fit f(x) "<awk '!_[$2]++' ../data/cases_jena.dat" using (($1 - xmin_o) / 86400):2 via a, b, c
+fit f(x) "<awk '!_[$2]++' ../data/cases_jena.dat | awk '{if ($1 <= 1585688403) print $0}'" using (($1 - xmin_o) / 86400):2 via a, b, c
 
 ferr(x) = sqrt( (a_err/(1+exp(-b*(x-c))))*(a_err/(1+exp(-b*(x-c)))) + (-b_err*a*(c-x)*exp(-b*(x-c))/((1+exp(-b*(x-c)))*(1+exp(-b*(x-c)))))*(-b_err*a*(c-x)*exp(-b*(x-c))/((1+exp(-b*(x-c)))*(1+exp(-b*(x-c))))) + (-c_err*(a*b*exp(-b*(x-c)))/((1+exp(-b*(x-c)))*(1+exp(-b*(x-c)))))*(-c_err*(a*b*exp(-b*(x-c)))/((1+exp(-b*(x-c)))*(1+exp(-b*(x-c))))) )
 fmin(x) = f(x) - ferr(x)
@@ -46,7 +46,7 @@ set label 2 at graph 0.02, 0.60 label_trend left textcolor ls 0
 # data
 plot  \
   [xmin:xmax] 1/0 lc rgb '#f2f2f2' title update_str, \
-  [xmin_o:xmax_o] '+' using 1:(fmin(($1 - xmin_o)/86400)):(fmax((x - xmin_o)/86400)) with filledcurves closed ls 2 title "stat. Fehlerbereich sigmoidaler Trend", \
-  [xmin_o:xmax_o] f((x - xmin_o)/86400) w l ls 2 title "sigmoidaler Trend", \
+  [xmin_o:1585688403] '+' using 1:(fmin(($1 - xmin_o)/86400)):(fmax((x - xmin_o)/86400)) with filledcurves closed ls 2 title "stat. Fehlerbereich sigmoidaler Trend (31.03.)", \
+  [xmin_o:1585688403] f((x - xmin_o)/86400) w l ls 2 title "sigmoidaler Trend (31.03.)", \
   "<awk '!_[$2]++' ../data/cases_jena.dat" using 1:2 with linespoints ls 1 title "bestätigte Fälle"
   
