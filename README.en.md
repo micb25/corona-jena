@@ -1,18 +1,16 @@
 [![License](https://img.shields.io/github/license/micb25/corona-jena.svg)](LICENSE)
 [![Issues](https://img.shields.io/github/issues/micb25/corona-jena.svg)](https://github.com/micb25/corona-jena/issues)
 
-*Read this in English: [README.en.md](README.en.md)*
-
 # corona-jena
-Ein kleiner Webcrawler and entsprechende Visualisierung der Corona-Fallzahlen für Thüringen und ausgewählte Thüringer Kommunen. Aktuell läuft eine stündliche Aktualisierung der Fallzahlen auf meinem Webserver.
+A small webcrawler and gnuplot visualization that helps to track the number of Corona cases in Thuringia. Currently, the crawler runs every hour on my web server.
 
-Offizielle Zahlen von bestätigten COVID19-Fällen von Stelle des Landes oder Bundes, wie etwa dem Robert Koch-Institut, sind leider mit einer gewissen Meldeverzögerung verbunden. Daher ist es eine Hauptidee dieses Projekts diese Fallzahlen auf der kommunalen Ebene zu erfassen, um ein genaueres Bild über die Gesamtsituation zu haben. Zusätzlich werden diese Daten visuell aufbereitet, was für Leute besser verständlich sein sollte als große Daten-Tabellen, um Dinge wie exponentielles Wachstum zu verstehen.
+Official numbers of confirmed COVID19 patients from federal authorities like the Robert Koch institute are unfortunately connected with a certain delay. Therefore, a main idea of this project is to obtain case numbers on a local level in order to have a more accurate picture of the situation as well as plotting the data as a function over time. From my point of view, this might be much more useful for people and easier to understand things like exponential growth than large tables with a lot of numbers.
 
-## Quellen
+## Resources
 
-Dieses Projekt verwendet folgdende offizielle Zahlen von Kommunen und dem Freistaat Thüringen:
+The project uses the following official numbers as provided by the state of Thuringia or the local authorities:
 
-| Stadt / Landkreis | URL                                                                                                                                                          |
+| City / Province | URL                                                                                                                                                          |
 |-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Jena            | [https://gesundheit.jena.de/de/coronavirus](https://gesundheit.jena.de/de/coronavirus) |
 | Jena            | [https://opendata.jena.de/dataset/2cc7773d-beba-43ad-9808-a420a67ffcb3/resource/d3ba07b6-fb19-451b-b902-5b18d8e8cbad/download/corona_erkrankungen_jena.csv](https://opendata.jena.de/dataset/2cc7773d-beba-43ad-9808-a420a67ffcb3/resource/d3ba07b6-fb19-451b-b902-5b18d8e8cbad/download/corona_erkrankungen_jena.csv)                                                                       |
@@ -22,9 +20,9 @@ Dieses Projekt verwendet folgdende offizielle Zahlen von Kommunen und dem Freist
 | Thuringia       | [https://www.landesregierung-thueringen.de/corona-bulletin](https://www.landesregierung-thueringen.de/corona-bulletin)                                       |
 | Thuringia (RKI) | [https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html](https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html) |
 
-## Weitere Quellen (momentan nicht verwendet)
+## Additional Resources (not used yet)
 
-| Stadt / Landkreis | URL                                                                                                                                                          |
+| City / Province | URL                                                                                                                                                          |
 |-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Landkreis Altenburger Land | [https://www.altenburgerland.de/sixcms/detail.php?&_nav_id1=2508&_lang=de&id=371691](https://www.altenburgerland.de/sixcms/detail.php?&_nav_id1=2508&_lang=de&id=371691) |
 | Landkreis Greiz        | [https://www.landkreis-greiz.de/landkreis-greiz/aktuell/nachrichten-details/?tx_ttnews%5Btt_news%5D=224&cHash=74595518f951c32f22d04b7591d643fe](https://www.landkreis-greiz.de/landkreis-greiz/aktuell/nachrichten-details/?tx_ttnews%5Btt_news%5D=224&cHash=74595518f951c32f22d04b7591d643fe) |
@@ -33,10 +31,12 @@ Dieses Projekt verwendet folgdende offizielle Zahlen von Kommunen und dem Freist
 | Saale-Orla-Kreis | [https://www.saale-orla-kreis.de/sok/](https://www.saale-orla-kreis.de/sok/) |
 | Landkreis Saalfeld-Rudolstadt | [http://www.kreis-slf.de/landratsamt/](http://www.kreis-slf.de/landratsamt/) |
 
-## Voraussetzungen 
+
+
+## Requirements 
 - Python 3
 - gnuplot (version >= 5.0)
 - awk
 
-## Sonstiges
-Fehler? Wünsche? Verbesserungsvorschläge? Bitte lasst sie mich wissen und fügt sie dem [Bug-Tracker](https://github.com/micb25/corona-jena/issues) hinzu.
+## Miscellaneous
+Bugs? Wishes? Suggestions? Please let me know and add them all to the [bug tracker](https://github.com/micb25/corona-jena/issues).
