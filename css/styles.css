@@ -47,8 +47,7 @@ a:hover {
 }
 .graphBlock .piechart {
 	width: 98%;
-	max-width: 600px;
-	max-height: 400px;
+	max-width: 800px;
 }
 .graphBlock h2 {
 	margin-bottom: 0px;
