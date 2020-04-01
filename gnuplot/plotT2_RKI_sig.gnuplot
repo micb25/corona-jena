@@ -6,7 +6,7 @@ set output '../plotT2_RKI_sig.png'
 stats "<awk '!_[$2]++' ../data/cases_thuringia_rki.dat" using 1 nooutput
 xmin = int(STATS_min) - 1 * 86400
 xmin_o = int(STATS_min)
-xmax = int(STATS_max) + 8 * 86400
+xmax = int(STATS_max) + 1 * 86400
 xmax_o = int(STATS_max)
 xmax_t = int(STATS_max) - 3 * 86400
 
@@ -46,7 +46,7 @@ set label 2 at graph 0.02, 0.60 label_trend left textcolor ls 0
 # data
 plot  \
   [xmin:xmax] 1/0 lc rgb '#f2f2f2' title update_str, \
-  '+' using 1:(fmin(($1 - xmin_o)/86400)):(fmax((x - xmin_o)/86400)) with filledcurves closed ls 2 title "stat. Fehlerbereich sigmoidaler Trend", \
-  f((x - xmin_o)/86400) w l ls 2 title "sigmoidaler Trend", \
+  [xmin_o:xmax_o] '+' using 1:(fmin(($1 - xmin_o)/86400)):(fmax((x - xmin_o)/86400)) with filledcurves closed ls 2 title "stat. Fehlerbereich sigmoidaler Trend", \
+  [xmin_o:xmax_o] f((x - xmin_o)/86400) w l ls 2 title "sigmoidaler Trend", \
   "<awk '!_[$2]++' ../data/cases_thuringia_rki.dat" using 1:2 with linespoints ls 1 title "bestätigte Fälle"
   
