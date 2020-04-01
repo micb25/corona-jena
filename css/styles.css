@@ -20,7 +20,8 @@ body {
 	margin: auto;
 	padding: 0;
 	width:96%;
-	max-width: 1650px;/*800px*/
+	max-width: 1850px;/*800px*/
+	line-height: 200%;
 }
 a, a:active, a:visited {
 	color: #176fa1;
@@ -29,15 +30,25 @@ a, a:active, a:visited {
 a:hover {
 	text-decoration: underline;
 }
+.graphBlockContainer, .mapBlockContainer {
+	width: calc(100% - 20px);
+	vertical-align: middle;
+	display: flex;
+	padding-bottom: 15px;
+	align-items: center;
+}
 .graphBlock {
 	display: inline-block;
 	width: 100%;
-	max-width: 800px;
-	margin: 0px auto;
-	padding: 0 10px;
 }
 .graphBlock img {
+	width: 98%;
 	max-width: 800px;
+}
+.graphBlock .piechart {
+	width: 98%;
+	max-width: 600px;
+	max-height: 400px;
 }
 .graphBlock h2 {
 	margin-bottom: 0px;
@@ -45,12 +56,12 @@ a:hover {
 .mapBlock {
 	display: inline-block;
 	width: 100%;
-	margin: 20px auto;
-	padding: 0 50px;
-	max-width: 600px;
+	margin: auto;
 }
 .mapBlock img{
+	width: 98%;
 	max-width: 600px;
+	padding-bottom: 15px;
 }
 
 .centerText {
@@ -73,10 +84,10 @@ a:hover {
 h1 {
 	border-bottom: 1px solid #d8d8d8;
 	padding: 8px;
-	font-size: 1.75em;
-	max-width: 400px;
+	font-size: 2.25em;
 	margin: auto;
 	letter-spacing: 0.05em;
+	max-width: 900px;
 }
 .navBar {
 	background-color: #666;
@@ -126,7 +137,7 @@ h1 {
 }
 .navLinks a.region {    
 	padding: 4px 16px;
-    font-size: 13px;
+	font-size: 13px;
 }
 .navLinks hr {
 	border-bottom: 0;
@@ -138,7 +149,14 @@ h1 {
 	body {  
 		margin-top: 1em; 
 	}
+	h1 {
+		max-width: 400px;
+		font-size: 1.75em;
+	}
 	.navBar {
 		right: 5px;
+	}
+	.graphBlockContainer,  .mapBlockContainer {
+		display: inline;
 	}
 }
