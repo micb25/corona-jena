@@ -1,3 +1,4 @@
 *.log
 plot*.png
+map*.jpg
 data/*ods

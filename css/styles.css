@@ -20,7 +20,7 @@ body {
 	margin: auto;
 	padding: 0;
 	width:96%;
-	max-width: 800px;
+	max-width: 1650px;/*800px*/
 }
 a, a:active, a:visited {
 	color: #176fa1;
@@ -29,6 +29,30 @@ a, a:active, a:visited {
 a:hover {
 	text-decoration: underline;
 }
+.graphBlock {
+	display: inline-block;
+	width: 100%;
+	max-width: 800px;
+	margin: 0px auto;
+	padding: 0 10px;
+}
+.graphBlock img {
+	max-width: 800px;
+}
+.graphBlock h2 {
+	margin-bottom: 0px;
+}
+.mapBlock {
+	display: inline-block;
+	width: 100%;
+	margin: 20px auto;
+	padding: 0 50px;
+	max-width: 600px;
+}
+.mapBlock img{
+	max-width: 600px;
+}
+
 .centerText {
 	text-align: center;
 }
@@ -99,6 +123,13 @@ h1 {
 }
 .navLinks a:hover {
 	background-color: #ddd;
+}
+.navLinks a.region {    
+	padding: 4px 16px;
+    font-size: 13px;
+}
+.navLinks hr {
+	border-bottom: 0;
 }
 .navDropdown:hover .navLinks {
 	display: block;
