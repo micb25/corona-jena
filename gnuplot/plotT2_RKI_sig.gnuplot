@@ -11,9 +11,9 @@ xmax_o = int(STATS_max)
 xmax_t = int(STATS_max) - 3 * 86400
 
 # fit 
-a = 120.0
+a = 2000.0
 b = 1.0
-c = 1.0
+c = 30.0
 d = 1.0
 f(x) = a / ( 1 + exp(  - b * ( x - c ) ) )
 fit f(x) "<awk '!_[$2]++' ../data/cases_thuringia_rki.dat" using (($1 - xmin_o) / 86400):2 via a, b, c
