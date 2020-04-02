@@ -46,20 +46,13 @@
 		<br>
 		<h1 id="mapHeadline">Coronavirus-Fälle in&nbsp;Thüringen</h1>
 
-
     <svg
-    style="margin: 0 auto; display: block"
     version="1.1"
-    id="svgTitleText"
-    sodipodi:docname="thueringen.svg"
-    sodipodi:version="0.32"
+    id="thuringiaMap"
     x="0px"
     y="0px"
-    width="966px"
-    height="758px"
     viewBox="143 281 966 758"
-    enable-background="new 143 281 966 758"
-    xml:space="preserve"><defs
+    enable-background="new 143 281 966 758"><defs
     id="defs80"><linearGradient
       xlink:href="#colorGradient"
       id="linearGradient949"
@@ -580,12 +573,17 @@ id="cases"><text
     sodipodi:role="line">0</tspan></text>
 </g></svg>
 
+    <div id="selektorLinks"><span onclick="changeViewTo('cases');">Fallzahlen</span> | <span onclick="changeViewTo('diff');">Entwicklung der Fallzahlen zum Vortag</span> | <span onclick="changeViewTo('hosp');">stationäre Fälle</span> | <span onclick="changeViewTo('serv');">Schwere Fallverläufe</span> | <span onclick="changeViewTo('death');">Verstorbene</span></div>
 
-<script>
-  </script>
-
-<div id="selektorLinks"><span onclick="changeViewTo('cases');">Fallzahlen</span> | <span onclick="changeViewTo('diff');">Entwicklung der Fallzahlen zum Vortag</span> | <span onclick="changeViewTo('hosp');">stationäre Fälle</span> | <span onclick="changeViewTo('serv');">Schwere Fallverläufe</span> | <span onclick="changeViewTo('death');">Verstorbene</span></div>
-
+		<div class="graphBlockContainer" id="graphBlockContainer" style="display:none">	
+			<div class="graphBlock" >
+				<img id="graph_variable" src="./plotT1_J.png" class="graph">
+			</div>
+    </div>
+    
+    <br>
+    <br>
+    <h1 id="Info">Info über diese Seite</h1>
 		<span>erzeugt mit Kartenmaterial von <a href="https://commons.wikimedia.org/wiki/User:TUBS">TUBS</a></span>
 		</span>
 		Autor: <a href="https://www.michael-böhme.de/">Michael Böhme</a> und <a href="https://www.floriankleiner.de/">Florian Kleiner</a> &nbsp;&middot;&nbsp; tägliche Aktualisierung<br>

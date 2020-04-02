@@ -38,7 +38,11 @@ var last_region_bg_color = '';
 function js_goto( id ) {
     id = id.split('_');
     var link = './index_th_all.html#graph_' + id[1];
-    window.location.href = link;
+    //window.location.href = link;
+
+    document.getElementById( 'graphBlockContainer' ).style.display='block';
+    document.getElementById( 'graph_variable' ).src='./plotT1_' + id[1] + '.png';
+    
 }
 
 function getRandomColor() {
@@ -163,7 +167,9 @@ window.onload = function () {
             });
             changeViewTo('cases');
           }
-      }
+        }
+        document.getElementById( 'thuringiaMap' ).style.display='block';
+        
     }
     getText();
 }

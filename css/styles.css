@@ -146,15 +146,23 @@ h1 {
 	display: block;
 }
 
+svg#thuringiaMap {
+	margin: 0 auto; 
+	display: none;
+	width: 95%;
+    max-width: 966px;
+    max-height: 758px;
+}
+
 div#selektorLinks {
-margin-top: 20px;
-margin-bottom: 10px;
+	margin-top: 20px;
+	margin-bottom: 10px;
 }
 
 div#selektorLinks span {
- margin: 0 10px;
- color: #176fa1;;
- cursor: pointer;
+	margin: 0 10px;
+	color: #176fa1;;
+	cursor: pointer;
 }
 
 @media (max-width: 800px) {
