@@ -1,6 +1,6 @@
 load "template.gnuplot"
 
-set output '../plot2_sig.png'
+set output '../plot2_TrendSig0104.png'
 
 # stats for x
 stats "<awk '!_[$2]++' ../data/cases_jena.dat" using 1 nooutput
@@ -8,7 +8,6 @@ xmin = int(STATS_min) - 1 * 86400
 xmin_o = int(STATS_min)
 xmax = int(STATS_max) + 1 * 86400
 xmax_o = int(STATS_max)
-xmax_t = int(STATS_max) - 3 * 86400
 
 # fit 
 a = 120.0
@@ -16,7 +15,7 @@ b = 1.0
 c = 1.0
 d = 1.0
 f(x) = a / ( 1 + exp(  - b * ( x - c ) ) )
-fit f(x) "<awk '!_[$2]++' ../data/cases_jena.dat | awk '{if ($1 <= 1585688403) print $0}'" using (($1 - xmin_o) / 86400):2 via a, b, c
+fit f(x) "<awk '!_[$2]++' ../data/cases_jena.dat | awk '{if ($1 <= 1585688403) print $0}'" using (($1 - xmin_o) / 86400):(filter_neg($2)) via a, b, c
 
 ferr(x) = sqrt( (a_err/(1+exp(-b*(x-c))))*(a_err/(1+exp(-b*(x-c)))) + (-b_err*a*(c-x)*exp(-b*(x-c))/((1+exp(-b*(x-c)))*(1+exp(-b*(x-c)))))*(-b_err*a*(c-x)*exp(-b*(x-c))/((1+exp(-b*(x-c)))*(1+exp(-b*(x-c))))) + (-c_err*(a*b*exp(-b*(x-c)))/((1+exp(-b*(x-c)))*(1+exp(-b*(x-c)))))*(-c_err*(a*b*exp(-b*(x-c)))/((1+exp(-b*(x-c)))*(1+exp(-b*(x-c))))) )
 fmin(x) = f(x) - ferr(x)
@@ -48,5 +47,5 @@ plot  \
   [xmin:xmax] 1/0 lc rgb '#f2f2f2' title update_str, \
   [xmin_o:1585688403] '+' using 1:(fmin(($1 - xmin_o)/86400)):(fmax((x - xmin_o)/86400)) with filledcurves closed ls 2 title "stat. Fehlerbereich sigmoidaler Trend (01.04.)", \
   [xmin_o:1585688403] f((x - xmin_o)/86400) w l ls 2 title "sigmoidaler Trend (01.04.)", \
-  "<awk '!_[$2]++' ../data/cases_jena.dat" using 1:2 with linespoints ls 1 title "bestätigte Fälle"
+  "<awk '!_[$2]++' ../data/cases_jena.dat" using 1:(filter_neg($2)) with linespoints ls 1 title "bestätigte Fälle"
   

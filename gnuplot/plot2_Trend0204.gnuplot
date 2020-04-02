@@ -8,8 +8,7 @@ xmin = int(STATS_min) - 1 * 86400
 xmin_o = int(STATS_min)
 xmin_f = 1585332622 # 28.03.2020
 xmax = int(STATS_max) + 1 * 86400
-xmax_o = int(STATS_max)
-xmax_f = xmax_o
+xmax_f = int(STATS_max)
 
 # fit
 ao = 1.0

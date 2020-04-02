@@ -2,7 +2,7 @@ set terminal pngcairo enhanced transparent truecolor font "Linux Libertine O,16"
 set encoding utf8
 set minussign
 
-set output '../plot0.png'
+set output '../plot0_Jena.png'
 
 # pie chart inspired by:
 # https://stackoverflow.com/questions/31896718/generation-of-pie-chart-using-gnuplot

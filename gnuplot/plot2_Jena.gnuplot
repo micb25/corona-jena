@@ -1,6 +1,6 @@
 load "template.gnuplot"
 
-set output '../plot2.png'
+set output '../plot2_Jena.png'
 
 # stats for x
 stats "<awk '!_[$2]++' ../data/cases_jena.dat" using 1 nooutput
