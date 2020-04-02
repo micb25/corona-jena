@@ -22,10 +22,10 @@ def getJenaNumbers_Website():
     headers = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
     
     num_pattern_T = re.compile(r"\s([0-9]{1,})\s?(?:Meldungen|bestätigte\ Fälle)")
-    num_pattern_R = re.compile(r"([0-9]{1,})\sPerson.*\sgenesen")
-    num_pattern_D = re.compile(r"([0-9]{1,})\sTodesf")
+    num_pattern_R = re.compile(r"Genesene:\s([0-9]{1,})")
+    num_pattern_D = re.compile(r"Todesfälle\:\s([0-9]{1,})")
     num_pattern_H = re.compile(r"stationärer Aufenthalt\:\s([0-9]{1,})")
-    num_pattern_S = re.compile(r"schwerer Verlauf\:\s([0-9]{1,})")
+    num_pattern_S = re.compile(r"schwerer\sVerlauf\:\s([0-9]{1,})")
     
     try:
         r = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0)
