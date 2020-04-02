@@ -11,7 +11,7 @@ def getJenaNumbers_OpenData():
     try:
         lines = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0).text.splitlines()
         data  = lines[-1].split(',')
-        return (int(data[1]), int(data[2]), int(data[3]), 0, 0)
+        return (int(data[1]), int(data[2]), int(data[3]), -1, -1)
     
     except:
         return False
@@ -35,11 +35,11 @@ def getJenaNumbers_Website():
         ps4 = num_pattern_H.findall( r.text )
         ps5 = num_pattern_S.findall( r.text )
         
-        num_t = int(ps1[0]) if (len(ps1) >= 1) else 0
-        num_r = int(ps2[0]) if (len(ps2) >= 1) else 0
-        num_d = int(ps3[0]) if (len(ps3) >= 1) else 0
-        num_h = int(ps4[0]) if (len(ps4) >= 1) else 0
-        num_s = int(ps5[0]) if (len(ps5) >= 1) else 0
+        num_t = int(ps1[0]) if (len(ps1) >= 1) else -1
+        num_r = int(ps2[0]) if (len(ps2) >= 1) else -1
+        num_d = int(ps3[0]) if (len(ps3) >= 1) else -1
+        num_h = int(ps4[0]) if (len(ps4) >= 1) else -1
+        num_s = int(ps5[0]) if (len(ps5) >= 1) else -1
         
         return (num_t, num_r, num_d, num_h, num_s)
     
@@ -50,7 +50,7 @@ def getJenaNumbers_Website():
 if __name__ == "__main__":
     
     DATAFILE = os.path.dirname(os.path.realpath(__file__)) + "/../data/cases_jena.dat"
-    num_latest = [0, 0, 0, 0, 0]
+    num_latest = [-1, -1, -1, -1, -1]
     
     n1 = getJenaNumbers_OpenData()
     if n1 != False:

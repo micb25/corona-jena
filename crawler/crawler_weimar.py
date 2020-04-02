@@ -9,7 +9,7 @@ def getNumber():
     url          = "https://stadt.weimar.de/aktuell/coronavirus/"
     headers      = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
     num_pattern1 = re.compile(r"von\s(?:insgesamt\s)([0-9]{1,})\spositiv.*\sf.*")
-    num_pattern2 = re.compile(r"([0-9]{1,})\sperson.*?geheilt")
+    num_pattern2 = re.compile(r"([0-9]{1,})\sperson.*?(?:geheilt|genesen)")
     
     try:
         r = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0)
@@ -36,11 +36,13 @@ def getNumber():
         ps1 = num_pattern1.findall( s )
         ps2 = num_pattern2.findall( s )
     
-        num_t = int(ps1[0]) if len(ps1) >= 1 else 0
-        num_r = int(ps2[0]) if len(ps2) >= 1 else 0
-        num_d = 0
+        num_t = int(ps1[0]) if len(ps1) >= 1 else -1
+        num_r = int(ps2[0]) if len(ps2) >= 1 else -1
+        num_d = -1
+        num_h = -1
+        num_s = -1
     
-        return (num_t, num_r, num_d)
+        return (num_t, num_r, num_d, num_h, num_s)
     
     except:
         return False
@@ -51,5 +53,5 @@ if __name__ == "__main__":
     
     if n != False:
         f = open(DATAFILE, 'a')
-        f.write("%-16i %-8i %-8i %-8i\n" % (int(time.time()), n[0], n[1], n[2]))
+        f.write("%-16i %-8i %-8i %-8i %-8i %-8i\n" % (int(time.time()), n[0], n[1], n[2], n[3], n[4]))
         f.close()
