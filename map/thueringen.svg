@@ -22,7 +22,7 @@
    viewBox="143 281 966 758"
    enable-background="new 143 281 966 758"
    xml:space="preserve"
-   inkscape:version="0.92.3 (2405546, 2018-03-11)"><metadata
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"><metadata
      id="metadata108"><rdf:RDF><cc:Work
          rdf:about=""><dc:format>image/svg+xml</dc:format><dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" /></cc:Work></rdf:RDF></metadata><defs
@@ -53,12 +53,12 @@
      id="namedview1109"
      showgrid="false"
      inkscape:zoom="1.2453826"
-     inkscape:cx="494.24681"
-     inkscape:cy="466.23962"
-     inkscape:window-width="2560"
-     inkscape:window-height="1387"
+     inkscape:cx="520.57441"
+     inkscape:cy="293.51576"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
      inkscape:window-x="-8"
-     inkscape:window-y="2152"
+     inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:current-layer="Thuringia" /><g
      id="Districts_Color"><path
@@ -369,6 +369,7 @@
      id="tspan862"
      sodipodi:role="line">Eichsfeld</tspan></text>
 
+
 <text
    id="text_NDH"
    y="373.39249"
@@ -379,6 +380,7 @@
      x="443.59558"
      id="tspan862-7"
      sodipodi:role="line">Nordhausen</tspan></text>
+
 
 <text
    id="text_KYF"
@@ -391,6 +393,7 @@
      id="tspan862-7-1"
      sodipodi:role="line">Kyffhäuserkreis</tspan></text>
 
+
 <text
    id="text_UH"
    y="541.58057"
@@ -401,6 +404,7 @@
      x="384.85406"
      id="tspan862-7-5"
      sodipodi:role="line">Unstrut-Hainich-Kreis</tspan></text>
+
 
 <text
    id="text_SOM"
@@ -413,6 +417,7 @@
      id="tspan862-7-4"
      sodipodi:role="line">Sömmerda</tspan></text>
 
+
 <text
    id="text_EF"
    y="644.36023"
@@ -423,6 +428,7 @@
      x="542.69336"
      id="tspan862-7-8"
      sodipodi:role="line">Erfurt</tspan></text>
+
 
 <text
    id="text_GTH"
@@ -435,6 +441,7 @@
      id="tspan862-7-7"
      sodipodi:role="line">Gotha</tspan></text>
 
+
 <text
    id="text_WAK"
    y="708.59753"
@@ -446,6 +453,7 @@
      id="tspan862-7-46"
      sodipodi:role="line">Wartburgkreis</tspan></text>
 
+
 <text
    id="text_EA"
    y="639.54242"
@@ -456,6 +464,7 @@
      x="294.06787"
      id="tspan862-7-2"
      sodipodi:role="line">Eisenach</tspan></text>
+
 
 <text
    id="text_SM"
@@ -473,6 +482,7 @@
      sodipodi:role="line"
      id="tspan1103">Meiningen</tspan></text>
 
+
 <text
    id="text_IK"
    y="769.62292"
@@ -484,6 +494,7 @@
      id="tspan862-7-9"
      sodipodi:role="line">Ilm-Kreis</tspan></text>
 
+
 <text
    id="text_WE"
    y="643.55731"
@@ -494,6 +505,7 @@
      x="645.63257"
      id="tspan862-7-71"
      sodipodi:role="line">Weimar</tspan></text>
+
 
 <text
    id="text_AP"
@@ -511,6 +523,7 @@
      sodipodi:role="line"
      id="tspan1105">Land</tspan></text>
 
+
 <text
    id="text_J"
    y="673.26703"
@@ -521,6 +534,7 @@
      x="735.00763"
      id="tspan862-7-20"
      sodipodi:role="line">Jena</tspan></text>
+
 
 <text
    id="text_SHK"
@@ -543,6 +557,7 @@
      sodipodi:role="line"
      id="tspan1109">Kreis</tspan></text>
 
+
 <text
    id="text_G"
    y="691.73523"
@@ -554,6 +569,7 @@
      id="tspan862-7-92"
      sodipodi:role="line">Gera</tspan></text>
 
+
 <text
    id="text_GRZ"
    y="775.24371"
@@ -564,6 +580,7 @@
      x="904.9425"
      id="tspan862-7-64"
      sodipodi:role="line">Greiz</tspan></text>
+
 
 <text
    id="text_ABG"
@@ -580,6 +597,7 @@
      y="673.31433"
      x="1016.1025"
      sodipodi:role="line">Land</tspan></text>
+
 
 <text
    id="text_SOK"
@@ -602,6 +620,7 @@
      sodipodi:role="line"
      id="tspan1115">Kreis</tspan></text>
 
+
 <text
    id="text_SLF"
    y="811.3772"
@@ -618,6 +637,7 @@
      sodipodi:role="line"
      id="tspan1111">Rudolstadt</tspan></text>
 
+
 <text
    id="text_SON"
    y="941.4577"
@@ -628,6 +648,7 @@
      x="573.3175"
      id="tspan862-7-52"
      sodipodi:role="line">Sonneberg</tspan></text>
+
 
 <text
    id="text_HBN"
@@ -640,6 +661,7 @@
      id="tspan862-7-75"
      sodipodi:role="line">Hildburghausen</tspan></text>
 
+
 <text
    id="text_WE-0"
    y="833.98541"
@@ -649,65 +671,83 @@
      x="422.1499"
      id="tspan862-7-71-9"
      sodipodi:role="line">Suhl</tspan></text>
+
 </g><g
      id="g1034"><rect
-       y="355.48938"
-       x="1045.137"
-       height="160.59322"
-       width="40.148304"
-       id="rect933"
-       style="opacity:1;fill:url(#linearGradient949);fill-opacity:1;stroke:none;stroke-width:1.00157475;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" /><text
-       id="text937"
-       y="547.58478"
-       x="1065.3569"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.66666603px;line-height:1.25;font-family:arial;-inkscape-font-specification:'arial Bold';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-       xml:space="preserve"><tspan
-         y="547.58478"
-         x="1065.3569"
-         id="tspan935"
-         sodipodi:role="line">0</tspan></text>
+   y="355.48938"
+   x="1045.137"
+   height="160.59322"
+   width="40.148304"
+   id="rect933"
+   style="opacity:1;fill:url(#linearGradient949);fill-opacity:1;stroke:none;stroke-width:1.00157475;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" /><text
+   id="text937"
+   y="547.58478"
+   x="1065.3569"
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.66666603px;line-height:1.25;font-family:arial;-inkscape-font-specification:'arial Bold';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+   xml:space="preserve"><tspan
+     y="547.58478"
+     x="1065.3569"
+     id="tspan935"
+     sodipodi:role="line">0</tspan></text>
+
 <text
-       id="text941"
-       y="342.82834"
-       x="1064.6643"
-       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.66666603px;line-height:1.25;font-family:arial;-inkscape-font-specification:'arial Bold';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-       xml:space="preserve"><tspan
-         y="342.82834"
-         x="1064.6643"
-         id="tspan939"
-         sodipodi:role="line">100</tspan></text>
+   id="text941"
+   y="342.82834"
+   x="1064.6643"
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:26.66666603px;line-height:1.25;font-family:arial;-inkscape-font-specification:'arial Bold';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+   xml:space="preserve"><tspan
+     y="342.82834"
+     x="1064.6643"
+     id="tspan939"
+     sodipodi:role="line">100</tspan></text>
+
 </g><g
      id="cases"><text
-       id="cases_text_headline"
-       y="341.22247"
-       x="821.50848"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-       xml:space="preserve"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle"
-         y="341.22247"
-         x="821.50848"
-         id="tspan1038"
-         sodipodi:role="line">Fallzahlen für</tspan></text>
+   id="cases_text_headline"
+   y="341.22247"
+   x="821.50848"
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+   xml:space="preserve"><tspan
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle"
+     y="341.22247"
+     x="821.50848"
+     id="tspan1038"
+     sodipodi:role="line">Fallzahlen für</tspan></text>
+
 <text
-       id="cases_text_region"
-       y="370.60046"
-       x="822.22919"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
-       xml:space="preserve"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle"
-         y="370.60046"
-         x="822.22919"
-         id="tspan1042"
-         sodipodi:role="line">Kreis</tspan></text>
+   id="cases_text_region"
+   y="370.60046"
+   x="822.22919"
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;line-height:1.25;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+   xml:space="preserve"><tspan
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle"
+     y="370.60046"
+     x="822.22919"
+     id="tspan1042"
+     sodipodi:role="line">Kreis</tspan></text>
+
 <text
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle"
-       id="cases_text_count"
-       y="400.04877"
-       x="822.72723"
-       xml:space="preserve"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle"
-         y="400.04877"
-         x="822.72723"
-         id="tspan1042-7"
-         sodipodi:role="line">0</tspan></text>
-</g></svg>
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle"
+   id="cases_text_count"
+   y="400.04877"
+   x="822.72723"
+   xml:space="preserve"><tspan
+     style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;font-family:Arial;-inkscape-font-specification:Arial;text-align:center;text-anchor:middle"
+     y="400.04877"
+     x="822.72723"
+     id="tspan1042-7"
+     sodipodi:role="line">0</tspan></text>
+
+</g><text
+     xml:space="preserve"
+     style="font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;text-anchor:middle;text-align:center;"
+     x="911.81079"
+     y="1012.5021"
+     id="timestamp"
+     inkscape:label="#text935"><tspan
+       sodipodi:role="line"
+       id="tspan933"
+       x="807.05298"
+       y="1012.5021"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;font-family:arial;-inkscape-font-specification:arial;text-anchor:middle;text-align:center;">Stand: 01.01.2020, 10:30 Uhr</tspan></text>
+</svg>
