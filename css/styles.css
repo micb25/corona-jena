@@ -51,6 +51,7 @@ a:hover {
 }
 .graphBlock h2 {
 	margin-bottom: 0px;
+	margin-left: 82px;
 }
 .mapBlock {
 	display: inline-block;
@@ -157,5 +158,9 @@ h1 {
 	}
 	.graphBlockContainer,  .mapBlockContainer {
 		display: inline;
+	}
+
+	.graphBlock h2 {
+		margin-left: 42px;
 	}
 }
