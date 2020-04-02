@@ -51,7 +51,7 @@ if __name__ == "__main__":
 
     n = getNumber()
     
-    if n != False:
+    if (n != False) and (n[0] > -1):
         f = open(DATAFILE, 'a')
         f.write("%-16i %-8i %-8i %-8i %-8i %-8i\n" % (int(time.time()), n[0], n[1], n[2], n[3], n[4]))
         f.close()

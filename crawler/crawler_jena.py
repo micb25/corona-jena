@@ -62,7 +62,7 @@ if __name__ == "__main__":
             if ( n2[i] > num_latest[i] ):
                 num_latest[i] = n2[i]
     
-    if num_latest[0] > 0:
+    if num_latest[0] > -1:
         f = open(DATAFILE, 'a')
         f.write("%-16i %-8i %-8i %-8i %-8i %-8i\n" % (int(time.time()), num_latest[0], num_latest[1], num_latest[2], num_latest[3], num_latest[4]))
         f.close()

@@ -19,8 +19,8 @@ def getGeraNumbers():
         ps1 = num_pattern1.findall( r.text )
         ps2 = num_pattern2.findall( r.text )
         
-        num_t = int(ps1[0]) if ( len(ps1) >= 1 ) else 0
-        num_r = int(ps2[0]) if ( len(ps2) >= 1 ) else 0
+        num_t = int(ps1[0]) if ( len(ps1) >= 1 ) else -1
+        num_r = int(ps2[0]) if ( len(ps2) >= 1 ) else -1
         num_d = -1
         num_h = -1
         num_s = -1
@@ -35,7 +35,7 @@ if __name__ == "__main__":
 
     n = getGeraNumbers()
     
-    if (n != False) and ( n[0] > 0 ):
+    if (n != False) and ( n[0] > -1 ):
         f = open(DATAFILE, 'a')
         f.write("%-16i %-8i %-8i %-8i %-8i %-8i\n" % (int(time.time()), n[0], n[1], n[2], n[3], n[4]))
         f.close()
