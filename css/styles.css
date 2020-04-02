@@ -145,6 +145,18 @@ h1 {
 .navDropdown:hover .navLinks {
 	display: block;
 }
+
+div#selektorLinks {
+margin-top: 20px;
+margin-bottom: 10px;
+}
+
+div#selektorLinks span {
+ margin: 0 10px;
+ color: #176fa1;;
+ cursor: pointer;
+}
+
 @media (max-width: 800px) {
 	body {  
 		margin-top: 1em; 

@@ -44,7 +44,7 @@
 		<a target="_self" href="./index.html">&laquo; &nbsp; zurück zur Startseite &nbsp; &laquo;</a>
 		<br>
 		<br>
-		<h1 id="TH">Coronavirus-Fälle in&nbsp;Thüringen</h1>
+		<h1 id="mapHeadline">Coronavirus-Fälle in&nbsp;Thüringen</h1>
 
 
     <svg
@@ -582,64 +582,13 @@ id="cases"><text
 
 
 <script>
-  window.onload = function () {
-      //document.getElementById('svgTitleText').innerHTML="Fälle in Thüringen";
-      // init correct colors
-      document.getElementById('upperLimitColor').setAttribute("stop-color", value_to_color(100, 100) );
-      document.getElementById('lowerLimitColor').setAttribute("stop-color", value_to_color(100, 100) );
-      // hide case count legend
-      document.getElementById( 'cases' ).style.display='none';
-      for (var region in regions) {
-        element = document.getElementById('path_'+ region)
-        element.onmouseover = (function(ev){ m_over_region( ev.target.id ) });
-        element.onmouseout = (function(ev){ m_out_region( ev.target.id ) });
-      
-        element.onclick = (function(ev) { js_goto( ev.target.id ) } );
-      }
-
-      function getText(){
-          // read text from URL location
-          var request = new XMLHttpRequest();
-          var lastTimeStamp = 0;
-          request.open('GET', './data/cases_thuringia.dat', true);
-          request.send(null);
-          request.onreadystatechange = function () {
-            if (request.readyState === 4 && request.status === 200) {
-              data = request.responseText;
-              lines = data.split("\n");
-
-              // todo: to function to chnge id
-              id =2;
-
-              lines.forEach(element => {
-                if ( element.length > 0 ) {
-                  var arr = element.split( "," );
-                  var value = parseInt( arr[ id ] );
-                  if ( lastTimeStamp < parseInt( arr[0] ) ) {
-                    lastTimeStamp = parseInt( arr[0] );
-                    max = value;
-                  }
-                  resultArray[ arr[1] ] = value;
-                  if ( max < resultArray[ arr[1] ] ) {
-                    max = resultArray[ arr[1] ];
-                  }
-                }
-              });
-              // set legend upper limit
-              document.getElementById('upperCount').innerHTML = max;
-
-              applyResults();
-            }
-        }
-      }
-      getText();
-  }
   </script>
 
+<div id="selektorLinks"><span onclick="changeViewTo('cases');">Fallzahlen</span> | <span onclick="changeViewTo('diff');">Entwicklung der Fallzahlen zum Vortag</span> | <span onclick="changeViewTo('hosp');">stationäre Fälle</span> | <span onclick="changeViewTo('serv');">Schwere Fallverläufe</span> | <span onclick="changeViewTo('death');">Verstorbene</span></div>
 
 		<span>erzeugt mit Kartenmaterial von <a href="https://commons.wikimedia.org/wiki/User:TUBS">TUBS</a></span>
 		</span>
-		Autor: <a href="https://www.michael-böhme.de/">Michael Böhme</a> &nbsp;&middot;&nbsp; tägliche Aktualisierung<br>
+		Autor: <a href="https://www.michael-böhme.de/">Michael Böhme</a> und <a href="https://www.floriankleiner.de/">Florian Kleiner</a> &nbsp;&middot;&nbsp; tägliche Aktualisierung<br>
 		Abbildungen sind lizensiert unter <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/de/">CC BY-NC-SA</a> &nbsp;&middot;&nbsp; Quellcode auf <a href="https://github.com/micb25/corona-jena">GitHub</a><br>
 		<br>
 		<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=HGW4VMH2XP5WY&amp;source=url">☕ &nbsp; Kaffee spendieren &nbsp; ☕</a>
