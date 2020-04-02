@@ -46,7 +46,7 @@ function js_goto( id ) {
 	id = id.split('_');
 
 	document.getElementById( 'graphBlockContainer' ).style.display='block';
-	document.getElementById( 'graph_variable' ).src='./plotT1_' + id[1] + '.png';
+	document.getElementById( 'graph_variable' ).src='https://www.michael-böhme.de/corona/plotT1_' + id[1] + '.png';
 	document.getElementById( 'graph_headline' ).innerHTML=regions[ id[1] ];
 }
 
@@ -82,6 +82,7 @@ function hide_region_texts(	) {
 }
 
 function m_over_region( id ) {
+	console.log(id);
 	id = id.split('_');
 	last_region_bg_color = document.getElementById( 'path_' + id[1] ).style.fill;
 	document.getElementById( 'path_' + id[1] ).style.fill = 'rgb(113, 210, 69)';
@@ -118,15 +119,35 @@ function applyResults() {
 }
 
 function changeViewTo( id ) {
-  for (var region in fullResultArray) {
-	resultArray[ region ] = fullResultArray[ region ][ id ];
-	max = maxArray[ id ];
-  }
-  // set legend upper limit
-  document.getElementById('upperCount').innerHTML = max;
-  document.getElementById( 'mapHeadline' ).innerHTML = types[ id ] + ' in Thüringen';
-  color = colorByType[ id ];
-  applyResults();
+	for (var key in types) {
+		document.getElementById( 'selector_' + key ).style.fontWeight = "normal";
+	}
+	document.getElementById( id ).style.fontWeight = "bold";
+	id = id.split('_');
+	for (var region in fullResultArray) {
+		resultArray[ region ] = fullResultArray[ region ][ id[1] ];
+		max = maxArray[ id[1] ];
+	}
+	// set legend upper limit
+	document.getElementById( 'upperCount' ).innerHTML = max;
+	document.getElementById( 'mapHeadline' ).innerHTML = types[ id[1] ] + ' in Thüringen';
+	color = colorByType[ id[1] ];
+	applyResults();
+}
+
+function generateMenu() {
+	del = '';
+	menu = '';
+	for (var key in types) {
+		menu = menu + del + '<span id="selector_' + key +'">' + types[ key ] + '</span>';
+		del = '&nbsp;|&nbsp;';
+	}
+	
+	document.getElementById('selectorLinks').innerHTML = menu;
+	for (var key in types) {
+		document.getElementById( 'selector_' + key ).onclick = (function(ev) { changeViewTo( ev.target.id ) } );
+	}
+	
 }
 
 function getText(){
@@ -171,7 +192,8 @@ function getText(){
 			}
 		  }
 		});
-		changeViewTo('cases');
+		generateMenu();
+		changeViewTo('selector_cases');
 	  }
 	}
 	

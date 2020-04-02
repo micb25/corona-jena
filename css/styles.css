@@ -154,12 +154,12 @@ svg#thuringiaMap {
     max-height: 758px;
 }
 
-div#selektorLinks {
+div#selectorLinks {
 	margin-top: 20px;
 	margin-bottom: 10px;
 }
 
-div#selektorLinks span {
+div#selectorLinks span {
 	margin: 0 10px;
 	color: #176fa1;;
 	cursor: pointer;
