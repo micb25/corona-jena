@@ -112,10 +112,8 @@ function changeViewTo( id ) {
 }
 
 window.onload = function () {
-    //document.getElementById('svgTitleText').innerHTML="Fälle in Thüringen";
     // init correct colors
-    document.getElementById('upperLimitColor').setAttribute("stop-color", value_to_color(100, 100) );
-    document.getElementById('lowerLimitColor').setAttribute("stop-color", value_to_color(100, 100) );
+    document.getElementById('upperLimitColor').setAttribute("stop-color", value_to_color(1,1) );
     // hide case count legend
     document.getElementById( 'cases' ).style.display='none';
     for (var region in regions) {
