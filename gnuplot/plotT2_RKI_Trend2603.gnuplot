@@ -46,7 +46,7 @@ set label 2 at graph 0.02, 0.40 label_trend left textcolor ls 0
 plot  \
   [xmin:xmax] 1/0 lc rgb '#f2f2f2' title "{/*0.75 Quelle: Robert Koch-Institut}", \
   1/0 lc rgb '#f2f2f2' title update_str, \
-  [xmin_o:xmax_o]'+' using 1:(fmin(($1 - xmin_o)/86400)):(fmax((x - xmin_o)/86400)) with filledcurves closed ls 2 title "stat. Fehlerbereich Trend (26.03.)", \
-  [xmin_o:xmax_o] f((x - xmin_o)/86400) w l ls 2 title "exponentieller Trend (26.03.)", \
+  [xmin_o:xmax_o]'+' using 1:(fmin(($1 - xmin_o)/86400)):(fmax((x - xmin_o)/86400)) with filledcurves closed ls 2 title "{/*0.75 stat. Fehlerbereich Trend (bis 26.03.)}", \
+  [xmin_o:xmax_o] f((x - xmin_o)/86400) w l ls 2 title "exponentieller Trend (bis 26.03.)", \
   "<awk '!_[$2]++' ../data/cases_thuringia_rki.dat" using 1:(filter_neg($2)) with linespoints ls 1 title "bestätigte Fälle"
   
