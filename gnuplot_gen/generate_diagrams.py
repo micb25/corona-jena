@@ -14,6 +14,7 @@ if __name__ == "__main__":
         ("Altenburger Land", "ABG", "im Altenburger Land"),
         ("Eichsfeld", "EIC", "im Eichsfeld"),
         ("Eisenach", "EA", "in Eisenach"),
+        ("Erfurt", "EF", "in Erfurt"),
         ("Gera", "G", "in Gera"),
         ("Gotha", "GTH", "im Landkreis Gotha"),
         ("Greiz", "GRZ", "im Landkreis Greiz"),
@@ -31,13 +32,9 @@ if __name__ == "__main__":
         ("Suhl", "SHL", "in Suhl"),
         ("Unstrut-Hainich-Kreis", "UH", "im Unstrut-Hainich-Kreis"),
         ("Wartburgkreis", "WAK", "im Wartburgkreis"),
+        ("Weimar", "WE", "in Weimar"),
         ("Weimarer Land", "AP", "im Weimarer Land")
     ]
-    
-    # skip the following:
-    
-    # ("Erfurt", "EF", "in Erfurt"),
-    # ("Weimar", "WE", "in Weimar"),
     
     replace_array = [
         "%NAME%",
@@ -45,7 +42,7 @@ if __name__ == "__main__":
         "%NAMEYLABEL%",
     ]
     
-    if True:
+    try:
         
         # read gnuplot template
         with open(TEMPLATE, "r") as df:
@@ -68,5 +65,5 @@ if __name__ == "__main__":
         # clean-up
         os.system( "rm -f {}".format(GNUPFILE) )
         
-    #except:
-    #    print("Error occured!")
+    except:
+        print("Error occured!")
