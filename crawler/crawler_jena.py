@@ -11,7 +11,7 @@ def getJenaNumbers_OpenData():
     try:
         lines = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0).text.splitlines()
         data  = lines[-1].split(',')
-        return (int(data[1]), int(data[2]), int(data[3]))
+        return (int(data[1]), int(data[2]), int(data[3]), 0, 0)
     
     except:
         return False
@@ -24,18 +24,24 @@ def getJenaNumbers_Website():
     num_pattern_T = re.compile(r"\s([0-9]{1,})\s?(?:Meldungen|bestätigte\ Fälle)")
     num_pattern_R = re.compile(r"([0-9]{1,})\sPerson.*\sgenesen")
     num_pattern_D = re.compile(r"([0-9]{1,})\sTodesf")
+    num_pattern_H = re.compile(r"stationärer Aufenthalt\:\s([0-9]{1,})")
+    num_pattern_S = re.compile(r"schwerer Verlauf\:\s([0-9]{1,})")
     
     try:
         r = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0)
         ps1 = num_pattern_T.findall( r.text )
         ps2 = num_pattern_R.findall( r.text )
         ps3 = num_pattern_D.findall( r.text )
+        ps4 = num_pattern_H.findall( r.text )
+        ps5 = num_pattern_S.findall( r.text )
         
         num_t = int(ps1[0]) if (len(ps1) >= 1) else 0
         num_r = int(ps2[0]) if (len(ps2) >= 1) else 0
         num_d = int(ps3[0]) if (len(ps3) >= 1) else 0
+        num_h = int(ps4[0]) if (len(ps4) >= 1) else 0
+        num_s = int(ps5[0]) if (len(ps5) >= 1) else 0
         
-        return (num_t, num_r, num_d)
+        return (num_t, num_r, num_d, num_h, num_s)
     
     except:
         return False  
@@ -44,7 +50,7 @@ def getJenaNumbers_Website():
 if __name__ == "__main__":
     
     DATAFILE = os.path.dirname(os.path.realpath(__file__)) + "/../data/cases_jena.dat"
-    num_latest = [0, 0, 0]
+    num_latest = [0, 0, 0, 0, 0]
     
     n1 = getJenaNumbers_OpenData()
     if n1 != False:
@@ -52,11 +58,11 @@ if __name__ == "__main__":
         
     n2 = getJenaNumbers_Website()
     if n2 != False:
-        for i in range(0, 3):
+        for i in range(0, 5):
             if ( n2[i] > num_latest[i] ):
                 num_latest[i] = n2[i]
     
     if num_latest[0] > 0:
         f = open(DATAFILE, 'a')
-        f.write("%-16i %-8i %-8i %-8i\n" % (int(time.time()), num_latest[0], num_latest[1], num_latest[2]))
+        f.write("%-16i %-8i %-8i %-8i %-8i %-8i\n" % (int(time.time()), num_latest[0], num_latest[1], num_latest[2], num_latest[3], num_latest[4]))
         f.close()
