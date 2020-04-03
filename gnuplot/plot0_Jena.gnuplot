@@ -56,7 +56,7 @@ pos = 90
 filter_inf(x, y)= (y >= 0) ? (x/y) : 0
 
 plot \
-     "<echo 0" u (xpos):(ypos(0.75)):(sprintf("%i bestätigte Fälle in Jena", A_max)) w labels left offset 2.5, 0, \
+     "<echo 0" u (xpos):(ypos(0.25)):(sprintf("%i bestätigte Fälle in Jena", A_max)) w labels left offset 2.5, 0, \
      "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(A_max-B_max-C_max)) w circle fc rgb "#0241b5", \
      "<echo 0" u (xpos):(ypos(1.75)) w p pt 5 ps 4 lc rgb "#0241b5", \
      "<echo 0" u (xpos):(ypos(1.75)):(sprintf("%i aktive Fälle (%.1f%%), davon", A_max - B_max - C_max, 100*(A_max-B_max-C_max)/A_max)) w labels left offset 2.5, 0, \
