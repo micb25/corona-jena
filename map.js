@@ -34,25 +34,32 @@ var regions = {
 var types = {
 	cases : {
 		de: 'Fallzahlen',
-		color: '#0000D3' },
+		color: '#0000D3',
+		unit : 'Fälle' },
 	diff : {
 		de: 'Entwicklung der Fallzahlen',
-		color: '#A000FF' },
+		color: '#A000FF',
+		unit : 'Fälle / Tag',
+		pm : 1 },
 	hosp : {
 		de: 'Stationäre Fälle',
-		color: '#FFAD00' },
+		color: '#FFAD00',
+		unit : 'Fälle' },
 	serv : {
 		de: 'Schwere Fallverläufe',
-		color: '#D30000' },
+		color: '#D30000',
+		unit : 'Fälle' },
 	death : {
 		de: 'Verstorbene', 
-		color: '#333333' }
+		color: '#333333',
+		unit : 'Fälle' }
 };
 
 var resultArray = {};
 var fullResultArray = {};
 var maxArray = {};
 var langKey = 'de';
+var actualType = '';
 		
 function js_goto( id ) {
 	id = id.split('_');
@@ -137,7 +144,19 @@ function m_over_region( id ) {
 	document.getElementById( 'path_' + id[1] ).style.fill = '#8BC34A';
 	document.getElementById( 'cases' ).style.display = 'block';
 	document.getElementById( 'cases_tspan_region' ).innerHTML = regions[ id[1] ]['name'];
-	document.getElementById( 'cases_tspan_count' ).innerHTML = formatValue( resultArray[ id[1] ]['value'] );
+	
+	var value = formatValue( resultArray[ id[1] ]['value'] );
+	console.log( actualType );
+	if ( 'pm' in types[ actualType ] ) {
+		if ( types[ actualType ][ 'pm' ] == 1 ) {
+			prefix = ( resultArray[ id[1] ]['value'] >= 0 ) ? '+ ' : '- ';
+			value = prefix  + value; 
+		}
+	}
+	if ( 'unit' in types[ actualType ] ) {
+		value = value + ' ' + types[ actualType ][ 'unit' ];
+	}
+	document.getElementById( 'cases_tspan_count' ).innerHTML = value;
 }
 
 function m_out_region( id ) {
@@ -151,24 +170,32 @@ function changeViewTo( id ) {
 		document.getElementById( 'selector_' + key ).style.fontWeight = "normal";
 	}
 	document.getElementById( id ).style.fontWeight = "bold";
-	id = id.split('_');
+	actualType = id.split('_')[1];
+
 	for (var regionKey in fullResultArray) {
 		// populate result array to be able to read out the data on mouse over
 		resultArray[ regionKey ] = {};
-		resultArray[ regionKey ]['value'] = fullResultArray[ regionKey ][ id[1] ];
-		resultArray[ regionKey ]['color'] = valueToColor( resultArray[ regionKey ]['value'], maxArray[ id[1] ], types[ id[1] ][ 'color' ] );
+		resultArray[ regionKey ]['value'] = fullResultArray[ regionKey ][ actualType ];
+		resultArray[ regionKey ]['color'] = valueToColor( resultArray[ regionKey ]['value'], maxArray[ actualType ], types[ actualType ][ 'color' ] );
 		// apply color to map
 		document.getElementById( 'path_'+ regionKey ).style.fill = resultArray[ regionKey ]['color'];
 		document.getElementById( 'text_'+ regionKey ).style.fill = getOverlayTextColor( resultArray[ regionKey ]['color'] );
 		
 	}
 	// set legend upper limit
-	document.getElementById( 'upperCount' ).innerHTML =  formatValue( maxArray[ id[1] ] );
-	document.getElementById( 'mapHeadline' ).innerHTML = types[ id[1] ][ langKey ] + ' in Thüringen';
-	document.getElementById( 'cases_text_headline' ).innerHTML = types[ id[1] ][ langKey ]; 
+	value = formatValue( maxArray[ actualType ] );
+	if ( 'pm' in types[ actualType ] ) {
+		if ( types[ actualType ][ 'pm' ] == 1 ) {
+			prefix = ( maxArray[ actualType ] >= 0 ) ? '+ ' : '- ';
+			value = prefix  + value; 
+		}
+	}
+	document.getElementById( 'upperCount' ).innerHTML = value;
+	document.getElementById( 'mapHeadline' ).innerHTML = types[ actualType ][ langKey ] + ' in Thüringen';
+	document.getElementById( 'cases_text_headline' ).innerHTML = types[ actualType ][ langKey ]; 
 
 	// init color legend
-	document.getElementById('upperLimitColor').setAttribute("stop-color", valueToColor( 1, 1, types[ id[1] ][ 'color' ] ) );
+	document.getElementById('upperLimitColor').setAttribute("stop-color", valueToColor( 1, 1, types[ actualType ][ 'color' ] ) );
 }
 
 function generateMenu() {
@@ -213,20 +240,25 @@ function getMaxValues() {
 function getProcessedData() {
 	var processedTypes = {
 		casedens : {
-			de: 'Fälle je Quadratkilometer',
-			color: '#0000D3' },
+			de: 'Flächenbezogene Fälle',
+			color: '#0000D3',
+			unit : 'Fälle / km²' },
 		caseres : {
-			de: 'Fälle pro 100.000 Einwohner',
-			color: '#0000D3' },
+			de: 'relative Fallzahlen',
+			color: '#0000D3',
+			unit : 'Fälle / 100.000 EW' },
 		area : {
 			de: 'Fläche',
-			color: '#00A000' },
+			color: '#00A000',
+			unit : 'km²' },
 		res : {
 			de: 'Einwohner',
-			color: '#00A000' },
+			color: '#00A000',
+			unit : 'EW' },
 		dens : {
 			de: 'Einwohnerdichte',
-			color: '#00A000' },
+			color: '#00A000',
+			unit : 'EW / km²' },
 	};
 
 	for (var regionKey in regions) {
