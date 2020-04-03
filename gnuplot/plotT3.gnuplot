@@ -55,14 +55,14 @@ set key at graph 0.02, 0.98 left top invert spacing 1.2 box ls 3
 
 set label 2 at graph 0.99, 0.04 right "Hilfslinien entsprechen Fallzahl-Verdopplung alle {/Linux-Libertine-O-Italic N} Tage" textcolor ls 0
 
-set label 3 at graph 0.02, 0.67 left "jeden Tag" textcolor ls 0
+set label 3 at graph 0.14, 0.67 right "täglich" textcolor ls 0
 set label 4 at graph 0.22, 0.67 left "2 Tage" textcolor ls 0
 set label 5 at graph 0.38, 0.67 left  "3 Tage" textcolor ls 0
 set label 6 at first xmax - 0.5 * 86400, first gD( ((xmax-xmin)/86400) - 5.5) right "4 Tage" textcolor ls 0
 set label 7 at first xmax - 0.5 * 86400, first gG( ((xmax-xmin)/86400) - 6.5) right "7 Tage" textcolor ls 0
 set label 8 at first xmax - 0.5 * 86400, first gH( ((xmax-xmin)/86400) - 8.5) right "14 Tage" textcolor ls 0
 
-set label 9 at first fitmax + 0.5 * 86400, first f((fitmax - xmin_o) / 86400) sprintf(" ≈%.f Tage", log(2) / b ) left textcolor ls 0
+set label 9 at first fitmin, first f((fitmin - xmin_o - 3 * 86400) / 86400) sprintf(" Verdopplungsrate\n ≈%.f Tage", log(2) / b ) left textcolor ls 0
 
 # data
 plot  \
