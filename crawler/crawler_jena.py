@@ -11,8 +11,13 @@ def getJenaNumbers_OpenData():
     try:
         lines = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0).text.splitlines()
         data  = lines[-1].split(',')
-        return (int(data[1]), int(data[2]), int(data[3]), -1, -1)
-    
+        return  [
+                    int(data[1]) if (len(data) >= 2) else -1,
+                    int(data[2]) if (len(data) >= 3) else -1,
+                    int(data[3]) if (len(data) >= 4) else -1,
+                    int(data[4]) if (len(data) >= 5) else -1,
+                    int(data[5]) if (len(data) >= 6) else -1
+                ]
     except:
         return False
 
@@ -54,12 +59,18 @@ if __name__ == "__main__":
     
     n1 = getJenaNumbers_OpenData()
     if n1 != False:
-        num_latest = list(n1)
+        num_latest = n1
         
     n2 = getJenaNumbers_Website()
     if n2 != False:
-        for i in range(0, 5):
+        # take the maximum value for total cases, recovered, and deceased
+        for i in range(0, 3):
             if ( n2[i] > num_latest[i] ):
+                num_latest[i] = n2[i]
+        
+        # for the rest prefer the OpenData table
+        for i in range(3, 5):
+            if ( num_latest[i] == -1 ):
                 num_latest[i] = n2[i]
     
     if num_latest[0] > -1:
