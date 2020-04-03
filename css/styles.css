@@ -157,6 +157,9 @@ svg text {
 	text-align:center;
 	text-anchor:middle
 }
+svg #Districts_Color, svg #region_names tspan, svg #region_names text {
+	cursor: pointer
+}
 svg #District_borders path {
 	fill: none;
 	stroke: #F9F9F9;
@@ -164,7 +167,7 @@ svg #District_borders path {
 	stroke-linejoin: round;
 	stroke-miterlimit: 3.9161;
 }
-svg #region_names {
+svg #state_borders_path {
 	fill: none;
 	stroke: #444444;
 	stroke-width: 3;
