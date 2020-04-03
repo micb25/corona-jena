@@ -73,7 +73,7 @@ set key at graph 0.02, 0.98 left top invert spacing 1.2 box ls 3
 plot  \
   1/0 notitle, \
   "<awk -F, '{if ($3 == 0) print $4, $5}' ./th_dens_vs_cases.dat" u 1:2 w p ls 2 title "Landkreise", \
-  "<awk -F, '{if ( ($3 == 0) && ( $4 > 70 ) ) print $4, $5, $2}' ./th_dens_vs_cases.dat" u 1:2:($3) with labels point pt 7 ps 0 center offset char -0.3, 0.8 tc ls 2 notitle, \
+  "<awk -F, '{if ( ($3 == 0) && ( $4 > 0 ) ) print $4, $5, $2}' ./th_dens_vs_cases.dat" u 1:2:($3) with labels point pt 7 ps 0 center offset char -0.3, 0.8 tc ls 2 notitle, \
   "<awk -F, '{if ($3 == 1) print $4, $5}' ./th_dens_vs_cases.dat" u 1:2 w p ls 1 title "kreisfreie Städte", \
   "<awk -F, '{if ($3 == 1) print $4, $5, $2}' ./th_dens_vs_cases.dat" u 1:2:($3) with labels point pt 7 ps 0 center offset char -0.3, 0.8 tc ls 1 notitle
   
