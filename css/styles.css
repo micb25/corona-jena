@@ -152,6 +152,25 @@ svg#thuringiaMap {
     max-width: 966px;
     max-height: 758px;
 }
+svg text {
+	font-family:arial;
+	text-align:center;
+	text-anchor:middle
+}
+svg #District_borders path {
+	fill: none;
+	stroke: #F9F9F9;
+	stroke-width: 1.25;
+	stroke-linejoin: round;
+	stroke-miterlimit: 3.9161;
+}
+svg #region_names {
+	fill: none;
+	stroke: #444444;
+	stroke-width: 3;
+	stroke-linejoin: round;
+	stroke-miterlimit: 3.8637;
+}
 
 div#selectorLinks {
 	margin-top: 20px;
