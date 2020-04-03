@@ -1,4 +1,4 @@
-set terminal pngcairo enhanced transparent truecolor font "Linux Libertine O,16" size 800, 400 dl 2.0 
+set terminal pngcairo enhanced transparent truecolor font "Linux Libertine O,16" size 800, 400 dl 2.0
 set encoding utf8
 set minussign
 
@@ -17,14 +17,23 @@ unset border
 # latest update
 update_str = "letztes Update: " . system("date +%d.%m.,\\ %H\\:%M") . " Uhr"
 
-# gets sum of infected people
+# get sum of infected
 stats "<cat ../data/cases_jena.dat " u 2 prefix "A" nooutput
 
-# gets maximum number of recovered people
+# get maximum number of recovered
 stats "<cat ../data/cases_jena.dat " u 3 prefix "B" nooutput
 
-# gets maximum number of dead people
+# get maximum number of deceased
 stats "<cat ../data/cases_jena.dat " u 4 prefix "C" nooutput
+
+# get number of hospitalized
+stats "<cat ../data/cases_jena.dat " u 5 prefix "D" nooutput
+
+# get number of hospitalized
+stats "<cat ../data/cases_jena.dat | awk '{if ($5 >= 0) print $0}' | tail -n 1" u 5 prefix "E" nooutput
+
+# get number of severe
+stats "<cat ../data/cases_jena.dat | awk '{if ($6 >= 0) print $0}' | tail -n 1" u 6 prefix "F" nooutput
 
 angle(x)=x*360/A_max
 
@@ -39,21 +48,26 @@ ypos(i) = yposmax - i*(yposmax-yposmin)/(4)
 
 set style fill solid 1
 set size ratio -1
-set xrange [-1.75*radius:3.3*radius]
+set xrange [-1.45*radius:3.6*radius]
 set yrange [-radius:radius]
 
 pos = 90
 
+filter_inf(x, y)= (y >= 0) ? (x/y) : 0
+
 plot \
-     "<echo 0" u (xpos):(ypos(1)):(sprintf("%i bestätigte Fälle in Jena", A_max)) w labels left offset 2.5, 0, \
+     "<echo 0" u (xpos):(ypos(0.75)):(sprintf("%i bestätigte Fälle in Jena", A_max)) w labels left offset 2.5, 0, \
      "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(A_max-B_max-C_max)) w circle fc rgb "#0241b5", \
-     "<echo 0" u (xpos):(ypos(2)) w p pt 5 ps 4 lc rgb "#0241b5", \
-     "<echo 0" u (xpos):(ypos(2)):(sprintf("%i aktive Fälle (%.1f%%)", A_max - B_max - C_max, 100*(A_max-B_max-C_max)/A_max)) w labels left offset 2.5, 0, \
+     "<echo 0" u (xpos):(ypos(1.75)) w p pt 5 ps 4 lc rgb "#0241b5", \
+     "<echo 0" u (xpos):(ypos(1.75)):(sprintf("%i aktive Fälle (%.1f%%), davon", A_max - B_max - C_max, 100*(A_max-B_max-C_max)/A_max)) w labels left offset 2.5, 0, \
      "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(B_max)) w circle fc rgb "#006000", \
-     "<echo 0" u (xpos):(ypos(3)) w p pt 5 ps 4 lc rgb "#006000", \
-     "<echo 0" u (xpos):(ypos(3)):(sprintf("%i Genesene (%.1f%%)", B_max, 100*B_max/A_max)) w labels left offset 2.5, 0, \
+     "<echo 0" u (xpos):(ypos(5.00)) w p pt 5 ps 4 lc rgb "#006000", \
+     "<echo 0" u (xpos):(ypos(5.00)):(sprintf("%i Genesene (%.1f%%)", B_max, 100*B_max/A_max)) w labels left offset 2.5, 0, \
      "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(C_max)) w circle fc rgb "#000000", \
-     "<echo 0" u (xpos):(ypos(4)) w p pt 5 ps 4 lc rgb "#000000", \
-     "<echo 0" u (xpos):(ypos(4)):(sprintf("%i Verstorbene(r) (%.1f%%)", C_max, 100*C_max/A_max)) w labels left offset 2.5, 0, \
-     "<echo 0" u (xpos):(ypos(6.5)):(update_str) w labels font ", 12" left offset 2.5, 0, \
-     "<echo 0" u (xpos):(ypos(7.5)):("Quelle: Stadt Jena") w labels font ", 12" left offset 2.5, 0
+     "<echo 0" u (xpos):(ypos(6.00)) w p pt 5 ps 4 lc rgb "#000000", \
+     "<echo 0" u (xpos):(ypos(6.00)):(sprintf("%i Verstorbene(r) (%.1f%%)", C_max, 100*C_max/A_max)) w labels left offset 2.5, 0, \
+     "<echo 0" u (xpos + 1.5):(ypos(2.75)):(sprintf("stationäre Fälle: %i (%.1f\%)", E_max, 100*filter_inf(E_max, A_max - B_max - C_max))) w labels right offset 2.5, 0, \
+     "<echo 0" u (xpos + 1.5):(ypos(3.75)):(sprintf("schwere Verläufe: %i (%.1f\%)", F_max, 100*filter_inf(F_max, A_max - B_max - C_max))) w labels right offset 2.5, 0, \
+     "<echo 0" u (xpos):(ypos(7.10)):(update_str) w labels font ", 12" left offset 2.5, 0, \
+     "<echo 0" u (xpos):(ypos(7.85)):("Quelle: Stadt Jena") w labels font ", 12" left offset 2.5, 0
+     
