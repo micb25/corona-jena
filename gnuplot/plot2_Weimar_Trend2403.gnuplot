@@ -31,7 +31,7 @@ set format x "%d.%m."
 set xrange [xmin:xmax]
 
 # y-axis setup
-set ylabel 'Gesamtzahl der Fälle in Jena'
+set ylabel 'Gesamtzahl der Fälle in Weimar'
 set yrange [ymin:ymax]
 
 # key
@@ -46,7 +46,7 @@ set label 3  at graph 0.02, 0.50 label_double left textcolor ls 0
 
 # data
 plot  \
-  1/0 lc rgb '#f2f2f2' title "{/*0.75 Quelle: Stadt Jena}", \
+  1/0 lc rgb '#f2f2f2' title "{/*0.75 Quelle: Stadt Weimar}", \
   [xmin:xmax] 1/0 lc rgb '#f2f2f2' title update_str, \
   [xmin_f:xmax_f] '+' using 1:(fomin(($1 - xmin_f)/86400)):(fomax((x - xmin_f)/86400)) with filledcurves closed ls 2 title "{/*0.75 stat. Fehlerbereich Trend (ab 24.03.)}", \
   [xmin_f:xmax_f] fo((x - xmin_f)/86400) w l ls 2 title "exponentieller Trend (ab 24.03.)", \
