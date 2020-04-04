@@ -650,6 +650,18 @@
        sodipodi:role="line"
        id="tspan956-3"
        x="834.8595"
-       y="1006.2397"
+       y="1016.2397"
        style="font-size:20px;line-height:0%;font-family:Linux Libertine O;fill:#000000">%DATE%</tspan></text>
+<text
+     xml:space="preserve"
+     style="font-size:26px;line-height:0%;font-family:DejaVuSansCondensed-BoldOblique;fill:#000000"
+     x="965.47888"
+     y="917.39868"
+     id="text958-0-3"><tspan
+       sodipodi:role="line"
+       id="tspan956-3-6"
+       x="1095.47888"
+       y="985.39868"
+       text-anchor="end"
+       style="font-size:30px;line-height:0%;font-family:Linux Libertine O;fill:#000000">%LABEL_SUM%</tspan></text>
 </svg>
