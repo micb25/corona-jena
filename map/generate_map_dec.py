@@ -84,7 +84,7 @@ if __name__ == "__main__":
         # change labels
         svgdata = svgdata.replace("%TITLE%", "Verstorbene nach Landkreis/Stadt")
         svgdata = svgdata.replace("%MIN_VAL%", "0 Verstorbene")
-        svgdata = svgdata.replace("%MID_VAL%", "%i Verstorbene" % (int(max_cases/2)))
+        svgdata = svgdata.replace("%MID_VAL%", "%.0f Verstorbene" % (float(max_cases/2.0)))
         svgdata = svgdata.replace("%MID_VAL%", "")
         svgdata = svgdata.replace("%MAX_VAL%", "%i Verstorbene" % (max_cases))
         svgdata = svgdata.replace("%LABEL_SUM%", "%i Verstorbene insgesamt" % (sum_cases))

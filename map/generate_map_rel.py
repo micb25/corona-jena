@@ -110,7 +110,7 @@ if __name__ == "__main__":
         # change labels
         svgdata = svgdata.replace("%TITLE%", "relative Fallzahlen pro 100.000 EW")
         svgdata = svgdata.replace("%MIN_VAL%", "0 Fälle / 100.000 EW")
-        svgdata = svgdata.replace("%MID_VAL%", "%i Fälle / 100.000 EW" % (int(max_cases/2)))
+        svgdata = svgdata.replace("%MID_VAL%", "%.0f Fälle / 100.000 EW" % (float(max_cases/2.0)))
         svgdata = svgdata.replace("%MAX_VAL%", "%i Fälle / 100.000 EW" % (int(max_cases)))
         svgdata = svgdata.replace("%LABEL_SUM%", "")
         now = datetime.fromtimestamp(timestamp)
