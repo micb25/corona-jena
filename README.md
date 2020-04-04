@@ -1,18 +1,15 @@
-[![License](https://img.shields.io/github/license/micb25/corona-jena.svg)](LICENSE)
-[![Issues](https://img.shields.io/github/issues/micb25/corona-jena.svg)](https://github.com/micb25/corona-jena/issues)
-
-*Read this in English: [README.en.md](README.en.md)*
-
 # corona-jena
-Ein kleiner Webcrawler and entsprechende Visualisierung der Corona-Fallzahlen für Thüringen und ausgewählte Thüringer Kommunen. Aktuell läuft eine stündliche Aktualisierung der Fallzahlen auf meinem Webserver.
+Erfassung und Visualisierung der Corona-Fallzahlen für Thüringen und ausgewählte Kommunen. Aktuell läuft eine stündliche Aktualisierung der Fallzahlen auf meinem Webserver. Die Daten werden bis auf wenige Ausnahmen automatisiert abgerufen und die entsprechenden Abbildungen aktualisiert.
 
-Offizielle Zahlen von bestätigten COVID19-Fällen von Stelle des Landes oder Bundes, wie etwa dem Robert Koch-Institut, sind leider mit einer gewissen Meldeverzögerung verbunden. Daher ist es eine Hauptidee dieses Projekts diese Fallzahlen auf der kommunalen Ebene zu erfassen, um ein genaueres Bild über die Gesamtsituation zu haben. Zusätzlich werden diese Daten visuell aufbereitet, was für Leute besser verständlich sein sollte als große Daten-Tabellen, um Dinge wie exponentielles Wachstum zu verstehen.
+Zahlen von bestätigten COVID19-Fällen von offiziellen Stellen wie dem Land Thüringen oder Bundesstellen wie etwa dem Robert Koch-Institut sind leider mit einer gewissen Meldeverzögerung verbunden. Dies ist mit der Meldekette zu begründen, kann aber abseits dessen auch andere Gründe haben, wie etwa einer kurzfristigen Überlastung der meldenden Gesundheitsämter vor Ort. Daher war es eine initiale Idee dieses Projekts die bestätigten Coronavirus-Fallzahlen auf der kommunalen Ebene möglichst automatisiert zu erfassen, um ein genaueres Bild über die Gesamtsituation vor Ort zu haben. Zusätzlich werden diese Daten visuell aufbereitet, getreu dem Sprichwort "ein Bild sagt mehr als 1000 Worte". Dies soll helfen die regionalen Unterschiede zu erfassen und darzustellen sowie das exponentielle Wachstum einer Pandemie leichter verständlich zu machen. An ausgewählten Daten werden exponentielle Anpassungsfunktionen ("Fits") angewandt, um damit Parameter wie die Fallzahl-Dopplungsrate zu bestimmen. Daraus können im Nachhinein gegebenenfalls Rückschlüsse auf die Wirksamkeit verordneter Maßnahmen geschlossen werden.
 
-## Quellen
+Dieses Repository dient neben der Bereitstellung des Projekt-Quelltextes für Interessenten auch der Zurverfügungstellung der gesammelten [Daten](/data/).
 
-Dieses Projekt verwendet folgdende offizielle Zahlen von Kommunen und dem Freistaat Thüringen:
+## Coronavirus-Datenquellen
 
-| #  | Stadt / Landkreis              | Crawler? | Zahlenerhebung? | URL                                                                                                                                                                                                                                                    |
+Dieses Projekt verwendet einige der folgdenden offiziellen Quellen der Kommunen und des Freistaats Thüringen:
+
+| #  | kreisfreie Stadt / Landkreis   | Abruf der Daten? | Art der Datenerhebung auf Homepage | Webseite                                                                                                                                                                                                                                                    |
 |----|--------------------------------|----------|-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |    | Thüringen                      | ja       | T               | [https://www.landesregierung-thueringen.de](https://www.landesregierung-thueringen.de/corona-bulletin)                                                                                                                                                 |
 |    | Thüringen (RKI)                | ja       | T               | [https://www.rki.de](https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html)                                                                                                                                                     |
@@ -20,10 +17,10 @@ Dieses Projekt verwendet folgdende offizielle Zahlen von Kommunen und dem Freist
 | 1  | Altenburger Land               | -        | T, A            | [https://www.altenburgerland.de](https://www.altenburgerland.de/sixcms/detail.php?&_nav_id1=2508&_lang=de&id=371691)                                                                                                                                   |
 | 2  | Eichsfeld                      | ja       | T               | [https://www.kreis-eic.de](https://www.kreis-eic.de/aktuelle-fallzahlen-im-landkreis-eichsfeld.html)                                                                                                                                                   |
 | 3  | Eisenach                       | -        | T               | [https://www.wartburgkreis.de](https://www.wartburgkreis.de/leben-im-wartburgkreis/gesundheit/aktuelle-informationen-zum-corona-virus)                                                                                                                 |
-| 4  | Erfurt                         | -        | P               | [https://www.erfurt.de](https://www.erfurt.de/ef/de/service/aktuelles/am/index.itl)                                                                                                                                                                    |
+| 4  | Erfurt                         | ja, manuell        | P               | [https://www.erfurt.de](https://www.erfurt.de/ef/de/service/aktuelles/am/index.itl)                                                                                                                                                                    |
 | 5  | Gera                           | ja       | T               | [https://corona.gera.de](https://corona.gera.de/)                                                                                                                                                                                                      |
 | 6  | Landkreis Gotha                | -        | I               | [https://www.landkreis-gotha.de](https://www.landkreis-gotha.de/)                                                                                                                                                                                      |
-| 7  | Landkreis Greiz                | -        | T               | [https://www.landkreis-greiz.de](https://www.landkreis-greiz.de/landkreis-greiz/aktuell/nachrichten-details/?tx_ttnews%5Btt_news%5D=224&cHash=74595518f951c32f22d04b7591d643fe)                                                                        |
+| 7  | Landkreis Greiz                | -        | T, A?           | [https://www.landkreis-greiz.de](https://www.landkreis-greiz.de/landkreis-greiz/aktuell/nachrichten-details/?tx_ttnews%5Btt_news%5D=224&cHash=74595518f951c32f22d04b7591d643fe)                                                                        |
 | 8  | Landkreis Hildburghausen       | -        | P               | [https://www.landkreis-hildburghausen.de](https://www.landkreis-hildburghausen.de/Aktuelles-Corona-Virus)                                                                                                                                              |
 | 9  | Ilm-Kreis                      | -        | P               | [https://www.ilm-kreis.de](https://www.ilm-kreis.de/Landkreis/Ver%C3%B6ffentlichungen/Pressearchiv/index.php?ModID=255&NavID=2778.25&text=Coronavirus)                                                                                                 |
 | 10 | Jena                           | ja       | O, T            | [https://gesundheit.jena.de](https://gesundheit.jena.de/de/coronavirus), [OpenData Tabelle](https://opendata.jena.de/dataset/2cc7773d-beba-43ad-9808-a420a67ffcb3/resource/d3ba07b6-fb19-451b-b902-5b18d8e8cbad/download/corona_erkrankungen_jena.csv) |
@@ -31,8 +28,8 @@ Dieses Projekt verwendet folgdende offizielle Zahlen von Kommunen und dem Freist
 | 12 | Landkreis Nordhausen           | -        | T               | [https://www.landratsamt-nordhausen.de](https://www.landratsamt-nordhausen.de/informationen-coronavirus.html)                                                                                                                                          |
 | 13 | Saale-Holzland-Kreis           | -        | T, P?           | [https://www.saaleholzlandkreis.de](https://www.saaleholzlandkreis.de/corona-virus/aktuelle-infos/)                                                                                                                                                    |
 | 14 | Saale-Orla-Kreis               | -        | T               | [https://www.saale-orla-kreis.de](https://www.saale-orla-kreis.de/sok/)                                                                                                                                                                                |
-| 15 | Saalfeld-Rudolstadt            | -        | G               | [http://www.kreis-slf.de](http://www.kreis-slf.de/landratsamt/)                                                                                                                                                                                        |
-| 16 | Schmalkalden-Meiningen         | -        | P, D            | [https://www.lra-sm.de](https://www.lra-sm.de/?p=22632)                                                                                                                                                                                                |
+| 15 | Landkreis Saalfeld-Rudolstadt            | -        | G               | [http://www.kreis-slf.de](http://www.kreis-slf.de/landratsamt/)                                                                                                                                                                                        |
+| 16 | Landkreis Schmalkalden-Meiningen         | -        | P, D            | [https://www.lra-sm.de](https://www.lra-sm.de/?p=22632)                                                                                                                                                                                                |
 | 17 | Suhl                           | -        | T, A            | [https://www.suhltrifft.de](https://www.suhltrifft.de/content/blogsection/41/2246/)                                                                                                                                                                    |
 | 18 | Landkreis Sömmerda             | -        | P, D            | [https://www.lra-soemmerda.de](https://www.lra-soemmerda.de/)                                                                                                                                                                                          |
 | 19 | Landkreis Sonneberg            | -        | P               | [https://www.kreis-sonneberg.de](https://www.kreis-sonneberg.de/)                                                                                                                                                                                      |
@@ -41,7 +38,7 @@ Dieses Projekt verwendet folgdende offizielle Zahlen von Kommunen und dem Freist
 | 22 | Weimar                         | ja       | T               | [https://stadt.weimar.de](https://stadt.weimar.de/aktuell/coronavirus)                                                                                                                                                                                 |
 | 23 | Weimarer Land                  | -        | -               | [https://weimarerland.de](https://weimarerland.de/index_lra.html)                                                                                                                                                                                      |
 
-Zahlenerhebung (Legende):
+Art der Datenerhebung auf Homepage (Legende):
  - A: veraltete Daten
  - D: Dokument (PDF)
  - G: Grafik (JPG)
@@ -50,10 +47,14 @@ Zahlenerhebung (Legende):
  - P: Pressemitteilungen
  - T: Text
 
-## Voraussetzungen 
+## benötigte Software
 - Python 3
-- gnuplot (version >= 5.0)
+- gnuplot (Version >= 5.0)
 - awk
+- ImageMagick
 
 ## Sonstiges
 Fehler? Wünsche? Verbesserungsvorschläge? Dann lasst sie uns wissen und fügt sie dem [Bug-Tracker](https://github.com/micb25/corona-jena/issues) hinzu.
+
+[![License](https://img.shields.io/github/license/micb25/corona-jena.svg)](LICENSE)
+[![Issues](https://img.shields.io/github/issues/micb25/corona-jena.svg)](https://github.com/micb25/corona-jena/issues)
