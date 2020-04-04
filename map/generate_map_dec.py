@@ -87,6 +87,7 @@ if __name__ == "__main__":
         svgdata = svgdata.replace("%MID_VAL%", "%i Verstorbene" % (int(max_cases/2)))
         svgdata = svgdata.replace("%MID_VAL%", "")
         svgdata = svgdata.replace("%MAX_VAL%", "%i Verstorbene" % (max_cases))
+        svgdata = svgdata.replace("%LABEL_SUM%", "%i Verstorbene insgesamt" % (sum_cases))
         now = datetime.fromtimestamp(timestamp)
         svgdata = svgdata.replace("%DATE%", now.strftime("letzte Aktualisierung: %d.%m.%Y"))
             
