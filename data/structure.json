@@ -1,0 +1,43 @@
+{
+  "ts" : 1585728000,
+  "types": {
+    "diff": {
+      "de": "Entwicklung der Fallzahlen",
+      "color": "#A000FFFF"
+    },
+    "cases": {
+      "de": "Fallzahlen",
+      "color": "#0000d3"
+    },
+    "hosp": {
+      "de": "stationäre Fälle",
+      "color": "#FFAD00"
+    },
+    "serv": {
+      "de": "schwere Verläufe",
+      "color": "#D30000"
+    },
+    "death": {
+      "de": "Verstorbene",
+      "color": "#333333"
+    }
+  },
+  "values": {
+    "WE": {
+      "label": "Weimar",
+      "diff": 0,
+      "cases": 29,
+      "hosp": 2,
+      "serv": 0,
+      "death": 0
+    },
+    "EF": {
+      "label": "Erfurt",
+      "diff": 0,
+      "cases": 29,
+      "hosp": 2,
+      "serv": 0,
+      "death": 0
+    }
+  }
+} 
