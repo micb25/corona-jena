@@ -35,9 +35,9 @@ xpos = 1.35*radius
 ypos(i) = yposmax - i*(yposmax-yposmin)/(4)
 
 set style fill solid 1
-set size ratio -1              # equal scale length
-set xrange [-1.75*radius:3.3*radius]  # [-1:2] leaves space for labels
-set yrange [-radius:radius]    # [-1:1]
+set size ratio -1
+set xrange [-1.45*radius:3.6*radius]
+set yrange [-radius:radius]
 
 pos = 90
 

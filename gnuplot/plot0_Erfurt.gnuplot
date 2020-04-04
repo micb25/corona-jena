@@ -39,7 +39,7 @@ ypos(i) = yposmax - i*(yposmax-yposmin)/(4)
 
 set style fill solid 1
 set size ratio -1
-set xrange [-1.75*radius:3.3*radius]
+set xrange [-1.45*radius:3.6*radius]
 set yrange [-radius:radius]
 
 pos = 90
