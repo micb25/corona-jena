@@ -10,7 +10,7 @@ Dieses Repository dient neben der Bereitstellung des Projekt-Quelltextes für In
 
 ## Coronavirus-Datenquellen
 
-Dieses Projekt verwendet einige der folgdenden offiziellen Quellen des Freistaats Thüringen und dessen Kommunen:
+Dieses Projekt verwendet einige der folgdenden offiziellen Quellen der Kommunen und des Freistaats Thüringen:
 
 | #  | kreisfreie Stadt / Landkreis   | Abruf der Daten? | Art der Datenerhebung auf Homepage | Webseite                                                                                                                                                                                                                                                    |
 |----|--------------------------------|----------|-----------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
