@@ -37,7 +37,7 @@ stats "<cat ../data/cases_jena.dat | awk '{if ($6 >= 0) print $0}' | tail -n 1" 
 
 angle(x)=x*360/A_max
 
-centerX=0
+centerX=-0.15
 centerY=0
 radius=0.8
 

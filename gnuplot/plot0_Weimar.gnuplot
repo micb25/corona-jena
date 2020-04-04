@@ -28,7 +28,7 @@ stats "<cat ../data/cases_weimar.dat | awk '{print $2, $4}'" u 2 prefix "C" noou
 
 angle(x)=x*360/A_max
 
-centerX=0
+centerX=-0.15
 centerY=0
 radius=0.8
 

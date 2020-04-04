@@ -31,7 +31,7 @@ stats "<awk -F, '{a[$1]+=$6}END{for(i in a) print int(i/86400)*86400,a[i]}' ../d
 
 angle(x)=x*360/A_sum
 
-centerX=0
+centerX=-0.15
 centerY=0
 radius=0.8
 

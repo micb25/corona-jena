@@ -28,7 +28,7 @@ stats "<cat ../data/cases_erfurt.csv | awk -F, '{print $2, $5}'" u 2 prefix "C" 
 
 angle(x)=x*360/A_max
 
-centerX=0
+centerX=-0.15
 centerY=0
 radius=0.8
 
