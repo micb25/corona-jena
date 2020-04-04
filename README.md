@@ -1,6 +1,3 @@
-[![License](https://img.shields.io/github/license/micb25/corona-jena.svg)](LICENSE)
-[![Issues](https://img.shields.io/github/issues/micb25/corona-jena.svg)](https://github.com/micb25/corona-jena/issues)
-
 # corona-jena
 Erfassung und Visualisierung der Corona-Fallzahlen für Thüringen und ausgewählte Kommunen. Aktuell läuft eine stündliche Aktualisierung der Fallzahlen auf meinem Webserver. Die Daten werden bis auf wenige Ausnahmen automatisiert abgerufen und die entsprechenden Abbildungen aktualisiert.
 
@@ -58,3 +55,6 @@ Art der Datenerhebung auf Homepage (Legende):
 
 ## Sonstiges
 Fehler? Wünsche? Verbesserungsvorschläge? Dann lasst sie uns wissen und fügt sie dem [Bug-Tracker](https://github.com/micb25/corona-jena/issues) hinzu.
+
+[![License](https://img.shields.io/github/license/micb25/corona-jena.svg)](LICENSE)
+[![Issues](https://img.shields.io/github/issues/micb25/corona-jena.svg)](https://github.com/micb25/corona-jena/issues)
