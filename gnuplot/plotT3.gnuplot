@@ -3,7 +3,7 @@ load "template.gnuplot"
 set output '../plotT3.png'
 
 # stats for x
-stats "<awk '!_[$2]++' ../data/cases_thuringia_rki.dat" using 1 nooutput
+stats "<awk -F, '{a[$1]+=$4}END{for(i in a) print int(i/86400)*86400,a[i]}' ../data/cases_thuringia.dat | sort -n -k1" using 1 nooutput
 xmin = 1583884800 + 8 * 86400
 xmin_o = int(STATS_min)
 xmax = int(STATS_max) + 18 * 86400
@@ -19,7 +19,7 @@ fitmaxo = (fitmax - xmin_o) / 86400
 a = 1.0
 b = 0.30
 f(x) = a * exp( b * x )
-fit [fitmino:fitmaxo] f(x) "<awk '!_[$2]++' ../data/cases_thuringia_rki.dat" using (($1 - xmin_o) / 86400):2 via a, b
+fit [fitmino:fitmaxo] f(x) "<awk -F, '{a[$1]+=$4}END{for(i in a) print int(i/86400)*86400,a[i]}' ../data/cases_thuringia.dat | sort -n -k1" using (($1 - xmin_o) / 86400):2 via a, b
 
 ferr(x) = sqrt( (a_err*exp(b*x))*(a_err*exp(b*x)) + (b_err*a*b*exp(b*x))*(b_err*a*b*exp(b*x)) )
 fmin(x) = f(x) - ferr(x)
