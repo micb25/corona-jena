@@ -1,7 +1,7 @@
 #!/bin/bash
 
-rm cases_eichsfeld.dat
-curl -O https://www.michael-böhme.de/corona/data/cases_eichsfeld.dat
+rm cases_eic.csv
+curl -O https://www.michael-böhme.de/corona/data/cases_eic.csv
 
 rm cases_erfurt.csv
 curl -O https://www.michael-böhme.de/corona/data/cases_erfurt.csv

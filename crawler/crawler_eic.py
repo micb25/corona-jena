@@ -36,11 +36,11 @@ def getEICNumbers():
 
 if __name__ == "__main__":
     
-    DATAFILE = os.path.dirname(os.path.realpath(__file__)) + "/../data/cases_eichsfeld.dat"
+    DATAFILE = os.path.dirname(os.path.realpath(__file__)) + "/../data/cases_eic.csv"
     
     num_latest = getEICNumbers()
     
-    if num_latest[0] > -1:
+    if num_latest != False:
         f = open(DATAFILE, 'a')
-        f.write("%-16i %-8i %-8i %-8i %-8i %-8i\n" % (int(time.time()), num_latest[0], num_latest[1], num_latest[2], num_latest[3], num_latest[4]))
+        f.write("%i,%i,%i,%i,%i,%i\n" % (int(time.time()), num_latest[0], num_latest[1], num_latest[2], num_latest[3], num_latest[4]))
         f.close()
