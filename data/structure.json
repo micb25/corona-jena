@@ -1,25 +1,31 @@
 {
   "ts" : 1585728000,
   "types": {
-    "diff": {
-      "de": "Entwicklung der Fallzahlen",
-      "color": "#A000FFFF"
-    },
     "cases": {
       "de": "Fallzahlen",
-      "color": "#0000d3"
+      "color": "#0000d3",
+      "unit": "Fälle"
+    },
+    "diff": {
+      "de": "Entwicklung der Fallzahlen",
+      "color": "#A000FFFF",
+      "unit": "Fälle / Tag",
+      pm : 1
     },
     "hosp": {
-      "de": "stationäre Fälle",
-      "color": "#FFAD00"
+      "de": "Stationäre Fälle",
+      "color": "#FFAD00",
+      "unit": "Fälle"
     },
     "serv": {
-      "de": "schwere Verläufe",
-      "color": "#D30000"
+      "de": "Schwere Fallverläufe",
+      "color": "#D30000",
+      "unit": "Fälle"
     },
     "death": {
       "de": "Verstorbene",
-      "color": "#333333"
+      "color": "#333333",
+      "unit": "Fälle"
     }
   },
   "values": {
@@ -38,6 +44,9 @@
       "hosp": 2,
       "serv": 0,
       "death": 0
-    }
+    },
+    
+    //[...]
+    
   }
-} 
+}

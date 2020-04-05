@@ -12,6 +12,9 @@ curl -O https://www.michael-böhme.de/corona/data/cases_gera.dat
 rm cases_jena.dat
 curl -O https://www.michael-böhme.de/corona/data/cases_jena.dat
 
+rm cases_jena_opendata.csv
+curl -O https://www.michael-böhme.de/corona/data/cases_jena_opendata.csv
+
 rm cases_thuringia.csv
 curl -O https://www.michael-böhme.de/corona/data/cases_thuringia.csv
 
