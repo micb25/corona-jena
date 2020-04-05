@@ -9,7 +9,7 @@ xmin_o = int(STATS_min)
 xmax = int(STATS_max) + 18 * 86400
 xmax = xmin + (22 + 18) * 86400
 
-fitmin = int(STATS_max) - 5 * 86400
+fitmin = int(STATS_max) - 7 * 86400
 fitmax = int(STATS_max)
 
 fitmino = (fitmin - xmin_o) / 86400
@@ -74,7 +74,7 @@ plot  \
   gD((x - xmin)/86400) w l ls 2 notitle, \
   gG((x - xmin)/86400) w l ls 2 notitle, \
   gH((x - xmin)/86400) w l ls 2 notitle, \
-  1/0 w l ls 12 title  "exponentieller Fit (letzte 5 Tage)", \
+  1/0 w l ls 12 title  "exponentieller Fit (letzte 7 Tage)", \
   "<awk -F, '{a[$1]+=$4}END{for(i in a) print int(i/86400)*86400,a[i]}' ../data/cases_thuringia.dat | sort -n -k1" using 1:(filter_neg($2)) with linespoints ls 1 title "bestätigte Fälle", \
   [fitmin:fitmax] f((x - xmin_o)/86400) w l ls 12 notitle
   

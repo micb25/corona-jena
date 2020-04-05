@@ -6,7 +6,6 @@ set output '../plot2_Trend2303.png'
 stats "<awk '!_[$2]++' ../data/cases_jena.dat" using 1 nooutput
 xmin = int(STATS_min) - 1 * 86400
 xmin_o = int(STATS_min)
-#xmin_f = 1584986402 # 23.03.2020
 xmin_f = int(STATS_max) - 7 * 86400
 xmax = int(STATS_max) + 1 * 86400
 xmax_f = int(STATS_max)

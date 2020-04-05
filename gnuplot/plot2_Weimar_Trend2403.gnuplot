@@ -6,15 +6,16 @@ set output '../plot2_Weimar_Trend2403.png'
 stats "<awk '!_[$2]++' ../data/cases_weimar.dat" using 1 nooutput
 xmin = int(STATS_min) - 1 * 86400
 xmin_o = int(STATS_min)
-xmin_f = 1585072805 # 24.03.2020
+xmin_f = int(STATS_max) - 7 * 86400
 xmax = int(STATS_max) + 1 * 86400
 xmax_f = int(STATS_max)
 
 # fit
+filterx(x)=(x>=xmin_f)?(x):(1/0)
 ao = 110.0
 bo = 0.15
 fo(x) = ao * exp( bo * x )
-fit fo(x) "<awk '!_[$2]++' ../data/cases_weimar.dat | awk '{if ($1 >= 1585072805) print $0 }'" using (($1 - xmin_f)/86400):(filter_neg($2)) via ao, bo
+fit fo(x) "<awk '!_[$2]++' ../data/cases_weimar.dat" using ((filterx($1) - xmin_f)/86400):(filter_neg($2)) via ao, bo
 
 foerr(x) = sqrt( (ao_err*exp(bo*x))*(ao_err*exp(bo*x)) + (bo_err*ao*bo*exp(bo*x))*(bo_err*ao*bo*exp(bo*x)) )
 fomin(x) = fo(x) - foerr(x)
@@ -48,7 +49,7 @@ set label 3  at graph 0.02, 0.50 label_double left textcolor ls 0
 plot  \
   1/0 lc rgb '#f2f2f2' title "{/*0.75 Quelle: Stadt Weimar}", \
   [xmin:xmax] 1/0 lc rgb '#f2f2f2' title update_str, \
-  [xmin_f:xmax_f] '+' using 1:(fomin(($1 - xmin_f)/86400)):(fomax((x - xmin_f)/86400)) with filledcurves closed ls 2 title "{/*0.75 stat. Fehlerbereich Trend (ab 24.03.)}", \
-  [xmin_f:xmax_f] fo((x - xmin_f)/86400) w l ls 2 title "exponentieller Trend (ab 24.03.)", \
+  [xmin_f:xmax_f] '+' using 1:(fomin(($1 - xmin_f)/86400)):(fomax((x - xmin_f)/86400)) with filledcurves closed ls 2 title "{/*0.75 stat. Fehlerbereich Trend (letzte 7 Tage)}", \
+  [xmin_f:xmax_f] fo((x - xmin_f)/86400) w l ls 2 title "exponentieller Trend (letzte 7 Tage)", \
   "<awk '!_[$2]++' ../data/cases_weimar.dat" using 1:2 with linespoints ls 1 title "bestätigte Fälle"
   
