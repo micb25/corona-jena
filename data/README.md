@@ -1,6 +1,6 @@
 # Daten für Thüringen
 
-In diesem Verzeichnis befinden sich die gesammelten Daten COVID-19 Daten für Thüringen als CSV-Tabellen.
+In diesem [Verzeichnis](/data/) befinden sich die gesammelten Daten COVID-19 Daten für Thüringen als CSV-Tabellen.
 
 | Region               | Datei                                                          |
 |----------------------|----------------------------------------------------------------|
