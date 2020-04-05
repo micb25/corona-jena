@@ -1,4 +1,4 @@
-Datum,Zeit,Summe,Genesen,Tote,Platzhalter1,Platzhalter2,Platzhalter3,Quelle
+#Datum,Zeit,Summe,Genesen,Tote,Platzhalter1,Platzhalter2,Platzhalter3,Quelle
 09.03.20 11:08,1583752080,1,0,0,0,0,0,https://www.erfurt.de/ef/de/service/aktuelles/am/2020/135095.html
 11.03.20 16:28,1583944080,2,0,0,0,0,0,https://www.erfurt.de/ef/de/service/aktuelles/am/2020/135134.html
 16.03.20 09:36,1584351360,16,1,0,0,0,0,https://www.erfurt.de/ef/de/service/aktuelles/am/2020/135164.html
@@ -18,3 +18,4 @@ Datum,Zeit,Summe,Genesen,Tote,Platzhalter1,Platzhalter2,Platzhalter3,Quelle
 01.04.20 14:00,1585749600,87,26,0,0,0,0,https://www.erfurt.de/ef/de/service/aktuelles/am/2020/135308.html
 02.04.20 14:00,1585836000,89,39,0,0,0,0,https://www.erfurt.de/ef/de/service/aktuelles/am/2020/135331.html
 03.04.20 14:00,1585922400,92,49,0,0,0,0,https://www.erfurt.de/ef/de/service/aktuelles/am/2020/135341.html
+05.04.20 09:30,1586079000,95,53,0,0,0,0,https://www.mdr.de/thueringen/liveticker-corona-sonntag-100.html
