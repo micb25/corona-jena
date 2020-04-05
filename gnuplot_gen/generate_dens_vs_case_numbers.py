@@ -7,7 +7,7 @@ if __name__ == "__main__":
     
     SCRIPTPATH = os.path.dirname(os.path.realpath(__file__))
     
-    DATAFILE = SCRIPTPATH + "/../data/cases_thuringia.dat"
+    DATAFILE = SCRIPTPATH + "/../data/cases_thuringia.csv"
     DATFILE  = SCRIPTPATH + "/th_dens_vs_cases.dat"
     GPFILE   = SCRIPTPATH + "/plotT1_pop_dens.gnuplot"
     

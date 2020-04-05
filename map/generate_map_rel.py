@@ -18,7 +18,7 @@ if __name__ == "__main__":
     
     SCRIPTPATH = os.path.dirname(os.path.realpath(__file__))
     
-    DATAFILE = SCRIPTPATH + "/../data/cases_thuringia.dat"
+    DATAFILE = SCRIPTPATH + "/../data/cases_thuringia.csv"
     TEMPLATE = SCRIPTPATH + "/TH.svg.template"
     SVGFILE  = SCRIPTPATH + "/map_th.svg"
     JPGFILE  = SCRIPTPATH + "/../map_th_rel.jpg"

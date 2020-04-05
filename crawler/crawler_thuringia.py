@@ -3,7 +3,7 @@
 
 import time, requests, re, os
 
-DATAFILE = os.path.dirname(os.path.realpath(__file__)) + "/../data/cases_thuringia.dat"
+DATAFILE = os.path.dirname(os.path.realpath(__file__)) + "/../data/cases_thuringia.csv"
 
 def strToTimestamp(datetimestr):    
     s = datetimestr.replace("Uhr", "").strip()

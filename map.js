@@ -280,7 +280,7 @@ function getData() {
 	// read text from URL location
 	var request = new XMLHttpRequest();
 	var lastTimeStamp = 0;
-	request.open('GET', './data/cases_thuringia.dat', true);
+	request.open('GET', './data/cases_thuringia.csv', true);
 	request.send(null);
 	request.onreadystatechange = function () {
 	  	if (request.readyState === 4 && request.status === 200) {
