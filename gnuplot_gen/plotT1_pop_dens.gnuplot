@@ -66,7 +66,7 @@ set xlabel "Einwohnerdichte (EW/km²)"
 set ylabel sprintf("Zahl bestätigter Coronavirus-Fälle %s", update_str)
 
 # key
-set key at graph 0.02, 0.98 left top invert spacing 1.2 box ls 3
+set key at graph 0.50, 0.98 center top invert spacing 1.2 box ls 3 maxrows 1
 # unset key
 
 # data

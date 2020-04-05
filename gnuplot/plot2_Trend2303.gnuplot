@@ -36,19 +36,19 @@ set ylabel 'Gesamtzahl der Fälle in Jena'
 set yrange [ymin:ymax]
 
 # key
-set key at graph 0.02, 0.98 left top invert spacing 1.5 box ls 3 opaque
+set key at graph 0.02, 0.98 left top invert spacing 1.2 box ls 3 opaque
 set border back
 
 label_trend = sprintf("f({/Linux-Libertine-O-Italic x}) = (%.3f±%.3f) e^{(%.3f±%.3f){/Linux-Libertine-O-Italic x}}", ao, ao_err, bo, bo_err)
 set label 2 at graph 0.02, 0.60 label_trend left textcolor ls 0
 
-label_double = sprintf("Verdopplungsrate ca. alle %.0f Tage",log(2) / bo )
-set label 3  at graph 0.02, 0.50 label_double left textcolor ls 0
+label_double = sprintf("aktuelle Verdopplungsrate: ≈%.0f Tage",log(2) / bo )
+set label 3  at graph 0.99, 0.04 label_double right textcolor ls 0
 
 # data
 plot  \
   [xmin:xmax] 1/0 lc rgb '#f2f2f2' title update_str, \
   [xmin_f:xmax_f] '+' using 1:(fomin(($1 - xmin_f)/86400)):(fomax((x - xmin_f)/86400)) with filledcurves closed ls 2 title "{/*0.75 stat. Fehlerbereich Trend (letzte 7 Tage)}", \
-  [xmin_f:xmax_f] fo((x - xmin_f)/86400) w l ls 2 title "exponentieller Trend (letzte 7 Tage)", \
+  [xmin_f:xmax_f] fo((x - xmin_f)/86400) w l ls 12 title "exponentieller Trend (letzte 7 Tage)", \
   "<awk '!_[$2]++' ../data/cases_jena.dat" using 1:2 with linespoints ls 1 title "bestätigte Fälle"
   

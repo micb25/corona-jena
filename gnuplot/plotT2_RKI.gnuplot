@@ -37,7 +37,7 @@ set ylabel 'Gesamtzahl der Fälle in Thüringen'
 set yrange [ymin:ymax]
 
 # key
-set key at graph 0.02, 0.98 left top invert spacing 1.5 box ls 3
+set key at graph 0.02, 0.98 left top invert spacing 1.2 box ls 3
 
 label_trend = sprintf("f({/Arial-Italic x}) = (%.3f±%.3f) e^{(%.3f±%.3f) {/Arial-Italic x}}", a, a_err, b, b_err)
 set label 2 at graph 0.02, 0.40 label_trend left textcolor ls 0

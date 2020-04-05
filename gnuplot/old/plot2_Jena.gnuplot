@@ -37,7 +37,7 @@ set ylabel 'Gesamtzahl der Fälle in Jena'
 set yrange [ymin:ymax]
 
 # key
-set key at graph 0.02, 0.98 left top invert spacing 1.5 box ls 3
+set key at graph 0.02, 0.98 left top invert spacing 1.2 box ls 3
 
 label_trend = sprintf("f({/Arial-Italic x}) = (%.3f±%.3f) e^{(%.3f±%.3f) {/Arial-Italic x}}", a, a_err, b, b_err)
 set label 2 at graph 0.02, 0.60 label_trend left textcolor ls 0
@@ -45,7 +45,7 @@ set label 2 at graph 0.02, 0.60 label_trend left textcolor ls 0
 # data
 plot  \
   [xmax_o:] '+' using 1:(fmin(($1 - xmin_o)/86400)):(fmax((x - xmin_o)/86400)) with filledcurves closed ls 2 title "Fehlerbereich Trend", \
-  [xmax_o:] f((x - xmin_o)/86400) w l ls 2 title "exponentieller Trend", \
+  [xmax_o:] f((x - xmin_o)/86400) w l ls 12 title "exponentieller Trend", \
   "<awk '!_[$2]++' ../data/cases_jena.dat" using 1:2 with linespoints ls 1 title "bestätigte Fälle", \
   [xmin:xmax] 1/0 lc rgb '#f2f2f2' title update_str
   

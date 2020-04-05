@@ -20,7 +20,7 @@ set format x "%d.%m."
 set ylabel 'Gesamtzahl der Fälle in Thüringen'
 
 # key
-set key at graph 0.02, 0.98 left top invert spacing 1.5 box ls 3
+set key at graph 0.02, 0.98 left top invert spacing 1.2 box ls 3
 
 # data
 plot  \
