@@ -4,8 +4,7 @@
 import time, requests, re, os
 
 
-def getEICNumbers():
-    url = 'https://www.kreis-eic.de/aktuelle-fallzahlen-im-landkreis-eichsfeld.html'
+def getEICNumbers(url):
     headers = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
     
     num_pattern_T = re.compile(r"(?:Infizierten?):\s?([0-9]{1,})")
@@ -37,10 +36,11 @@ def getEICNumbers():
 if __name__ == "__main__":
     
     DATAFILE = os.path.dirname(os.path.realpath(__file__)) + "/../data/cases_eic.csv"
+    URL = 'https://www.kreis-eic.de/aktuelle-fallzahlen-im-landkreis-eichsfeld.html'
     
-    num_latest = getEICNumbers()
+    num_latest = getEICNumbers(URL)
     
     if num_latest != False:
         f = open(DATAFILE, 'a')
-        f.write("%i,%i,%i,%i,%i,%i\n" % (int(time.time()), num_latest[0], num_latest[1], num_latest[2], num_latest[3], num_latest[4]))
+        f.write("%i,%i,%i,%i,%i,%i,%s\n" % (int(time.time()), num_latest[0], num_latest[1], num_latest[2], num_latest[3], num_latest[4]), URL)
         f.close()
