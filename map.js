@@ -218,7 +218,11 @@ function getData() {
 				
 				getMaxValues( );
 				generateMenu( );
-				changeViewTo( 'selector_' + Object.keys( json.types )[0] );
+
+				// get start type
+				url = window.location.href.split("#");
+				startType = (url[1] in json.types) ? url[1] : Object.keys( json.types )[0] ;
+				changeViewTo( 'selector_' + startType );
 
 				// hide case count legend
 				document.getElementById( 'cases' ).style.display = 'none';
