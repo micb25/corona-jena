@@ -64,7 +64,7 @@ Eine Liste weiterer ähnlicher Github-Projekte, die COVID19-Daten für Deutschla
 * Deutschland: [github.com/micgro42/COVID-19-DE](https://github.com/micgro42/COVID-19-DE)
 * Bayern: [github.com/koepferl/COVID19Dahoam](https://github.com/koepferl/COVID19Dahoam)
 * Niedersachsen: [github.com/codeforosnabrueck/COVID-19-NDS/](https://github.com/codeforosnabrueck/COVID-19-NDS/)
-* Jena [github.com/HoffmannP/jenaCorona](https://github.com/HoffmannP/jenaCorona)
+* Jena: [github.com/HoffmannP/jenaCorona](https://github.com/HoffmannP/jenaCorona)
 
 ## Sonstiges
 Fehler? Wünsche? Verbesserungsvorschläge? Dann lasst sie uns wissen und fügt sie dem [Bug-Tracker](https://github.com/micb25/corona-jena/issues) hinzu.
