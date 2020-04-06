@@ -4,6 +4,7 @@ In diesem [Verzeichnis](/data/) befinden sich die gesammelten Daten COVID-19 Dat
 
 | Region               | Datei                                                          |
 |----------------------|----------------------------------------------------------------|
+| Deutschland          | [cases_germany_total_rki.csv](cases_germany_total_rki.csv)     |
 | Thüringen            | [cases_thuringia.csv](cases_thuringia.csv)                     |
 |                      |                                                                |
 | Eichsfeld            | [cases_eic.csv](cases_eic.csv)                                 |
@@ -29,7 +30,7 @@ Die folgenden Dateien sind momentan noch in einem älteren Format gespeichert un
 Die CSV-Tabellen haben das folgende Format:
 
 | Datum | bestätigte Fälle (Summe) | Genesungen (Summe) | Verstorbene (Summe) | stationäre Fälle (aktuell) | schwere Fälle (aktuell) | Quelle |
-|-------|--------------------------|--------------------|---------------------|----------------------------|---------------------------|--------|
+|-------|--------------------------|--------------------|---------------------|----------------------------|-------------------------|--------|
 | ...   | ...                      | ...                | ...                 | ...                        | ...                     | ...    |
 
 Das Datum wird dabei zur einfacheren Verarbeitung immer als [Unixzeit](https://de.wikipedia.org/wiki/Unixzeit) angegeben.
