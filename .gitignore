@@ -3,3 +3,4 @@ plot*.png
 map*.jpg
 data/*ods
 map/map_th.svg
+gnuplot_gen/th_dens_vs_cases.dat
