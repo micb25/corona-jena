@@ -56,7 +56,7 @@ Art der Datenerhebung auf Homepage (Legende):
 
 ## Weitere Projekte
 
-Eine Liste weiterer ähnlicher Projekte, die COVID19-Daten sammelt für Deutschland erfasst:
+Eine Liste weiterer ähnlicher Github-Projekte, die COVID19-Daten für Deutschland erfassen:
 
 * Deutschland: [github.com/micgro42/COVID-19-DE](https://github.com/micgro42/COVID-19-DE)
 * Niedersachsen: [github.com/codeforosnabrueck/COVID-19-NDS/](https://github.com/codeforosnabrueck/COVID-19-NDS/)
