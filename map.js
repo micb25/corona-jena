@@ -88,10 +88,18 @@ function formatValue( value ) {
 	return result.toString().replace(".",",");
 }
 
+function showUnits( ) {
+	// show units
+	document.getElementById( 'cases' ).style.display = 'block';
+	document.getElementById( 'cases_tspan_region' ).innerHTML = json.types[ actualType ][ 'unit' ];
+	document.getElementById( 'cases_text_headline' ).style.display = 'none';
+	document.getElementById( 'cases_tspan_count' ).innerHTML = '';
+}
+
 function m_over_region( id ) {
 	id = id.split( '_' );
 	document.getElementById( 'path_' + id[1] ).style.fill = '#8BC34A';
-	document.getElementById( 'cases' ).style.display = 'block';
+	document.getElementById( 'cases_text_headline' ).style.display = 'block';
 	document.getElementById( 'cases_tspan_region' ).innerHTML = json.values[ id[1] ]['name'];
 	
 	var value = formatValue( resultArray[ id[1] ]['value'] );
@@ -110,7 +118,9 @@ function m_over_region( id ) {
 function m_out_region( id ) {
 	id = id.split('_');
 	document.getElementById( 'path_' + id[1] ).style.fill = resultArray[ id[1] ]['color'];
-	document.getElementById( 'cases' ).style.display = 'none';
+	//document.getElementById( 'cases' )
+	document.getElementById( 'cases_tspan_count' ).innerHTML = '';
+	showUnits( actualType );
 }
 
 function changeViewTo( id ) {
@@ -140,7 +150,9 @@ function changeViewTo( id ) {
 	}
 	document.getElementById( 'upperCount' ).innerHTML = value;
 	document.getElementById( 'mapHeadline' ).innerHTML = json.types[ actualType ][ langKey ] + ' in Thüringen';
-	document.getElementById( 'cases_text_headline' ).innerHTML = json.types[ actualType ][ langKey ]; 
+	document.getElementById( 'cases_text_headline' ).innerHTML = json.types[ actualType ][ langKey ];
+
+	showUnits();
 
 	// init color legend
 	document.getElementById('upperLimitColor').setAttribute("stop-color", valueToColor( 1, 1, json.types[ actualType ][ 'color' ] ) );
@@ -240,6 +252,7 @@ function getData() {
 
 				// show map
 				document.getElementById( 'thuringiaMap' ).style.display = 'block';
+				showUnits( );
 			}
 		}
 	);
