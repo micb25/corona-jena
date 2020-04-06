@@ -131,7 +131,13 @@ function getPrefix( value ) {
 
 function formatValue( value ) {
 	if ( value > 1000 ) {
-		result = Math.floor( value / 1000 ) + ' ' + Math.round( value - Math.floor( value / 1000 ) * 1000 );
+		result = Math.round( value - Math.floor( value / 1000 ) * 1000 );
+		if ( result < 10 ) {
+			result = '00' + result;
+		} else if ( result < 100 ) {
+			result = '0' + result;
+		}
+		result = Math.floor( value / 1000 ) + ' ' + result;
 	} else {	
 		var factor = 1;
 		if ( value < 10 ) {
