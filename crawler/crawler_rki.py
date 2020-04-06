@@ -53,7 +53,7 @@ if __name__ == "__main__":
             if int(dl[0]) > last_update:
                 last_update = int(dl[0])
                   
-        if ( n[0] >= last_update ):
+        if ( n[0] > last_update ):
             f = open(DATAFILE, 'a')
             f.write("%i,%i,%i,%i,%i,%i,%i,%s\n" % (int(n[0]), n[1], n[2], n[3], n[4], n[5], -1, URL))
             f.close()
