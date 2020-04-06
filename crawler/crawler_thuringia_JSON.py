@@ -53,52 +53,62 @@ def writeAsJSON( pd, num_patterns ):
 
     types = {
         "cases": {
+            "id": 0,
             "de": "Fallzahlen",
             "color": "#0000d3",
             "unit": "Fälle"
         },
         "diff": {
+            "id": 1,
             "de": "Entwicklung der Fallzahlen",
             "color": "#A000FFFF",
             "unit": "Fälle / Tag",
             "pm" : 1
         },
         "hosp": {
+            "id": 2,
             "de": "Stationäre Fälle",
             "color": "#FFAD00",
             "unit": "Fälle"
         },
         "serv": {
+            "id": 3,
             "de": "Schwere Fallverläufe",
             "color": "#D30000",
             "unit": "Fälle"
         },
         "death": {
+            "id": 4,
             "de": "Verstorbene",
             "color": "#333333",
             "unit": "Fälle"
         },
         "casedens" : { 
+            "id": 5,
             "de": 'Flächenbezogene Fälle',
             "color": '#0000D3',
             "unit": 'Fälle / km²'
         },
         "caseres" : {
+            "id": 6,
             "de": 'relative Fallzahlen',
             "color": '#0000D3',
             "unit": 'Fälle / 100.000 EW'
         },
         "area" : {
+            "id": 7,
             "de": 'Fläche',
             "color": '#00A000',
             "unit": 'km²'
         },
         "res" : {
+            "id": 8,
             "de": 'Einwohner',
             "color": '#00A000',
             "unit": 'EW'
         },
         "dens" : {
+            "id": 9,
             "de": 'Einwohnerdichte',
             "color": '#00A000',
             "unit": 'EW / km²'

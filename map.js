@@ -210,15 +210,21 @@ function generateMenu( ) {
 	menu = '';
 	cnt = 0;
 	maxItemsPerLine = 5;
+	// really nasty way to sort the object by id without loosing the key
 	for ( var key in json.types ) {
+		json.types[key]["key"] = key;
+	}
+	let sorted_types = Object.values(json.types);
+	sorted_types.sort( function(a, b) { return parseInt(a.id) - parseInt(b.id); });
+	sorted_types.forEach( function(item){
 		cnt++;
-		menu = menu + del + '<span id="selector_' + key +'">' + json.types[ key ][ langKey ] + '</span>';
+		menu = menu + del + '<span id="selector_' + item["key"] +'">' + json.types[ item["key"] ][ langKey ] + '</span>';
 		if ( cnt % maxItemsPerLine ) {
 			del = '&nbsp;|&nbsp;';
 		} else{
 			del = '<br>';
 		}
-	}
+	});
 	
 	document.getElementById( 'selectorLinks' ).innerHTML = menu;
 	for ( var key in json.types ) {
