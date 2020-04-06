@@ -181,9 +181,9 @@ div#selectorLinks {
 	margin-bottom: 10px;
 }
 
-div#selectorLinks span {
+div#selectorLinks span, div#toggle_region_labels span {
 	margin: 0 10px;
-	color: #176fa1;;
+	color: #176fa1;
 	cursor: pointer;
 }
 

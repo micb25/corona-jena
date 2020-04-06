@@ -53,13 +53,12 @@ function valueToColor(i, max, maxColor ) {
 
 function getOverlayTextColor( bgColor ) {
 	var bgColorRGB = hexTorgb( bgColor );
+	var resultColor = '#000000';
 	hsp = Math.sqrt(
 		0.299 * (bgColorRGB['r'] ** 2) +
 		0.587 * (bgColorRGB['g'] ** 2) +
 		0.114 * (bgColorRGB['b'] ** 2)
-		);
-
-	var resultColor = '#000000';
+	);
 	if ( hsp < 0.6*255 ) {
 		resultColor = '#FFFFFF';
 	}
@@ -67,9 +66,65 @@ function getOverlayTextColor( bgColor ) {
 }
 
 function hide_region_texts(	) {
+	document.getElementById( 'show_value_labels' ).style.display = 'none';
+	document.getElementById( 'show_name_labels' ).style.display = 'inline';
 	for ( var region in json.values ) {
-		document.getElementById( 'text_' + region ).style.display = 'none';
+		var tspan = document.getElementById( 'tspan_' + region );
+		var y = 0;
+		// find all tspans, hide them and get the new y position, if more than one
+		if ( tspan != null ) { 
+			tspan.style = 'display:none';
+		} else {
+			var cnt = 0;
+			for (var i = 1; i < 4; i++) {
+				var tspan = document.getElementById( 'tspan' + i  + '_' + region );
+				if ( tspan != null ) { 
+					console.log( tspan.getBBox() );
+					y += tspan.getBBox().y + tspan.getBBox().height;
+					tspan.style = 'display:none';
+					cnt++;
+				}
+			}
+			y = Math.round( y / cnt );
+		}
+		// create a new label with the value
+		var node = document.createElementNS("http://www.w3.org/2000/svg", 'tspan');//createElement("tspan");
+		node.setAttribute("id", 'tsc_' + region );
+		if ( y > 0 ) node.setAttribute("y", y);
+		node.innerHTML = formatValue( resultArray[ region ]['value'] );
+		document.getElementById( 'text_' + region ).appendChild( node );
 	}
+}
+
+function show_region_texts(	) {
+	document.getElementById( 'show_value_labels' ).style.display = 'inline';
+	document.getElementById( 'show_name_labels' ).style.display = 'none';
+	for ( var region in json.values ) {
+		// redisplay labels
+		var tspan = document.getElementById( 'tspan_' + region );
+		if ( tspan != null ) { 
+			tspan.style = 'display:block';
+		} else {
+			for (var i = 1; i < 4; i++) {
+				var tspan = document.getElementById( 'tspan' + i  + '_' + region );
+				if ( tspan != null ) {
+					tspan.style = 'display:block';
+				}
+			}
+		}
+		//remove value label
+		document.getElementById( 'tsc_' + region ).remove();
+	}
+}
+
+function getPrefix( value ) {
+	prefix = '';
+	if ( 'pm' in json.types[ actualType ] ) {
+		if ( json.types[ actualType ][ 'pm' ] == 1 ) {
+			prefix = ( value >= 0 ) ? '+ ' : '- ';
+		}
+	}
+	return prefix;
 }
 
 function formatValue( value ) {
@@ -84,8 +139,7 @@ function formatValue( value ) {
 		}
 		result = Math.round( value * factor ) / factor;
 	}
-
-	return result.toString().replace(".",",");
+	return getPrefix( value ) + result.toString().replace(".",",");
 }
 
 function showUnits( ) {
@@ -103,12 +157,6 @@ function m_over_region( id ) {
 	document.getElementById( 'cases_tspan_region' ).innerHTML = json.values[ id[1] ]['name'];
 	
 	var value = formatValue( resultArray[ id[1] ]['value'] );
-	if ( 'pm' in json.types[ actualType ] ) {
-		if ( types[ actualType ][ 'pm' ] == 1 ) {
-			prefix = ( resultArray[ id[1] ]['value'] >= 0 ) ? '+ ' : '- ';
-			value = prefix  + value; 
-		}
-	}
 	if ( 'unit' in json.types[ actualType ] ) {
 		value = value + ' ' + json.types[ actualType ][ 'unit' ];
 	}
@@ -142,16 +190,9 @@ function changeViewTo( id ) {
 	}
 	// set legend upper limit
 	value = formatValue( maxArray[ actualType ] );
-	if ( 'pm' in json.types[ actualType ] ) {
-		if ( json.types[ actualType ][ 'pm' ] == 1 ) {
-			prefix = ( maxArray[ actualType ] >= 0 ) ? '+ ' : '- ';
-			value = prefix  + value; 
-		}
-	}
 	document.getElementById( 'upperCount' ).innerHTML = value;
 	document.getElementById( 'mapHeadline' ).innerHTML = json.types[ actualType ][ langKey ] + ' in Thüringen';
 	document.getElementById( 'cases_text_headline' ).innerHTML = json.types[ actualType ][ langKey ];
-
 	showUnits();
 
 	// init color legend
