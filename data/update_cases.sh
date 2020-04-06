@@ -24,6 +24,9 @@ curl -O https://www.michael-böhme.de/corona/data/cases_thuringia.csv
 rm cases_thuringia_recovered.dat
 curl -O https://www.michael-böhme.de/corona/data/cases_thuringia_recovered.dat
 
+rm cases_germany_total_rki.csv
+curl -O https://www.michael-böhme.de/corona/data/cases_germany_total_rki.csv
+
 rm cases_thuringia_rki.dat
 curl -O https://www.michael-böhme.de/corona/data/cases_thuringia_rki.dat
 
