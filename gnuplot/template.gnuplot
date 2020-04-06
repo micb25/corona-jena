@@ -6,8 +6,8 @@ set fit quiet logfile '/dev/null'
 set fit errorvariables
 
 # margins
-set lmargin 12.25
-set rmargin 2.80
+set lmargin 13.60
+set rmargin 1.45
 set tmargin 0.75
 set bmargin 3.75
 

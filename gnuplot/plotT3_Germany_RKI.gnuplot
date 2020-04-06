@@ -50,9 +50,6 @@ set yrange [ymin:ymax]
 set logscale y
 set mytics 10
 
-set lmargin 13.60
-set rmargin 1.45
-
 # key
 set key at graph 0.02, 0.98 left top invert spacing 1.2 box ls 3
 
