@@ -16,10 +16,10 @@ In diesem [Verzeichnis](/data/) befinden sich die gesammelten Daten COVID-19 Dat
 
 Sonstige Formate:
 
-| Region                 | Format | Datei                                                          |
-|------------------------|--------|----------------------------------------------------------------|
-| Saalfeld-Rudolstadt    | JPG    | [Bilderordner](cases_slf/)                                     |
-| Schmalkalden-Meiningen | PDF    | [Dokumentenordner](cases_sm/)                                  |
+| Region                 | Format | lokaler Github-Link                                            | Link auf Webserver (wahrscheinlich aktueller)                  |
+|------------------------|--------|----------------------------------------------------------------|----------------------------------------------------------------|
+| Saalfeld-Rudolstadt    | JPG    | [Bilderordner](cases_slf/)                                     | [Bilderordner](https://michael-böhme.de/corona/cases_slf/)     |
+| Schmalkalden-Meiningen | PDF    | [Dokumentenordner](cases_sm/)                                  | [Dokumentenordner](https://michael-böhme.de/corona/cases_sm/)  |
 
 Die folgenden Dateien sind momentan noch in einem älteren Format gespeichert und werden demnächst zum CSV-Format transformiert:
 
