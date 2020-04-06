@@ -198,6 +198,7 @@ div#selectorLinks span, div#toggle_region_labels span {
 	margin: 0 10px;
 	color: #176fa1;
 	cursor: pointer;
+	display: inline-block;
 }
 
 @media (max-width: 800px) {

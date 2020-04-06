@@ -220,7 +220,7 @@ function generateMenu( ) {
 		cnt++;
 		menu = menu + del + '<span id="selector_' + item["key"] +'">' + json.types[ item["key"] ][ langKey ] + '</span>';
 		if ( cnt % maxItemsPerLine ) {
-			del = '&nbsp;|&nbsp;';
+			del = ' | ';
 		} else{
 			del = '<br>';
 		}
