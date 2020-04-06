@@ -61,10 +61,12 @@ Art der Datenerhebung auf Homepage (Legende):
 
 Eine Liste weiterer ähnlicher Github-Projekte, die COVID19-Daten für Deutschland erfassen und auswerten:
 
-* Deutschland: [github.com/micgro42/COVID-19-DE](https://github.com/micgro42/COVID-19-DE)
-* Bayern: [github.com/koepferl/COVID19Dahoam](https://github.com/koepferl/COVID19Dahoam)
-* Niedersachsen: [github.com/codeforosnabrueck/COVID-19-NDS/](https://github.com/codeforosnabrueck/COVID-19-NDS/)
-* Jena: [github.com/HoffmannP/jenaCorona](https://github.com/HoffmannP/jenaCorona)
+| Region | Link |
+|--------|------|
+| Deutschland | [micgro42/COVID-19-DE](https://github.com/micgro42/COVID-19-DE)<br /> [HoffmannP/coronaZahlen](https://github.com/HoffmannP/coronaZahlen) |
+| Bayern | [koepferl/COVID19Dahoam](https://github.com/koepferl/COVID19Dahoam) |
+| Niedersachsen | [codeforosnabrueck/COVID-19-NDS](https://github.com/codeforosnabrueck/COVID-19-NDS) |
+| Jena | [HoffmannP/jenaCorona](https://github.com/HoffmannP/jenaCorona) |
 
 ## Sonstiges
 Fehler? Wünsche? Verbesserungsvorschläge? Dann lasst sie uns wissen und fügt sie dem [Bug-Tracker](https://github.com/micb25/corona-jena/issues) hinzu.
