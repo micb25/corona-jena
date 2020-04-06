@@ -119,6 +119,7 @@ def writeAsJSON( pd, num_patterns ):
                         regions[key]["death"] = int(d[6])
                         regions[key]["casedens"] = regions[key]["cases"] / regions[key]["area"]
                         regions[key]["caseres"] = regions[key]["cases"] / regions[key]["res"]*100000
+                        regions[key]["dens"] = regions[key]["cases"] / regions[key]["area"]
                         #regions[key]["???"]  = int(d[7])
                         #regions[key]["???"]  = 0
     
