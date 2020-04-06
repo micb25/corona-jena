@@ -4,7 +4,7 @@ set output '../plotT1.png'
 
 # stats for x
 stats "<awk -F, '{a[$1]+=$4}END{for(i in a) print int(i/86400)*86400,a[i]}' ../data/cases_thuringia.csv | sort -n -k1" using 1 nooutput
-set xrange [ STATS_min - 86400 : STATS_max + 86400 ]
+set xrange [ STATS_min - 86400 : STATS_max + 2.0 * 86400 ]
 
 # stats for y
 stats "<awk -F, '{a[$1]+=$4}END{for(i in a) print int(i/86400)*86400,a[i]}' ../data/cases_thuringia.csv | sort -n -k1" using 2 nooutput
@@ -26,9 +26,13 @@ set key at graph 0.02, 0.98 left top invert spacing 1.2 box ls 3
 plot  \
   1/0 lc rgb '#f2f2f2' title "{/*0.75 Quelle: Thüringer Landesregierung}", \
   1/0 lc rgb '#f2f2f2' title update_str, \
-  "<awk -F, '{a[$1]+=$7}END{for(i in a) print int(i/86400)*86400,a[i]}' ../data/cases_thuringia.csv | awk '{if ($2 >= 0) print $0}' | sort -n -k1 | tail -n 1" using 1:2:($2) with labels point pt 7 center offset char -0.3, 0.8 tc ls 5 notitle, \
+  "<awk -F, '{a[$1]+=$7}END{for(i in a) print int(i/86400)*86400,a[i]}' ../data/cases_thuringia.csv | sort -n -k1 | awk '{if ($2 >= 0) print $0}' | awk 'BEGIN{ov=0}{dv=$2-ov;ov=$2;print $1,$2,dv}' | tail -n 1" using 1:2:(sprintf("%i (%+i)", $2, $3)) with labels point pt 7 center offset char -0.3, 0.8 tc ls 5 notitle, \
   "<awk '{if ($1 >= 1585213200) print int($1/86400)*86400, $2}' ../data/cases_thuringia_recovered.dat | awk '{if ($2 >= 0) print $0}' | sort -n -k1 | tail -n 1" using 1:2:($2) with labels point pt 7 center offset char -0.3, 0.8 tc ls 4 notitle, \
   "<awk -F, '{a[$1]+=$4}END{for(i in a) print int(i/86400)*86400,a[i]}' ../data/cases_thuringia.csv | awk '{if ($2 >= 0) print $0}' | sort -n -k1 | tail -n 1" using 1:2:($2) with labels point pt 7 center offset char -0.3, 0.8 tc ls 1 notitle, \
+  \
+  "<awk -F, '{a[$1]+=$4}END{for(i in a) print int(i/86400)*86400,a[i]}' ../data/cases_thuringia.csv | sort -n -k1 | awk '{if ($2 >= 0) print $0}' | awk 'BEGIN{ov=0}{dv=$2-ov;ov=$2;print $1,$2,dv}' | tail -n 1" using 1:2:(sprintf("(%+i)", $3)) with labels point pt 7 center offset char -0.3, -1.2 tc ls 1 notitle, \
+  "<awk '{if ($1 >= 1585213200) print int($1/86400)*86400, $2}' ../data/cases_thuringia_recovered.dat | sort -n -k1 | awk 'BEGIN{ov=0}{dv=$2-ov;ov=$2;print $1,$2,dv}' | tail -n 1" using 1:2:(sprintf("(%+i)", $3)) with labels point pt 7 center offset char -0.3, -1.2 tc ls 4 notitle, \
+  \
   "<awk -F, '{a[$1]+=$7}END{for(i in a) print int(i/86400)*86400,a[i]}' ../data/cases_thuringia.csv | awk '{if ($2 >= 0) print $0}' | sort -n -k1" using 1:(filter_neg($2)) with linespoints ls 5 title "Verstorbene", \
   "<awk -F, '{if ( $1 < 1585213200 ) a[$1]+=$8}END{for(i in a) print int(i/86400)*86400,a[i]}' ../data/cases_thuringia.csv | sort -n -k1" using 1:(filter_neg($2)) with linespoints ls 4 title "Genesene (bis 25.03.)", \
   "<awk '{if ($1 >= 1585213200) print int($1/86400)*86400, $2}' ../data/cases_thuringia_recovered.dat | sort -n -k1" using 1:(filter_neg($2)) with linespoints ls 4 pt 5 title "Genesene (ab 26.03. geschätzt)", \

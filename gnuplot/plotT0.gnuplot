@@ -29,6 +29,11 @@ stats "<awk -F, '{a[$1]+=$5}END{for(i in a) print int(i/86400)*86400,a[i]}' ../d
 # get number of severe
 stats "<awk -F, '{a[$1]+=$6}END{for(i in a) print int(i/86400)*86400,a[i]}' ../data/cases_thuringia.csv | sort -n -k1 | tail -n 1" u 2 prefix "F" nooutput
 
+# calculate diffs
+stats "<awk -F, '{a[$1]+=$4;b[$1]+=$8;c[$1]+=$7}END{for(i in a) print int(i/86400)*86400,a[i],b[i],c[i]}' ../data/cases_thuringia.csv | sort -n -k1 | tail -n 2" u 2 prefix "G" nooutput
+
+diff_c = G_max - G_min
+
 angle(x)=x*360/A_sum
 
 centerX=-0.15
@@ -50,7 +55,7 @@ pos = 90
 filter_inf(x, y)= (y >= 0) ? (x/y) : 0
 
 plot \
-     "<awk -F, '{a[$1]+=$4;b[$1]+=$8;c[$1]+=$7}END{for(i in a) print int(i/86400)*86400,a[i],b[i],c[i]}' ../data/cases_thuringia.csv | sort -n -k1 | tail -n 1" u (xpos):(ypos(-0.15)):(sprintf("%i bestätigte Fälle in Thüringen", $2)) w labels left offset 2.5, 0, \
+     "<awk -F, '{a[$1]+=$4;b[$1]+=$8;c[$1]+=$7}END{for(i in a) print int(i/86400)*86400,a[i],b[i],c[i]}' ../data/cases_thuringia.csv | sort -n -k1 | tail -n 1" u (xpos - 0.2):(ypos(-0.15)):(sprintf("%i (%+i) bestätigte Fälle in Thüringen", $2, diff_c)) w labels left offset 2.5, 0, \
      "<awk -F, '{a[$1]+=$4;b[$1]+=$8;c[$1]+=$7}END{for(i in a) print int(i/86400)*86400,a[i],b[i],c[i]}' ../data/cases_thuringia.csv | sort -n -k1 | tail -n 1" u (centerX):(centerY):(radius):(pos):(pos=pos+angle($2-B_max-$4)) w circle fc rgb "#0241b5", \
      '+' u (xpos):(ypos(1.75)) w p pt 5 ps 4 lc rgb "#0241b5", \
      "<awk -F, '{a[$1]+=$4;b[$1]+=$8;c[$1]+=$7}END{for(i in a) print int(i/86400)*86400,a[i],b[i],c[i]}' ../data/cases_thuringia.csv | sort -n -k1 | tail -n 1" u (xpos):(ypos(1.75)):(sprintf("%i aktive Fälle* (%.1f%%), davon", $2 - B_max - $4, 100*($2-B_max-$4)/A_sum)) w labels left offset 2.5, 0, \

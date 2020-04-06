@@ -4,7 +4,7 @@ set output '../plotT3_Germany_RKI.png'
 
 # stats for x
 stats "<awk -F, '!_[$2]++' ../data/cases_germany_total_rki.csv | awk -F, '{if (NR > 1) print $1}'" using 1 nooutput
-xmin = 1583884800
+xmin = 1583884800 + 5.9 * 86400
 xmin_o = int(STATS_min)
 xmax = int(STATS_max) + 18 * 86400
 xmax = xmin + (22 + 18) * 86400
@@ -25,17 +25,17 @@ ferr(x) = sqrt( (a_err*exp(b*x))*(a_err*exp(b*x)) + (b_err*a*b*exp(b*x))*(b_err*
 fmin(x) = f(x) - ferr(x)
 fmax(x) = f(x) + ferr(x)
 
-gA(x) = 10 * exp( log(2) / 1 * x)
-gB(x) = 10 * exp( log(2) / 2 * x)
-gC(x) = 10 * exp( log(2) / 3 * x)
-gD(x) = 10 * exp( log(2) / 4 * x)
-gE(x) = 10 * exp( log(2) / 5 * x)
-gF(x) = 10 * exp( log(2) / 6 * x)
-gG(x) = 10 * exp( log(2) / 7 * x)
-gH(x) = 10 * exp( log(2) / 14 * x)
-
-ymin = 10
+ymin = 9000
 ymax = 10000000
+
+gA(x) = ymin * exp( log(2) / 1 * x)
+gB(x) = ymin * exp( log(2) / 2 * x)
+gC(x) = ymin * exp( log(2) / 3 * x)
+gD(x) = ymin * exp( log(2) / 4 * x)
+gE(x) = ymin * exp( log(2) / 5 * x)
+gF(x) = ymin * exp( log(2) / 6 * x)
+gG(x) = ymin * exp( log(2) / 7 * x)
+gH(x) = ymin * exp( log(2) / 14 * x)
 
 # x-axis setup
 unset xlabel

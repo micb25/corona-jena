@@ -26,6 +26,11 @@ stats "<cat ../data/cases_erfurt.csv | awk -F, '{print $2, $4}'" u 2 prefix "B" 
 # gets maximum number of dead people
 stats "<cat ../data/cases_erfurt.csv | awk -F, '{print $2, $5}'" u 2 prefix "C" nooutput
 
+# calculate diffs
+stats "<awk -F, '!_[$2]++' ../data/cases_erfurt.csv | awk -F, '{if ($3 >= 0) print $2,$3}' | tail -n 2" u 2 prefix "G" nooutput
+
+diff_c = G_max - G_min
+
 angle(x)=x*360/A_max
 
 centerX=-0.15
@@ -45,7 +50,7 @@ set yrange [-radius:radius]
 pos = 90
 
 plot \
-     "<echo 0" u (xpos):(ypos(1)):(sprintf("%i bestätigte Fälle in Erfurt", A_max)) w labels left offset 2.5, 0, \
+     "<echo 0" u (xpos):(ypos(1)):(sprintf("%i (%+i) bestätigte Fälle in Erfurt", A_max, diff_c)) w labels left offset 2.5, 0, \
      "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(A_max-B_max-C_max)) w circle fc rgb "#0241b5", \
      "<echo 0" u (xpos):(ypos(2)) w p pt 5 ps 4 lc rgb "#0241b5", \
      "<echo 0" u (xpos):(ypos(2)):(sprintf("%i aktive Fälle (%.1f%%)", A_max - B_max - C_max, 100*(A_max-B_max-C_max)/A_max)) w labels left offset 2.5, 0, \

@@ -35,6 +35,11 @@ stats "<cat ../data/cases_jena.dat | awk '{if ($5 >= 0) print $0}' | tail -n 1" 
 # get number of severe
 stats "<cat ../data/cases_jena.dat | awk '{if ($6 >= 0) print $0}' | tail -n 1" u 6 prefix "F" nooutput
 
+# calculate diffs
+stats "<awk '!_[$2]++' ../data/cases_jena.dat | awk '{if ($2 >= 0) print $0}' | tail -n 2" u 2 prefix "G" nooutput
+
+diff_c = G_max - G_min
+
 angle(x)=x*360/A_max
 
 centerX=-0.15
@@ -56,7 +61,7 @@ pos = 90
 filter_inf(x, y)= (y >= 0) ? (x/y) : 0
 
 plot \
-     "<echo 0" u (xpos):(ypos(0.25)):(sprintf("%i bestätigte Fälle in Jena", A_max)) w labels left offset 2.5, 0, \
+     "<echo 0" u (xpos):(ypos(0.25)):(sprintf("%i (%+i) bestätigte Fälle in Jena", A_max, diff_c)) w labels left offset 2.5, 0, \
      "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(A_max-B_max-C_max)) w circle fc rgb "#0241b5", \
      "<echo 0" u (xpos):(ypos(1.75)) w p pt 5 ps 4 lc rgb "#0241b5", \
      "<echo 0" u (xpos):(ypos(1.75)):(sprintf("%i aktive Fälle (%.1f%%), davon", A_max - B_max - C_max, 100*(A_max-B_max-C_max)/A_max)) w labels left offset 2.5, 0, \
