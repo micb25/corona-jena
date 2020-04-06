@@ -54,6 +54,13 @@ Art der Datenerhebung auf Homepage (Legende):
 - awk
 - ImageMagick
 
+## Weitere Projekte
+
+Eine Liste weiterer ähnlicher Projekte, die COVID19-Daten sammelt für Deutschland erfasst:
+
+* Deutschland: [github.com/micgro42/COVID-19-DE](https://github.com/micgro42/COVID-19-DE)
+* Niedersachsen: [github.com/codeforosnabrueck/COVID-19-NDS/](https://github.com/codeforosnabrueck/COVID-19-NDS/)
+
 ## Sonstiges
 Fehler? Wünsche? Verbesserungsvorschläge? Dann lasst sie uns wissen und fügt sie dem [Bug-Tracker](https://github.com/micb25/corona-jena/issues) hinzu.
 
