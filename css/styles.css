@@ -153,21 +153,34 @@ svg#thuringiaMap {
     max-width: 966px;
     max-height: 758px;
 }
+
 svg text {
-	font-family:arial;
-	text-align:center;
-	text-anchor:middle
+	font-family: arial;
+	text-align: center;
+	text-anchor: middle
 }
+
 svg #Districts_Color, svg #region_names tspan, svg #region_names text {
 	cursor: pointer
 }
-svg #District_borders path {
+
+svg #Districts_Color path {
 	fill: none;
 	stroke: #F9F9F9;
 	stroke-width: 1.25;
 	stroke-linejoin: round;
-	stroke-miterlimit: 3.9161;
+	stroke-miterlimit: 4;
 }
+
+svg #State_borders .borderOverlay {
+	fill:none;
+	stroke: #a7ffad;
+	stroke-width: 4;
+	stroke-linejoin: round;
+	stroke-miterlimit: 4;
+	cursor: pointer;
+}
+
 svg #state_borders_path {
 	fill: none;
 	stroke: #444444;

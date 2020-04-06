@@ -152,7 +152,13 @@ function showUnits( ) {
 
 function m_over_region( id ) {
 	id = id.split( '_' );
-	document.getElementById( 'path_' + id[1] ).style.fill = '#8BC34A';
+
+	var node = document.createElementNS("http://www.w3.org/2000/svg", 'path');
+	node.setAttribute( 'id', 'overlay_' + id[1] );
+	node.setAttribute( 'd', document.getElementById( 'path_' + id[1] ).getAttribute('d') );
+	node.setAttribute( 'class', 'borderOverlay' );
+	document.getElementById( 'State_borders' ).appendChild( node );
+
 	document.getElementById( 'cases_text_headline' ).style.display = 'block';
 	document.getElementById( 'cases_tspan_region' ).innerHTML = json.values[ id[1] ]['name'];
 	
@@ -165,8 +171,7 @@ function m_over_region( id ) {
 
 function m_out_region( id ) {
 	id = id.split('_');
-	document.getElementById( 'path_' + id[1] ).style.fill = resultArray[ id[1] ]['color'];
-	//document.getElementById( 'cases' )
+	document.getElementById( 'overlay_' + id[1] ).remove();
 	document.getElementById( 'cases_tspan_count' ).innerHTML = '';
 	showUnits( actualType );
 }
