@@ -9,6 +9,7 @@ var json = {}; // containes the received dataset
 var maxArray = {}; // contains the max values for every json.type
 var langKey = 'de'; // contains the used language
 var actualType = ''; // selected json.type
+var labelState = 'regionLabels';
 		
 function js_goto( id ) {
 	id = id.split('_');
@@ -78,8 +79,7 @@ function hide_region_texts(	) {
 			var cnt = 0;
 			for (var i = 1; i < 4; i++) {
 				var tspan = document.getElementById( 'tspan' + i  + '_' + region );
-				if ( tspan != null ) { 
-					console.log( tspan.getBBox() );
+				if ( tspan != null ) {
 					y += tspan.getBBox().y + tspan.getBBox().height;
 					tspan.style = 'display:none';
 					cnt++;
@@ -94,6 +94,7 @@ function hide_region_texts(	) {
 		node.innerHTML = formatValue( resultArray[ region ]['value'] );
 		document.getElementById( 'text_' + region ).appendChild( node );
 	}
+	labelState = 'regionNumbers';
 }
 
 function show_region_texts(	) {
@@ -115,6 +116,7 @@ function show_region_texts(	) {
 		//remove value label
 		document.getElementById( 'tsc_' + region ).remove();
 	}
+	labelState = 'regionLabels';
 }
 
 function getPrefix( value ) {
@@ -199,7 +201,6 @@ function changeViewTo( id ) {
 	document.getElementById( 'mapHeadline' ).innerHTML = json.types[ actualType ][ langKey ] + ' in Thüringen';
 	document.getElementById( 'cases_text_headline' ).innerHTML = json.types[ actualType ][ langKey ];
 	showUnits();
-
 	// init color legend
 	document.getElementById('upperLimitColor').setAttribute("stop-color", valueToColor( 1, 1, json.types[ actualType ][ 'color' ] ) );
 }
@@ -221,7 +222,10 @@ function generateMenu( ) {
 	
 	document.getElementById( 'selectorLinks' ).innerHTML = menu;
 	for ( var key in json.types ) {
-		document.getElementById( 'selector_' + key ).onclick = (function(e) { changeViewTo( e.target.id ) } );
+		document.getElementById( 'selector_' + key ).onclick = (function(e) {
+				changeViewTo( e.target.id );
+				if ( labelState != 'regionLabels' ) show_region_texts();
+			} );
 	}
 	
 }
