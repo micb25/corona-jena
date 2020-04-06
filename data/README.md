@@ -16,9 +16,10 @@ In diesem [Verzeichnis](/data/) befinden sich die gesammelten Daten COVID-19 Dat
 
 Sonstige Formate:
 
-| Region               | Format | Datei                                                          |
-|----------------------|--------|----------------------------------------------------------------|
-| Saalfeld-Rudolstadt  | JPG    | [Bilderordner](cases_slf/)                                     |
+| Region                 | Format | Datei                                                          |
+|------------------------|--------|----------------------------------------------------------------|
+| Saalfeld-Rudolstadt    | JPG    | [Bilderordner](cases_slf/)                                     |
+| Schmalkalden-Meiningen | PDF    | [Dokumentenordner](cases_sm/)                                  |
 
 Die folgenden Dateien sind momentan noch in einem älteren Format gespeichert und werden demnächst zum CSV-Format transformiert:
 
@@ -29,7 +30,7 @@ Die folgenden Dateien sind momentan noch in einem älteren Format gespeichert un
 |                      |                                                                |
 | Jena                 | [cases_jena.dat](cases_jena.dat)                               |
 | Weimar               | [cases_weimar.dat](cases_weimar.dat)                           |
- 	
+
 
 # Format
 
