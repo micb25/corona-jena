@@ -4,6 +4,8 @@ set minussign
 
 set output '../plot0_Gera.png'
 
+set datafile separator ","
+
 # pie chart inspired by:
 # https://stackoverflow.com/questions/31896718/generation-of-pie-chart-using-gnuplot
 
@@ -18,13 +20,13 @@ unset border
 update_str = "letztes Update: " . system("date +%d.%m.,\\ %H\\:%M") . " Uhr"
 
 # gets sum of infected people
-stats "<cat ../data/cases_gera.dat | awk '{print $2, $2}'" u 2 prefix "A" nooutput
+stats "<cat ../data/cases_gera.csv | awk -F, '{print $2}'" u 1 prefix "A" nooutput
 
 # gets maximum number of recovered people
-stats "<cat ../data/cases_gera.dat | awk '{print $2, $3}'" u 2 prefix "B" nooutput
+stats "<cat ../data/cases_gera.csv | awk -F, '{print $3}'" u 1 prefix "B" nooutput
 
 # gets maximum number of deceased
-stats "<cat ../data/cases_gera.dat | awk '{print $2, $4}'" u 2 prefix "C" nooutput
+stats "<cat ../data/cases_gera.csv | awk -F, '{print $4}'" u 1 prefix "C" nooutput
 
 angle(x)=x*360/A_max
 

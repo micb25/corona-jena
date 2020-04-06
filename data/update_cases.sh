@@ -6,8 +6,8 @@ curl -O https://www.michael-böhme.de/corona/data/cases_eic.csv
 rm cases_erfurt.csv
 curl -O https://www.michael-böhme.de/corona/data/cases_erfurt.csv
 
-rm cases_gera.dat
-curl -O https://www.michael-böhme.de/corona/data/cases_gera.dat
+rm cases_gera.csv
+curl -O https://www.michael-böhme.de/corona/data/cases_gera.csv
 
 rm cases_jena.dat
 curl -O https://www.michael-böhme.de/corona/data/cases_jena.dat

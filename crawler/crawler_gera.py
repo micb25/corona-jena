@@ -3,11 +3,8 @@
 
 import time, requests, re, os
 
-DATAFILE = os.path.dirname(os.path.realpath(__file__)) + "/../data/cases_gera.dat"
 
-
-def getGeraNumbers():
-    url          = "https://corona.gera.de/"
+def getGeraNumbers(url):
     headers      = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
     num_pattern1 = re.compile(r"Infizierte\s([0-9]{1,})")
     num_pattern2 = re.compile(r"([0-9]{1,})\sPerson.*?\sgenesen")
@@ -33,9 +30,12 @@ def getGeraNumbers():
     
 if __name__ == "__main__":
 
-    n = getGeraNumbers()
+    DATAFILE = os.path.dirname(os.path.realpath(__file__)) + "/../data/cases_gera.csv"
+    URL = "https://corona.gera.de/"
+    
+    n = getGeraNumbers(URL)
     
     if (n != False) and ( n[0] > -1 ):
         f = open(DATAFILE, 'a')
-        f.write("%-16i %-8i %-8i %-8i %-8i %-8i\n" % (int(time.time()), n[0], n[1], n[2], n[3], n[4]))
+        f.write("%i,%i,%i,%i,%i,%i,%s\n" % (int(time.time()), n[0], n[1], n[2], n[3], n[4], URL))
         f.close()

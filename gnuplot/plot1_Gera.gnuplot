@@ -3,11 +3,11 @@ load "template.gnuplot"
 set output '../plot1_Gera.png'
 
 # stats for x
-stats "<awk '{ print $1 }' ../data/cases_gera.dat" using 1 nooutput
+stats "<awk -F, '{ print $1 }' ../data/cases_gera.csv" using 1 nooutput
 set xrange [ STATS_min - 86400 : STATS_max + 86400 ]
 
 # stats for y
-stats "<awk '{ print $2 }' ../data/cases_gera.dat" using 1 nooutput
+stats "<awk -F, '{ print $2 }' ../data/cases_gera.csv" using 1 nooutput
 ymax_we = int(5.0/3.0*STATS_max)
 
 set yrange [ 0 : ymax_we ]
@@ -28,7 +28,7 @@ set key at graph 0.02, 0.98 left top invert spacing 1.2 box ls 3
 plot  \
   1/0 lc rgb '#f2f2f2' title "{/*0.75 Quelle: Stadt Gera}", \
   1/0 lc rgb '#f2f2f2' title update_str, \
-  "<awk '!_[$3]++' ../data/cases_gera.dat | awk '{if ($3 >= 0) print $0}' | tail -n 1" using 1:3:($3) with labels point pt 7 center offset char -0.3, 0.8 tc ls 4 notitle, \
-  "<awk '!_[$2]++' ../data/cases_gera.dat | awk '{if ($2 >= 0) print $0}' | tail -n 1" using 1:2:($2) with labels point pt 7 center offset char -0.3, 0.8 tc ls 1 notitle, \
-  "<awk '!_[$3]++' ../data/cases_gera.dat" using 1:(filter_neg($3)) with linespoints ls 4 title "Genesene", \
-  "<awk '!_[$2]++' ../data/cases_gera.dat" using 1:(filter_neg($2)) with linespoints ls 1 title "bestätigte Fälle"
+  "<awk -F, '!_[$3]++' ../data/cases_gera.csv | awk -F, '{if ($3 >= 0) {print $1, $3}}' | tail -n 1" using 1:2:($2) with labels point pt 7 center offset char -0.3, 0.8 tc ls 4 notitle, \
+  "<awk -F, '!_[$2]++' ../data/cases_gera.csv | awk -F, '{if ($2 >= 0) {print $1, $2}}' | tail -n 1" using 1:2:($2) with labels point pt 7 center offset char -0.3, 0.8 tc ls 1 notitle, \
+  "<awk -F, '!_[$3]++' ../data/cases_gera.csv | awk -F, '{print $1, $3}'" using 1:(filter_neg($2)) with linespoints ls 4 title "Genesene", \
+  "<awk -F, '!_[$2]++' ../data/cases_gera.csv | awk -F, '{print $1, $2}'" using 1:(filter_neg($2)) with linespoints ls 1 title "bestätigte Fälle"
