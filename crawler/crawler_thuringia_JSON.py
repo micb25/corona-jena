@@ -112,15 +112,15 @@ def writeAsJSON( pd, num_patterns ):
             for d in ps:
                 for key in regions:
                     if ( regions[key]["name"] == d[0] ):
-                        regions[key]["cases"] = int(d[3])
-                        regions[key]["diff"]  = int(d[2])
+                        regions[key]["cases"] = int(d[2])
+                        regions[key]["diff"]  = int(d[3])
                         regions[key]["hosp"]  = int(d[4])
                         regions[key]["serv"]  = int(d[5])
                         regions[key]["death"] = int(d[6])
-                        #regions["???"]  = int(d[7])
-                        #regions["???"]  = 0
-                        regions[key]["casedens"] = int(d[3]) / regions[key]["area"]
-                        regions[key]["caseres"] = int(d[3]) / regions[key]["res"]*100000
+                        regions[key]["casedens"] = regions[key]["cases"] / regions[key]["area"]
+                        regions[key]["caseres"] = regions[key]["cases"] / regions[key]["res"]*100000
+                        #regions[key]["???"]  = int(d[7])
+                        #regions[key]["???"]  = 0
     
     resultArray = {
         "ts" : dt,
