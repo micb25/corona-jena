@@ -14,6 +14,12 @@ In diesem [Verzeichnis](/data/) befinden sich die gesammelten Daten COVID-19 Dat
 | Landkreis Nordhausen | [cases_ndh.csv](cases_ndh.csv)                                 |
 | Saale-Orla-Kreis     | [cases_sok.csv](cases_sok.csv)                                 |
 
+Sonstige Formate:
+
+| Region               | Format | Datei                                                          |
+|----------------------|--------|----------------------------------------------------------------|
+| Saalfeld-Rudolstadt  | JPG    | [Bilderordner](cases_slf/)                                     |
+
 Die folgenden Dateien sind momentan noch in einem älteren Format gespeichert und werden demnächst zum CSV-Format transformiert:
 
 | Region               | Datei                                                          |
