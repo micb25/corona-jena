@@ -24,6 +24,9 @@ curl -O https://www.michael-böhme.de/corona/data/cases_jena_opendata.csv
 rm cases_ndh.csv
 curl -O https://www.michael-böhme.de/corona/data/cases_ndh.csv
 
+rm cases_rki_db_th.csv
+curl -O https://www.michael-böhme.de/corona/data/cases_rki_db_th.csv
+
 rm cases_sok.csv
 curl -O https://www.michael-böhme.de/corona/data/cases_sok.csv
 
