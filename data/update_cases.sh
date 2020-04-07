@@ -12,6 +12,9 @@ curl -O https://www.michael-böhme.de/corona/data/cases_erfurt.csv
 rm cases_gera.csv
 curl -O https://www.michael-böhme.de/corona/data/cases_gera.csv
 
+rm cases_grz.csv
+curl -O https://www.michael-böhme.de/corona/data/cases_grz.csv
+
 rm cases_jena.dat
 curl -O https://www.michael-böhme.de/corona/data/cases_jena.dat
 
