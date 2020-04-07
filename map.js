@@ -186,9 +186,9 @@ function m_out_region( id ) {
 
 function changeViewTo( id ) {
 	for (var key in json.types) {
-		document.getElementById( 'selector_' + key ).style.fontWeight = "normal";
+		document.getElementById( 'selector_' + key ).className = "";//.style.fontWeight = "normal";
 	}
-	document.getElementById( id ).style.fontWeight = "bold";
+	document.getElementById( id ).className = "menu_focus";
 	actualType = id.split('_')[1];
 
 	for (var regionKey in json.values) {
@@ -209,6 +209,8 @@ function changeViewTo( id ) {
 	showUnits();
 	// init color legend
 	document.getElementById('upperLimitColor').setAttribute("stop-color", valueToColor( 1, 1, json.types[ actualType ][ 'color' ] ) );
+	url = window.location.href.split("#");
+	window.history.pushState("", document.getElementById( 'mapHeadline' ).innerHTML, url[0] + "#" + actualType);
 }
 
 function generateMenu( ) {
@@ -226,20 +228,20 @@ function generateMenu( ) {
 		cnt++;
 		menu = menu + del + '<span id="selector_' + item["key"] +'">' + json.types[ item["key"] ][ langKey ] + '</span>';
 		if ( cnt % maxItemsPerLine ) {
-			del = ' | ';
+			del = '<span class="menu_delimiter">| </span>';
 		} else{
 			del = '<br>';
 		}
 	});
-	
 	document.getElementById( 'selectorLinks' ).innerHTML = menu;
 	for ( var key in json.types ) {
-		document.getElementById( 'selector_' + key ).onclick = (function(e) {
+		document.getElementById( 'selector_' + key ).onclick = (
+			function( e ) {
 				changeViewTo( e.target.id );
 				if ( labelState != 'regionLabels' ) show_region_texts();
-			} );
+			} 
+		);
 	}
-	
 }
 
 function setDataTime() {

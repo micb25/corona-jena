@@ -200,6 +200,13 @@ div#selectorLinks span, div#toggle_region_labels span {
 	cursor: pointer;
 	display: inline-block;
 }
+div#selectorLinks span.menu_focus {
+	font-weight: bold;
+}
+#mapHeadline {
+	margin: 5px;
+	font-size: 19px;
+}
 
 @media (max-width: 800px) {
 	body {  
@@ -218,5 +225,20 @@ div#selectorLinks span, div#toggle_region_labels span {
 
 	.graphBlock h2 {
 		margin-left: 42px;
+	}
+	div#selectorLinks span, div#toggle_region_labels span {
+		border: 1px solid black;
+		border-radius: 3px;
+		background-color: #fafafa;
+		margin-bottom: 8px;
+		padding: 7px;
+		line-height: 12px;
+	}
+	div#selectorLinks span.menu_delimiter, div#selectorLinks br {
+		display: none;
+	}
+	div#selectorLinks span.menu_focus {
+		background-color: #ececec;
+		font-weight: normal;
 	}
 }
