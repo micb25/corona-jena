@@ -18,6 +18,9 @@ curl -O https://www.michael-böhme.de/corona/data/cases_jena_opendata.csv
 rm cases_ndh.csv
 curl -O https://www.michael-böhme.de/corona/data/cases_ndh.csv
 
+rm cases_sok.csv
+curl -O https://www.michael-böhme.de/corona/data/cases_sok.csv
+
 rm cases_thuringia.csv
 curl -O https://www.michael-böhme.de/corona/data/cases_thuringia.csv
 
@@ -32,4 +35,3 @@ curl -O https://www.michael-böhme.de/corona/data/cases_thuringia_rki.dat
 
 rm cases_weimar.dat
 curl -O https://www.michael-böhme.de/corona/data/cases_weimar.dat
-
