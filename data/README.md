@@ -43,5 +43,6 @@ Die CSV-Tabellen haben das folgende Format:
 |-------|--------------------------|--------------------|---------------------|----------------------------|-------------------------|--------|
 | ...   | ...                      | ...                | ...                 | ...                        | ...                     | ...    |
 
-Das Datum wird dabei zur einfacheren Verarbeitung immer als [Unixzeit](https://de.wikipedia.org/wiki/Unixzeit) angegeben.
+Der Umfang der Daten ist unterschiedlich und von der Quelle abhängig. Zahlenwerte von '-1' sind so zu verstehen, dass diese Information von der Quelle nicht verfügbar ist.
 
+Das Datum wird zur einfacheren elektronischen Verarbeitung als [Unixzeit](https://de.wikipedia.org/wiki/Unixzeit) angegeben. 
