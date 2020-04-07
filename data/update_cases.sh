@@ -1,5 +1,8 @@
 #!/bin/bash
 
+rm cases_ea.csv
+curl -O https://www.michael-böhme.de/corona/data/cases_ea.csv
+
 rm cases_eic.csv
 curl -O https://www.michael-böhme.de/corona/data/cases_eic.csv
 
@@ -35,3 +38,6 @@ curl -O https://www.michael-böhme.de/corona/data/cases_thuringia_rki.dat
 
 rm cases_weimar.dat
 curl -O https://www.michael-böhme.de/corona/data/cases_weimar.dat
+
+rm cases_wak.csv
+curl -O https://www.michael-böhme.de/corona/data/cases_wak.csv

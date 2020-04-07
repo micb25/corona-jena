@@ -7,12 +7,14 @@ In diesem [Verzeichnis](/data/) befinden sich die gesammelten Daten COVID-19 Dat
 | Deutschland          | [cases_germany_total_rki.csv](cases_germany_total_rki.csv)     |
 | Thüringen            | [cases_thuringia.csv](cases_thuringia.csv)                     |
 |                      |                                                                |
+| Eisenach             | [cases_ea.csv](cases_ea.csv)                                   |
 | Eichsfeld            | [cases_eic.csv](cases_eic.csv)                                 |
 | Erfurt               | [cases_erfurt.csv](cases_erfurt.csv)                           |
 | Gera                 | [cases_gera.csv](cases_gera.csv)                               |
 | Jena                 | [cases_jena_opendata.csv](cases_jena_opendata.csv)             |
 | Landkreis Nordhausen | [cases_ndh.csv](cases_ndh.csv)                                 |
 | Saale-Orla-Kreis     | [cases_sok.csv](cases_sok.csv)                                 |
+| Wartburgkreis        | [cases_wak.csv](cases_wak.csv)                                 |
 
 Sonstige Formate:
 
