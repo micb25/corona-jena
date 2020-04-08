@@ -5,9 +5,9 @@ import os, requests, datetime
 
 
 def bed_status_to_int(s):
-    str_array = {"NICHT_VERFUEGBAR", "BEGRENZT", "VERFUEGBAR"}    
+    str_array = ["NICHT_VERFUEGBAR", "BEGRENZT", "VERFUEGBAR"]
     for i in enumerate(str_array):
-        if ( s == i[1] ):
+        if ( str(s) == i[1] ):
             return i[0]
     return -1 # None
 
