@@ -15,6 +15,7 @@ Dieses Projekt verwendet einige der folgenden offiziellen Quellen der Kommunen u
 | #  | kreisfreie Stadt / Landkreis     | Abruf der Daten?                       | Art der Datenerhebung auf Homepage | Webseite                                                                                                                                                                                                                                               |
 |----|----------------------------------|----------------------------------------|------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 |    | Thüringen                        | [ja](data/cases_thuringia.csv)         | T                                  | [https://www.landesregierung-thueringen.de](https://www.landesregierung-thueringen.de/corona-bulletin)                                                                                                                                                 |
+|    | Thüringen (DIVI)                 | [ja](data/divi_db_th/)                 | J                                  | [https://www.intensivregister.de](https://www.intensivregister.de/#/intensivregister)                                                                                                                                                                  |
 |    | Thüringen (RKI)                  | [ja](data/cases_rki_db_th.csv)         | T                                  | [https://www.rki.de](https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html), [https://corona.rki.de/](https://corona.rki.de/)                                                                                                   |
 |    | Deutschland (RKI)                | [ja](data/cases_germany_total_rki.csv) | T                                  | [https://www.rki.de](https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html)                                                                                                                                                     |
 |    |                                  |                                        |                                    |                                                                                                                                                                                                                                                        |
@@ -48,6 +49,7 @@ Art der Datenerhebung auf Homepage (Legende):
  - D: Dokument (PDF)
  - G: Grafik (JPG)
  - I: interaktive Grafik
+ - J: JSON
  - O: OpenData (CSV)
  - P: Pressemitteilungen
  - T: Text
