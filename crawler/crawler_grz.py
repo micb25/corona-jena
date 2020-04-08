@@ -35,7 +35,7 @@ def getGRZNumbers(url):
 if __name__ == "__main__":
     
     DATAFILE = os.path.dirname(os.path.realpath(__file__)) + "/../data/cases_grz.csv"
-    URL = 'https://www.landkreis-greiz.de/landkreis-greiz/aktuell/nachrichten-details/?tx_ttnews[tt_news]=224'
+    URL = 'https://www.landkreis-greiz.de/landkreis-greiz/aktuell/nachrichten-details/?tx_ttnews[tt_news]=224&cHash=74595518f951c32f22d04b7591d643fe'
     
     num_latest = getGRZNumbers(URL)
             
