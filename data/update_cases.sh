@@ -27,6 +27,9 @@ curl -O https://www.michael-böhme.de/corona/data/cases_ndh.csv
 rm cases_rki_db_th.csv
 curl -O https://www.michael-böhme.de/corona/data/cases_rki_db_th.csv
 
+rm cases_shk.csv
+curl -O https://www.michael-böhme.de/corona/data/cases_shk.csv
+
 rm cases_sok.csv
 curl -O https://www.michael-böhme.de/corona/data/cases_sok.csv
 

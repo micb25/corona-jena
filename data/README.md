@@ -15,6 +15,7 @@ In diesem [Verzeichnis](/data/) befinden sich die gesammelten Daten COVID-19 Dat
 | Greiz                | [cases_grz.csv](cases_grz.csv)                                 |
 | Jena                 | [cases_jena_opendata.csv](cases_jena_opendata.csv)             |
 | Landkreis Nordhausen | [cases_ndh.csv](cases_ndh.csv)                                 |
+| Saale-Holzland-Kreis | [cases_shk.csv](cases_shk.csv)                                 |
 | Saale-Orla-Kreis     | [cases_sok.csv](cases_sok.csv)                                 |
 | Wartburgkreis        | [cases_wak.csv](cases_wak.csv)                                 |
 
