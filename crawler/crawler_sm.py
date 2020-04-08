@@ -15,7 +15,7 @@ def saveSMNumbers():
         src = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0).text
         
         # find the URL of the document
-        pattern_pdf = re.compile(r"<a\ href=\"https\:\/\/www.lra-sm.de/(.*Lage.*\.pdf)\"\>")        
+        pattern_pdf = re.compile(r"<a\ href=\"https\:\/\/www.lra-sm.de/(.*(?:Lage|Bulletin).*\.pdf)\"\>")        
         pdfsrc = pattern_pdf.findall(src)
         
         if ( len(pdfsrc) < 1 ):
