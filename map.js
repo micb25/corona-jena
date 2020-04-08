@@ -213,6 +213,7 @@ function changeViewTo( id ) {
 	window.history.pushState("", document.getElementById( 'mapHeadline' ).innerHTML, url[0] + "#" + actualType);
 }
 
+//returns first entry of json.types
 function generateMenu( ) {
 	del = '';
 	menu = '';
@@ -242,6 +243,7 @@ function generateMenu( ) {
 			} 
 		);
 	}
+	return sorted_types[0];
 }
 
 function setDataTime() {
@@ -293,11 +295,11 @@ function getData() {
 				setDataTime( );
 				
 				getMaxValues( );
-				generateMenu( );
+				firstentry = generateMenu( );
 
 				// get start type
 				url = window.location.href.split("#");
-				startType = (url[1] in json.types) ? url[1] : Object.keys( json.types )[0] ;
+				startType = (url[1] in json.types) ? url[1] : firstentry["key"] ;
 				changeViewTo( 'selector_' + startType );
 
 				// hide case count legend
