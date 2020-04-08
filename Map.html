@@ -46,15 +46,14 @@
 		<br>
 		<br>
 		<h1 >Interaktive Thüringenkarte</h1>
-		<h2 id="mapHeadline">-</h2>
 		Quelle: <a href="https://www.landesregierung-thueringen.de/corona-bulletin">Thüringer Landesregierung</a>
 		<br>
-		<br>
+		<h2 id="mapHeadline">&nbsp;</h2>
 		<noscript>
 			<strong>Die interaktive Thüringenkarte benötigt JavaScript!</strong><br>
 			<br>
 		</noscript>
-		<div id="toggle_region_labels"><span id="show_value_labels" onclick="hide_region_texts();">Zeige Werte in der Karte</span><span id="show_name_labels" onclick="show_region_texts();" style="display:none">Zeige Landkreisnamen</span></div>
+		<div id="toggle_region_labels"><span id="show_value_labels" onclick="hide_region_texts();">zeige Werte in Karte</span><span id="show_name_labels" onclick="show_region_texts();" style="display:none">zeige Namen in Karte</span></div>
 		<svg style="display: none" id="thuringiaMap" x="0px" y="0px" viewBox="143 281 966 758" enable-background="new 143 281 966 758">
 			<defs id="defs80">
 				<linearGradient gradientTransform="rotate(90)" id="colorGradient">
@@ -189,11 +188,14 @@
 					<tspan id="cases_tspan_count">0</tspan>
 				</text>
 			</g>
-			<text id="timestamp" style="font-size:16px;" x="911.81079" y="1012.5021">
-				<tspan id="tspan_timestamp" x="807.05298" y="1012.5021">Stand: 01.01.2020, 10:30 Uhr</tspan>
+			<text id="sum" style="font-size:24px;" x="941.81079" y="982.5021">
+				<tspan id="tspan_sum" x="941.81079" y="982.5021">SUMME</tspan>
+			</text>
+			<text id="timestamp" style="font-size:16px;" x="941.81079" y="1012.5021">
+				<tspan id="tspan_timestamp" x="941.81079" y="1012.5021">Stand: 01.01.2020, 10:30 Uhr</tspan>
 			</text>
 		</svg>
-
+		
 		<div id="selectorLinks" class="selectorLinks"></div>
 
 		<div class="graphBlockContainer" id="graphBlockContainer">  

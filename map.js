@@ -5,10 +5,11 @@
 // - area: https://statistik.thueringen.de/datenbank/TabAnzeige.asp?tabelle=GG000101%7C%7C
 
 var resultArray = {}; // contains the dataset of the actual type including the color of every region
-var json = {}; // containes the received dataset
+var json = {}; // contains the received dataset
 var maxArray = {}; // contains the max values for every json.type
+var sumArray = {}; // contains the sum of all elements
 var langKey = 'de'; // contains the used language
-var actualType = ''; // selected json.type
+var currentType = ''; // selected json.type
 var labelState = 'regionLabels';
 		
 function js_goto( id ) {
@@ -68,7 +69,7 @@ function getOverlayTextColor( bgColor ) {
 
 function hide_region_texts(	) {
 	document.getElementById( 'show_value_labels' ).style.display = 'none';
-	document.getElementById( 'show_name_labels' ).style.display = 'inline';
+	document.getElementById( 'show_name_labels' ).style.display = 'inline-block';
 	for ( var region in json.values ) {
 		var tspan = document.getElementById( 'tspan_' + region );
 		var y = 0;
@@ -98,7 +99,7 @@ function hide_region_texts(	) {
 }
 
 function show_region_texts(	) {
-	document.getElementById( 'show_value_labels' ).style.display = 'inline';
+	document.getElementById( 'show_value_labels' ).style.display = 'inline-block';
 	document.getElementById( 'show_name_labels' ).style.display = 'none';
 	for ( var region in json.values ) {
 		// redisplay labels
@@ -121,23 +122,38 @@ function show_region_texts(	) {
 
 function getPrefix( value ) {
 	prefix = '';
-	if ( 'pm' in json.types[ actualType ] ) {
-		if ( json.types[ actualType ][ 'pm' ] == 1 ) {
-			prefix = ( value >= 0 ) ? '+ ' : '- ';
+	if ( 'pm' in json.types[ currentType ] ) {
+		if ( json.types[ currentType ][ 'pm' ] == 1 ) {
+			prefix = ( value >= 0 ) ? '+' : '−';
 		}
 	}
 	return prefix;
 }
 
 function formatValue( value ) {
-	if ( value > 1000 ) {
+	if ( value > 1000000 ) {
+		result = Math.floor( value / 1000000 ) + '&thinsp;';
+		if ( (Math.floor(value % 1000000) / 1000) < 10 ) {
+			result += '00';
+		} else if ( (Math.floor(value % 1000000) / 1000) < 10 ) {
+			result += '0';
+		}
+		result += Math.floor((value % 1000000) / 1000) + '&thinsp;';
+		if ( value % 1000 < 10 ) {
+			result += '00';
+		} else if ( value % 1000 < 100 ) {
+			result += '0';
+		}
+		result += value % 1000;
+	}
+	else if ( value > 1000 ) {
 		result = Math.round( value - Math.floor( value / 1000 ) * 1000 );
 		if ( result < 10 ) {
 			result = '00' + result;
 		} else if ( result < 100 ) {
 			result = '0' + result;
 		}
-		result = Math.floor( value / 1000 ) + ' ' + result;
+		result = Math.floor( value / 1000 ) + '&thinsp;' + result;
 	} else {	
 		var factor = 1;
 		if ( value < 10 ) {
@@ -153,7 +169,7 @@ function formatValue( value ) {
 function showUnits( ) {
 	// show units
 	document.getElementById( 'cases' ).style.display = 'block';
-	document.getElementById( 'cases_tspan_region' ).innerHTML = json.types[ actualType ][ 'unit' ];
+	document.getElementById( 'cases_tspan_region' ).innerHTML = json.types[ currentType ][ 'unit' ];
 	document.getElementById( 'cases_text_headline' ).style.display = 'none';
 	document.getElementById( 'cases_tspan_count' ).innerHTML = '';
 }
@@ -171,8 +187,12 @@ function m_over_region( id ) {
 	document.getElementById( 'cases_tspan_region' ).innerHTML = json.values[ id[1] ]['name'];
 	
 	var value = formatValue( resultArray[ id[1] ]['value'] );
-	if ( 'unit' in json.types[ actualType ] ) {
-		value = value + ' ' + json.types[ actualType ][ 'unit' ];
+	if ( 'unit' in json.types[ currentType ] ) {
+		if ( ( resultArray[ id[1] ]['value'] == '1' ) && ( 'unit1' in json.types[ currentType ] ) ) {
+			value = value + ' ' + json.types[ currentType ][ 'unit1' ];
+		} else {
+			value = value + ' ' + json.types[ currentType ][ 'unit' ];
+		}
 	}
 	document.getElementById( 'cases_tspan_count' ).innerHTML = value;
 }
@@ -181,7 +201,7 @@ function m_out_region( id ) {
 	id = id.split('_');
 	document.getElementById( 'overlay_' + id[1] ).remove();
 	document.getElementById( 'cases_tspan_count' ).innerHTML = '';
-	showUnits( actualType );
+	showUnits( currentType );
 }
 
 function changeViewTo( id ) {
@@ -189,28 +209,33 @@ function changeViewTo( id ) {
 		document.getElementById( 'selector_' + key ).className = "";//.style.fontWeight = "normal";
 	}
 	document.getElementById( id ).className = "menu_focus";
-	actualType = id.split('_')[1];
+	currentType = id.split('_')[1];
 
 	for (var regionKey in json.values) {
 		// populate result array to be able to read out the data on mouse over
 		resultArray[ regionKey ] = {};
-		resultArray[ regionKey ]['value'] = json.values[ regionKey ][ actualType ];
-		resultArray[ regionKey ]['color'] = valueToColor( resultArray[ regionKey ]['value'], maxArray[ actualType ], json.types[ actualType ][ 'color' ] );
+		resultArray[ regionKey ]['value'] = json.values[ regionKey ][ currentType ];
+		resultArray[ regionKey ]['color'] = valueToColor( resultArray[ regionKey ]['value'], maxArray[ currentType ], json.types[ currentType ][ 'color' ] );
 		// apply color to map
 		document.getElementById( 'path_'+ regionKey ).style.fill = resultArray[ regionKey ]['color'];
 		document.getElementById( 'text_'+ regionKey ).style.fill = getOverlayTextColor( resultArray[ regionKey ]['color'] );
 		
 	}
+	// show sum
+	if ( 'showSum' in json.types[ currentType ] ) {
+		document.getElementById( 'tspan_sum' ).innerHTML = formatValue(Math.floor(sumArray[ currentType ])) + '&thinsp;' + json.types[ currentType ][ 'unit' ] + " insgesamt";
+	} else {
+		document.getElementById( 'tspan_sum' ).innerHTML = "";
+	}
 	// set legend upper limit
-	value = formatValue( maxArray[ actualType ] );
-	document.getElementById( 'upperCount' ).innerHTML = value;
-	document.getElementById( 'mapHeadline' ).innerHTML = json.types[ actualType ][ langKey ] + ' in Thüringen';
-	document.getElementById( 'cases_text_headline' ).innerHTML = json.types[ actualType ][ langKey ];
+	document.getElementById( 'upperCount' ).innerHTML = formatValue( maxArray[ currentType ] );
+	document.getElementById( 'mapHeadline' ).innerHTML = json.types[ currentType ][ langKey ];
+	document.getElementById( 'cases_text_headline' ).innerHTML = json.types[ currentType ][ langKey ];
 	showUnits();
 	// init color legend
-	document.getElementById('upperLimitColor').setAttribute("stop-color", valueToColor( 1, 1, json.types[ actualType ][ 'color' ] ) );
+	document.getElementById('upperLimitColor').setAttribute("stop-color", valueToColor( 1, 1, json.types[ currentType ][ 'color' ] ) );
 	url = window.location.href.split("#");
-	window.history.pushState("", document.getElementById( 'mapHeadline' ).innerHTML, url[0] + "#" + actualType);
+	window.history.pushState("", document.getElementById( 'mapHeadline' ).innerHTML, url[0] + "#" + currentType);
 }
 
 //returns first entry of json.types
@@ -218,7 +243,7 @@ function generateMenu( ) {
 	del = '';
 	menu = '';
 	cnt = 0;
-	maxItemsPerLine = 5;
+	maxItemsPerLine = 4;
 	// really nasty way to sort the object by id without loosing the key
 	for ( var key in json.types ) {
 		json.types[key]["key"] = key;
@@ -252,17 +277,19 @@ function setDataTime() {
 	var month = months[ date.getMonth() ];
 	var min = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes(); 
 	var day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate(); 
-	document.getElementById( 'tspan_timestamp' ).innerHTML = 'Stand: ' + day + '. ' +month + ' ' + date.getFullYear() + ', ' + date.getHours() + ':' + min + ' Uhr';
+	document.getElementById( 'tspan_timestamp' ).innerHTML = ' Stand: ' + day + '. ' +month + ' ' + date.getFullYear() + ', ' + date.getHours() + ':' + min + ' Uhr';
 }
 
 function getMaxValues(  ) {
 	// init maxArray
 	for ( var type in json.types ) {
 		maxArray[ type ] = 0;
+		sumArray[ type ] = 0;
 	}
 	// find max values and fill maxArray
 	for ( var regionKey in json.values ) {
 		for ( var type in json.types ) {
+			sumArray[ type ] += json.values[ regionKey ][ type ];
 			if ( maxArray[ type ] < json.values[ regionKey ][ type ] ) maxArray[ type ] = json.values[ regionKey ][ type ];
 		}
 	}
