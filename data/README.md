@@ -23,8 +23,6 @@ Sonstige Formate:
 
 | Region                 | Format | lokaler Github-Link                                            | Link auf Webserver (wahrscheinlich aktueller)                        |
 |------------------------|--------|----------------------------------------------------------------|----------------------------------------------------------------------|
-| Thüringen (DIVI)       | CSV    | [Dokumentenordner](divi_db_th/)                                | [Dokumentenordner](https://michael-böhme.de/corona/data/divi_db_th/) |
-|                        |        |                                                                |                                                                      |
 | Saalfeld-Rudolstadt    | JPG    | [Bilderordner](cases_slf/)                                     | [Bilderordner](https://michael-böhme.de/corona/data/cases_slf/)      |
 | Schmalkalden-Meiningen | PDF    | [Dokumentenordner](cases_sm/)                                  | [Dokumentenordner](https://michael-böhme.de/corona/data/cases_sm/)   |
 
