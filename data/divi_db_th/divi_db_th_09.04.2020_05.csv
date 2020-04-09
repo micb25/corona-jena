@@ -1,0 +1,29 @@
+timestamp,id,name,faelle,statusLowCare,statusHighCare,statusECMO
+1585809572,771973,"Zentralklinik Bad Berka GmbH",3,2,2,2
+1585813935,771875,"m&i-Fachklinik Bad Liebenstein, Hauptstandort",0,0,0,-1
+1585887465,771939,"Sophien- und Hufeland-Klinikum gGmbH",0,2,2,-1
+1586164088,771547,"Lungenklinik Neustadt",5,2,2,1
+1586264182,772621,"Thüringen Kliniken 'Georgius Agricola' GmbH, Standort  Saalfeld",1,2,2,-1
+1586323553,773479,"Klinikum Altenburger Land GmbH, Klinikum Altenburger Land",2,2,2,-1
+1586328635,772539,"Klinikum Bad Salzungen GmbH",2,2,2,-1
+1586340051,773340,"KMG Klinikum Thueringen Brandenburg gGmbH, KMG Klinikum Sondershausen",0,-1,-1,-1
+1586349895,773690,"SRH Wald-Klinikum Gera, Hauptstandort",2,-1,2,-1
+1586362913,772698,"Kreiskrankenhaus Greiz GmbH",7,1,2,-1
+1586371963,772244,"Helios Klinik Blankenhain",0,2,2,-1
+1586399944,773357,"SRH Zentralklinikum Suhl GmbH, Hauptstandort",3,2,2,-1
+1586399975,771095,"HELIOS Klinikum Meiningen GmbH, Meiningen",1,2,2,-1
+1586400639,771236,"Hufeland Klinikum GmbH, Bad Langensalza",0,2,-1,-1
+1586400767,771235,"Hufeland Klinikum GmbH, Mühlhausen",1,2,2,-1
+1586403084,771835,"Helios Klinikum Erfurt GmbH",8,2,2,2
+1586403444,772368,"Helios Klinikum Gotha, Gotha",0,2,2,-1
+1586403534,772251,"Katholisches Krankenhaus 'St. Johann Nepomuk' Erfurt",2,-1,2,-1
+1586403842,771059,"Geriatrische Fachklinik Georgenhaus, Hauptstandort",0,-1,-1,-1
+1586403854,772308,"St. Georg Klinikum Eisenach gGmbH, St. Georg Klinikum Eisenach",3,2,2,-1
+1586404710,771725,"MEDINOS Kliniken des Landkreises Sonneberg GmbH, Standort Sonneberg",0,1,1,-1
+1586405089,771652,"Waldkliniken Eisenberg GmbH, Hauptstandort",0,-1,2,-1
+1586407046,771721,"Henneberg-Kliniken-Betriebsgesellschaft mbH, Hauptstandort Hildburghausen",0,2,2,-1
+1586407413,772874,"Universitätsklinikum Jena, Standort Jena Lobeda",2,2,2,2
+1586407782,772860,"Robert-Koch-Krankenhaus Apolda GmbH, Hauptstandort",0,2,2,-1
+1586408130,772165,"Elisabeth Klinikum Schmalkalden GmbH",0,-1,-1,-1
+1586408601,773583,"Ilm-Kreis-Kliniken Arnstadt-Ilmenau gGmbH, Standort Ilmenau",0,2,2,-1
+1586409030,773594,"Ilm-Kreis-Kliniken Arnstadt-Ilmenau gGmbH, Standort Arnstadt",1,2,2,-1

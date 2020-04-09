@@ -3,5 +3,6 @@ plot*.png
 map*.jpg
 data/*ods
 data/cases_thuringia.json
+data/divi_db_th/divi_db_th_sums.csv
 map/map_th.svg
 gnuplot_gen/th_dens_vs_cases.dat
