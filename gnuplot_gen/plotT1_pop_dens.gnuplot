@@ -57,7 +57,7 @@ set xrange [ 0 : 1000 ]
 
 # stats for y
 stats "<awk -F, '{ print $5 }' ./th_dens_vs_cases.dat" using 1 nooutput
-set yrange [ 0 : int(4/3.0*STATS_max) ]
+set yrange [ 0 : int(1.225*STATS_max) ]
 
 # x-axis setup
 set xlabel "Einwohnerdichte (EW/km²)"
