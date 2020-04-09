@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>DIVI-Intensivregister für Thüringen</title>
+		<title>Coronavirus-Fälle in Thüringen</title>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<meta http-equiv="refresh" content="3600">
-		<meta name="author" content="Michael Böhme, Florian Kleiner">
+		<meta name="author" content="Michael Böhme">
 		<meta name="robots" content="all"> 
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="theme-color" content="#176fa1">
-		<meta name="keywords" content="Corona, COVID, COVID19, Altenburger Land, Eichsfeld, Eisenach, Erfurt, Gera, Gotha, Greiz, Hildburghausen, Ilm-Kreis, Jena, Kyffhäuserkreis, Nordhausen, Saale-Holzland-Kreis, Saale-Orla-Kreis, Saalfeld-Rudolstadt, Schmalkalden-Meiningen, Sömmerda, Sonneberg, Suhl, Unstrut-Hainich-Kreis, Wartburgkreis, Weimar, Weimarer Land Thüringen, Statistik, Michael Böhme, Florian Kleiner">
+		<meta name="keywords" content="Corona, COVID, COVID19, Coronavirus, Jena, Weimar, Erfurt, Thüringen, Statistik, Michael Böhme">
 		<meta name="description" content="Zusammenfassung und Visualisierung der Coronavirus-Fälle in Jena, Erfurt, Weimar und Thüringen">
 		<meta name="msapplication-TileImage" content="/corona/logo.jpg">    
 		<meta property="og:site_name" content="Coronavirus-Fälle in Thüringen">
@@ -21,12 +21,16 @@
 		<meta property="og:image:height" content="300">
 		<meta property="og:url" content="https://www.michael-böhme.de/corona">
 		<meta property="og:locale" content="de_DE">
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:site" content="@theochemiker" />
+		<meta name="twitter:creator" content="@theochemiker" />
+		<meta name="twitter:title" content="Coronavirus-Fälle in Thüringen" />
+		<meta name="twitter:image" content="https://www.michael-böhme.de/corona/map_th.jpg" />
+		<meta name="twitter:description" content="Visualisierung der Coronavirus-Fälle in Thüringen" />
 		<link rel="icon" href="./favicon.ico" type="image/x-icon">
 		<link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
 		<link rel="stylesheet" type="text/css" href="./css/styles.css">
 		<link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
-		<script src="./map.js"></script>
-		<noscript><style> .jsonly { display: none } </style></noscript>
 		<base target="_blank">
 	</head>
 	<body>
@@ -35,9 +39,12 @@
 			<button class="navButton"><i class="fa fa-bars" aria-hidden="true"></i></button>
 			<div class="navLinks">
 				<a target="_self" href="./index.html">Startseite</a>
-				<a target="_self" href="./index_map.html">interaktive&nbsp;Karte</a>
 				<a target="_self" href="./index_th_all.html">Gesamtübersicht</a>
-				<a target="_self" href="./index_rki.html">RKI-Daten</a>
+				<a target="_self" href="./index_map.html">interaktive&nbsp;Karte</a>
+				<a target="_self" href="./index_divi.html">DIVI-Daten</a>
+				<hr>
+				<a target="_self" href="#TH-RKI">Thüringen (RKI)</a>
+				<a target="_self" href="#DE-RKI">Deutschland (RKI)</a>
 				<hr>
 				<a target="_self" href="#Info">Info</a>
 			</div>
@@ -48,15 +55,43 @@
 		<a target="_self" href="https://www.michael-böhme.de/corona/index.html">&laquo; &nbsp; zurück zur Startseite &nbsp; &laquo;</a>
 		<br>
 		<br>
-		<h1 >DIVI-Intensivregister für Thüringen</h1>
-		Quelle: <a href="https://www.intensivregister.de/#/intensivregister">Deutsche Interdisziplinäre Vereinigung für Intensiv- und Notfallmedizin</a>
-		<br>
-		<br>
+		<h1 id="TH-RKI">Coronavirus-Fälle in&nbsp;Thüringen (RKI)</h1>
+		Quelle: <a href="https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html">Robert Koch-Institut</a><br>
+
 		<div class="graphBlockContainer">
 			<div class="graphBlock">
-				<img src="./plot_divi_th.png" alt="eingetragene Fälle im DIVI-Intensivregister für Thüringen" title="eingetragene Fälle im DIVI-Intensivregister für Thüringen" style="width: 95%; max-width: 800px;">
+				<img src="./plotT1_RKI.png" alt="Coronavirus-Fälle in Thüringen (RKI)" title="Coronavirus-Fälle in Thüringen (RKI)" style="width: 95%; max-width: 800px;">
+			</div>
+			<div class="graphBlock">
+				<img src="./plotT3_RKI.png" alt="logarithmische Auftragung und Verdopplungszeit" title="logarithmische Auftragung und Verdopplungszeit" style="width: 95%; max-width: 800px;">
 			</div>
 		</div>
+
+		<div class="graphBlockContainer">
+			<div class="graphBlock">
+				<img src="./plotT2_RKI_Trend3003.png" alt="Fälle in Thüringen (Trend der letzten 7 Tage)" title="Fälle in Thüringen (Trend der letzten 7 Tage)" style="width: 95%; max-width: 800px;">
+			</div>
+			<div class="graphBlock">
+				<img src="./plotT2_RKI_Trend2603.png" alt="Fälle in Thüringen (Trend bis 26.03.)" title="Fälle in Thüringen (Trend bis 26.03.)" style="width: 95%; max-width: 800px;">
+			</div>
+		</div>
+		
+		<br>
+		<br>
+		<h1 id="DE-RKI">Coronavirus-Fälle in&nbsp;Deutschland (RKI)</h1>
+		Quelle: <a href="https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html">Robert Koch-Institut</a><br>
+
+		<div class="graphBlockContainer">
+			<div class="graphBlock">
+				<img src="./plotT1_Germany_RKI.png" alt="Coronavirus-Fälle in Deutschland (RKI-Zahlen)" title="Coronavirus-Fälle in Thüringen (RKI-Zahlen)" style="width: 95%; max-width: 800px;">
+			</div>
+			<div class="graphBlock">
+				<img src="./plotT3_Germany_RKI.png" alt="logarithmische Auftragung und Verdopplungszeit" title="logarithmische Auftragung und Verdopplungszeit" style="width: 95%; max-width: 800px;">
+			</div>
+		</div>
+
+		<br>
+		<br>
 		<br>
 		<h1 id="Info">Info über diese Seite</h1>
 		<br>
