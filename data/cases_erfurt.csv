@@ -1,4 +1,4 @@
-datum,unixzeit,bestaetigte_faelle,genesen,tote,stationaer,schwere_verlaeufe,platzhalter3,quelle
+#datum,unixzeit,bestaetigte_faelle,genesen,tote,stationaer,schwere_verlaeufe,platzhalter3,quelle
 09.03.20 11:08,1583752080,1,0,0,0,0,0,https://www.erfurt.de/ef/de/service/aktuelles/am/2020/135095.html
 11.03.20 16:28,1583944080,2,0,0,0,0,0,https://www.erfurt.de/ef/de/service/aktuelles/am/2020/135134.html
 16.03.20 09:36,1584351360,16,1,0,0,0,0,https://www.erfurt.de/ef/de/service/aktuelles/am/2020/135164.html
@@ -21,3 +21,5 @@ datum,unixzeit,bestaetigte_faelle,genesen,tote,stationaer,schwere_verlaeufe,plat
 05.04.20 09:30,1586079000,95,53,0,0,0,0,https://www.mdr.de/thueringen/liveticker-corona-sonntag-100.html
 06.04.20 14:00,1586181600,97,55,0,7,1,0,https://www.erfurt.de/ef/de/service/aktuelles/am/2020/135347.html
 07.04.20 13:30,1586266200,103,59,0,10,2,0,https://www.erfurt.de/ef/de/service/aktuelles/am/2020/135368.html
+08.04.20 14:00,1586354400,107,64,0,11,-1,0,https://www.erfurt.de/ef/de/service/aktuelles/topthemen/2020/134840.html
+09.04.20 17:00,1586451600,107,71,1,-1,-1,0,https://www.mdr.de/thueringen/live-ticker-corona-virus-ostern-regeln-donnerstag-100.html
