@@ -51,8 +51,8 @@ pos = 90
 
 plot \
      "<echo 0" u (xpos):(ypos(1)):(sprintf("%i (%+i) bestätigte Fälle in Weimar", A_max, diff_c)) w labels left offset 2.5, 0, \
-     "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(A_max-B_max-C_max)) w circle fc rgb "#0241b5", \
-     "<echo 0" u (xpos):(ypos(2)) w p pt 5 ps 4 lc rgb "#0241b5", \
+     "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(A_max-B_max-C_max)) w circle fc rgb "#007af2", \
+     "<echo 0" u (xpos):(ypos(2)) w p pt 5 ps 4 lc rgb "#007af2", \
      "<echo 0" u (xpos):(ypos(2)):(sprintf("%i aktive Fälle (%.1f%%)", A_max - B_max - C_max, 100*(A_max-B_max-C_max)/A_max)) w labels left offset 2.5, 0, \
      "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(B_max)) w circle fc rgb "#006000", \
      "<echo 0" u (xpos):(ypos(3)) w p pt 5 ps 4 lc rgb "#006000", \
