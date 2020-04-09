@@ -36,4 +36,5 @@ plot  \
   \
   "<awk '!_[$4]++' ../data/cases_jena.dat" using 1:(filter_neg($4)) with linespoints ls 5 title "Verstorbene", \
   "<awk '!_[$3]++' ../data/cases_jena.dat" using 1:(filter_neg($3)) with linespoints ls 4 title "Genesene", \
+  "<awk -F, '{print $1,$2-$3-$4}' ../data/cases_jena_opendata.csv" using 1:(filter_neg($2)) with lines lt 1 lc '#0080FF' title "aktive Fälle", \
   "<awk '!_[$2]++' ../data/cases_jena.dat" using 1:(filter_neg($2)) with linespoints ls 1 title "bestätigte Fälle"
