@@ -41,7 +41,12 @@ if __name__ == "__main__":
                 data_records.append(data_row)
 
     # sort data by time
-    sorted_data = sorted(data_records, key=lambda i: i[0])            
+    sorted_data = sorted(data_records, key=lambda i: i[0])
+
+    # add a last entry with the current time and data
+    last_entry = sorted_data[-1]
+    last_entry[0] = int(datetime.datetime.now().strftime('%s'))
+    sorted_data.append(last_entry)
     
     # generate sum file    
     data_str = ""        
