@@ -37,5 +37,5 @@ plot  \
   \
   "<awk -F, '{print $2, $5}' ../data/cases_erfurt.csv" using 1:(filter_neg($2)) with linespoints ls 5 title "Verstorbene", \
   "<awk -F, '{print $2, $4}' ../data/cases_erfurt.csv" using 1:(filter_neg($2)) with linespoints ls 4 title "Genesene", \
-  "<awk -F, '{if (( $3 >= 0 ) && ( $4 >= 0 ) && ( $5 >= 0 )) print $2,$3-$4-$5}' ../data/cases_erfurt.csv" using 1:(filter_neg($2)) with lines lt 1 lc '#007af2' title "aktive Fälle", \
+  "<awk -F, '{if (( $3 >= 0 ) && ( $4 >= 0 ) && ( $5 >= 0 )) print $2,$3-$4-$5}' ../data/cases_erfurt.csv" using 1:(filter_neg($2)) with lines lt 1 lw 1.5 lc '#007af2' title "aktive Fälle", \
   "<awk -F, '{print $2, $3}' ../data/cases_erfurt.csv" using 1:(filter_neg($2)) with linespoints ls 1 title "bestätigte Fälle"

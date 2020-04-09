@@ -35,5 +35,5 @@ plot  \
   "<awk '!_[$3]++' ../data/cases_weimar.dat | awk '{if ($3 >= 0) print $0}' | awk 'BEGIN{ov=0}{dv=$3-ov;ov=$3;print $1,$3,dv}' | tail -n 1" using 1:2:(sprintf("(%+i)", $3)) with labels point pt 7 ps 0 center offset char -0.3, -1.1 tc ls 4 notitle, \
   \
   "<awk '!_[$3]++' ../data/cases_weimar.dat" using 1:(filter_neg($3)) with linespoints ls 4 title "Genesene", \
-  "<awk '{if (( $2 >= 0 ) && ( $3 >= 0 ) ) print $1,$2-$3-($4>=0?$4:0)}' ../data/cases_weimar.dat" using 1:(filter_neg($2)) with lines lt 1 lc '#007af2' title "aktive Fälle", \
+  "<awk '{if (( $2 >= 0 ) && ( $3 >= 0 ) ) print $1,$2-$3-($4>=0?$4:0)}' ../data/cases_weimar.dat" using 1:(filter_neg($2)) with lines lt 1 lw 1.5 lc '#007af2' title "aktive Fälle", \
   "<awk '!_[$2]++' ../data/cases_weimar.dat" using 1:(filter_neg($2)) with linespoints ls 1 title "bestätigte Fälle"
