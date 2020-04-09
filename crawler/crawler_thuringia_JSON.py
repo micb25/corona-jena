@@ -72,7 +72,7 @@ def writeAsJSON( pd, num_patterns ):
         "hospinf": {
             "id": 2,
             "de": "stationäre Fälle mit COVID19",
-            "color": "#FFAD00",
+            "color": "#EBE800",
             "unit": "Fälle",
             "unit1": "Fall",
             "showSum": 1
@@ -80,7 +80,7 @@ def writeAsJSON( pd, num_patterns ):
         "hosp": {
             "id": 3,
             "de": "stationäre Fälle wegen COVID19",
-            "color": "#CC8D00",
+            "color": "#FFAD00",
             "unit": "Fälle",
             "unit1": "Fall",
             "showSum": 1
