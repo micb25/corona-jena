@@ -13,6 +13,9 @@ stats "../data/divi_db_th/divi_db_th_sums.csv" using 2 nooutput
 set yrange [ 0 : int(2*STATS_max) ]
 
 # x-axis setup
+
+set xtics 1*86400 out nomirror rotate by 90 offset 0, -1.8 scale 1.2
+
 unset xlabel
 set xdata time
 set timefmt "%s"
