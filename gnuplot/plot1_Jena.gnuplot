@@ -4,7 +4,7 @@ set output '../plot1_Jena.png'
 
 # stats for x
 stats "<awk '{ print $1 }' ../data/cases_jena.dat" using 1 nooutput
-set xrange [ STATS_min - 86400 : STATS_max + 86400 ]
+set xrange [ STATS_min - 0.5 * 86400 : STATS_max + 1.5 * 86400 ]
 
 # stats for y
 stats "<awk '{ print $2 }' ../data/cases_jena.dat" using 1 nooutput
