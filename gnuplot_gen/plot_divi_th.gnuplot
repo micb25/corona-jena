@@ -10,7 +10,7 @@ set xrange [ STATS_min - 1.0 * 86400 : STATS_max + 1.0 * 86400 ]
 
 # stats for y
 stats "../data/divi_db_th/divi_db_th_sums.csv" using 2 nooutput
-set yrange [ 0 : int(2*STATS_max) ]
+set yrange [ 0 : int(1.5*STATS_max) ]
 
 # x-axis setup
 
