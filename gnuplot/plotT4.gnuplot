@@ -24,12 +24,12 @@ set key at graph 0.02, 0.98 left top invert spacing 1.2 box ls 3
 
 # date
 date_cmd = sprintf("%s", "`awk -F, '{print "@"$1}' ../data/cases_th_sums.csv | tail -n 1 | xargs date +"%d.%m., %H:%M" -d`")
-update_str = "letztes Update: " . date_cmd . " Uhr"
+update_str = "{/*0.75 letztes Update: " . date_cmd . " Uhr}"
 
 # data
 plot  \
   1/0 lc rgb '#f2f2f2' title "{/*0.75 Quelle: Thüringer Landesregierung}", \
-  1/0 lc rgb '#f2f2f2' title "{/*0.75 " . update_str . "}", \
+  1/0 lc rgb '#f2f2f2' title update_str, \
   "<awk -F, '{if ( NR > 1 ) print int($1/86400)*86400,$4}' ../data/cases_th_sums.csv" using 1:(filter_neg($2)) with linespoints ls 5 title "Verstorbene", \
   "<awk -F, '{if ( NR > 1 ) print int($1/86400)*86400,$7}' ../data/cases_th_sums.csv" using 1:(filter_neg($2)) with linespoints ls 7 title "aktuell schwere Verläufe", \
   "<awk -F, '{if ( NR > 1 ) print int($1/86400)*86400,$5}' ../data/cases_th_sums.csv" using 1:(filter_neg($2)) with linespoints ls 8 title "aktuell stationäre Fälle", \

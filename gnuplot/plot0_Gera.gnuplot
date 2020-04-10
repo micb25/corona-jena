@@ -31,6 +31,10 @@ stats "<cat ../data/cases_gera.csv | awk -F, '{print $4}'" u 1 prefix "C" nooutp
 # calculate diffs
 stats "<awk -F, '!_[$2]++' ../data/cases_gera.csv | awk -F, '{if ($2 >= 0) print $1,\",\",$2}' | tail -n 2" u 2 prefix "G" nooutput
 
+# latest update
+date_cmd = sprintf("%s", "`awk -F, '{print "@"$1}' ../data/cases_gera.csv | tail -n 1 | xargs date +"%d.%m., %H:%M" -d`")
+update_str = "letztes Update: " . date_cmd . " Uhr"
+
 diff_c = G_max - G_min
 
 angle(x)=x*360/A_max
@@ -52,7 +56,7 @@ set yrange [-radius:radius]
 pos = 90
 
 plot \
-     "<echo 0" u (xpos):(ypos(1)):(sprintf("%i (%+i) bestätigte Fälle in Gera", A_max, diff_c)) w labels left offset 2.5, 0, \
+     "<echo 0" u (xpos):(ypos(1)):(sprintf("%i bestätigte Fälle in Gera", A_max)) w labels left offset 2.5, 0, \
      "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(A_max-B_max-C_max)) w circle fc rgb "#007af2", \
      "<echo 0" u (xpos):(ypos(2)) w p pt 5 ps 4 lc rgb "#007af2", \
      "<echo 0" u (xpos):(ypos(2)):(sprintf("%i aktive Fälle (%.1f%%)", A_max - B_max - C_max, 100*(A_max-B_max-C_max)/A_max)) w labels left offset 2.5, 0, \

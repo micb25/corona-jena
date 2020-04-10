@@ -35,6 +35,10 @@ set xrange [xmin:xmax]
 set ylabel 'Gesamtzahl der Fälle in Weimar'
 set yrange [ymin:ymax]
 
+# latest update
+date_cmd = sprintf("%s", "`awk '{print "@"$1}' ../data/cases_weimar.dat | tail -n 1 | xargs date +"%d.%m., %H:%M" -d`")
+update_str = "{/*0.75 letztes Update: " . date_cmd . " Uhr}"
+
 # key
 set key at graph 0.02, 0.98 left top invert spacing 1.2 box ls 3 opaque
 set border back

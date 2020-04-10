@@ -15,7 +15,8 @@ unset tics
 unset border
 
 # latest update
-update_str = "letztes Update: " . system("date +%d.%m.,\\ %H\\:%M") . " Uhr"
+date_cmd = sprintf("%s", "`awk '{print "@"$1}' ../data/cases_jena.dat | tail -n 1 | xargs date +"%d.%m., %H:%M" -d`")
+update_str = "letztes Update: " . date_cmd . " Uhr"
 
 # get sum of infected
 stats "<cat ../data/cases_jena.dat " u 2 prefix "A" nooutput
@@ -61,7 +62,7 @@ pos = 90
 filter_inf(x, y)= (y >= 0) ? (x/y) : 0
 
 plot \
-     "<echo 0" u (xpos):(ypos(0.25)):(sprintf("%i (%+i) bestätigte Fälle in Jena", A_max, diff_c)) w labels left offset 2.5, 0, \
+     "<echo 0" u (xpos):(ypos(0.25)):(sprintf("%i bestätigte Fälle in Jena", A_max)) w labels left offset 2.5, 0, \
      "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(A_max-B_max-C_max)) w circle fc rgb "#007af2", \
      "<echo 0" u (xpos):(ypos(1.75)) w p pt 5 ps 4 lc rgb "#007af2", \
      "<echo 0" u (xpos):(ypos(1.75)):(sprintf("%i aktive Fälle (%.1f%%), davon", A_max - B_max - C_max, 100*(A_max-B_max-C_max)/A_max)) w labels left offset 2.5, 0, \
