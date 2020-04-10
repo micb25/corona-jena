@@ -36,6 +36,9 @@ curl -O https://www.michael-böhme.de/corona/data/cases_sok.csv
 rm cases_thuringia.csv
 curl -O https://www.michael-böhme.de/corona/data/cases_thuringia.csv
 
+rm cases_th_sums.csv
+curl -O https://www.michael-böhme.de/corona/data/cases_th_sums.csv
+
 rm cases_germany_total_rki.csv
 curl -O https://www.michael-böhme.de/corona/data/cases_germany_total_rki.csv
 
