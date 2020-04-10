@@ -33,9 +33,25 @@ if __name__ == "__main__":
     DATAFILE = os.path.dirname(os.path.realpath(__file__)) + "/../data/cases_gera.csv"
     URL = "https://corona.gera.de/"
     
-    n = getGeraNumbers(URL)
+    # do the request    
+    num_latest = getGeraNumbers(URL)
     
-    if (n != False) and ( n[0] > -1 ):
-        f = open(DATAFILE, 'a')
-        f.write("%i,%i,%i,%i,%i,%i,%s\n" % (int(time.time()), n[0], n[1], n[2], n[3], n[4], URL))
-        f.close()
+    if (num_latest != False) and (num_latest[0] > -1):
+        
+        # get old values
+        with open(DATAFILE, 'r') as df:
+            raw_data = df.read().splitlines()
+        last_values = raw_data[-1].split(",")[1:6]
+        
+        # check for changes
+        value_changed = False
+        for i in enumerate(last_values):
+            if ( int(i[1]) != num_latest[i[0]] ):
+                if ( num_latest[i[0]] != -1 ):
+                    value_changed = True
+                    
+        if value_changed:
+            # write new csv data
+            f = open(DATAFILE, 'a')
+            f.write("%i,%i,%i,%i,%i,%i,%s\n" % (int(time.time()), num_latest[0], num_latest[1], num_latest[2], num_latest[3], num_latest[4], URL))
+            f.close()
