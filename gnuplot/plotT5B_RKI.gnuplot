@@ -21,7 +21,7 @@ set xtics rotate by 0 offset 0, 0
 set xtics ("0-4\nJahre" 0, "5-14\nJahre" 1, "15-34\nJahre" 2, "35-59\nJahre" 3, "60-79\nJahre" 4, "80+\nJahre" 5)
 
 # y-axis setup
-set ylabel "Corona-Todesfälle in Thüringen   " . update_str
+set ylabel "bestätigte Coronavirus-Todesfälle in Thüringen"
 set yrange [0:ymax]
 
 # key
@@ -40,6 +40,7 @@ set style histogram clustered gap 1
 set mytics 1
 
 set label 1 at graph 0.98, 0.95 "{/Linux-Libertine-O-Bold Verstorbene nach Altersgruppe}" right textcolor ls 0
+set label 2 at graph 0.98, 0.90 update_str right textcolor ls 0
 
 M_title = sprintf("Männlich {/*0.75 (insgesamt: %i)}", MM_max)
 W_title = sprintf("Weiblich {/*0.75 (insgesamt: %i)}", WW_max)
