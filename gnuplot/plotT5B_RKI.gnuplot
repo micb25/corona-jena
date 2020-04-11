@@ -9,7 +9,7 @@ update_str = "{/*0.75 (Stand: " . date_cmd . " Uhr)}"
 # get maximum y value
 stats "<awk -F, '{if (NR>1) {a[$10]+=$6; if ($9==\"W\") b[$10]+=$6}}END{for (i in a) print i,a[i]-b[i],b[i]}' ../data/cases_rki_db_th.csv | sort -k 1" using 2 name "M" nooutput
 stats "<awk -F, '{if (NR>1) {a[$10]+=$6; if ($9==\"W\") b[$10]+=$6}}END{for (i in a) print i,a[i]-b[i],b[i]}' ../data/cases_rki_db_th.csv | sort -k 1" using 3 name "W" nooutput
-ymax = 1.2 * (W_max > M_max ? W_max : M_max)
+ymax = 1.3 * (W_max > M_max ? W_max : M_max)
 
 # get maximum values by gender
 stats "<awk -F, '{if ($9==\"M\") s+=$6} END{print s}' ../data/cases_rki_db_th.csv" using 1 name "MM" nooutput
