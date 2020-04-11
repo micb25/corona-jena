@@ -3,8 +3,8 @@ load "template.gnuplot"
 set output '../plotT5B_RKI.png'
 
 # get last update
-date_cmd = sprintf("%s", "`awk -F, '{print "@"$1}' ../data/cases_rki_db_th.csv | tail -n 1 | xargs date +"%d.%m., %H:%M" -d`")
-update_str = "{/*0.75 (Stand: " . date_cmd . " Uhr)}"
+date_cmd = sprintf("%s", "`awk -F, '{print "@"$1+86400}' ../data/cases_rki_db_th.csv | tail -n 1 | xargs date +"%d.%m.%Y" -d`")
+update_str = "{/*0.75 (Stand: " . date_cmd . ")}"
 
 # get maximum y value
 stats "<awk -F, '{if (NR>1) {a[$10]+=$6; if ($9==\"W\") b[$10]+=$6}}END{for (i in a) print i,a[i]-b[i],b[i]}' ../data/cases_rki_db_th.csv | sort -k 1" using 2 name "M" nooutput
