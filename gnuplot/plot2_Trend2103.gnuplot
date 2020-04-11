@@ -3,7 +3,7 @@ load "template.gnuplot"
 set output '../plot2_Trend2103.png'
 
 # stats for x
-stats "<awk '!_[$2]++' ../data/cases_jena.dat" using 1 nooutput
+stats "<awk -F, '{print $1,$2}' ../data/cases_jena_opendata.csv" using 1 nooutput
 xmin = int(STATS_min) - 1 * 86400
 xmin_o = int(STATS_min)
 xmax = int(STATS_max) + 1 * 86400
@@ -13,7 +13,7 @@ xmax_o = int(STATS_max)
 ao = 1.0
 bo = 0.30
 fo(x) = ao * exp( bo * x )
-fit fo(x) "<awk '!_[$2]++' ../data/cases_jena.dat | awk '{if ($1 <= 1584900002) print $0 }'" using (($1 - xmin_o) / 86400):(filter_neg($2)) via ao, bo
+fit fo(x) "<awk -F, '{print $1,$2}' ../data/cases_jena_opendata.csv | awk '{if ($1 < 1584860002) print $0 }'" using (($1 - xmin_o) / 86400):(filter_neg($2)) via ao, bo
 
 foerr(x) = sqrt( (ao_err*exp(bo*x))*(ao_err*exp(bo*x)) + (bo_err*ao*bo*exp(bo*x))*(bo_err*ao*bo*exp(bo*x)) )
 fomin(x) = fo(x) - foerr(x)
@@ -49,5 +49,5 @@ plot  \
   [xmin:xmax] 1/0 lc rgb '#f2f2f2' title update_str, \
   [xmin_o:xmax_o] '+' using 1:(fomin(($1 - xmin_o)/86400)):(fomax((x - xmin_o)/86400)) with filledcurves closed ls 2 title "{/*0.75 stat. Fehlerbereich Trend (bis 21.03.)}", \
   [xmin_o:xmax_o] fo((x - xmin_o)/86400) w l ls 12 title "exponentieller Trend (bis 21.03.)", \
-  "<awk '!_[$2]++' ../data/cases_jena.dat" using 1:(filter_neg($2)) with linespoints ls 1 title "bestätigte Fälle"
+  "<awk -F, '{print $1,$2}' ../data/cases_jena_opendata.csv" using 1:(filter_neg($2)) with linespoints ls 1 title "bestätigte Fälle"
   
