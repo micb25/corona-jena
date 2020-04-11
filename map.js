@@ -1,5 +1,5 @@
 // basic region infos
-// { region_key : { name: 'xxx', res: 12, area: 34 } }
+// { regionKey : { name: 'xxx', res: 12, area: 34 } }
 // src:
 // - residents: https://statistik.thueringen.de/datenbank/TabAnzeige.asp?tabelle=gg000102&startpage=99&vorspalte=1&felder=2&zeit=2018%7C%7Cs1
 // - area: https://statistik.thueringen.de/datenbank/TabAnzeige.asp?tabelle=GG000101%7C%7C
@@ -11,13 +11,42 @@ var sumArray = {}; // contains the sum of all elements
 var langKey = 'de'; // contains the used language
 var currentType = ''; // selected json.type
 var labelState = 'regionLabels';
-		
+var graphBlockContainerDefaultHTML = '';
+
+function city_template_exists( regionKey ){
+	var url =  'https://floriankleiner.de/corona/areaTemplate/' + regionKey + '.html';
+	console.log(url);
+
+    var request = new XMLHttpRequest();
+    request.open('GET', url, true);
+    request.responseType = 'html';
+    request.onload = function() {
+		var status = request.status;
+		console.log( status );
+		if (status === 404) {
+			console.log("Loading default...");
+
+			document.getElementById( 'graphBlockContainer' ).innerHTML = graphBlockContainerDefaultHTML;
+			document.getElementById( 'graph_variable' ).src='https://www.michael-böhme.de/corona/plotT1_' + regionKey + '.png';
+			document.getElementById( 'graph_headline' ).innerHTML = json.values[ regionKey ]['name'];		
+			document.getElementById( 'graph_variable_age_cases' ).src='https://www.michael-böhme.de/corona/plot5A_RKI_' + regionKey + '.png';
+		} else {
+			document.getElementById( 'graphBlockContainer' ).innerHTML = request.response;
+			console.log( "file exists" );
+		}
+    };
+    request.send();
+}
+
 function js_goto( id ) {
 	id = id.split('_');
-
+	regionKey = id[1];
 	document.getElementById( 'graphBlockContainer' ).style.display='block';
-	document.getElementById( 'graph_variable' ).src='https://www.michael-böhme.de/corona/plotT1_' + id[1] + '.png';
-	document.getElementById( 'graph_headline' ).innerHTML = json.values[ id[1] ]['name'];
+	/*document.getElementById( 'graph_variable' ).src='https://www.michael-böhme.de/corona/plotT1_' + regionKey + '.png';
+	document.getElementById( 'graph_headline' ).innerHTML = json.values[ regionKey ]['name'];
+
+	document.getElementById( 'graph_variable_age_cases' ).src='https://www.michael-böhme.de/corona/plot5A_RKI_' + regionKey + '.png';*/
+	city_template_exists( regionKey  );
 }
 
 function hexTorgb( hexColor ) {	
@@ -300,12 +329,7 @@ var getJSON = function(url, callback) {
     request.open('GET', url, true);
     request.responseType = 'json';
     request.onload = function() {
-      var status = request.status;
-      if (status === 200) {
-        callback(null, request.response);
-      } else {
-        callback(status, request.response);
-      }
+        callback( request.status, request.response );
     };
     request.send();
 };
@@ -314,13 +338,13 @@ function getData() {
 	getJSON( 
 		'./data/cases_thuringia.json',
 		function( err, data ) {
-			if ( err !== null ) {
+			if ( err !== 200 ) {
 				console.log( 'Something went wrong: ' + err );
 			} else {
 				// set as global object
 				json = data;
+
 				setDataTime( );
-				
 				getMaxValues( );
 				firstentry = generateMenu( );
 
@@ -344,7 +368,9 @@ function getData() {
 				}
 
 				// show map
-				document.getElementById( 'thuringiaMap' ).style.display = 'block';
+				graphBlockContainerDefaultHTML = document.getElementById( 'graphBlockContainer' ).innerHTML;
+				city_template_exists( 'TH' );
+				document.getElementById( 'needsJS' ).style.display = 'block';
 				showUnits( );
 			}
 		}
