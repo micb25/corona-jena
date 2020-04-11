@@ -42,7 +42,7 @@ a:hover {
 	width: 100%;
 }
 .graphBlock img {
-	width: 98%;
+	width: 95%;
 	max-width: 800px;
 }
 .graphBlock .piechart {
@@ -147,8 +147,7 @@ h1 {
 }
 
 svg#thuringiaMap {
-	margin: 0 auto; 
-	display: none;
+	margin: 0 auto;
 	width: 95%;
     max-width: 966px;
     max-height: 758px;
@@ -162,6 +161,9 @@ svg text {
 
 svg #Districts_Color, svg #region_names tspan, svg #region_names text {
 	cursor: pointer
+}
+svg #region_names tspan, svg #region_names text {
+	font-size:18px;
 }
 
 svg #Districts_Color path {
@@ -206,6 +208,9 @@ div#selectorLinks span.menu_focus {
 #mapHeadline {
 	margin: 5px;
 	font-size: 19px;
+}
+#needsJS {
+	display:none;
 }
 
 @media (max-width: 800px) {
