@@ -44,7 +44,7 @@ W_title = sprintf("Weiblich {/*0.75 (insgesamt: %i)}", WW_max)
 
 # data
 plot  \
-  "<awk -F, '{if (NR>1) {a[$10]+=$5; if ($9==\"W\") b[$10]+=$5}}END{c=0; for (i in a) { c++; print i,c,a[i]-b[i],b[i]}}' ../data/cases_rki_db_th.csv | sort -k 1" using 3 with histograms lt rgb "#5070A0" title M_title, \
+  "<awk -F, 'BEGIN{a[\"A00-A04\"]=0;a[\"A05-A14\"]=0;a[\"A05-A14\"]=0;a[\"A15-A34\"]=0;a[\"A35-A59\"]=0;a[\"A60-A79\"]=0;a[\"A80+\"]=0;}{if (NR>1) {a[$10]+=$5; if ($9==\"W\") b[$10]+=$5}}END{c=0; for (i in a) { c++; print i,c,a[i]-b[i],b[i]}}' ../data/cases_rki_db_th.csv | sort -k 1" using 3 with histograms lt rgb "#5070A0" title M_title, \
   "" using 4 with histograms lt rgb "#103060" title W_title, \
   \
   1/0 lc rgb '#f2f2f2' title "{/*0.75 Quelle: Robert Koch-Institut}"
