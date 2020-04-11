@@ -60,7 +60,7 @@ if __name__ == "__main__":
                 gpf.close()
                 
             # run gnuplot
-            os.system("gnuplot {}".format(GNUPFILE))
+            os.system("gnuplot {} > /dev/null".format(GNUPFILE))
         
         # clean-up
         os.system( "rm -f {}".format(GNUPFILE) )
