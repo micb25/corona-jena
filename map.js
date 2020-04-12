@@ -192,7 +192,7 @@ function formatValue( value ) {
 		}
 		result = Math.round( value * factor ) / factor;
 	}
-	return getPrefix( value ) + Math.abs(result).toString().replace(".",",");
+	return getPrefix( value ) + ( result < 0 ? Math.abs(result) : result ).toString().replace(".",",");
 }
 
 function showUnits( ) {
