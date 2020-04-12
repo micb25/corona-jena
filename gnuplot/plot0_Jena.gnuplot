@@ -15,31 +15,23 @@ unset tics
 unset border
 
 # latest update
-date_cmd = sprintf("%s", "`awk '{print "@"$1}' ../data/cases_jena.dat | tail -n 1 | xargs date +"%d.%m., %H:%M" -d`")
+date_cmd = sprintf("%s", "`awk -F, '{print "@"$1}' ../data/cases_jena_opendata.csv | tail -n 1 | xargs date +"%d.%m., %H:%M" -d`")
 update_str = "letztes Update: " . date_cmd . " Uhr"
 
 # get sum of infected
-stats "<cat ../data/cases_jena.dat " u 2 prefix "A" nooutput
+stats "<awk -F, '{print $1,$2,$3,$4,$5}' ../data/cases_jena_opendata.csv" u 2 prefix "A" nooutput
 
 # get maximum number of recovered
-stats "<cat ../data/cases_jena.dat " u 3 prefix "B" nooutput
+stats "<awk -F, '{print $1,$2,$3,$4,$5}' ../data/cases_jena_opendata.csv" u 3 prefix "B" nooutput
 
 # get maximum number of deceased
-stats "<cat ../data/cases_jena.dat " u 4 prefix "C" nooutput
+stats "<awk -F, '{print $1,$2,$3,$4,$5}' ../data/cases_jena_opendata.csv" u 4 prefix "C" nooutput
 
 # get number of hospitalized
-stats "<cat ../data/cases_jena.dat " u 5 prefix "D" nooutput
-
-# get number of hospitalized
-stats "<cat ../data/cases_jena.dat | awk '{if ($5 >= 0) print $0}' | tail -n 1" u 5 prefix "E" nooutput
+stats "<awk -F, '{print $1,$2,$3,$4,$5,$6}' ../data/cases_jena_opendata.csv | tail -n 1" u 5 prefix "E" nooutput
 
 # get number of severe
-stats "<cat ../data/cases_jena.dat | awk '{if ($6 >= 0) print $0}' | tail -n 1" u 6 prefix "F" nooutput
-
-# calculate diffs
-stats "<awk '!_[$2]++' ../data/cases_jena.dat | awk '{if ($2 >= 0) print $0}' | tail -n 2" u 2 prefix "G" nooutput
-
-diff_c = G_max - G_min
+stats "<awk -F, '{print $1,$2,$3,$4,$5,$6}' ../data/cases_jena_opendata.csv | tail -n 1" u 6 prefix "F" nooutput
 
 angle(x)=x*360/A_max
 
@@ -71,7 +63,7 @@ plot \
      "<echo 0" u (xpos):(ypos(5.00)):(sprintf("%i Genesene (%.1f%%)", B_max, 100*B_max/A_max)) w labels left offset 2.5, 0, \
      "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(C_max)) w circle fc rgb "#000000", \
      "<echo 0" u (xpos):(ypos(6.00)) w p pt 5 ps 4 lc rgb "#000000", \
-     "<echo 0" u (xpos):(ypos(6.00)):(sprintf("%i Verstorbene(r) (%.1f%%)", C_max, 100*C_max/A_max)) w labels left offset 2.5, 0, \
+     "<echo 0" u (xpos):(ypos(6.00)):(sprintf("%i Verstorbene (%.1f%%)", C_max, 100*C_max/A_max)) w labels left offset 2.5, 0, \
      "<echo 0" u (xpos + 1.5):(ypos(2.75)):(sprintf("stationäre Fälle: %i (%.1f\%)", E_max, 100*filter_inf(E_max, A_max - B_max - C_max))) w labels right offset 2.5, 0, \
      "<echo 0" u (xpos + 1.5):(ypos(3.75)):(sprintf("schwere Verläufe: %i (%.1f\%)", F_max, 100*filter_inf(F_max, A_max - B_max - C_max))) w labels right offset 2.5, 0, \
      "<echo 0" u (xpos):(ypos(7.10)):(update_str) w labels font ", 12" left offset 2.5, 0, \
