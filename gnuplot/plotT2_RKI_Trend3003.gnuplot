@@ -22,7 +22,8 @@ fmin(x) = f(x) - ferr(x)
 fmax(x) = f(x) + ferr(x)
 
 ymin = 0
-ymax = 5.0/3.0 * f( (xmax - xmin_f) / 86400 )
+# ymax = 5.0/3.0 * f( (xmax - xmin_f) / 86400 )
+ymax = 2500
 
 # x-axis setup
 unset xlabel
@@ -44,7 +45,7 @@ set label 2 at graph 0.02, 0.60 label_trend left textcolor ls 0
 #label_double = sprintf("Verdopplungsrate ca. alle %.0f Tage",log(2) / b )
 #set label 3  at graph 0.02, 0.50 label_double left textcolor ls 0
 
-label_double = sprintf("aktuelle Verdopplungsrate: ≈%.0f Tage",log(2) / b )
+label_double = log(2) / b > 14 ? sprintf("aktuelle Verdopplungsrate: >14 Tage") : sprintf("aktuelle Verdopplungsrate: ≈%.0f Tage",log(2) / b )
 set label 3  at graph 0.99, 0.04 label_double right textcolor ls 0
 
 # data
