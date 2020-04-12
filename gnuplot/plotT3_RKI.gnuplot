@@ -3,7 +3,7 @@ load "template.gnuplot"
 set output '../plotT3_RKI.png'
 
 # stats for x
-stats "<awk '!_[$2]++' ../data/cases_thuringia_rki.dat" using 1 nooutput
+stats "<awk -F, '{print $1,$2,$3}' ../data/cases_thuringia_rki.csv" using 1 nooutput
 xmin = 1583884800
 xmin_o = int(STATS_min)
 xmax = int(STATS_max) + 18 * 86400
@@ -19,7 +19,7 @@ fitmaxo = (fitmax - xmin_o) / 86400
 a = 1.0
 b = 0.30
 f(x) = a * exp( b * x )
-fit [fitmino:fitmaxo] f(x) "<awk '!_[$2]++' ../data/cases_thuringia_rki.dat" using (($1 - xmin_o) / 86400):2 via a, b
+fit [fitmino:fitmaxo] f(x) "<awk -F, '{print $1,$2,$3}' ../data/cases_thuringia_rki.csv" using (($1 - xmin_o) / 86400):2 via a, b
 
 ferr(x) = sqrt( (a_err*exp(b*x))*(a_err*exp(b*x)) + (b_err*a*b*exp(b*x))*(b_err*a*b*exp(b*x)) )
 fmin(x) = f(x) - ferr(x)
@@ -77,7 +77,7 @@ plot  \
   gG((x - xmin)/86400) w l ls 2 notitle, \
   gH((x - xmin)/86400) w l ls 2 notitle, \
   1/0 w l ls 12 title  "exponentieller Fit (letzte 7 Tage)", \
-  "<awk '!_[$2]++' ../data/cases_thuringia_rki.dat" using 1:2 with linespoints ls 1 title "bestätigte Fälle", \
+  "<awk -F, '{print $1,$2,$3}' ../data/cases_thuringia_rki.csv" using 1:2 with linespoints ls 1 title "bestätigte Fälle", \
   [fitmin:fitmax] f((x - xmin_o)/86400) w l ls 12 notitle
   
   # [xmin:] '+' using 1:(fmin(($1 - xmin_o)/86400)):(fmax((x - xmin_o)/86400)) with filledcurves closed ls 2 title "Fehlerbereich Trend", \

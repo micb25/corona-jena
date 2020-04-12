@@ -3,7 +3,7 @@ load "template.gnuplot"
 set output '../plotT2_RKI_Trend2603.png'
 
 # stats for x
-stats "<awk '!_[$2]++' ../data/cases_thuringia_rki.dat" using 1 nooutput
+stats "<awk -F, '{ print $1 }' ../data/cases_thuringia_rki.csv" using 1 nooutput
 xmin = int(STATS_min) - 1 * 86400
 xmin_o = int(STATS_min)
 xmax = int(STATS_max) + 1 * 86400
@@ -13,14 +13,11 @@ xmax_o = int(STATS_max)
 a = 1.0
 b = 0.30
 f(x) = a * exp( b * x )
-fit f(x) "<awk '!_[$2]++' ../data/cases_thuringia_rki.dat | awk '{if ($1 <= 1585094400) print $0 }'" using (($1 - xmin_o) / 86400):(filter_neg($2)) via a, b
+fit f(x) "<awk -F, '{ print $1,$2,$3 }' ../data/cases_thuringia_rki.csv | awk '{if ($1 <= 1585094400) print $0 }'" using (($1 - xmin_o) / 86400):(filter_neg($2)) via a, b
 
 ferr(x) = sqrt( (a_err*exp(b*x))*(a_err*exp(b*x)) + (b_err*a*b*exp(b*x))*(b_err*a*b*exp(b*x)) )
 fmin(x) = f(x) - ferr(x)
 fmax(x) = f(x) + ferr(x)
-
-# R2
-stats "<awk '!_[$2]++' ../data/cases_thuringia_rki.dat" using (f(($1 - xmin_o) / 86400)):(filter_neg($2)) name "A" nooutput
 
 ymin = 0
 #ymax = f( (xmax - xmin_o) / 86400 )
@@ -52,5 +49,5 @@ plot  \
   1/0 lc rgb '#f2f2f2' title update_str, \
   [xmin_o:xmax_o]'+' using 1:(fmin(($1 - xmin_o)/86400)):(fmax((x - xmin_o)/86400)) with filledcurves closed ls 2 title "{/*0.75 stat. Fehlerbereich Trend (bis 26.03.)}", \
   [xmin_o:xmax_o] f((x - xmin_o)/86400) w l ls 12 title "exponentieller Trend (bis 26.03.)", \
-  "<awk '!_[$2]++' ../data/cases_thuringia_rki.dat" using 1:(filter_neg($2)) with linespoints ls 1 title "bestätigte Fälle"
+  "<awk -F, '{ print $1,$2,$3 }' ../data/cases_thuringia_rki.csv" using 1:(filter_neg($2)) with linespoints ls 1 title "bestätigte Fälle"
   
