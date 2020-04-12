@@ -18,7 +18,13 @@ def writeTotalCSV( valueType ) :
 
         datawriter = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         datawriter.writerow(fieldnames)
-        for regionKey in regions:
+        
+        # fixes the key order in old Python 3 versions
+        sorted_keys = sorted(regions.keys())
+        sorted_keys.remove("TH")
+        sorted_keys.append("TH")
+        
+        for regionKey in sorted_keys:
             row = []
             row.append( regionKey )
             for ageKey in ages:
