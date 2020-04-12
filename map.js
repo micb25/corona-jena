@@ -14,7 +14,7 @@ var labelState = 'regionLabels';
 var graphBlockContainerDefaultHTML = '';
 
 function city_template_exists( regionKey ){
-	var url =  'https://floriankleiner.de/corona/areaTemplate/' + regionKey + '.html';
+	var url =  'https://michael-böhme.de/corona/region_templates/' + regionKey + '.html';
 	console.log(url);
 
     var request = new XMLHttpRequest();
