@@ -14,7 +14,7 @@ var labelState = 'regionLabels';
 var graphBlockContainerDefaultHTML = '';
 
 function city_template_exists( regionKey ){
-	var url =  'https://michael-böhme.de/corona/region_templates/' + regionKey + '.html';
+	var url =  './region_templates/' + regionKey + '.html';
 	console.log(url);
 
     var request = new XMLHttpRequest();
