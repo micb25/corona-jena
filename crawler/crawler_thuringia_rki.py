@@ -4,8 +4,7 @@
 import time, requests, re, os
 
 
-def getRKINumbers():
-    url = 'https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html'
+def getRKINumbers(url):
     headers = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
     
     num_pattern_DA = re.compile(r"\>Stand: ([0-9]{1,}\.[0-9]{1,}\.[0-9]{4})")
@@ -38,23 +37,25 @@ def getRKINumbers():
 
 if __name__ == "__main__":
     
-    DATAFILE = os.path.dirname(os.path.realpath(__file__)) + "/../data/cases_thuringia_rki.dat"
+    DATAFILE = os.path.dirname(os.path.realpath(__file__)) + "/../data/cases_thuringia_rki.csv"
+    URL = 'https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html'
     
-    n = getRKINumbers()
+    n = getRKINumbers(URL)
     
     if (n != False):
         
-        last_update = 0        
+        last_update = 0
         with open(DATAFILE, "r") as df:
             rawdata = df.read().splitlines()
             
-        for line in rawdata:
-            dl = line.split(" ")
-            if len(dl) > 1:
-                if int(dl[0]) > last_update:
-                    last_update = int(dl[0])
+        last_line = rawdata[-1]
+        last_values = last_line.split(",")
+            
+        if len(last_values) > 1:
+            if int(last_values[0]) > last_update:
+                last_update = int(last_values[0])
                     
         if ( n[0] > last_update ):
             f = open(DATAFILE, 'a')
-            f.write("%-16i %-8i %-8i\n" % (int(n[0]), n[1], n[2]))
+            f.write("%i,%i,%i,%s\n" % (int(n[0]), n[1], n[2], URL))
             f.close()
