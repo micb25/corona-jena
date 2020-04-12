@@ -8,7 +8,7 @@ def writeTotalCSV( valueType ) :
     global ages
     global regions
 
-    with open('../data/rki/total_' + valueType + '.csv', 'w', newline='') as csvfile:
+    with open('../data/rki_th/total_' + valueType + '.csv', 'w', newline='') as csvfile:
         fieldnames = []
         fieldnames.append( 'region' )
         for ageKey in ages:
@@ -74,7 +74,7 @@ if __name__ == "__main__":
         for genderKey in gender:
             regions[regionKey][genderKey] = {}
             for ageKey in ages:
-                regions[regionKey][genderKey][ageKey] = { "c": 0, "d": 0 }
+                regions[regionKey][genderKey][ageKey] = { 'cases_by_age': 0, 'deceased_by_age': 0 }
     
     # fill result array, count cases and casulties
     lines = 0
@@ -89,13 +89,13 @@ if __name__ == "__main__":
                     if ( row[2] == regions[regionKey]['t'] + 'K ' + regions[regionKey]['n'] ):
                         #cases = cases + int( row[3] )
                         #death = death + int( row[4] )
-                        regions["TH"][row[7]][row[8]]['c'] = regions["TH"][row[7]][row[8]]['c'] + int( row[3] )
-                        regions["TH"][row[7]][row[8]]['d'] = regions["TH"][row[7]][row[8]]['d'] + int( row[4] )
-                        regions[regionKey][row[7]][row[8]]['c'] = regions[regionKey][row[7]][row[8]]['c'] + int( row[3] )
-                        regions[regionKey][row[7]][row[8]]['d'] = regions[regionKey][row[7]][row[8]]['d'] + int( row[4] )
+                        regions["TH"][row[7]][row[8]]['cases_by_age'] = regions["TH"][row[7]][row[8]]['cases_by_age'] + int( row[3] )
+                        regions["TH"][row[7]][row[8]]['deceased_by_age'] = regions["TH"][row[7]][row[8]]['deceased_by_age'] + int( row[4] )
+                        regions[regionKey][row[7]][row[8]]['cases_by_age'] = regions[regionKey][row[7]][row[8]]['cases_by_age'] + int( row[3] )
+                        regions[regionKey][row[7]][row[8]]['deceased_by_age'] = regions[regionKey][row[7]][row[8]]['deceased_by_age'] + int( row[4] )
                     
-    writeTotalCSV( 'c' )
-    writeTotalCSV( 'd' )
+    writeTotalCSV( 'cases_by_age' )
+    writeTotalCSV( 'deceased_by_age' )
 
     #print( 'lines: ' + str( lines ) )
     #print( 'case count: ' + str( cases ) )
