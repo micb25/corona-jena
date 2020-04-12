@@ -2,6 +2,10 @@ load "template.gnuplot"
 
 set output '../plot2_Trend2303.png'
 
+# latest update
+date_cmd = sprintf("%s", "`awk -F, '{print "@"$1}' ../data/cases_jena_opendata.csv | tail -n 1 | xargs date +"%d.%m., %H:%M" -d`")
+update_str = "{/*0.75 letztes Update: " . date_cmd . " Uhr}"
+
 # stats for x
 stats "<awk -F, '{print $1,$2}' ../data/cases_jena_opendata.csv" using 1 nooutput
 xmin = int(STATS_min) - 1 * 86400

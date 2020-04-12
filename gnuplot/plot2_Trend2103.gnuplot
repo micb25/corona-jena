@@ -2,6 +2,10 @@ load "template.gnuplot"
 
 set output '../plot2_Trend2103.png'
 
+# latest update
+date_cmd = sprintf("%s", "`awk -F, '{print "@"$1}' ../data/cases_jena_opendata.csv | tail -n 1 | xargs date +"%d.%m., %H:%M" -d`")
+update_str = "{/*0.75 letztes Update: " . date_cmd . " Uhr}"
+
 # stats for x
 stats "<awk -F, '{print $1,$2}' ../data/cases_jena_opendata.csv" using 1 nooutput
 xmin = int(STATS_min) - 1 * 86400
@@ -39,9 +43,9 @@ set key at graph 0.02, 0.98 left top invert spacing 1.2 box ls 3 opaque
 set border back
 
 label_trend = sprintf("f({/Linux-Libertine-O-Italic x}) = (%.3f±%.3f) e^{(%.3f±%.3f){/Linux-Libertine-O-Italic x}}", ao, ao_err, bo, bo_err)
-set label 2 at graph 0.02, 0.60 label_trend left textcolor ls 0
+set label 2 at graph 0.98, 0.60 label_trend right textcolor ls 0
 
-label_double = sprintf("Verdopplungsrate vor dem 21.03.: ≈%.0f Tage",log(2) / bo )
+label_double = sprintf("Verdopplungsrate bis zum 21.03.: ≈%.0f Tage",log(2) / bo )
 set label 3  at graph 0.99, 0.04 label_double right textcolor ls 0
 
 # data

@@ -2,6 +2,10 @@ load "template.gnuplot"
 
 set output '../plot1_Jena.png'
 
+# latest update
+date_cmd = sprintf("%s", "`awk -F, '{print "@"$1}' ../data/cases_jena_opendata.csv | tail -n 1 | xargs date +"%d.%m., %H:%M" -d`")
+update_str = "{/*0.75 letztes Update: " . date_cmd . " Uhr}"
+
 # stats for x
 stats "<awk -F, '{print $1}' ../data/cases_jena_opendata.csv" using 1 nooutput
 set xrange [ STATS_min - 0.5 * 86400 : STATS_max + 2.5 * 86400 ]
