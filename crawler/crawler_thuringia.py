@@ -26,7 +26,7 @@ def getNumbers():
     url          = "https://www.landesregierung-thueringen.de/corona-bulletin"
     headers      = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
 
-    date_pattern = re.compile(r"\<strong\>.*?\s\(Stand: (.*?)\)\<\/strong\>.*?\<table.*?\<\/table\>.*?<table.*?\<tbody\>(.*?)\<\/tbody\>")
+    date_pattern = re.compile(r"(?:<strong>)?.*?\s\(Stand: (.*?)\)(?:<\/strong>)?.*?\<table.*?\<\/table\>.*?<table.*?\<tbody\>(.*?)\<\/tbody\>")
     num_pattern  = re.compile(r"\<tr\>\<th scope=\"row\">([A-Za-z\s\-äöüÄÖÜ]{1,})\<\/th\>\<td\>([\-0-9]{1,})\<\/td\>\<td\>([\-0-9]{1,})\<\/td\>\<td\>([\-0-9]{1,})\<\/td\>\<td\>([\-0-9]{1,})\<\/td\>\<td\>([\-0-9]{1,})\<\/td\>\<td\>([\-0-9]{1,})\<\/td\><\/tr\>") # 
     
     # new layout, since 21.03.2020
@@ -36,7 +36,7 @@ def getNumbers():
     
     try:
         r = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0)
-        pd = date_pattern.findall( r.text.replace("\n", "").replace("\r", "").replace("<p>", "").replace("</p>", "") )
+        pd = date_pattern.findall( r.text.replace("\n", "").replace("\r", "").replace("<p>", "").replace("</p>", "").replace("*", "") )
         pd.reverse()
         
         for p in pd:
