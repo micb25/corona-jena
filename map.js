@@ -15,14 +15,14 @@ var graphBlockContainerDefaultHTML = '';
 
 function city_template_exists( regionKey ){
 	var url =  './region_templates/' + regionKey + '.html';
-	console.log(url);
+	//console.log(url);
 
     var request = new XMLHttpRequest();
     request.open('GET', url, true);
     request.responseType = 'html';
     request.onload = function() {
 		var status = request.status;
-		console.log( status );
+		//console.log( status );
 		if (status === 404) {
 			console.log("Loading default...");
 
@@ -351,6 +351,7 @@ function getData() {
 				// get start type
 				url = window.location.href.split("#");
 				startType = (url[1] in json.types) ? url[1] : firstentry["key"] ;
+                //console.log( 'selector_' + startType );
 				changeViewTo( 'selector_' + startType );
 
 				// hide case count legend

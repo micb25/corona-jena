@@ -1,7 +1,24 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import os, csv
+import os, csv, json, time, re
+
+def strToTimestamp(datetimestr):    
+    s = datetimestr.replace("Uhr", "").strip()
+    
+    # fix for dates, since 25.03.
+    if re.search(",", s) is None:
+        s += ", 10"
+            
+    months = {"Januar": "1", "Februar": "2", "März": "3", "April": "4", "Mai": "5", "Juni": "6", "Juli": "7", "August": "8", "September": "9", "Oktober": "10", "November": "11", "Dezember": "12" }    
+    for key in months.keys():
+        s = s.replace(key, months[key])
+            
+    try:    
+        struct_time = time.strptime(s, "%d. %m %Y, %H")
+        return int(time.mktime(struct_time))
+    except:
+        return False
 
 def writeTotalCSV( valueType ) :
     global gender
@@ -12,8 +29,8 @@ def writeTotalCSV( valueType ) :
         fieldnames = []
         fieldnames.append( 'region' )
         for ageKey in ages:
-            fieldnames.append( 'W_' + ageKey )
-            fieldnames.append( 'M_' + ageKey )
+                for genderKey in gender:
+                    fieldnames.append( genderKey + '_' + ageKey )
             #fieldnames.append( 'T_' + ageKey )
 
         datawriter = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
@@ -28,16 +45,37 @@ def writeTotalCSV( valueType ) :
             row = []
             row.append( regionKey )
             for ageKey in ages:
-                row.append( regions[regionKey]['W'][ageKey][valueType] )
-                row.append( regions[regionKey]['M'][ageKey][valueType] )
-                #row.append( regions[regionKey]['W'][ageKey][valueType] + regions[regionKey]['M'][ageKey][valueType] )
+                for genderKey in gender:
+                    row.append( regions[regionKey][genderKey + ageKey][valueType] )
             datawriter.writerow(row)
+
+def writeTotalJSON( valueType, dt ) :
+    global types
+    global regions
+    values = {}
+    for regionKey in regions:
+        if regionKey != "TH":
+            values[regionKey] = {} 
+            for genderKey in gender:
+                for ageKey in ages:
+                    values[regionKey][genderKey + ageKey] = regions[regionKey][genderKey + ageKey][valueType]
+
+    resultArray = {
+        "ts" : dt,
+        "types": types,
+        "values": values
+    }
+
+    f = open('../data/rki_th/total_' + valueType + '.json', 'w')
+    f.write( json.dumps( resultArray ) ) 
+    f.close()
+    return True
 
 if __name__ == "__main__":
     
     SCRIPTPATH = os.path.dirname(os.path.realpath(__file__))
     
-    gender = ( "M", "W" )
+    gender = ( "W", "M" )
 
     ages = (
         "A00-A04",
@@ -46,41 +84,54 @@ if __name__ == "__main__":
         "A35-A59",
         "A60-A79",
         "A80+"
-    )
+    )    
 
     regions = {
-        "ABG": { "t": "L", "n": "Altenburger Land" },
-        "EIC": { "t": "L", "n": "Eichsfeld" },
-        "EA":  { "t": "S", "n": "Eisenach" },
-        "EF":  { "t": "S", "n": "Erfurt" },
-        "G":   { "t": "S", "n": "Gera" },
-        "GTH": { "t": "L", "n": "Gotha" },
-        "GRZ": { "t": "L", "n": "Greiz" },
-        "HBN": { "t": "L", "n": "Hildburghausen" },
-        "IK":  { "t": "L", "n": "Ilm-Kreis" },
-        "J":   { "t": "S", "n": "Jena" },
-        "KYF": { "t": "L", "n": "Kyffhäuserkreis" },
-        "NDH": { "t": "L", "n": "Nordhausen" },
-        "SHK": { "t": "L", "n": "Saale-Holzland-Kreis" },
-        "SOK": { "t": "L", "n": "Saale-Orla-Kreis" },
-        "SLF": { "t": "L", "n": "Saalfeld-Rudolstadt" },
-        "SM":  { "t": "L", "n": "Schmalkalden-Meiningen" },
-        "SOM": { "t": "L", "n": "Sömmerda" },
-        "SON": { "t": "L", "n": "Sonneberg" },
-        "SHL": { "t": "S", "n": "Suhl" },
-        "UH":  { "t": "L", "n": "Unstrut-Hainich-Kreis" },
-        "WAK": { "t": "L", "n": "Wartburgkreis" },
-        "WE":  { "t": "S", "n": "Weimar" },
-        "AP":  { "t": "L", "n": "Weimarer Land" },
-        "TH":  { "t": "-", "n": "Thüringen" }
+        "ABG": { "t": "L", "name": "Altenburger Land", "res": 90118, "area": 569.40 },
+        "EIC": { "t": "L", "name": "Eichsfeld", "res": 100380, "area": 943.07 },
+        "EA":  { "t": "S", "name": "Eisenach", "res": 42370, "area": 104.17 },
+        "EF":  { "t": "S", "name": "Erfurt", "res": 213699, "area": 269.91 },
+        "G":   { "t": "S", "name": "Gera", "res": 94152, "area": 152.18 },
+        "GTH": { "t": "L", "name": "Gotha", "res": 135452, "area": 936.08 },
+        "GRZ": { "t": "L", "name": "Greiz", "res": 98159, "area": 845.98 },
+        "HBN": { "t": "L", "name": "Hildburghausen", "res": 63553, "area": 938.42 },
+        "IK":  { "t": "L", "name": "Ilm-Kreis", "res": 108742, "area": 843.71 },
+        "J":   { "t": "S", "name": "Jena", "res": 111407, "area": 114.77 },
+        "KYF": { "t": "L", "name": "Kyffhäuserkreis", "res": 75009, "area": 1037.91 },
+        "NDH": { "t": "L", "name": "Nordhausen", "res": 83822, "area": 713.90 },
+        "SHK": { "t": "L", "name": "Saale-Holzland-Kreis", "res": 83051, "area": 815.24 },
+        "SOK": { "t": "L", "name": "Saale-Orla-Kreis", "res": 80868, "area": 1151.30 },
+        "SLF": { "t": "L", "name": "Saalfeld-Rudolstadt", "res": 106356, "area": 1036.03 },
+        "SM":  { "t": "L", "name": "Schmalkalden-Meiningen", "res": 122347, "area": 1210.73 },
+        "SOM": { "t": "L", "name": "Sömmerda", "res": 69655, "area": 806.86 },
+        "SON": { "t": "L", "name": "Sonneberg", "res": 56196, "area": 433.61 },
+        "SHL": { "t": "S", "name": "Suhl", "res": 34835, "area": 103.03 },
+        "UH":  { "t": "L", "name": "Unstrut-Hainich-Kreis", "res": 102912, "area": 979.69 },
+        "WAK": { "t": "L", "name": "Wartburgkreis", "res": 123025, "area": 1307.44 },
+        "WE":  { "t": "S", "name": "Weimar", "res": 65090, "area": 84.48 },
+        "AP":  { "t": "L", "name": "Weimarer Land", "res": 81947, "area": 804.48 },
+        "TH":  { "t": "-", "name": "Thüringen" }
     }
-    
+
+    types = {}
+    i = 0
+    for genderKey in gender:
+        for ageKey in ages:
+            types[genderKey + ageKey] = {}
+            types[genderKey + ageKey]["id"] = i
+            types[genderKey + ageKey]["de"] = genderKey + ': ' + ageKey
+            types[genderKey + ageKey]["color"] = "#0000d3"
+            types[genderKey + ageKey]["unit"] = "Fälle"
+            types[genderKey + ageKey]["unit1"] = "Fall"
+            types[genderKey + ageKey]["showSum"] = 1
+            i = i + 1
+            
+
     # prepare result array
     for regionKey in regions:
         for genderKey in gender:
-            regions[regionKey][genderKey] = {}
             for ageKey in ages:
-                regions[regionKey][genderKey][ageKey] = { 'cases_by_age': 0, 'deceased_by_age': 0 }
+                regions[regionKey][genderKey + ageKey] = { 'cases_by_age': 0, 'deceased_by_age': 0 }
     
     # fill result array, count cases and casulties
     lines = 0
@@ -91,17 +142,20 @@ if __name__ == "__main__":
         for row in datareader:
             lines = lines + 1
             if ( lines > 1 ):
+                dt = strToTimestamp(row[1])
                 for regionKey in regions:
-                    if ( row[2] == regions[regionKey]['t'] + 'K ' + regions[regionKey]['n'] ):
+                    if ( row[2] == regions[regionKey]['t'] + 'K ' + regions[regionKey]['name'] ):
                         #cases = cases + int( row[3] )
                         #death = death + int( row[4] )
-                        regions["TH"][row[7]][row[8]]['cases_by_age'] = regions["TH"][row[7]][row[8]]['cases_by_age'] + int( row[3] )
-                        regions["TH"][row[7]][row[8]]['deceased_by_age'] = regions["TH"][row[7]][row[8]]['deceased_by_age'] + int( row[4] )
-                        regions[regionKey][row[7]][row[8]]['cases_by_age'] = regions[regionKey][row[7]][row[8]]['cases_by_age'] + int( row[3] )
-                        regions[regionKey][row[7]][row[8]]['deceased_by_age'] = regions[regionKey][row[7]][row[8]]['deceased_by_age'] + int( row[4] )
+                        regions["TH"][row[7] + row[8]]['cases_by_age'] = regions["TH"][row[7] + row[8]]['cases_by_age'] + int( row[3] )
+                        regions["TH"][row[7] + row[8]]['deceased_by_age'] = regions["TH"][row[7] + row[8]]['deceased_by_age'] + int( row[4] )
+                        regions[regionKey][row[7] + row[8]]['cases_by_age'] = regions[regionKey][row[7] + row[8]]['cases_by_age'] + int( row[3] )
+                        regions[regionKey][row[7] + row[8]]['deceased_by_age'] = regions[regionKey][row[7] + row[8]]['deceased_by_age'] + int( row[4] )
                     
     writeTotalCSV( 'cases_by_age' )
     writeTotalCSV( 'deceased_by_age' )
+    writeTotalJSON( 'cases_by_age', dt )
+    writeTotalJSON( 'deceased_by_age', dt )
 
     #print( 'lines: ' + str( lines ) )
     #print( 'case count: ' + str( cases ) )
