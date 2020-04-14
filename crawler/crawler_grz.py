@@ -8,6 +8,8 @@ def getGRZNumbers(url):
     headers = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
     
     num_pattern_T = re.compile(r"esamt\<td\srowspan=\"1\"\>([0-9]{1,})")
+    num_pattern_R = re.compile(r"genesen.*?([0-9]{1,})\sPerson")
+    num_pattern_D = re.compile(r"([0-9]{1,})\sverstorbenen")
     
     remove_array = { "<p>", "</p>", "<td>", "</td>", "<strong>", "</strong>", "<b>", "</b>", "<br>", "<br />" }
         
@@ -19,10 +21,12 @@ def getGRZNumbers(url):
             s = s.replace(entry, "")
         
         ps1 = num_pattern_T.findall( s )
+        ps2 = num_pattern_R.findall( s )
+        ps3 = num_pattern_D.findall( s )
         
         num_t = int(ps1[0]) if (len(ps1) >= 1) else -1
-        num_r = -1
-        num_d = -1
+        num_r = int(ps2[0]) if (len(ps2) >= 1) else -1
+        num_d = int(ps3[0]) if (len(ps3) >= 1) else -1
         num_h = -1
         num_s = -1
         
@@ -39,7 +43,7 @@ if __name__ == "__main__":
 
     # do the request    
     num_latest = getGRZNumbers(URL)
-            
+    
     if (num_latest != False) and (num_latest[0] > -1):
         
         # get old values
