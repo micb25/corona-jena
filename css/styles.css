@@ -246,4 +246,7 @@ div#selectorLinks span.menu_focus {
 		background-color: #ececec;
 		font-weight: normal;
 	}
+	.navLinks a {
+		padding: 6px 12px;
+	}
 }
