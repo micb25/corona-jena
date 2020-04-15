@@ -7,8 +7,8 @@ import time, requests, re, os
 def getABGNumbers(url):
     headers = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
     
-    num_pattern_T = re.compile(r"zahl der infizierten: ([0-9]{1,})")
-    num_pattern_R = re.compile(r"([0-9]{1,})\sperson.*?genesen")
+    num_pattern_T = re.compile(r"([0-9]{1,})\spersonen\smit\sdem\scoronavirus\sinfiziert")
+    num_pattern_R = re.compile(r"([0-9]{1,})\spersonen\s(?:bereits\s)?genese")
     num_pattern_H = re.compile(r"([0-9]{1,})\spatient.*?in stationärer behandlung")
     
     remove_array = [ "<p>", "</p>", "<td>", "</td>", "<strong>", "</strong>", "<b>", "</b>", "<br>", "<br />" ]
@@ -49,7 +49,7 @@ def getABGNumbers(url):
 if __name__ == "__main__":
     
     DATAFILE = os.path.dirname(os.path.realpath(__file__)) + "/../data/cases_abg.csv"
-    URL = 'https://www.altenburgerland.de/sixcms/detail.php?&_nav_id1=2508&_lang=de&id=371691'
+    URL = "https://www.altenburgerland.de/sixcms/detail.php?&_nav_id1=2508&_lang=de&id=371691"
 
     # do the request    
     num_latest = getABGNumbers(URL)
