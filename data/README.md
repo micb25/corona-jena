@@ -9,6 +9,7 @@ In diesem [Verzeichnis](/data/) befinden sich die gesammelten Daten COVID-19 Dat
 | Thüringen (RKI)       | [cases_rki_db_th.csv](cases_rki_db_th.csv)                                         |
 | Thüringen (RKI)       | [cases_thuringia_rki.csv](cases_thuringia_rki.csv)                                 |
 |                       |                                                                                    |
+| Landkreis Altenburg   | [cases_abg.csv](cases_abg.csv)                                                     |
 | Eisenach              | [cases_ea.csv](cases_ea.csv)                                                       |
 | Eichsfeld             | [cases_eic.csv](cases_eic.csv)                                                     |
 | Erfurt                | [cases_erfurt.csv](cases_erfurt.csv)                                               |

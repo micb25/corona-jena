@@ -1,5 +1,8 @@
 #!/bin/bash
 
+rm cases_abg.csv
+curl -O https://www.michael-böhme.de/corona/data/cases_abg.csv
+
 rm cases_ea.csv
 curl -O https://www.michael-böhme.de/corona/data/cases_ea.csv
 
