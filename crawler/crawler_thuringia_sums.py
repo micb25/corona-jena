@@ -80,7 +80,7 @@ if __name__ == "__main__":
         timestamp_last = int(raw_data[-1].split(",")[0])
         
         # get latest values
-        data = parseTHBulletinTable(entry[1])
+        data = parseTHBulletinTable(entry[1].replace(".", ""))
         
         new_record = {}
         new_record[0] = int(strToTimestamp(entry[0]))
