@@ -19,6 +19,7 @@ In diesem [Verzeichnis](/data/) befinden sich die gesammelten Daten COVID-19 Dat
 | Landkreis Nordhausen  | [cases_ndh.csv](cases_ndh.csv)                                                     |
 | Saale-Holzland-Kreis  | [cases_shk.csv](cases_shk.csv)                                                     |
 | Saale-Orla-Kreis      | [cases_sok.csv](cases_sok.csv)                                                     |
+| Landkreis Sömmerda    | [cases_som.csv](cases_som.csv)                                                     |
 | Unstrut-Hainich-Kreis | [cases_uh.csv](cases_uh.csv)                                                       |
 | Wartburgkreis         | [cases_wak.csv](cases_wak.csv)                                                     |
 
