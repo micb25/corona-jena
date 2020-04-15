@@ -7,7 +7,7 @@ import time, requests, re, os
 def getSOKNumbers(url):
     headers = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
         
-    num_pattern_T = re.compile(r"Infektionen\s(?:gesamt|insgesamt): ([0-9]{1,})")
+    num_pattern_T = re.compile(r"Infektionen\s(?:gesamt|insgesamt):\s?(?:<br>)?([0-9]{1,})")
     num_pattern_D = re.compile(r"Verstorbene: ([0-9]{1,})")
     
     try:
@@ -35,7 +35,7 @@ if __name__ == "__main__":
     URL = 'https://www.saale-orla-kreis.de/sok/'
     
     num_latest = getSOKNumbers(URL)
-        
+    print(num_latest)
     if num_latest[0] > -1:
         f = open(DATAFILE, 'a')
         f.write("%i,%i,%i,%i,%i,%i,%s\n" % (int(time.time()), num_latest[0], num_latest[1], num_latest[2], num_latest[3], num_latest[4], URL))
