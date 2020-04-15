@@ -35,7 +35,7 @@ if __name__ == "__main__":
     URL = 'https://www.saale-orla-kreis.de/sok/'
     
     num_latest = getSOKNumbers(URL)
-    print(num_latest)
+    
     if num_latest[0] > -1:
         f = open(DATAFILE, 'a')
         f.write("%i,%i,%i,%i,%i,%i,%s\n" % (int(time.time()), num_latest[0], num_latest[1], num_latest[2], num_latest[3], num_latest[4], URL))
