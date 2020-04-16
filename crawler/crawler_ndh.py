@@ -11,6 +11,7 @@ def getNDHNumbers(url):
     
     num_pattern_T = re.compile(r"Infektionen:([0-9]{1,})")
     num_pattern_R = re.compile(r"gelten als genesen:([0-9]{1,})")
+    num_pattern_D = re.compile(r"Verstorben:([0-9]{1,})")
     num_pattern_H = re.compile(r"stationär\sbehandelt:([0-9]{1,})")
     
     try:
@@ -22,11 +23,12 @@ def getNDHNumbers(url):
         
         ps1 = num_pattern_T.findall( s )
         ps2 = num_pattern_R.findall( s )
+        ps3 = num_pattern_D.findall( s )
         ps4 = num_pattern_H.findall( s )
         
         num_t = int(ps1[0]) if (len(ps1) >= 1) else -1
         num_r = int(ps2[0]) if (len(ps2) >= 1) else -1
-        num_d = -1
+        num_d = int(ps3[0]) if (len(ps3) >= 1) else -1
         num_h = int(ps4[0]) if (len(ps4) >= 1) else -1
         num_s = -1
         
