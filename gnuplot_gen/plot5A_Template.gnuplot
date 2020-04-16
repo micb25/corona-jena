@@ -9,7 +9,7 @@ update_str = "{/*0.75 (Stand: " . date_cmd . ")}"
 # get maximum y value
 stats "<awk -F, '{if ((NR>1)&&($4==\"%NAME%\")) {a[$10]+=$5; if ($9==\"W\") b[$10]+=$5}}END{for (i in a) print i,a[i]-b[i],b[i]}' ../data/cases_rki_db_th.csv | sort -k 1" using 2 name "M" nooutput
 stats "<awk -F, '{if ((NR>1)&&($4==\"%NAME%\")) {a[$10]+=$5; if ($9==\"W\") b[$10]+=$5}}END{for (i in a) print i,a[i]-b[i],b[i]}' ../data/cases_rki_db_th.csv | sort -k 1" using 3 name "W" nooutput
-ymax = 1.3 * (W_max > M_max ? W_max : M_max)
+ymax = 1.38 * (W_max > M_max ? W_max : M_max)
 
 # get maximum values by gender
 stats "<awk -F, '{if (($9==\"M\")&&($4==\"%NAME%\")) s+=$5} END{print s}' ../data/cases_rki_db_th.csv" using 1 name "MM" nooutput
@@ -48,5 +48,7 @@ plot  \
   "<awk -F, 'BEGIN{a[\"A00-A04\"]=0;a[\"A05-A14\"]=0;a[\"A05-A14\"]=0;a[\"A15-A34\"]=0;a[\"A35-A59\"]=0;a[\"A60-A79\"]=0;a[\"A80+\"]=0;}{if ((NR>1)&&($4==\"%NAME%\")) {a[$10]+=$5; if ($9==\"W\") b[$10]+=$5}}END{c=0; for (i in a) { c++; print i,c,a[i]-b[i],b[i]}}' ../data/cases_rki_db_th.csv | sort -k 1" using 3 with histograms lt rgb "#5070A0" title M_title, \
   "" using 4 with histograms lt rgb "#103060" title W_title, \
   \
+  "<awk -F, 'BEGIN{a[\"A00-A04\"]=0;a[\"A05-A14\"]=0;a[\"A05-A14\"]=0;a[\"A15-A34\"]=0;a[\"A35-A59\"]=0;a[\"A60-A79\"]=0;a[\"A80+\"]=0;}{if ((NR>1)&&($4==\"%NAME%\")) {a[$10]+=$5; if ($9==\"W\") b[$10]+=$5}}END{c=0; for (i in a) { c++; print i,c,a[i]-b[i],b[i]}}' ../data/cases_rki_db_th.csv | sort -k 1" using (column(0) - 0.17):($3):($3>0?$3:"") with labels center offset 0, 0.7 notitle, \
+  "" using (column(0) + 0.17):($4):($4>0?$4:"") with labels center offset 0, 0.7 notitle, \
   1/0 lc rgb '#f2f2f2' title "{/*0.75 Quelle: Robert Koch-Institut}"
   
