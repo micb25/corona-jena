@@ -32,9 +32,11 @@ plot  \
   1/0 lc rgb '#f2f2f2' title "{/*0.75 Quelle: Stadt Gera}", \
   1/0 lc rgb '#f2f2f2' title update_str, \
   \
+  "<awk -F, '!_[$3]++' ../data/cases_gera.csv | awk -F, '{if ($4 >= 0) print $0}' | awk -F, 'BEGIN{ov=0}{dv=$4-ov;ov=$4;print $1,$4,dv}' | tail -n 1" using 1:2:(sprintf("%i (%+i)", $2, $3)) with labels point pt 7 ps 0 center offset char -0.3, 0.8 tc ls 5 notitle, \
   "<awk -F, '!_[$3]++' ../data/cases_gera.csv | awk -F, '{if ($3 >= 0) print $0}' | awk -F, 'BEGIN{ov=0}{dv=$3-ov;ov=$3;print $1,$3,dv}' | tail -n 1" using 1:2:(sprintf("%i (%+i)", $2, $3)) with labels point pt 7 ps 0 center offset char -0.3, 0.8 tc ls 4 notitle, \
   "<awk -F, '!_[$2]++' ../data/cases_gera.csv | awk -F, '{if ($2 >= 0) print $0}' | awk -F, 'BEGIN{ov=0}{dv=$2-ov;ov=$2;print $1,$2,dv}' | tail -n 1" using 1:2:(sprintf("%i (%+i)", $2, $3)) with labels point pt 7 ps 0 center offset char -0.3, 0.8 tc ls 1 notitle, \
   \
-  "<awk -F, '!_[$3]++' ../data/cases_gera.csv | awk -F, '{print $1, $3}'" using 1:(filter_neg($2)) with linespoints ls 4 title "Genesene", \
+  "<awk -F, '{if ((NR>1)&&($4>=0)) print $1,$4}' ../data/cases_gera.csv" using 1:(filter_neg($2)) with linespoints ls 5 title "Verstorbene", \
+  "<awk -F, '{if ((NR>1)&&($3>=0)) print $1,$3}' ../data/cases_gera.csv | awk -F, '{print $1, $2}'" using 1:(filter_neg($2)) with linespoints ls 4 title "Genesene", \
   "<awk -F, '{if ( (NR > 1) && ( $2 >= 0 ) && ( $3 >= 0 ) ) print $1,$2-$3-($4>=0?$4:0)}' ../data/cases_gera.csv" using 1:(filter_neg($2)) with lines lt 1 lw 1.5 lc '#007af2' title "aktive Fälle", \
-  "<awk -F, '!_[$2]++' ../data/cases_gera.csv | awk -F, '{print $1, $2}'" using 1:(filter_neg($2)) with linespoints ls 1 title "bestätigte Fälle"
+  "<awk -F, '{if ((NR>1)&&($2>=0)) print $1,$2}' ../data/cases_gera.csv | awk -F, '{print $1, $2}'" using 1:(filter_neg($2)) with linespoints ls 1 title "bestätigte Fälle"
