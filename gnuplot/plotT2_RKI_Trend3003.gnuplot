@@ -42,10 +42,7 @@ set key at graph 0.02, 0.98 left top invert spacing 1.2 box ls 3
 label_trend = sprintf("f({/Linux-Libertine-O-Italic x}) = (%.3f±%.3f) e^{(%.3f±%.3f){/Linux-Libertine-O-Italic x}}", a, a_err, b, b_err)
 set label 2 at graph 0.02, 0.60 label_trend left textcolor ls 0
 
-#label_double = sprintf("Verdopplungsrate ca. alle %.0f Tage",log(2) / b )
-#set label 3  at graph 0.02, 0.50 label_double left textcolor ls 0
-
-label_double = log(2) / b > 14 ? sprintf("aktuelle Verdopplungsrate: >14 Tage") : sprintf("aktuelle Verdopplungsrate: ≈%.0f Tage",log(2) / b )
+label_double = log(2) / b > 21 ? sprintf("aktuelle Verdopplungszeit: >21 Tage") : sprintf("aktuelle Verdopplungszeit: ≈%.0f Tage",log(2) / b )
 set label 3  at graph 0.99, 0.04 label_double right textcolor ls 0
 
 # data

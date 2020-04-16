@@ -45,7 +45,7 @@ set border back
 label_trend = sprintf("f({/Linux-Libertine-O-Italic x}) = (%.3f±%.3f) e^{(%.3f±%.3f){/Linux-Libertine-O-Italic x}}", ao, ao_err, bo, bo_err)
 set label 2 at graph 0.98, 0.60 label_trend right textcolor ls 0
 
-label_double = sprintf("Verdopplungsrate bis zum 21.03.: ≈%.0f Tage",log(2) / bo )
+label_double = sprintf("Verdopplungszeit bis zum 21.03.: ≈%.0f Tage",log(2) / bo )
 set label 3  at graph 0.99, 0.04 label_double right textcolor ls 0
 
 # data

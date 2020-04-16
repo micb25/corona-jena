@@ -63,7 +63,7 @@ set label 6 at first xmax - 0.5 * 86400, first gD( ((xmax-xmin)/86400) - 5.5) ri
 set label 7 at first xmax - 0.5 * 86400, first gG( ((xmax-xmin)/86400) - 6.5) right "7 Tage" textcolor ls 0
 set label 8 at first xmax - 0.5 * 86400, first gH( ((xmax-xmin)/86400) - 8.5) right "14 Tage" textcolor ls 0
 
-label_double = log(2) / b > 14 ? sprintf(" Verdopplungsrate\n >14 Tage") : sprintf(" Verdopplungsrate\n ≈%.f Tage", log(2) / b )
+label_double = log(2) / b > 21 ? sprintf(" Verdopplungszeit\n >21 Tage") : sprintf(" Verdopplungszeit\n ≈%.f Tage", log(2) / b )
 set label 9 at first fitmin, first f((fitmin - xmin_o - 4 * 86400) / 86400) label_double left textcolor ls 0
 
 # data
