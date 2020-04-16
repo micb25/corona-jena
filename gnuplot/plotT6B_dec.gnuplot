@@ -12,7 +12,7 @@ set xrange [ 1584316800 - 2.5 * 86400 : STATS_max + 86400/2 ]
 
 # get maximum value
 stats "<awk -F, 'BEGIN{d=0;w=-51;tmin=1584316800}{if((NR>1)&&($1>=1584316800)){if ($1<=tmin+7*86400){w+=$4-d;d=$4;}else{print tmin,w;tmin=tmin+7*86400;w=0;}}}END{if (w>0) print tmin, w}' ../data/cases_th_sums.csv" using 2 name "A" nooutput
-set yrange [0 : int(1.4*A_max/10)*10 ]
+set yrange [0 : int(1.4*A_max/10+1)*10 ]
 
 # x-axis setup
 set xdata time
