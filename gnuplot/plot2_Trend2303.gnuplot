@@ -24,7 +24,7 @@ fo(x) = ao * exp( bo * x )
 stats "<awk -F, '{print $2}' ../data/cases_jena_opendata.csv | tail -n 7" using 1 prefix "A" nooutput
 
 ymin = 0
-if ( A_max - A_min < 1.0 ) {
+if ( A_max - A_min < 2.0 ) {
 	fit_performed = 0;
 	ymax = 1.3 * A_max
 } else {
@@ -59,9 +59,9 @@ set label 2 at graph 0.02, 0.60 label_trend left textcolor ls 0
 }
 
 if ( fit_performed == 1 ) {
-	label_double = log(2) / bo > 14 ? sprintf("aktuelle Verdopplungsrate: >14 Tage") : sprintf("aktuelle Verdopplungsrate: ≈%.0f Tage",log(2) / bo );
+	label_double = log(2) / bo > 21 ? sprintf("aktuelle Verdopplungszeit: >21 Tage") : sprintf("aktuelle Verdopplungszeit: ≈%.0f Tage",log(2) / bo );
 } else {
-	label_double = sprintf("aktuelle Verdopplungsrate: nicht bestimmbar");
+	label_double = sprintf("aktuelle Verdopplungszeit: nicht bestimmbar");
 }
 set label 3  at graph 0.99, 0.04 label_double right textcolor ls 0
 
