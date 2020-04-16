@@ -44,7 +44,7 @@ set xtics ( "KW 12\n{/*0.85 16.03.-}\n{/*0.85 22.03.}" 1584316800, \
             "KW 19\n{/*0.85 04.05.-}\n{/*0.85 10.05.}" 1588550400, \
             "KW 20\n{/*0.85 11.05.-}\n{/*0.85 17.05.}" 1589155200 )
 
-set label 1 at graph 0.98, 0.95 "{/Linux-Libertine-O-Bold Todesfälle pro Kalenderwoche in Thüringen}" right textcolor ls 0
+set label 1 at graph 0.98, 0.95 "{/Linux-Libertine-O-Bold Coronavirus-Todesfälle pro Kalenderwoche in Thüringen}" right textcolor ls 0
 set label 2 at graph 0.98, 0.90 update_str right textcolor ls 0
 
 # data

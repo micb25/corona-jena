@@ -34,7 +34,7 @@ set style fill solid 1.00
 set style data boxes
 set boxwidth 0.4 relative
 
-set label 1 at graph 0.98, 0.95 "{/Linux-Libertine-O-Bold Todesfälle pro Tag in Thüringen}" right textcolor ls 0
+set label 1 at graph 0.98, 0.95 "{/Linux-Libertine-O-Bold Coronavirus-Todesfälle pro Tag in Thüringen}" right textcolor ls 0
 set label 2 at graph 0.98, 0.90 update_str right textcolor ls 0
 
 # data
