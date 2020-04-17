@@ -41,7 +41,7 @@ if __name__ == "__main__":
     # do the request
     num_latest = getEFNumbers(URL)
                 
-    if num_latest[0] > -1:
+    if (num_latest != False) and (num_latest[0] > -1):
         
         # get old values
         with open(DATAFILE, 'r') as df:
