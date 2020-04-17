@@ -46,7 +46,10 @@ def writeTotalCSV( valueType ) :
             row.append( regionKey )
             for ageKey in ages:
                 for genderKey in gender:
-                    row.append( regions[regionKey][genderKey + ageKey][valueType] )
+                    if isinstance(regions[regionKey][genderKey + ageKey][valueType], float):
+                        row.append( "{:.2f}".format(regions[regionKey][genderKey + ageKey][valueType]) )
+                    else:
+                        row.append( regions[regionKey][genderKey + ageKey][valueType] )
             datawriter.writerow(row)
 
 def writeTotalJSON( valueType, dt ) :
@@ -131,7 +134,7 @@ if __name__ == "__main__":
     for regionKey in regions:
         for genderKey in gender:
             for ageKey in ages:
-                regions[regionKey][genderKey + ageKey] = { 'cases_by_age': 0, 'deceased_by_age': 0 }
+                regions[regionKey][genderKey + ageKey] = { 'cases_by_age': 0, 'deceased_by_age': 0, 'cfr_by_age': 0 }
     
     # fill result array, count cases and casulties
     lines = 0
@@ -147,13 +150,19 @@ if __name__ == "__main__":
                     if ( row[2] == regions[regionKey]['t'] + 'K ' + regions[regionKey]['name'] ):
                         #cases = cases + int( row[3] )
                         #death = death + int( row[4] )
-                        regions["TH"][row[7] + row[8]]['cases_by_age'] = regions["TH"][row[7] + row[8]]['cases_by_age'] + int( row[3] )
-                        regions["TH"][row[7] + row[8]]['deceased_by_age'] = regions["TH"][row[7] + row[8]]['deceased_by_age'] + int( row[4] )
-                        regions[regionKey][row[7] + row[8]]['cases_by_age'] = regions[regionKey][row[7] + row[8]]['cases_by_age'] + int( row[3] )
-                        regions[regionKey][row[7] + row[8]]['deceased_by_age'] = regions[regionKey][row[7] + row[8]]['deceased_by_age'] + int( row[4] )
+                        regions["TH"][row[7] + row[8]]['cases_by_age'] += int( row[3] )
+                        regions["TH"][row[7] + row[8]]['deceased_by_age'] += int( row[4] )
+                        regions[regionKey][row[7] + row[8]]['cases_by_age'] += int( row[3] )
+                        regions[regionKey][row[7] + row[8]]['deceased_by_age'] += int( row[4] )
+                    
+    for regionKey in regions:
+        for genderKey in gender:
+            for ageKey in ages:
+                regions[regionKey][genderKey + ageKey]['cfr_by_age'] = 100.0 * regions[regionKey][genderKey + ageKey]['deceased_by_age'] / regions[regionKey][genderKey + ageKey]['cases_by_age'] if regions[regionKey][genderKey + ageKey]['cases_by_age'] > 0 else 0.0
                     
     writeTotalCSV( 'cases_by_age' )
     writeTotalCSV( 'deceased_by_age' )
+    writeTotalCSV( 'cfr_by_age' )
     writeTotalJSON( 'cases_by_age', dt )
     writeTotalJSON( 'deceased_by_age', dt )
 
