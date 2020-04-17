@@ -17,9 +17,9 @@ set xtics ("0-4\nJahre" 0, "5-14\nJahre" 1, "15-34\nJahre" 2, "35-59\nJahre" 3, 
 
 # y-axis setup
 set ylabel "Fallsterblichkeit in Thüringen"
-set yrange [0:100]
+set yrange [0:50]
 set format y '%5.0f%%'
-set ytics 0, 25, 100
+set ytics 0, 10, 100
 set mytics 2
 
 # key
