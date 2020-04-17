@@ -10,7 +10,12 @@ def saveJenaNumbers_OpenData():
     
     try:
         
-        return requests.get(url, headers=headers, allow_redirects=True, timeout=5.0).text
+        r = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0)
+        
+        if r.status_code == 200:
+            return r.text
+        
+        return False
     
     except:
         return False
