@@ -8,7 +8,7 @@ def getSOMNumbers(url):
     headers = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
     
     num_pattern_T = re.compile(r"([0-9]{1,})\spersonen,[^\.]*?positiv[^\.]*?.")
-    num_pattern_R = re.compile(r"\s([0-9]{1,})\s[^\.]*?(?:patient|person)[^\.]*?(?:beendet|genesen)\.")
+    num_pattern_R = re.compile(r"([0-9]{1,})\s[^\.]*?(?:patient|person)[^\.]*?(?:beendet|genesen)\.")
     num_pattern_H = re.compile(r"([0-9]{1,})\s[^\.]*?(?:patient|person)[^\.]*?stationär[^\.]*?\.")
     
     remove_array = [ "<p>", "</p>", "<td>", "</td>", "<strong>", "</strong>", "<b>", "</b>", "<br>", "<br />" ]
