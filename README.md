@@ -65,7 +65,7 @@ Eine Liste weiterer ähnlicher Github-Projekte, die COVID19-Daten für Deutschla
 
 | Region        | Link                                                                                                                                      |
 |---------------|-------------------------------------------------------------------------------------------------------------------------------------------|
-| Deutschland   | [micgro42/COVID-19-DE](https://github.com/micgro42/COVID-19-DE)<br /> [HoffmannP/coronaZahlen](https://github.com/HoffmannP/coronaZahlen) |
+| Deutschland   | [micgro42/COVID-19-DE](https://github.com/micgro42/COVID-19-DE)<br /> [HoffmannP/coronaZahlen](https://github.com/HoffmannP/coronaZahlen)<br />[https://mathecoach-trier.de/covid-19-entwicklung-in-deutschland/](https://mathecoach-trier.de/covid-19-entwicklung-in-deutschland/) |
 | Bayern        | [koepferl/COVID19Dahoam](https://github.com/koepferl/COVID19Dahoam)                                                                       |
 | Niedersachsen | [codeforosnabrueck/COVID-19-NDS](https://github.com/codeforosnabrueck/COVID-19-NDS)                                                       |
 | Jena          | [HoffmannP/jenaCorona](https://github.com/HoffmannP/jenaCorona)                                                                           |
