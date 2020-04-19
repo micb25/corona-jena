@@ -150,10 +150,11 @@ if __name__ == "__main__":
                     if ( row[2] == regions[regionKey]['t'] + 'K ' + regions[regionKey]['name'] ):
                         #cases = cases + int( row[3] )
                         #death = death + int( row[4] )
-                        regions["TH"][row[7] + row[8]]['cases_by_age'] += int( row[3] )
-                        regions["TH"][row[7] + row[8]]['deceased_by_age'] += int( row[4] )
-                        regions[regionKey][row[7] + row[8]]['cases_by_age'] += int( row[3] )
-                        regions[regionKey][row[7] + row[8]]['deceased_by_age'] += int( row[4] )
+                        if (row[7] in gender) and (row[8] in ages):
+                            regions["TH"][row[7] + row[8]]['cases_by_age'] += int( row[3] )
+                            regions["TH"][row[7] + row[8]]['deceased_by_age'] += int( row[4] )
+                            regions[regionKey][row[7] + row[8]]['cases_by_age'] += int( row[3] )
+                            regions[regionKey][row[7] + row[8]]['deceased_by_age'] += int( row[4] )
                     
     for regionKey in regions:
         for genderKey in gender:
