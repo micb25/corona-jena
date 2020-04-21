@@ -217,7 +217,7 @@ function m_over_region( id ) {
 	
 	var value = formatValue( resultArray[ id[1] ]['value'] );
 	if ( 'unit' in json.types[ currentType ] ) {
-		if ( ( resultArray[ id[1] ]['value'] == '1' ) && ( 'unit1' in json.types[ currentType ] ) ) {
+		if ( ( ( resultArray[ id[1] ]['value'] == '1' ) || ( resultArray[ id[1] ]['value'] == '-1' ) ) && ( 'unit1' in json.types[ currentType ] ) ) {
 			value = value + ' ' + json.types[ currentType ][ 'unit1' ];
 		} else {
 			value = value + ' ' + json.types[ currentType ][ 'unit' ];
