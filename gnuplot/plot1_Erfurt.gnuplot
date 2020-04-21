@@ -4,7 +4,7 @@ set output '../plot1_Erfurt.png'
 
 # stats for x
 stats "<awk -F, '{print $2, $3}' ../data/cases_erfurt.csv" using 1 nooutput
-set xrange [ STATS_min - 0.5 * 86400 : STATS_max + 2.5 * 86400 ]
+set xrange [ STATS_min - 0.5 * 86400 : STATS_max + 3.5 * 86400 ]
 
 # stats for y
 stats "<awk -F, '{print $2, $3}' ../data/cases_erfurt.csv" using 2 nooutput
