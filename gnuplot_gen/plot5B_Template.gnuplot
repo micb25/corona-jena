@@ -10,6 +10,7 @@ update_str = "{/*0.75 (Stand: " . date_cmd . ")}"
 stats "<awk -F, '{if ((NR>1)&&($4==\"%NAME%\")) {a[$10]+=$6; if ($9==\"W\") b[$10]+=$6}}END{for (i in a) print i,a[i]-b[i],b[i]}' ../data/cases_rki_db_th.csv | sort -k 1" using 2 name "M" nooutput
 stats "<awk -F, '{if ((NR>1)&&($4==\"%NAME%\")) {a[$10]+=$6; if ($9==\"W\") b[$10]+=$6}}END{for (i in a) print i,a[i]-b[i],b[i]}' ../data/cases_rki_db_th.csv | sort -k 1" using 3 name "W" nooutput
 ymax = 1.3 * (W_max > M_max ? W_max : M_max)
+ymax = ymax > 5 ? ymax : 5
 
 # get maximum values by gender
 stats "<awk -F, '{if (($9==\"M\")&&($4==\"%NAME%\")) s+=$6} END{print s}' ../data/cases_rki_db_th.csv" using 1 name "MM" nooutput
@@ -21,7 +22,7 @@ set xtics rotate by 0 offset 0, 0
 set xtics ("0-4\nJahre" 0, "5-14\nJahre" 1, "15-34\nJahre" 2, "35-59\nJahre" 3, "60-79\nJahre" 4, "80+\nJahre" 5)
 
 # y-axis setup
-set ylabel "bestätigte Coronavirus-Todesfälle %REGION%"
+set ylabel "bestätigte COVID19-Todesfälle %REGION%"
 set yrange [0:ymax]
 
 # key
@@ -48,5 +49,7 @@ plot  \
   "<awk -F, 'BEGIN{a[\"A00-A04\"]=0;a[\"A05-A14\"]=0;a[\"A05-A14\"]=0;a[\"A15-A34\"]=0;a[\"A35-A59\"]=0;a[\"A60-A79\"]=0;a[\"A80+\"]=0;}{if ((NR>1)&&($4==\"%NAME%\")) {a[$10]+=$6; if ($9==\"W\") b[$10]+=$6}}END{c=0; for (i in a) { c++; print i,c,a[i]-b[i],b[i]}}' ../data/cases_rki_db_th.csv | sort -k 1" using 3 with histograms lt rgb "#72777e" title M_title, \
   "" using 4 with histograms lt rgb "#32373e" title W_title, \
   \
+  "<awk -F, 'BEGIN{a[\"A00-A04\"]=0;a[\"A05-A14\"]=0;a[\"A05-A14\"]=0;a[\"A15-A34\"]=0;a[\"A35-A59\"]=0;a[\"A60-A79\"]=0;a[\"A80+\"]=0;}{if ((NR>1)&&($4==\"%NAME%\")) {a[$10]+=$6; if ($9==\"W\") b[$10]+=$6}}END{c=0; for (i in a) { c++; print i,c,a[i]-b[i],b[i]}}' ../data/cases_rki_db_th.csv | sort -k 1" using (column(0) - 0.17):($3):($3>0?$3:"") with labels center offset 0, 0.7 notitle, \
+  "" using (column(0) + 0.17):($4):($4>0?$4:"") with labels center offset 0, 0.7 notitle, \
   1/0 lc rgb '#f2f2f2' title "{/*0.75 Quelle: Robert Koch-Institut}"
   
