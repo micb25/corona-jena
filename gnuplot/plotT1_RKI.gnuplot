@@ -4,7 +4,7 @@ set output '../plotT1_RKI.png'
 
 # stats for y
 stats "<awk -F, '{ print $1 }' ../data/cases_thuringia_rki.csv" using 1 nooutput
-set xrange [ STATS_min - 86400 : STATS_max + 2.0 * 86400 ]
+set xrange [ STATS_min - 86400 : STATS_max + 3.5 * 86400 ]
 
 # stats for y
 stats "<awk -F, '{ print $2 }' ../data/cases_thuringia_rki.csv" using 1 nooutput

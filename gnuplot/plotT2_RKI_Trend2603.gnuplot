@@ -21,7 +21,7 @@ fmax(x) = f(x) + ferr(x)
 
 ymin = 0
 #ymax = f( (xmax - xmin_o) / 86400 )
-ymax = 2500 
+ymax = 3000 
 
 # x-axis setup
 unset xlabel

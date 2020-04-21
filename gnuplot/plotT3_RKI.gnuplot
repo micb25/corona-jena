@@ -7,7 +7,7 @@ stats "<awk -F, '{print $1,$2,$3}' ../data/cases_thuringia_rki.csv" using 1 noou
 xmin = 1583884800
 xmin_o = int(STATS_min)
 xmax = int(STATS_max) + 18 * 86400
-xmax = xmin + (22 + 18) * 86400
+xmax = xmin + (30 + 18) * 86400
 
 fitmin = int(STATS_max) - 7 * 86400
 fitmax = int(STATS_max)
@@ -57,14 +57,14 @@ set key at graph 0.02, 0.98 left top invert spacing 1.2 box ls 3
 set label 2 at graph 0.99, 0.04 right "Hilfslinien entsprechen Fallzahl-Verdopplung alle {/Linux-Libertine-O-Italic N} Tage" textcolor ls 0
 
 set label 3 at first 7.2*86400 + xmin, first gA(8.2) right "täglich" textcolor ls 0
-set label 4 at first 20*86400 + xmin, first gB(16) right "2 Tage" textcolor ls 0
-set label 5 at first xmax - 0.5 * 86400, first gC( ((xmax-xmin)/86400) - 5.0) right "3 Tage" textcolor ls 0
+set label 4 at first 15*86400 + xmin, first gB(16) right "2 Tage" textcolor ls 0
+set label 5 at first xmax - 4.5 * 86400, first gC( ((xmax-xmin)/86400) -10.0) right "3 Tage" textcolor ls 0
 set label 6 at first xmax - 0.5 * 86400, first gD( ((xmax-xmin)/86400) - 5.5) right "4 Tage" textcolor ls 0
 set label 7 at first xmax - 0.5 * 86400, first gG( ((xmax-xmin)/86400) - 6.5) right "7 Tage" textcolor ls 0
 set label 8 at first xmax - 0.5 * 86400, first gH( ((xmax-xmin)/86400) - 8.5) right "14 Tage" textcolor ls 0
 
 label_double = log(2) / b > 21 ? sprintf(" Verdopplungszeit\n >21 Tage") : sprintf(" Verdopplungszeit\n ≈%.f Tage", log(2) / b )
-set label 9 at first fitmin, first f((fitmin - xmin_o - 4 * 86400) / 86400) label_double left textcolor ls 0
+set label 9 at first fitmin, first f((fitmin - xmin_o - 6 * 86400) / 86400) label_double left textcolor ls 0
 
 # data
 plot  \
