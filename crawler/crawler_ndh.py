@@ -11,7 +11,7 @@ def getNDHNumbers(url):
     
     num_pattern_T = re.compile(r"Infektionen:([0-9]{1,})")
     num_pattern_R = re.compile(r"gelten als genesen:([0-9]{1,})")
-    num_pattern_D = re.compile(r"Verstorben:([0-9]{1,})")
+    num_pattern_D = re.compile(r"[vV]erstorben:([0-9]{1,})")
     num_pattern_H = re.compile(r"stationär\sbehandelt:([0-9]{1,})")
     
     try:
