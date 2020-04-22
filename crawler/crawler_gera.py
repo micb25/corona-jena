@@ -7,7 +7,7 @@ import time, requests, re, os
 def getGeraNumbers(url):
     headers      = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
     num_pattern1 = re.compile(r"Infizierte\s([0-9]{1,})")
-    num_pattern2 = re.compile(r"([0-9]{1,})\s(?:Person)?.*?\s?genesen")
+    num_pattern2 = re.compile(r"\s([0-9]{1,})\s(?:Person)?.*?\s?genesen")
     
     try:
     
