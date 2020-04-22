@@ -32,7 +32,7 @@ plot  \
   1/0 lc rgb '#f2f2f2' title update_str, \
   \
   "<awk -F, '{print $1,$2,$3,$4,$5,$6}' ../data/cases_jena_opendata.csv | awk '{if ($4 >= 0) print $0}' | awk 'BEGIN{ov=0}{dv=$4-ov;ov=$4;print $1,$4,dv}' | tail -n 1" using 1:2:(sprintf("%i (%+i)", $2, $3)) with labels point pt 7 ps 0 center offset char -0.3, 0.8 tc ls 5 notitle, \
-  "<awk -F, '{print $1,$2,$3,$4,$5,$6}' ../data/cases_jena_opendata.csv | awk '{if ($3 >= 0) print $0}' | awk 'BEGIN{ov=0}{dv=$3-ov;ov=$3;print $1,$3,dv}' | tail -n 1" using 1:2:(sprintf("%i (%+i)", $2, $3)) with labels point pt 7 ps 0 center offset char -0.3, 0.8 tc ls 4 notitle, \
+  "<awk -F, '{print $1,$2,$3,$4,$5,$6}' ../data/cases_jena_opendata.csv | awk '{if ($3 >= 0) print $0}' | awk 'BEGIN{ov=0}{dv=$3-ov;ov=$3;print $1,$3,dv}' | tail -n 1" using 1:2:(sprintf("%i (%+i)", $2, $3)) with labels point pt 7 ps 0 center offset char -0.3,-1.2 tc ls 4 notitle, \
   "<awk -F, '{print $1,$2,$3,$4,$5,$6}' ../data/cases_jena_opendata.csv | awk '{if ($2 >= 0) print $0}' | awk 'BEGIN{ov=0}{dv=$2-ov;ov=$2;print $1,$2,dv}' | tail -n 1" using 1:2:(sprintf("%i (%+i)", $2, $3)) with labels point pt 7 ps 0 center offset char -0.3, 0.8 tc ls 1 notitle, \
   \
   "<awk -F, '{print $1,$4}' ../data/cases_jena_opendata.csv" using 1:(filter_neg($2)) with linespoints ls 5 title "Verstorbene", \
