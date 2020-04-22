@@ -78,6 +78,10 @@ if __name__ == "__main__":
             svgdata = df.read()
             
         for k, r in replace_array.items():
+            # fix color for case corrections
+            if ( int(area_data[k]) < 0 ):
+                area_data[k] = -1
+                
             area_color = value_to_color(area_data[k], max_cases)
             svgdata = svgdata.replace(r, area_color)
 
