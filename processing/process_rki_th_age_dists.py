@@ -158,12 +158,13 @@ if __name__ == "__main__":
     for regionKey in regions:
         for genderKey in gender:
             for ageKey in ages:
-                regions[regionKey][genderKey + ageKey] = { 'cases_by_age': 0, 'deceased_by_age': 0, 'cfr_by_age': 0 }
+                regions[regionKey][genderKey + ageKey] = { 'cases_by_age': 0, 'deceased_by_age': 0, 'recovered_by_age': 0, 'active_cases_by_age': 0, 'cfr_by_age': 0 }
     
     # fill result array, count cases and casulties
     lines = 0
     cases = 0
     death = 0
+    recovered = 0
     with open('../data/cases_rki_db_th.csv', newline='', encoding="utf8") as csvfile:
         datareader = csv.reader( csvfile, delimiter=',', quotechar='"' )
         for row in datareader:
@@ -176,26 +177,38 @@ if __name__ == "__main__":
                         # skip corrections
                         cases = cases + ( int( row[3] ) if int( row[3] ) > 0 else 0)
                         death = death + ( int( row[4] ) if int( row[4] ) > 0 else 0)
+                        recovered = recovered + ( int( row[10] ) if int( row[4] ) > 0 else 0)
                         
                         if (row[7] in gender) and (row[8] in ages):
-                            regions["TH"][row[7] + row[8]]['cases_by_age'] += ( int( row[3] ) if int( row[3] ) > 0 else 0)
-                            regions["TH"][row[7] + row[8]]['deceased_by_age'] += ( int( row[4] ) if int( row[4] ) > 0 else 0)
-                            regions[regionKey][row[7] + row[8]]['cases_by_age'] += ( int( row[3] ) if int( row[3] ) > 0 else 0)
-                            regions[regionKey][row[7] + row[8]]['deceased_by_age'] += ( int( row[4] ) if int( row[4] ) > 0 else 0)
+                            regions["TH"][row[7] + row[8]]['cases_by_age'] += (int( row[3] ) if int( row[3] ) > 0 else 0)
+                            regions["TH"][row[7] + row[8]]['deceased_by_age'] += (int( row[4] ) if int( row[4] ) > 0 else 0)
+                            regions["TH"][row[7] + row[8]]['recovered_by_age'] += (int( row[10] ) if int( row[10] ) > 0 else 0)
+                            
+                            regions[regionKey][row[7] + row[8]]['cases_by_age'] += (int( row[3] ) if int( row[3] ) > 0 else 0)
+                            regions[regionKey][row[7] + row[8]]['deceased_by_age'] += (int( row[4] ) if int( row[4] ) > 0 else 0)
+                            regions[regionKey][row[7] + row[8]]['recovered_by_age'] += (int( row[10] ) if int( row[10] ) > 0 else 0)
                     
     for regionKey in regions:
         for genderKey in gender:
             for ageKey in ages:
                 regions[regionKey][genderKey + ageKey]['cfr_by_age'] = 100.0 * regions[regionKey][genderKey + ageKey]['deceased_by_age'] / regions[regionKey][genderKey + ageKey]['cases_by_age'] if regions[regionKey][genderKey + ageKey]['cases_by_age'] > 0 else 0.0
-                    
+                regions[regionKey][genderKey + ageKey]['active_cases_by_age'] = regions[regionKey][genderKey + ageKey]['cases_by_age'] - regions[regionKey][genderKey + ageKey]['deceased_by_age'] - regions[regionKey][genderKey + ageKey]['recovered_by_age']
+               
+    # CSV data
+    writeCSVThuringia(cases, death)
+    
     writeTotalCSV( 'cases_by_age' )
     writeTotalCSV( 'deceased_by_age' )
+    writeTotalCSV( 'recovered_by_age' )
+    writeTotalCSV( 'active_cases_by_age' )
     writeTotalCSV( 'cfr_by_age' )
+    
+    # JSON data
     writeTotalJSON( 'cases_by_age', dt )
     writeTotalJSON( 'deceased_by_age', dt )
+    writeTotalJSON( 'recovered_by_age', dt )
+    writeTotalJSON( 'active_cases_by_age', dt )
     
-    writeCSVThuringia(cases, death)
-
     #print( 'lines: ' + str( lines ) )
     # print( 'case count: ' + str( cases ) )
     # print( 'death count: ' + str( death ) )
