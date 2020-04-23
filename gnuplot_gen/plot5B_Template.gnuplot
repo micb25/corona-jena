@@ -7,14 +7,14 @@ date_cmd = sprintf("%s", "`awk -F, '{print "@"$1+86400}' ../data/cases_rki_db_th
 update_str = "{/*0.75 (Stand: " . date_cmd . ")}"
 
 # get maximum y value
-stats "<awk -F, '{if ((NR>1)&&($4==\"%NAME%\")&&($6>0)) {a[$10]+=$6; if ($9==\"W\") b[$10]+=$6}}END{for (i in a) print i,a[i]-b[i],b[i]}' ../data/cases_rki_db_th.csv | sort -k 1" using 2 name "M" nooutput
-stats "<awk -F, '{if ((NR>1)&&($4==\"%NAME%\")&&($6>0)) {a[$10]+=$6; if ($9==\"W\") b[$10]+=$6}}END{for (i in a) print i,a[i]-b[i],b[i]}' ../data/cases_rki_db_th.csv | sort -k 1" using 3 name "W" nooutput
+stats "<awk -F, 'BEGIN{a[\"A00-A04\"]=0;a[\"A05-A14\"]=0;a[\"A05-A14\"]=0;a[\"A15-A34\"]=0;a[\"A35-A59\"]=0;a[\"A60-A79\"]=0;a[\"A80+\"]=0;b[\"A00-A04\"]=0;b[\"A05-A14\"]=0;b[\"A05-A14\"]=0;b[\"A15-A34\"]=0;b[\"A35-A59\"]=0;b[\"A60-A79\"]=0;b[\"A80+\"]=0;}{if ((NR>1)&&($4==\"%NAME%\")&&($6>0)) {a[$10]+=$6; if ($9==\"W\") b[$10]+=$6}}END{for (i in a) print i,a[i]-b[i],b[i]}' ../data/cases_rki_db_th.csv | sort -k 1" using 2 name "M" nooutput
+stats "<awk -F, 'BEGIN{a[\"A00-A04\"]=0;a[\"A05-A14\"]=0;a[\"A05-A14\"]=0;a[\"A15-A34\"]=0;a[\"A35-A59\"]=0;a[\"A60-A79\"]=0;a[\"A80+\"]=0;b[\"A00-A04\"]=0;b[\"A05-A14\"]=0;b[\"A05-A14\"]=0;b[\"A15-A34\"]=0;b[\"A35-A59\"]=0;b[\"A60-A79\"]=0;b[\"A80+\"]=0;}{if ((NR>1)&&($4==\"%NAME%\")&&($6>0)) {a[$10]+=$6; if ($9==\"W\") b[$10]+=$6}}END{for (i in a) print i,a[i]-b[i],b[i]}' ../data/cases_rki_db_th.csv | sort -k 1" using 3 name "W" nooutput
 ymax = 1.3 * (W_max > M_max ? W_max : M_max)
 ymax = ymax > 5 ? ymax : 5
 
 # get maximum values by gender
-stats "<awk -F, '{if (($9==\"M\")&&($4==\"%NAME%\")&&($6>0)) s+=$6} END{print s}' ../data/cases_rki_db_th.csv" using 1 name "MM" nooutput
-stats "<awk -F, '{if (($9==\"W\")&&($4==\"%NAME%\")&&($6>0)) s+=$6} END{print s}' ../data/cases_rki_db_th.csv" using 1 name "WW" nooutput
+stats "<awk -F, 'BEGIN{a[\"A00-A04\"]=0;a[\"A05-A14\"]=0;a[\"A05-A14\"]=0;a[\"A15-A34\"]=0;a[\"A35-A59\"]=0;a[\"A60-A79\"]=0;a[\"A80+\"]=0;b[\"A05-A14\"]=0;b[\"A05-A14\"]=0;b[\"A15-A34\"]=0;b[\"A35-A59\"]=0;b[\"A60-A79\"]=0;b[\"A80+\"]=0;}{if (($9==\"M\")&&($4==\"%NAME%\")&&($6>0)) s+=$6} END{print s}' ../data/cases_rki_db_th.csv" using 1 name "MM" nooutput
+stats "<awk -F, 'BEGIN{a[\"A00-A04\"]=0;a[\"A05-A14\"]=0;a[\"A05-A14\"]=0;a[\"A15-A34\"]=0;a[\"A35-A59\"]=0;a[\"A60-A79\"]=0;a[\"A80+\"]=0;b[\"A05-A14\"]=0;b[\"A05-A14\"]=0;b[\"A15-A34\"]=0;b[\"A35-A59\"]=0;b[\"A60-A79\"]=0;b[\"A80+\"]=0;}{if (($9==\"W\")&&($4==\"%NAME%\")&&($6>0)) s+=$6} END{print s}' ../data/cases_rki_db_th.csv" using 1 name "WW" nooutput
 
 # x-axis setup
 set xrange [-0.5:5.5]

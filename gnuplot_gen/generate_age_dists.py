@@ -72,8 +72,8 @@ if __name__ == "__main__":
                 gpf.close()
                 
             # run gnuplot
-            os.system("gnuplot {} > /dev/null".format(GNUPFILE_A))
-            os.system("gnuplot {} > /dev/null".format(GNUPFILE_B))
+            os.system("gnuplot {} >/dev/null 2>&1".format(GNUPFILE_A))
+            os.system("gnuplot {} >/dev/null 2>&1".format(GNUPFILE_B))
         
         # clean-up
         os.system( "rm -f {} {}".format(GNUPFILE_A, GNUPFILE_B) )
