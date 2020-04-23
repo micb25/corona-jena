@@ -15,7 +15,6 @@ def rki_db_query(offset = 0, chunk_size = 8000):
     #       IdBundesland, Bundesland, Landkreis, Altersgruppe, Geschlecht, AnzahlFall, AnzahlTodesfall, ObjectId, Meldedatum, IdLandkreis,
     #       Datenstand, NeuerFall, NeuerTodesfall, Refdatum, NeuGenesen, AnzahlGenesen
     #
-    #       not used: AnzahlGenesen, NeuGenesen
     # - RKI_Landkreisdaten  
     
     url = 'https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_COVID19/FeatureServer/0/query?'
@@ -24,7 +23,7 @@ def rki_db_query(offset = 0, chunk_size = 8000):
     qry_params = urllib.parse.urlencode(
     {
             "where": "IdBundesland=16", # Thuringia only
-            "outFields": "Meldedatum,Datenstand,Landkreis,AnzahlFall,AnzahlTodesfall,NeuerFall,NeuerTodesfall,Geschlecht,Altersgruppe",
+            "outFields": "Meldedatum,Datenstand,Landkreis,AnzahlFall,AnzahlTodesfall,NeuerFall,NeuerTodesfall,Geschlecht,Altersgruppe,Refdatum,AnzahlGenesen,NeuGenesen",
             # "outFields": "*", # everything
             "returnGeometry": "false",
             "orderByFields": "Meldedatum asc",
@@ -61,10 +60,12 @@ if __name__ == "__main__":
     header = [h["name"] for h in header]
     
     index_date = 0
+    index_refdate = 0
     for h in enumerate(header):
         if ( h[1] == 'Meldedatum' ):
             index_date = h[0]
-            break
+        if ( h[1] == 'Refdatum' ):
+            index_refdate = h[0]
         
     try:
         
@@ -85,6 +86,7 @@ if __name__ == "__main__":
             for c in cases:
                 row = [c["attributes"][h] for h in header]
                 row[index_date] = int(row[index_date] / 1000.0)
+                row[index_refdate] = int(row[index_refdate] / 1000.0)
                 f.writerow(row)
             
             offset += chunk_size
