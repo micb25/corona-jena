@@ -74,6 +74,30 @@ def writeTotalJSON( valueType, dt ) :
     f.close()
     return True
 
+def writeCSVThuringia(cases_total, cases_dec):
+    
+    DATAFILE = os.path.dirname(os.path.realpath(__file__)) + "/../data/cases_thuringia_rki.csv"
+    URL = "cases_thuringia_rki.csv"
+    num_latest = (cases_total, cases_dec)
+    
+    # get old values
+    with open(DATAFILE, 'r') as df:
+        raw_data = df.read().splitlines()
+    last_values = raw_data[-1].split(",")[1:2]
+    
+    # check for changes
+    value_changed = False        
+    for i in enumerate(last_values):
+        if ( int(i[1]) != num_latest[i[0]] ):
+            if ( num_latest[i[0]] != -1 ):
+                value_changed = True
+                
+    if value_changed:
+        # write new csv data
+        f = open(DATAFILE, 'a')
+        f.write("%i,%i,%i,%s\n" % (int(time.time()), num_latest[0], num_latest[1], URL))
+        f.close()
+
 if __name__ == "__main__":
     
     SCRIPTPATH = os.path.dirname(os.path.realpath(__file__))
@@ -138,8 +162,8 @@ if __name__ == "__main__":
     
     # fill result array, count cases and casulties
     lines = 0
-    #cases = 0
-    #death = 0
+    cases = 0
+    death = 0
     with open('../data/cases_rki_db_th.csv', newline='', encoding="utf8") as csvfile:
         datareader = csv.reader( csvfile, delimiter=',', quotechar='"' )
         for row in datareader:
@@ -148,13 +172,16 @@ if __name__ == "__main__":
                 dt = strToTimestamp(row[1])
                 for regionKey in regions:
                     if ( row[2] == regions[regionKey]['t'] + 'K ' + regions[regionKey]['name'] ):
-                        #cases = cases + int( row[3] )
-                        #death = death + int( row[4] )
+                        
+                        # skip corrections
+                        cases = cases + ( int( row[3] ) if int( row[3] ) > 0 else 0)
+                        death = death + ( int( row[4] ) if int( row[4] ) > 0 else 0)
+                        
                         if (row[7] in gender) and (row[8] in ages):
-                            regions["TH"][row[7] + row[8]]['cases_by_age'] += int( row[3] )
-                            regions["TH"][row[7] + row[8]]['deceased_by_age'] += int( row[4] )
-                            regions[regionKey][row[7] + row[8]]['cases_by_age'] += int( row[3] )
-                            regions[regionKey][row[7] + row[8]]['deceased_by_age'] += int( row[4] )
+                            regions["TH"][row[7] + row[8]]['cases_by_age'] += ( int( row[3] ) if int( row[3] ) > 0 else 0)
+                            regions["TH"][row[7] + row[8]]['deceased_by_age'] += ( int( row[4] ) if int( row[4] ) > 0 else 0)
+                            regions[regionKey][row[7] + row[8]]['cases_by_age'] += ( int( row[3] ) if int( row[3] ) > 0 else 0)
+                            regions[regionKey][row[7] + row[8]]['deceased_by_age'] += ( int( row[4] ) if int( row[4] ) > 0 else 0)
                     
     for regionKey in regions:
         for genderKey in gender:
@@ -166,7 +193,9 @@ if __name__ == "__main__":
     writeTotalCSV( 'cfr_by_age' )
     writeTotalJSON( 'cases_by_age', dt )
     writeTotalJSON( 'deceased_by_age', dt )
+    
+    writeCSVThuringia(cases, death)
 
     #print( 'lines: ' + str( lines ) )
-    #print( 'case count: ' + str( cases ) )
-    #print( 'death count: ' + str( death ) )
+    # print( 'case count: ' + str( cases ) )
+    # print( 'death count: ' + str( death ) )
