@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import os, csv, json
+import os, csv, json, datetime
 
 
 if __name__ == "__main__":
@@ -108,7 +108,7 @@ if __name__ == "__main__":
         # write CSV data with latest results per region
         with open(DATAFILE2, "w") as df:
             df.write("%s,%s,%s,%s,%s,%s,%s,%s\n" % ("Region", "Datum", "SummeFall", "SummeGenesen", "SummeTodesfall", "AnzahlFall", "AnzahlGenesen", "AnzahlTodesfall"))
-            
+                        
             # fixes the key order in old Python 3 versions
             sorted_keys = sorted(current_data_per_region.keys())
             sorted_keys.remove("TH")
@@ -116,6 +116,10 @@ if __name__ == "__main__":
             
             for entry in sorted_keys:
                 df.write("%s,%i,%i,%i,%i,%i,%i,%i\n" % ( entry, last_date, current_data_per_region[entry][0], current_data_per_region[entry][1], current_data_per_region[entry][2], current_data_per_region[entry][3], current_data_per_region[entry][4], current_data_per_region[entry][5]))
+                
+        # add date for JSON
+        current_data_per_region["Timestamp"] = last_date
+        current_data_per_region["DateLabel"] = "Stand: " + datetime.datetime.fromtimestamp(last_date).strftime("%d.%m.%Y")
                 
         # write JSON with latest results per region
         with open(DATAFILE3, "w") as df:

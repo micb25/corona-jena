@@ -158,7 +158,7 @@
 		<br>
 		<br>
 		<h1>COVID19-Statistik für Thüringen</h1>
-		Quelle: <a href="https://corona.rki.de">Robert Koch-Institut</a>
+		Quelle: <a href="https://corona.rki.de">Robert Koch-Institut</a><span id="labelDate"></span>
 		<br>
 		<br>
 		<table id="THtable">
@@ -166,13 +166,14 @@
 				<th>#</th>
 				<th colspan="2">Region</th>
 				<th>Neu&shy;in&shy;fek&shy;ti&shy;onen</th>
-				<th>aktive Fälle</th>
+				<th>aktive Fälle<sup>*</sup></th>
 				<th>be&shy;stätigte Fälle</th>
-				<th>Ge&shy;ne&shy;sung&shy;en</th>
+				<th>Ge&shy;ne&shy;sung&shy;en<sup>*</sup></th>
 				<th>Todes&shy;fälle</th>
 			</tr>
 		</table>
 		<br>
+		<sup>*</sup> Zahl der Genesenen ist durch das Robert Koch-Institut geschätzt<br>
 		<br>
 	</div>
 	<script>
@@ -222,6 +223,9 @@
 					regions[region]['nd'] = jsonObj[region][5];
 					regions[region]['na'] = jsonObj[region][3] - jsonObj[region][4] - jsonObj[region][5];
 				}
+			}
+			if ( jsonObj.hasOwnProperty("DateLabel") ) {
+				document.getElementById('labelDate').innerHTML = ", " + jsonObj["DateLabel"];
 			}
 			setupTable();
 		}
