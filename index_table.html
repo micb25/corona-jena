@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Coronavirus-Statistik für Thüringen</title>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta http-equiv="refresh" content="3600">
+		<meta name="author" content="Michael Böhme, Florian Kleiner">
+		<meta name="robots" content="all"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="theme-color" content="#176fa1">
+		<meta name="keywords" content="Corona, COVID, COVID19, Altenburger Land, Eichsfeld, Eisenach, Erfurt, Gera, Gotha, Greiz, Hildburghausen, Ilm-Kreis, Jena, Kyffhäuserkreis, Nordhausen, Saale-Holzland-Kreis, Saale-Orla-Kreis, Saalfeld-Rudolstadt, Schmalkalden-Meiningen, Sömmerda, Sonneberg, Suhl, Unstrut-Hainich-Kreis, Wartburgkreis, Weimar, Weimarer Land Thüringen, Statistik, Michael Böhme, Florian Kleiner">
+		<meta name="description" content="Zusammenfassung und Visualisierung der Coronavirus-Fälle in Jena, Erfurt, Weimar und Thüringen">
+		<meta name="msapplication-square70x70logo" content="./icons/smalltile.png">
+		<meta name="msapplication-square150x150logo" content="./icons/mediumtile.png">
+		<meta name="msapplication-square310x310logo" content="./icons/largetile.png">
+		<meta property="og:site_name" content="Coronavirus-Fälle in Thüringen">
+		<meta property="og:title" content="Coronavirus-Fälle in Thüringen">
+		<meta property="og:description" content="Coronavirus-Statistik für Thüringen">
+		<meta property="og:image" content="/corona/logo.jpg">
+		<meta property="og:type" content="website">
+		<meta property="og:image:type" content="image/jpeg">
+		<meta property="og:image:width" content="300">
+		<meta property="og:image:height" content="300">
+		<meta property="og:url" content="https://www.michael-böhme.de/corona">
+		<meta property="og:locale" content="de_DE">
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:site" content="@theochemiker" />
+		<meta name="twitter:creator" content="@theochemiker" />
+		<meta name="twitter:title" content="Coronavirus-Fälle in Thüringen" />
+		<meta name="twitter:image" content="./logo.jpg" />
+		<meta name="twitter:description" content="Coronavirus-Statistik für Thüringen" />
+		<link rel="icon" href="./favicon.ico" type="image/x-icon">
+		<link rel="shortcut icon" href="./icons/android-icon.png" sizes="196x196">
+		<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+		<link rel="stylesheet" type="text/css" href="./css/styles.css">
+		<link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
+		<script src="./map.js"></script>
+		<base target="_blank">
+		<style>
+			#THtable {
+				border-spacing: 0;
+				width: 100%;
+				border: 1px solid #ddd;
+			}
+			#THtable th, td {
+				text-align: left;
+				padding: 16px;
+			}
+			#THtable #emptyrow {
+				padding: 0px;
+				background-color: #d8d8d8;
+				height: 4px;
+				line-height: 4px;
+			}
+			#THtable #THsums {
+				font-weight: bold;
+			}
+			#THtable #headerrow {
+				background-color: #d0d0d0;
+			}
+			#THtable tr {
+				background-color: #e2e2e2;
+			}
+			#THtable tr:nth-child(even) {
+				background-color: #f2f2f2;
+			}
+			#THtable tr:hover {
+				background-color: #c9c9c9;
+			}
+			#THtable tr th:nth-child(1),td:nth-child(1) {
+				text-align: right;
+			}
+			#THtable tr th:nth-child(4),td:nth-child(4) {
+				text-align: right;
+			}
+			#THtable tr th:nth-child(5),td:nth-child(5) {
+				text-align: right;
+			}
+			#THtable tr th:nth-child(6),td:nth-child(6) {
+				text-align: right;
+			}
+			#THtable tr th:nth-child(7),td:nth-child(7) {
+				text-align: right;
+			}
+			#THtable tr th:nth-child(8),td:nth-child(8) {
+				text-align: right;
+			}
+			.minipie {
+				width: 36px;
+				height: 36px;
+			}
+			.changevalue {
+				display: inline-block;
+				vertical-align: middle
+			}
+			.changeicon {
+				display: inline-block;
+				padding-top: 2px;
+				vertical-align: middle;
+			}
+			.changeRed {
+				color: #800000;
+			}
+			.changeNeutral {
+				color: #AAAAAA;
+			}
+			.changeGreen {
+				color: #008000;
+			}
+			@media (max-width: 800px) {
+				#THtable th, td {
+					font-size: 12px;
+					padding-left: 3px;
+					padding-right: 3px;
+				}
+				.minipie {
+					width: 28px;
+					height: 28px;
+				}
+			}
+		</style>
+	</head>
+	<body>
+	<div class="navBar">
+		<div class="navDropdown">
+			<button class="navButton"><i class="fa fa-bars" aria-hidden="true"></i></button>
+			<div class="navLinks">
+				<a target="_self" href="./index.html">Startseite</a>
+				<a target="_self" href="./index_th_all.html">Gesamtübersicht</a>
+				<a target="_self" href="./index_rki.html">RKI-Daten</a>
+				<hr>
+				<a target="_self" href="#Info">Info</a>
+			</div>
+		</div>
+	</div>
+	<noscript>
+		<strong>Diese Tabelle benötigt JavaScript!</strong>
+	</noscript>
+	<div class="centerText" lang="de" style="hyphens: auto;"> <!-- id="needsJS"-->
+		<br>
+		<a target="_self" href="./index.html">&laquo; &nbsp; zurück zur Startseite &nbsp; &laquo;</a>
+		<br>
+		<br>
+		<h1>Coronavirus-Statistik für Thüringen</h1>
+		Quelle: <a href="https://corona.rki.de">Robert Koch-Institut</a>
+		<br>
+		<br>
+		<table id="THtable">
+			<tr id="headerrow">
+				<th>#</th>
+				<th>Region</th>
+				<th>&nbsp;</th>
+				<th>Neu&shy;in&shy;fek&shy;ti&shy;onen</th>
+				<th>aktive Fälle</th>
+				<th>be&shy;stätigte Fälle</th>
+				<th>Ge&shy;ne&shy;sung&shy;en</th>
+				<th>Todes&shy;fälle</th>
+			</tr>
+		</table>
+		<br>
+		<br>
+	</div>
+	<script>
+		var THtable = document.getElementById('THtable');
+		var loadedJSON = false;
+		var regions = {
+			"ABG": { i:  1, s: 0, l: "Altenburger Land",                 ti: 0, tr: 0, td: 0, ni: 0, nr: 0, nd: 0, u: "./index_th_all.html#graph_ABG" },
+			"EIC": { i:  2, s: 0, l: "Eichsfeld",                        ti: 0, tr: 0, td: 0, ni: 0, nr: 0, nd: 0, u: "./index_th_all.html#graph_EIC" },
+			"EA":  { i:  3, s: 1, l: "Eisenach",                         ti: 0, tr: 0, td: 0, ni: 0, nr: 0, nd: 0, u: "./index_th_all.html#graph_EA" },
+			"EF":  { i:  4, s: 1, l: "Erfurt",                           ti: 0, tr: 0, td: 0, ni: 0, nr: 0, nd: 0, u: "./index.html#Erfurt" },
+			"G":   { i:  5, s: 1, l: "Gera",                             ti: 0, tr: 0, td: 0, ni: 0, nr: 0, nd: 0, u: "./index.html#Gera" },
+			"GTH": { i:  6, s: 0, l: "Landkreis Gotha",                  ti: 0, tr: 0, td: 0, ni: 0, nr: 0, nd: 0, u: "./index_th_all.html#graph_GTH" },
+			"GRZ": { i:  7, s: 0, l: "Landkreis Greiz",                  ti: 0, tr: 0, td: 0, ni: 0, nr: 0, nd: 0, u: "./index_th_all.html#graph_GRZ" },
+			"HBN": { i:  8, s: 0, l: "Landkreis Hildburghausen",         ti: 0, tr: 0, td: 0, ni: 0, nr: 0, nd: 0, u: "./index_th_all.html#graph_HBN" },
+			"IK":  { i:  9, s: 0, l: "Ilm-Kreis",                        ti: 0, tr: 0, td: 0, ni: 0, nr: 0, nd: 0, u: "./index_th_all.html#graph_IK" },
+			"J":   { i: 10, s: 1, l: "Jena",                             ti: 0, tr: 0, td: 0, ni: 0, nr: 0, nd: 0, u: "./index.html#Jena" },
+			"KYF": { i: 11, s: 0, l: "Kyffhäuserkreis",                  ti: 0, tr: 0, td: 0, ni: 0, nr: 0, nd: 0, u: "./index_th_all.html#graph_KYF" },
+			"NDH": { i: 12, s: 0, l: "Landkreis Nordhausen",             ti: 0, tr: 0, td: 0, ni: 0, nr: 0, nd: 0, u: "./index_th_all.html#graph_NDH" },
+			"SHK": { i: 13, s: 0, l: "Saale-Holzland-Kreis",             ti: 0, tr: 0, td: 0, ni: 0, nr: 0, nd: 0, u: "./index_th_all.html#graph_SHK" },
+			"SOK": { i: 14, s: 0, l: "Saale-Orla-Kreis",                 ti: 0, tr: 0, td: 0, ni: 0, nr: 0, nd: 0, u: "./index_th_all.html#graph_SOK" },
+			"SLF": { i: 15, s: 0, l: "Landkreis Saalfeld-Rudolstadt",    ti: 0, tr: 0, td: 0, ni: 0, nr: 0, nd: 0, u: "./index_th_all.html#graph_SLF" },
+			"SM":  { i: 16, s: 0, l: "Landkreis Schmalkalden-Meiningen", ti: 0, tr: 0, td: 0, ni: 0, nr: 0, nd: 0, u: "./index_th_all.html#graph_SM" },
+			"SHL": { i: 17, s: 1, l: "Suhl",                             ti: 0, tr: 0, td: 0, ni: 0, nr: 0, nd: 0, u: "./index_th_all.html#graph_SHL" },
+			"SOM": { i: 18, s: 0, l: "Landkreis Sömmerda",               ti: 0, tr: 0, td: 0, ni: 0, nr: 0, nd: 0, u: "./index_th_all.html#graph_SOM" },
+			"SON": { i: 19, s: 0, l: "Landkreis Sonneberg",              ti: 0, tr: 0, td: 0, ni: 0, nr: 0, nd: 0, u: "./index_th_all.html#graph_SON" },
+			"UH":  { i: 20, s: 0, l: "Unstrut-Hainich-Kreis",            ti: 0, tr: 0, td: 0, ni: 0, nr: 0, nd: 0, u: "./index_th_all.html#graph_UH" },
+			"WAK": { i: 21, s: 0, l: "Wartburgkreis",                    ti: 0, tr: 0, td: 0, ni: 0, nr: 0, nd: 0, u: "./index_th_all.html#graph_WAK" },
+			"WE":  { i: 22, s: 1, l: "Weimar",                           ti: 0, tr: 0, td: 0, ni: 0, nr: 0, nd: 0, u: "./index.html#Weimar" },
+			"AP":  { i: 23, s: 0, l: "Weimarer Land",                    ti: 0, tr: 0, td: 0, ni: 0, nr: 0, nd: 0, u: "./index_th_all.html#graph_AP" },
+			"TH":  { i: 24, s: 2, l: "Thüringen",                        ti: 0, tr: 0, td: 0, ni: 0, nr: 0, nd: 0, u: "./index.html#TH" },
+		};
+		
+		function getPrefix( value ) {
+			return ( value >= 0 ) ? '+' : '−';;
+		}
+		
+		function parseRKIData(jsonObj) {
+			loadedJSON = true;
+			for (var region in regions) {
+				if ( jsonObj.hasOwnProperty(region) ) {
+					regions[region]['ti'] = jsonObj[region][0];
+					regions[region]['tr'] = jsonObj[region][1];
+					regions[region]['td'] = jsonObj[region][2];
+					regions[region]['ta'] = jsonObj[region][0] - jsonObj[region][1] - jsonObj[region][2];
+					regions[region]['ni'] = jsonObj[region][3];
+					regions[region]['nr'] = jsonObj[region][4];
+					regions[region]['nd'] = jsonObj[region][5];
+					regions[region]['na'] = jsonObj[region][3] - jsonObj[region][4] - jsonObj[region][5];
+				}
+			}
+			setupTable();
+		}
+		
+		function loadRKIData() {
+			var url =  './data/rki_th/current_cases_by_region.json';
+			
+			var request = new XMLHttpRequest();
+			request.open('GET', url, true);
+			request.responseType = 'json';
+			request.onload = function() {
+				if ( request.status == 200 )
+				{
+					console.log(request.response);
+					parseRKIData(request.response);
+				}
+			}
+			request.send();
+		}
+		
+		function getFAIncClass(inc) {
+			return ( inc < 0 ? "fa-arrow-circle-o-down" : ( inc > 0 ? "fa-arrow-circle-o-up" : "fa-circle-o" ) )
+		}
+		
+		function getIncColor(inc, inv) {
+			return ( inc < 0 ? ( inv ? "changeRed" : "changeGreen" ) : ( inc > 0 ? ( inv ? "changeGreen" : "changeRed" ) : "changeNeutral" ) );
+		}
+		
+		function setupTable() {
+			if ( THtable == null )
+				return;
+				
+			for (var region in regions) {
+				// add a new row
+				var row = THtable.insertRow(-1);
+				
+				// check for last row
+				if ( regions[region]['s'] == 2 ) {
+					row.id = "emptyrow";
+					emptycell = row.insertCell(-1);
+					emptycell.colSpan = 9;
+					emptycell.innerHTML = "&nbsp;";
+					emptycell.style = "padding: 0px;";
+					var row = THtable.insertRow(-1);
+					row.id = "THsums";
+				}
+				
+				// build the cells
+				row.insertCell(-1).innerHTML = regions[region]['s'] != 2 ? regions[region]['i'] : "" ;
+				row.insertCell(-1).innerHTML = "<a target=\"_self\" href=\"" + regions[region]['u'] + "\">" + regions[region]['l'] + "</a>";
+				row.insertCell(-1).innerHTML = "<img class=\"minipie\" src=\"./icons/pie_chart_mini_" + region + ".png\">";
+				row.insertCell(-1).innerHTML = getPrefix(regions[region]['ni']) + regions[region]['ni'];
+				row.insertCell(-1).innerHTML = "<div class=\"changevalue\">" + regions[region]['ta'] + "</div> <div class=\"changeicon\"><i class=\"fa " + getFAIncClass(regions[region]['na']) + " " + getIncColor(regions[region]['na'], false) + "\" aria-hidden=\"true\"></i></div>";
+				row.insertCell(-1).innerHTML = "<div class=\"changevalue\">" + regions[region]['ti'] + "</div> <div class=\"changeicon\"><i class=\"fa " + getFAIncClass(regions[region]['ni']) + " " + getIncColor(regions[region]['ni'], false) + "\" aria-hidden=\"true\"></i></div>";
+				row.insertCell(-1).innerHTML = "<div class=\"changevalue\">" + regions[region]['tr'] + "</div> <div class=\"changeicon\"><i class=\"fa " + getFAIncClass(regions[region]['nr']) + " " + getIncColor(regions[region]['nr'], true ) + "\" aria-hidden=\"true\"></i></div>";
+				row.insertCell(-1).innerHTML = "<div class=\"changevalue\">" + regions[region]['td'] + "</div> <div class=\"changeicon\"><i class=\"fa " + getFAIncClass(regions[region]['nd']) + " " + getIncColor(regions[region]['nd'], false) + "\" aria-hidden=\"true\"></i></div>";
+			}
+		}
+		
+		function showErrorMsg() {
+			if ( THtable == null )
+				return;
+			var row = THtable.insertRow(-1);
+			emptycell = row.insertCell(-1);
+			emptycell.colSpan = 9;
+			emptycell.style="color: #FF0000; text-align: center;";
+			emptycell.innerHTML = "<b>Fehler! Daten konnten nicht geladen werden!</b>";
+		}
+	
+		window.onload = function () {
+			loadRKIData();
+			setTimeout(function () { if ( loadedJSON == false) { showErrorMsg(); } }, 3000);
+		}
+	</script>
+	<div class="centerText">
+		<h1 id="Info">Info über diese Seite</h1>
+		<br>
+		Die Daten können je nach Quelle und Uhrzeit variieren und werden stündlich aktualisiert.<br>
+		<br>
+		Autor: <a href="https://www.michael-böhme.de/">Michael Böhme</a><br>
+		mit Unterstützung von <a href="https://floriankleiner.de">Florian Kleiner</a><br>
+		Abbildungen sind lizensiert unter <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/de/">CC BY-NC-SA</a><br>
+		<a href="https://www.uni-jena.de/200422_Boehme_Interview">Interview</a> &nbsp;&middot;&nbsp; <a href="https://github.com/micb25/corona-jena/blob/master/README.md">Zusammenfassung</a> &nbsp;&middot;&nbsp; <a href="https://github.com/micb25/corona-jena/blob/master/data/README.md">Daten</a> &nbsp;&middot;&nbsp; <a href="https://github.com/micb25/corona-jena">Quellcode</a><br>
+		<br>
+		<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=HGW4VMH2XP5WY&amp;source=url">☕ &nbsp; Kaffee spendieren &nbsp; ☕</a>
+		<br>
+		<br>
+	</div>
+	</body>
+</html>
