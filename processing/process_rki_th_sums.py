@@ -119,7 +119,7 @@ if __name__ == "__main__":
                 
         # add date for JSON
         current_data_per_region["Timestamp"] = last_date
-        current_data_per_region["DateLabel"] = "Stand: " + datetime.datetime.fromtimestamp(last_date).strftime("%d.%m.%Y")
+        current_data_per_region["DateLabel"] = "Stand: " + datetime.datetime.fromtimestamp(last_date + 86400).strftime("%d.%m.%Y") + ", 0 Uhr"
                 
         # write JSON with latest results per region
         with open(DATAFILE3, "w") as df:
