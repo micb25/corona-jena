@@ -28,7 +28,7 @@ def parseTHBulletinTable(text):
     num_pattern_R1 = re.compile(r"<tr><td>(?:<strong>)?.*?(?:Gesamtzahl\ der\ Genesenen|Anzahl\ Genesene).*?(?:<\/strong>)?</td><td>(?:<strong>)?([0-9]{1,})(?:<\/strong>)?</td></tr>")
     num_pattern_R2 = re.compile(r"von\ ([0-9]{1,})\ Genesenen")
     num_pattern_D1 = re.compile(r"[vV]erstorbene.*?</td><td.*?>(?:<strong>)?([\+\-0-9]{1,})(?:<\/strong>)?<\/td>")
-    num_pattern_HI = re.compile(r"Patienten\ stationär\ \/\ Gesamt.*?</td><td.*?>(?:<strong>)?([\+\-0-9]{1,})(?:<\/strong>)?<\/td>")
+    num_pattern_HI = re.compile(r"Patienten\ stationär\ \/\ Gesamt.*?</td><td.*?>(?:<strong>|<p>)?([\+\-0-9]{1,})(?:<\/strong>|<\/p>)?<\/td>")
     num_pattern_HC = re.compile(r"Patienten\ stationär\ \/\ aufgrund.*?</td><td.*?>(?:<strong>)?([\+\-0-9]{1,})(?:<\/strong>)?<\/td>")
     num_pattern_S1 = re.compile(r"[sS]chwere Verläufe.*?</td><td.*?>(?:<strong>)?([\+\-0-9]{1,})(?:<\/strong>)?<\/td>")
             
@@ -89,6 +89,8 @@ if __name__ == "__main__":
             new_record[i+1] = data[i]
         new_record[len(new_record)] = URL
         
+        print(new_record)
+        a=1/0
         if ( new_record[0] > timestamp_last ):
             
             # generate csv line
