@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import os, csv
+import os, csv, json
 
 
 if __name__ == "__main__":
@@ -10,6 +10,7 @@ if __name__ == "__main__":
     SOURCEFILE = SCRIPTPATH + '/../data/cases_th_rki_sums.csv'
     DATAFILE1  = SCRIPTPATH + '/../data/rki_th/cases_by_date.csv'
     DATAFILE2  = SCRIPTPATH + '/../data/rki_th/current_cases_by_region.csv'
+    DATAFILE3  = SCRIPTPATH + '/../data/rki_th/current_cases_by_region.json'
     
     array_dates = []
     data_array = []
@@ -116,4 +117,7 @@ if __name__ == "__main__":
             for entry in sorted_keys:
                 df.write("%s,%i,%i,%i,%i,%i,%i,%i\n" % ( entry, last_date, current_data_per_region[entry][0], current_data_per_region[entry][1], current_data_per_region[entry][2], current_data_per_region[entry][3], current_data_per_region[entry][4], current_data_per_region[entry][5]))
                 
+        # write JSON with latest results per region
+        with open(DATAFILE3, "w") as df:
+            df.write(json.dumps(current_data_per_region))
     
