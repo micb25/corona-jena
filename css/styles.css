@@ -247,6 +247,12 @@ div#selectorLinks span.menu_focus {
 		font-weight: normal;
 	}
 	.navLinks a {
-		padding: 6px 12px;
+		padding: 8px 8px;
+		line-height: 24px;
+	}
+	.navLinks a.region {
+		padding: 0px 8px;
+		font-size: 10px;
+		line-height: 18px;
 	}
 }
