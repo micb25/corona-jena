@@ -70,6 +70,9 @@
 			#THtable tr th:nth-child(1),td:nth-child(1) {
 				text-align: right;
 			}
+			#THtable tr th:nth-child(3),td:nth-child(3) {
+				text-align: center;
+			}
 			#THtable tr th:nth-child(4),td:nth-child(4) {
 				text-align: right;
 			}
@@ -110,6 +113,9 @@
 			.headerClass {
 
 			}
+			.sortableColumn {
+				cursor: pointer;
+			}
 			@media (max-width: 800px) {
 				#THtable th, td {
 					font-size: 10px;
@@ -119,12 +125,13 @@
 				#THtable tr th:nth-child(1),td:nth-child(1) {
 					display: none;
 				}	
-				#THtable th {
+				#THtable th p {
 					writing-mode: vertical-lr;
 					min-width: 40px;
 					transform: rotate(180deg);
+					margin: 0px;
 				}
-				#THtable th:nth-child(2) {
+				#THtable th:nth-child(2) p {
 					writing-mode: inherit;
 					transform: rotate(0deg);
 				}
@@ -164,14 +171,14 @@
 		<div lang="de" style="hyphens: auto;">
 			<table id="THtable">
 				<tr id="headerrow">
-					<th>#</th>
-					<th>Region</th>
-					<th>&nbsp;</th>
-					<th>Neu&shy;in&shy;fek&shy;ti&shy;onen</th>
-					<th>aktive Fälle<sup>*</sup></th>
-					<th>be&shy;stätigte Fälle</th>
-					<th>Ge&shy;ne&shy;sung&shy;en<sup>*</sup></th>
-					<th>Todes&shy;fälle</th>
+					<th class="sortableColumn"><p>#</p></th>
+					<th class="sortableColumn"><p>Region</p></th>
+					<th class="sortableColumn"><p>%</p></th>
+					<th class="sortableColumn"><p>Neu&shy;in&shy;fek&shy;ti&shy;onen</p></th>
+					<th class="sortableColumn"><p>aktive Fälle<sup>*</sup></p></th>
+					<th class="sortableColumn"><p>be&shy;stätigte Fälle</p></th>
+					<th class="sortableColumn"><p>Ge&shy;ne&shy;sung&shy;en<sup>*</sup></p></th>
+					<th class="sortableColumn"><p>Todes&shy;fälle</p></th>
 				</tr>
 			</table>
 		</div>
@@ -206,7 +213,7 @@
 			"WAK": { i: 21, s: 0, l: "Wartburgkreis",                    ti: 0, tr: 0, td: 0, ni: 0, nr: 0, nd: 0, u: "./index_th_all.html#graph_WAK" },
 			"WE":  { i: 22, s: 1, l: "Weimar",                           ti: 0, tr: 0, td: 0, ni: 0, nr: 0, nd: 0, u: "./index.html#Weimar" },
 			"AP":  { i: 23, s: 0, l: "Weimarer Land",                    ti: 0, tr: 0, td: 0, ni: 0, nr: 0, nd: 0, u: "./index_th_all.html#graph_AP" },
-			"TH":  { i: 24, s: 2, l: "Thüringen",                        ti: 0, tr: 0, td: 0, ni: 0, nr: 0, nd: 0, u: "./index.html#TH" },
+			"TH":  { i:  0, s: 2, l: "Thüringen",                        ti: 0, tr: 0, td: 0, ni: 0, nr: 0, nd: 0, u: "./index.html#TH" },
 		};
 		
 		function getPrefix( value ) {
@@ -228,7 +235,7 @@
 				}
 			}
 			if ( jsonObj.hasOwnProperty("DateLabel") ) {
-				document.getElementById('labelDate').innerHTML = ", " + jsonObj["DateLabel"];
+				document.getElementById('labelDate').innerHTML = "<br><br><b>" + jsonObj["DateLabel"] + "</b>";
 			}
 			setupTable();
 		}
@@ -241,10 +248,7 @@
 			request.responseType = 'json';
 			request.onload = function() {
 				if ( request.status == 200 )
-				{
-					console.log(request.response);
 					parseRKIData(request.response);
-				}
 			}
 			request.send();
 		}
@@ -279,15 +283,38 @@
 					row.id = "THsums";
 				}
 				
-				// build the cells
-				row.insertCell(-1).innerHTML = regions[region]['s'] != 2 ? regions[region]['i'] : "" ;
-				row.insertCell(-1).innerHTML = "<a target=\"_self\" href=\"" + regions[region]['u'] + "\">" + regions[region]['l'] + "</a>";
-				row.insertCell(-1).innerHTML = "<img class=\"minipie\" src=\"./icons/pie_chart_mini_" + region + ".png\">";
-				row.insertCell(-1).innerHTML = getPrefix(regions[region]['ni']) + regions[region]['ni'];
-				row.insertCell(-1).innerHTML = "<div class=\"changevalue\">" + regions[region]['ta'] + "</div> <div class=\"changeicon\"><i class=\"fa " + getFAIncClass(regions[region]['na']) + " " + getIncColor(regions[region]['na'], false) + "\" aria-hidden=\"true\"></i></div>";
-				row.insertCell(-1).innerHTML = "<div class=\"changevalue\">" + regions[region]['ti'] + "</div> <div class=\"changeicon\"><i class=\"fa " + getFAIncClass(regions[region]['ni']) + " " + getIncColor(regions[region]['ni'], false) + "\" aria-hidden=\"true\"></i></div>";
-				row.insertCell(-1).innerHTML = "<div class=\"changevalue\">" + regions[region]['tr'] + "</div> <div class=\"changeicon\"><i class=\"fa " + getFAIncClass(regions[region]['nr']) + " " + getIncColor(regions[region]['nr'], true ) + "\" aria-hidden=\"true\"></i></div>";
-				row.insertCell(-1).innerHTML = "<div class=\"changevalue\">" + regions[region]['td'] + "</div> <div class=\"changeicon\"><i class=\"fa " + getFAIncClass(regions[region]['nd']) + " " + getIncColor(regions[region]['nd'], false) + "\" aria-hidden=\"true\"></i></div>";
+				// add the cells
+				var theCell = row.insertCell(-1);
+				theCell.innerHTML = regions[region]['s'] != 2 ? regions[region]['i'] : "" ;
+				theCell.setAttribute('sorttable_customkey', regions[region]['i']);
+				
+				var theCell = row.insertCell(-1);
+				theCell.innerHTML = "<a target=\"_self\" href=\"" + regions[region]['u'] + "\">" + regions[region]['l'] + "</a>";
+				theCell.setAttribute('sorttable_customkey', regions[region]['l']);
+				
+				var theCell = row.insertCell(-1);
+				theCell.innerHTML = "<img class=\"minipie\" src=\"./icons/pie_chart_mini_" + region + ".png\">";
+				theCell.setAttribute('sorttable_customkey', 100.0 * regions[region]['ta'] / regions[region]['ti']);
+				
+				var theCell = row.insertCell(-1);
+				theCell.innerHTML = getPrefix(regions[region]['ni']) + regions[region]['ni'];
+				theCell.setAttribute('sorttable_customkey', regions[region]['ni']);
+				
+				var theCell = row.insertCell(-1);
+				theCell.innerHTML = "<div class=\"changevalue\">" + regions[region]['ta'] + "</div> <div class=\"changeicon\"><i class=\"fa " + getFAIncClass(regions[region]['na']) + " " + getIncColor(regions[region]['na'], false) + "\" aria-hidden=\"true\"></i></div>";
+				theCell.setAttribute('sorttable_customkey', regions[region]['ta']);
+				
+				var theCell = row.insertCell(-1);
+				theCell.innerHTML = "<div class=\"changevalue\">" + regions[region]['ti'] + "</div> <div class=\"changeicon\"><i class=\"fa " + getFAIncClass(regions[region]['ni']) + " " + getIncColor(regions[region]['ni'], false) + "\" aria-hidden=\"true\"></i></div>";
+				theCell.setAttribute('sorttable_customkey', regions[region]['ti']);
+				
+				var theCell = row.insertCell(-1);
+				theCell.innerHTML = "<div class=\"changevalue\">" + regions[region]['tr'] + "</div> <div class=\"changeicon\"><i class=\"fa " + getFAIncClass(regions[region]['nr']) + " " + getIncColor(regions[region]['nr'], true ) + "\" aria-hidden=\"true\"></i></div>";
+				theCell.setAttribute('sorttable_customkey', regions[region]['tr']);
+				
+				var theCell = row.insertCell(-1);
+				theCell.innerHTML = "<div class=\"changevalue\">" + regions[region]['td'] + "</div> <div class=\"changeicon\"><i class=\"fa " + getFAIncClass(regions[region]['nd']) + " " + getIncColor(regions[region]['nd'], false) + "\" aria-hidden=\"true\"></i></div>";
+				theCell.setAttribute('sorttable_customkey', regions[region]['td']);
 			}
 		}
 		
@@ -305,6 +332,43 @@
 			loadRKIData();
 			setTimeout(function () { if ( loadedJSON == false) { showErrorMsg(); } }, 3000);
 		}
+		
+		// sortable table inspired by https://stackoverflow.com/a/49041392
+		const getCellValue = (tr, idx) => tr.children[idx].getAttribute('sorttable_customkey');
+		const comparer = (idx, asc) => (a, b) => ((v1, v2) => v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2))(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
+		document.querySelectorAll('th.sortableColumn').forEach(th => th.addEventListener('click', (() => {
+			if ( loadedJSON == false )
+				return;
+				
+			// exclude and remove last two lines
+			var sLine1 = document.getElementById('emptyrow');
+			var sLine2 = document.getElementById('THsums');
+			THtable.deleteRow(-1);
+			THtable.deleteRow(-1);
+			
+			// change text color of selected column
+			var iIndex = Array.from(th.parentNode.children).indexOf(th);
+			var headerCells = Array.from(THtable.querySelectorAll('th'));
+			var tableRows = Array.from(THtable.querySelectorAll('tr'));
+			
+			for (cell in headerCells) {
+				headerCells[cell].style = (headerCells[cell] == th ? "color: #5070A0;" : "color: #000000;" );
+			}
+			for (row in tableRows) {
+				var rowCells = Array.from(tableRows[row].querySelectorAll('td'));
+				for ( cell in rowCells ) {
+					rowCells[cell].style = (iIndex == cell ? "color: #305080;" : "color: #000000;" );
+				}
+			}
+			
+			// sort the rows
+			var theArray = Array.from(THtable.querySelectorAll('tr:nth-child(n+2)'));
+			theArray.sort(comparer(iIndex, this.asc = !this.asc)).forEach(tr => THtable.appendChild(tr) );
+			
+			// add the last two lines again
+			THtable.appendChild(sLine1);
+			THtable.appendChild(sLine2);
+		})));
 	</script>
 	<div class="centerText">
 		<h1 id="Info">Info über diese Seite</h1>
