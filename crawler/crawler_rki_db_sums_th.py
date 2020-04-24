@@ -85,6 +85,8 @@ if __name__ == "__main__":
             
             for c in cases:
                 row = [c["attributes"][h] for h in header]
+                
+                # dates need to be divided by 1000 to obtain unix timestamps
                 row[index_date] = int(row[index_date] / 1000.0)
                 f.writerow(row)
             

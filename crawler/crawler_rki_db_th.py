@@ -9,12 +9,13 @@ def rki_db_query(offset = 0, chunk_size = 8000):
     # RKI databases: 
     # - Coronafälle_in_den_Bundesländern
     # - Covid19_RKI_Sums
+    #       AnzahlFall, AnzahlTodesfall, SummeFall	, SummeTodesfall, ObjectId, Datenstand, Meldedatum	,
+    #       Bundesland, IdBundesland, Landkreis, IdLandkreis, AnzahlGenesen	, SummeGenesen
     # - Deutschland_Bundesländergrenzen_2018
     # - Inzidenzen
     # - RKI_COVID19:
     #       IdBundesland, Bundesland, Landkreis, Altersgruppe, Geschlecht, AnzahlFall, AnzahlTodesfall, ObjectId, Meldedatum, IdLandkreis,
     #       Datenstand, NeuerFall, NeuerTodesfall, Refdatum, NeuGenesen, AnzahlGenesen
-    #
     # - RKI_Landkreisdaten  
     
     url = 'https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_COVID19/FeatureServer/0/query?'
@@ -59,6 +60,9 @@ if __name__ == "__main__":
     header = data["fields"]
     header = [h["name"] for h in header]
     
+    # remove 'ObjectId' field
+    header.remove("ObjectId")
+    
     index_date = 0
     index_refdate = 0
     for h in enumerate(header):
@@ -85,6 +89,8 @@ if __name__ == "__main__":
             
             for c in cases:
                 row = [c["attributes"][h] for h in header]
+                
+                # dates need to be divided by 1000 to obtain unix timestamps
                 row[index_date] = int(row[index_date] / 1000.0)
                 row[index_refdate] = int(row[index_refdate] / 1000.0)
                 f.writerow(row)
