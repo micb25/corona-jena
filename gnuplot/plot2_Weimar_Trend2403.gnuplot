@@ -23,7 +23,6 @@ if ( A_max - A_min < 2.0 ) {
 	ymax = 1.35 * A_max
 } else {
 	fit_performed = 1;
-	ymax = 1.75 * fo( (xmax - xmin_f) / 86400 )
 	
 	fo(x) = ao * exp( bo * x )
 	fit fo(x) "<awk '!_[$2]++' ../data/cases_weimar.dat" using ((filterx($1) - xmin_f)/86400):(filter_neg($2)) via ao, bo
@@ -31,6 +30,8 @@ if ( A_max - A_min < 2.0 ) {
 	foerr(x) = sqrt( (ao_err*exp(bo*x))*(ao_err*exp(bo*x)) + (bo_err*ao*bo*exp(bo*x))*(bo_err*ao*bo*exp(bo*x)) )
 	fomin(x) = fo(x) - foerr(x)
 	fomax(x) = fo(x) + foerr(x)
+	
+	ymax = 1.75 * fo( (xmax - xmin_f) / 86400 )
 }
 
 # x-axis setup
