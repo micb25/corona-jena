@@ -89,8 +89,6 @@ if __name__ == "__main__":
             new_record[i+1] = data[i]
         new_record[len(new_record)] = URL
         
-        print(new_record)
-        a=1/0
         if ( new_record[0] > timestamp_last ):
             
             # generate csv line
