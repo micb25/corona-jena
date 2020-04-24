@@ -73,7 +73,7 @@ if __name__ == "__main__":
         f.writerow(header)
         
         offset = 0
-        chunk_size = 2000
+        chunk_size = 1000
         while(True):
             
             data = rki_db_query(offset=offset, chunk_size=chunk_size)
