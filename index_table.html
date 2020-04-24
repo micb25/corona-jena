@@ -107,11 +107,26 @@
 			.changeGreen {
 				color: #008000;
 			}
+			.headerClass {
+
+			}
 			@media (max-width: 800px) {
 				#THtable th, td {
-					font-size: 12px;
-					padding-left: 3px;
-					padding-right: 3px;
+					font-size: 10px;
+					padding-left: 2px;
+					padding-right: 2px;
+				}
+				#THtable tr th:nth-child(1),td:nth-child(1) {
+					display: none;
+				}	
+				#THtable th {
+					writing-mode: vertical-lr;
+					min-width: 40px;
+					transform: rotate(180deg);
+				}
+				#THtable th:nth-child(2) {
+					writing-mode: inherit;
+					transform: rotate(0deg);
 				}
 				.minipie {
 					width: 28px;
@@ -148,8 +163,7 @@
 		<table id="THtable">
 			<tr id="headerrow">
 				<th>#</th>
-				<th>Region</th>
-				<th>&nbsp;</th>
+				<th colspan="2">Region</th>
 				<th>Neu&shy;in&shy;fek&shy;ti&shy;onen</th>
 				<th>aktive Fälle</th>
 				<th>be&shy;stätigte Fälle</th>
