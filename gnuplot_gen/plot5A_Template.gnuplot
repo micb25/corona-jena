@@ -10,6 +10,7 @@ update_str = "{/*0.75 (Stand: " . date_cmd . ")}"
 stats "<awk -F, '{if ((NR>1)&&($4==\"%NAME%\")&&($5>0)) {a[$10]+=$5; if ($9==\"W\") b[$10]+=$5}}END{for (i in a) print i,a[i]-b[i],b[i]}' ../data/cases_rki_db_th.csv | sort -k 1" using 2 name "M" nooutput
 stats "<awk -F, '{if ((NR>1)&&($4==\"%NAME%\")&&($5>0)) {a[$10]+=$5; if ($9==\"W\") b[$10]+=$5}}END{for (i in a) print i,a[i]-b[i],b[i]}' ../data/cases_rki_db_th.csv | sort -k 1" using 3 name "W" nooutput
 ymax = 1.38 * (W_max > M_max ? W_max : M_max)
+ymax = ymax < 10 ? 10 : ymax
 
 # get maximum values by gender
 stats "<awk -F, '{if (($9==\"M\")&&($4==\"%NAME%\")&&($5>0)) s+=$5} END{print s}' ../data/cases_rki_db_th.csv" using 1 name "MM" nooutput
