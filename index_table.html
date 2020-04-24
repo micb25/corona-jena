@@ -152,27 +152,29 @@
 	<noscript>
 		<strong>Diese Tabelle benötigt JavaScript!</strong>
 	</noscript>
-	<div class="centerText" lang="de" style="hyphens: auto;">
+	<div class="centerText">
 		<br>
 		<a target="_self" href="./index.html">&laquo; &nbsp; zurück zur Startseite &nbsp; &laquo;</a>
 		<br>
 		<br>
-		<h1>COVID19-Statistik für Thüringen</h1>
+		<h1>COVID19-Statistik für&nbsp;Thüringen</h1>
 		Quelle: <a href="https://corona.rki.de">Robert Koch-Institut</a><span id="labelDate"></span>
 		<br>
 		<br>
-		<table id="THtable">
-			<tr id="headerrow">
-				<th>#</th>
-				<th>Region</th>
-				<th>&nbsp;</th>
-				<th>Neu&shy;in&shy;fek&shy;ti&shy;onen</th>
-				<th>aktive Fälle<sup>*</sup></th>
-				<th>be&shy;stätigte Fälle</th>
-				<th>Ge&shy;ne&shy;sung&shy;en<sup>*</sup></th>
-				<th>Todes&shy;fälle</th>
-			</tr>
-		</table>
+		<div lang="de" style="hyphens: auto;">
+			<table id="THtable">
+				<tr id="headerrow">
+					<th>#</th>
+					<th>Region</th>
+					<th>&nbsp;</th>
+					<th>Neu&shy;in&shy;fek&shy;ti&shy;onen</th>
+					<th>aktive Fälle<sup>*</sup></th>
+					<th>be&shy;stätigte Fälle</th>
+					<th>Ge&shy;ne&shy;sung&shy;en<sup>*</sup></th>
+					<th>Todes&shy;fälle</th>
+				</tr>
+			</table>
+		</div>
 		<br>
 		<sup>*</sup> Zahl der Genesenen ist durch das Robert Koch-Institut geschätzt<br>
 		<br>
@@ -267,7 +269,10 @@
 				if ( regions[region]['s'] == 2 ) {
 					row.id = "emptyrow";
 					emptycell = row.insertCell(-1);
-					emptycell.colSpan = 9;
+					emptycell.innerHTML = "&nbsp;";
+					emptycell.style = "padding: 0px;";
+					emptycell = row.insertCell(-1);
+					emptycell.colSpan = 8;
 					emptycell.innerHTML = "&nbsp;";
 					emptycell.style = "padding: 0px;";
 					var row = THtable.insertRow(-1);
