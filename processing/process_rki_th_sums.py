@@ -16,7 +16,9 @@ if __name__ == "__main__":
     data_array = []
     last_date = 0
     current_data_per_region = {}
+    yesterdays_data_per_region = {}
     current_region = ""
+    fallback_calc_increments = False
     
     regions = {
         "LK Altenburger Land": "ABG",
@@ -64,6 +66,23 @@ if __name__ == "__main__":
         
         last_date = array_dates[-1]
         
+        # additional CSV filenames
+        last_date_label = datetime.datetime.fromtimestamp(last_date + 86400).strftime("%d.%m.%Y")
+        last_date_minus_one_label = datetime.datetime.fromtimestamp(last_date).strftime("%d.%m.%Y")
+        DATAFILE4  = SCRIPTPATH + '/../data/rki_th_by_date/cases_by_region_' + last_date_label + '.csv'
+        DATAFILE5  = SCRIPTPATH + '/../data/rki_th_by_date/cases_by_region_' + last_date_minus_one_label + '.csv'
+                
+        # read yesterdays data
+        if not os.path.isfile(DATAFILE5):
+            fallback_calc_increments = True
+        else:
+            with open(DATAFILE5, encoding="utf8") as oldcsvfile:
+                olddatareader = csv.reader(oldcsvfile, delimiter=',', quotechar='"' )
+                for row in enumerate(olddatareader):
+                    if (row[0] > 0):
+                        row_array = [int(row[1][2]), int(row[1][3]), int(row[1][4]), int(row[1][5]), int(row[1][6]), int(row[1][7]) ]
+                        yesterdays_data_per_region[row[1][0]] = row_array
+        
         # go back to start
         csvfile.seek(0)
         
@@ -86,9 +105,10 @@ if __name__ == "__main__":
                         entry["SummeGenesen"] += int(row[1][3])
                         entry["SummeTodesfall"] += int(row[1][4])
                         
-                        entry["AnzahlFall"] += int(row[1][5])
-                        entry["AnzahlGenesen"] += int(row[1][6])
-                        entry["AnzahlTodesfall"] += int(row[1][7])
+                        if fallback_calc_increments:
+                            entry["AnzahlFall"] += int(row[1][5])
+                            entry["AnzahlGenesen"] += int(row[1][6])
+                            entry["AnzahlTodesfall"] += int(row[1][7])
                         
                 if ( the_date == last_date ):
                     index = regions[row[1][1]]
@@ -98,7 +118,14 @@ if __name__ == "__main__":
         for entry in data_array:
             if ( entry["Datum"] == last_date ):
                 current_data_per_region["TH"] = [entry["SummeFall"], entry["SummeGenesen"], entry["SummeTodesfall"], entry["AnzahlFall"], entry["AnzahlGenesen"], entry["AnzahlTodesfall"]]
-                                    
+                
+        # calculate increments based on yesterdays data
+        if not fallback_calc_increments:
+            for idx in current_data_per_region.keys():
+                current_data_per_region[idx][3] = current_data_per_region[idx][0] - yesterdays_data_per_region[idx][0]
+                current_data_per_region[idx][4] = current_data_per_region[idx][1] - yesterdays_data_per_region[idx][1]
+                current_data_per_region[idx][5] = current_data_per_region[idx][2] - yesterdays_data_per_region[idx][2]
+        
         # write CSV data with sums per region
         with open(DATAFILE1, "w") as df:
             df.write("%s,%s,%s,%s,%s,%s,%s\n" % ("Datum", "SummeFall", "SummeGenesen", "SummeTodesfall", "AnzahlFall", "AnzahlGenesen", "AnzahlTodesfall"))
@@ -116,6 +143,9 @@ if __name__ == "__main__":
             
             for entry in sorted_keys:
                 df.write("%s,%i,%i,%i,%i,%i,%i,%i\n" % ( entry, last_date, current_data_per_region[entry][0], current_data_per_region[entry][1], current_data_per_region[entry][2], current_data_per_region[entry][3], current_data_per_region[entry][4], current_data_per_region[entry][5]))
+                
+        # copy new CSV to folder with daily tables
+        os.system("cp {} {} > /dev/null".format(DATAFILE2, DATAFILE4))
                 
         # add date for JSON
         current_data_per_region["Timestamp"] = last_date
