@@ -40,6 +40,7 @@ gC(x) = ymin * exp( log(2) / 28 * x)
 # x-axis setup
 unset xlabel
 set xtics 7*86400
+set mxtics 7
 set xdata time
 set timefmt "%s"
 set format x "%d.%m."
