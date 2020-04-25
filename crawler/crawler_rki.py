@@ -8,7 +8,9 @@ def getRKINumbers(url):
     headers = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
     
     num_pattern_DA = re.compile(r"\>Stand: ([0-9]{1,}\.[0-9]{1,}\.[0-9]{4})")
-    num_pattern_TH = re.compile(r"Gesamt</strong></td><td>([0-9]{1,})</td><td>([0-9]{1,})</td><td>([0-9]{1,})</td><td>([0-9]{1,})</td>")
+    num_pattern_TH = re.compile(r"Gesamt</td><td>([0-9]{1,})</td><td>([0-9]{1,})</td><td>([0-9]{1,})</td><td>([0-9]{1,})</td>")
+    
+    replace_array = [ "<strong>", "</strong>" ]
     
     try:
         r = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0)
@@ -22,6 +24,10 @@ def getRKINumbers(url):
         date = int(time.mktime(struct_time))
         
         s = re.sub(r"[\.\+\s]", "", s)
+        
+        for entry in replace_array:
+            s = s.replace(entry, "")
+        
         ps1 = num_pattern_TH.findall( s )
         if len(ps1) != 1:
             return False
