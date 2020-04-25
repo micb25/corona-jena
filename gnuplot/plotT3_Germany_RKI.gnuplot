@@ -7,7 +7,7 @@ stats "<awk -F, '!_[$2]++' ../data/cases_germany_total_rki.csv | awk -F, '{if (N
 xmin = 1583884800 + 5.9 * 86400
 xmin_o = int(STATS_min)
 xmax = int(STATS_max) + 18 * 86400
-xmax = xmin + (22 + 18) * 86400
+xmax = xmin + (44 + 18) * 86400
 
 fitmin = int(STATS_max) - 7 * 86400
 fitmax = int(STATS_max)
@@ -28,17 +28,19 @@ fmax(x) = f(x) + ferr(x)
 ymin = 9000
 ymax = 10000000
 
-gA(x) = ymin * exp( log(2) / 1 * x)
 gB(x) = ymin * exp( log(2) / 2 * x)
-gC(x) = ymin * exp( log(2) / 3 * x)
 gD(x) = ymin * exp( log(2) / 4 * x)
 gE(x) = ymin * exp( log(2) / 5 * x)
 gF(x) = ymin * exp( log(2) / 6 * x)
 gG(x) = ymin * exp( log(2) / 7 * x)
 gH(x) = ymin * exp( log(2) / 14 * x)
+gA(x) = ymin * exp( log(2) / 21 * x)
+gC(x) = ymin * exp( log(2) / 28 * x)
 
 # x-axis setup
 unset xlabel
+set xtics 7*86400
+set mxtics 7
 set xdata time
 set timefmt "%s"
 set format x "%d.%m."
@@ -56,15 +58,15 @@ set key at graph 0.02, 0.98 left top invert spacing 1.2 box ls 3
 # label_trend = sprintf("f({/Arial-Italic x}) = (%.3f±%.3f) e^{(%.3f±%.3f) {/Arial-Italic x}}", a, a_err, b, b_err)
 set label 2 at graph 0.99, 0.04 right "Hilfslinien entsprechen Fallzahl-Verdopplung alle {/Linux-Libertine-O-Italic N} Tage" textcolor ls 0
 
-set label 3 at first 7.2*86400 + xmin, first gA(8.2) right "täglich" textcolor ls 0
-set label 4 at first 20*86400 + xmin, first gB(16) right "2 Tage" textcolor ls 0
-set label 5 at first xmax - 0.5 * 86400, first gC( ((xmax-xmin)/86400) - 5.0) right "3 Tage" textcolor ls 0
-set label 6 at first xmax - 0.5 * 86400, first gD( ((xmax-xmin)/86400) - 5.5) right "4 Tage" textcolor ls 0
-set label 7 at first xmax - 0.5 * 86400, first gG( ((xmax-xmin)/86400) - 6.5) right "7 Tage" textcolor ls 0
-set label 8 at first xmax - 0.5 * 86400, first gH( ((xmax-xmin)/86400) - 8.5) right "14 Tage" textcolor ls 0
+set label 4 at first (xmin+86400*10), first gB( 12 - 0 ) right "2 Tage" textcolor ls 0
+set label 6 at first (xmin+86400*24), first gD( 24 - 2 ) left "4 Tage" textcolor ls 0
+set label 7 at first xmax - 0.5 * 86400, first gG( ((xmax-xmin)/86400) -  8) right "7 Tage" textcolor ls 0
+set label 8 at first xmax - 0.5 * 86400, first gH( ((xmax-xmin)/86400) - 11) right "14 Tage" textcolor ls 0
+set label 3 at first xmax - 0.5 * 86400, first gA( ((xmax-xmin)/86400) - 11) right "21 Tage" textcolor ls 0
+set label 5 at first xmax - 0.5 * 86400, first gC( ((xmax-xmin)/86400) - 13) right "28 Tage" textcolor ls 0
 
-label_double = log(2) / b > 21 ? sprintf(" Verdopplungszeit\n >21 Tage") : sprintf(" Verdopplungszeit\n ≈%.f Tage", log(2) / b )
-set label 9 at first fitmin, first f((fitmin - xmin_o - 4 * 86400) / 86400) label_double left textcolor ls 0
+label_double = log(2) / b > 28 ? sprintf(" Verdopplungszeit\n >28 Tage") : sprintf(" Verdopplungszeit\n ≈%.f Tage", log(2) / b )
+set label 9 at first fitmin, first f((fitmin - xmin_o - 11 * 86400) / 86400) label_double left textcolor ls 0
 
 # data
 plot  \
