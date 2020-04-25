@@ -52,3 +52,4 @@ datum,cases_total,cases_deceased,source
 1587506400,1872,71,https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html
 1587634452,1932,61,cases_thuringia_rki.csv
 1587693639,2023,65,cases_thuringia_rki.csv
+1587780040,2058,71,cases_thuringia_rki.csv
