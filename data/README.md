@@ -35,7 +35,6 @@ Die folgenden Dateien sind momentan noch in einem älteren Format gespeichert un
 
 | Region               | Datei                                                          |
 |----------------------|----------------------------------------------------------------|
-| Jena                 | [cases_jena.dat](cases_jena.dat)                               |
 | Weimar               | [cases_weimar.dat](cases_weimar.dat)                           |
 
 
