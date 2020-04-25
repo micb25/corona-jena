@@ -171,14 +171,14 @@
 		<div lang="de" style="hyphens: auto;">
 			<table id="THtable">
 				<tr id="headerrow">
-					<th class="sortableColumn"><p>#</p></th>
-					<th class="sortableColumn"><p>Region</p></th>
-					<th class="sortableColumn"><p>%</p></th>
-					<th class="sortableColumn"><p>Neu&shy;in&shy;fek&shy;ti&shy;onen</p></th>
-					<th class="sortableColumn"><p>aktive Fälle<sup>*</sup></p></th>
-					<th class="sortableColumn"><p>be&shy;stätigte Fälle</p></th>
-					<th class="sortableColumn"><p>Ge&shy;ne&shy;sung&shy;en<sup>*</sup></p></th>
-					<th class="sortableColumn"><p>Todes&shy;fälle</p></th>
+					<th class="sortableColumn" title="nach Nummer sortieren"><p>#</p></th>
+					<th class="sortableColumn" title="nach Namen sortieren"><p>Region</p></th>
+					<th class="sortableColumn" title="nach aktiven Fällen (prozentual) sortieren"><p>%</p></th>
+					<th class="sortableColumn" title="nach Neuinfektionen sortieren"><p>Neu&shy;in&shy;fek&shy;ti&shy;onen</p></th>
+					<th class="sortableColumn" title="nach aktiven Fällen sortieren"><p>aktive Fälle<sup>*</sup></p></th>
+					<th class="sortableColumn" title="nach bestätigten Fällen sortieren"><p>be&shy;stätigte Fälle</p></th>
+					<th class="sortableColumn" title="nach Genesungen sortieren"><p>Ge&shy;ne&shy;sung&shy;en<sup>*</sup></p></th>
+					<th class="sortableColumn" title="nach Todesfällen sortieren"><p>Todes&shy;fälle</p></th>
 				</tr>
 			</table>
 		</div>
@@ -283,38 +283,55 @@
 					row.id = "THsums";
 				}
 				
+				var tooltip = "bestätigte Fälle: " + regions[region]['ti'] + "\n";
+				tooltip    += "aktive Fälle: " + regions[region]['ta'] + " (" + (100.0*regions[region]['ta']/regions[region]['ti']).toFixed(1) + "%)\n";
+				tooltip    += "Genesene: " + regions[region]['tr'] + " (" + (100.0*regions[region]['tr']/regions[region]['ti']).toFixed(1) + "%)\n";
+				tooltip    += "Todesfälle: " + regions[region]['td'] + " (" + (100.0*regions[region]['td']/regions[region]['ti']).toFixed(1) + "%)";
+				
 				// add the cells
 				var theCell = row.insertCell(-1);
 				theCell.innerHTML = regions[region]['s'] != 2 ? regions[region]['i'] : "" ;
 				theCell.setAttribute('sorttable_customkey', regions[region]['i']);
+				theCell.setAttribute('title', tooltip);
 				
 				var theCell = row.insertCell(-1);
 				theCell.innerHTML = "<a target=\"_self\" href=\"" + regions[region]['u'] + "\">" + regions[region]['l'] + "</a>";
 				theCell.setAttribute('sorttable_customkey', regions[region]['l']);
+				theCell.setAttribute('title', tooltip);
 				
 				var theCell = row.insertCell(-1);
 				theCell.innerHTML = "<img class=\"minipie\" src=\"./icons/pie_chart_mini_" + region + ".png\">";
 				theCell.setAttribute('sorttable_customkey', 100.0 * regions[region]['ta'] / regions[region]['ti']);
+				theCell.setAttribute('title', tooltip);
 				
 				var theCell = row.insertCell(-1);
 				theCell.innerHTML = getPrefix(regions[region]['ni']) + regions[region]['ni'];
 				theCell.setAttribute('sorttable_customkey', regions[region]['ni']);
+				theCell.setAttribute('title', tooltip);
 				
 				var theCell = row.insertCell(-1);
 				theCell.innerHTML = "<div class=\"changevalue\">" + regions[region]['ta'] + "</div> <div class=\"changeicon\"><i class=\"fa " + getFAIncClass(regions[region]['na']) + " " + getIncColor(regions[region]['na'], false) + "\" aria-hidden=\"true\"></i></div>";
 				theCell.setAttribute('sorttable_customkey', regions[region]['ta']);
+				var tooltip = "" + getPrefix(regions[region]['na']) + Math.abs(regions[region]['na']) + " (" + getPrefix(regions[region]['na']) + (100.0*Math.abs(regions[region]['na'])/regions[region]['ta']).toFixed(1) + "%) gegenüber Vortag";
+				theCell.setAttribute('title', tooltip);
 				
 				var theCell = row.insertCell(-1);
 				theCell.innerHTML = "<div class=\"changevalue\">" + regions[region]['ti'] + "</div> <div class=\"changeicon\"><i class=\"fa " + getFAIncClass(regions[region]['ni']) + " " + getIncColor(regions[region]['ni'], false) + "\" aria-hidden=\"true\"></i></div>";
 				theCell.setAttribute('sorttable_customkey', regions[region]['ti']);
+				var tooltip = "" + getPrefix(regions[region]['ni']) + Math.abs(regions[region]['ni']) + " (" + getPrefix(regions[region]['ni']) + (100.0*Math.abs(regions[region]['ni'])/regions[region]['ti']).toFixed(1) + "%) gegenüber Vortag";
+				theCell.setAttribute('title', tooltip);
 				
 				var theCell = row.insertCell(-1);
 				theCell.innerHTML = "<div class=\"changevalue\">" + regions[region]['tr'] + "</div> <div class=\"changeicon\"><i class=\"fa " + getFAIncClass(regions[region]['nr']) + " " + getIncColor(regions[region]['nr'], true ) + "\" aria-hidden=\"true\"></i></div>";
 				theCell.setAttribute('sorttable_customkey', regions[region]['tr']);
+				var tooltip = "" + getPrefix(regions[region]['nr']) + Math.abs(regions[region]['nr']) + " (" + getPrefix(regions[region]['nr']) + (100.0*Math.abs(regions[region]['nr'])/regions[region]['tr']).toFixed(1) + "%) gegenüber Vortag";
+				theCell.setAttribute('title', tooltip);
 				
 				var theCell = row.insertCell(-1);
 				theCell.innerHTML = "<div class=\"changevalue\">" + regions[region]['td'] + "</div> <div class=\"changeicon\"><i class=\"fa " + getFAIncClass(regions[region]['nd']) + " " + getIncColor(regions[region]['nd'], false) + "\" aria-hidden=\"true\"></i></div>";
 				theCell.setAttribute('sorttable_customkey', regions[region]['td']);
+				var tooltip = "" + getPrefix(regions[region]['nd']) + Math.abs(regions[region]['nd']) + " (" + getPrefix(regions[region]['nd']) + (100.0*Math.abs(regions[region]['nd'])/regions[region]['td']).toFixed(1) + "%) gegenüber Vortag";
+				theCell.setAttribute('title', tooltip);
 			}
 		}
 		
