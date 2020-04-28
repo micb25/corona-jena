@@ -124,7 +124,7 @@
 				}
 				#THtable tr th:nth-child(1),td:nth-child(1) {
 					display: none;
-				}	
+				}
 				#THtable th p {
 					writing-mode: vertical-lr;
 					min-width: 40px;
@@ -191,6 +191,7 @@
 		var THtable = document.getElementById('THtable');
 		var loadedJSON = false;
 		var loadedJSONDates = false;
+		var firstRun = true;
 		var regions = {
 			"ABG": { i:  1, s: 0, l: "Altenburger Land",                 ti: 0, tr: 0, td: 0, ni: 0, nr: 0, nd: 0, u: "./index_th_all.html#graph_ABG" },
 			"EIC": { i:  2, s: 0, l: "Eichsfeld",                        ti: 0, tr: 0, td: 0, ni: 0, nr: 0, nd: 0, u: "./index_th_all.html#graph_EIC" },
@@ -301,6 +302,23 @@
 			request.send();
 		}
 		
+		function checkPieChartVisibility() {
+			var comboBox = document.getElementById('RKI_date');
+			if ( ( comboBox == null ) || ( THtable == null ) )
+				return;
+				
+			var headerCells = Array.from(THtable.querySelectorAll('th'));
+			headerCells[2].style = (comboBox.selectedIndex == 0 ? "display: block;" : "display: none;" );
+			
+			var tableRows = Array.from(THtable.querySelectorAll('tr'));
+			for ( row in tableRows ) {
+				var cellsInRow = Array.from(tableRows[row].querySelectorAll('td'));
+				if ( cellsInRow.length > 3 ) {
+					cellsInRow[2].style = (comboBox.selectedIndex == 0 ? "display: block;" : "display: none;" );
+				}
+			}
+		}
+		
 		function getFAIncClass(inc) {
 			return ( inc < 0 ? "fa-arrow-circle-o-down" : ( inc > 0 ? "fa-arrow-circle-o-up" : "fa-circle-o" ) )
 		}
@@ -320,13 +338,12 @@
 				// check for last row
 				if ( regions[region]['s'] == 2 ) {
 					row.id = "emptyrow";
-					emptycell = row.insertCell(-1);
-					emptycell.innerHTML = "&nbsp;";
-					emptycell.style = "padding: 0px;";
-					emptycell = row.insertCell(-1);
-					emptycell.colSpan = 8;
-					emptycell.innerHTML = "&nbsp;";
-					emptycell.style = "padding: 0px;";
+					for ( var i = 0; i < 8; i++ ) {
+						var emptycell = row.insertCell(-1);
+						emptycell.innerHTML = "&nbsp;";
+						emptycell.style = "padding: 0px;";
+					}
+					
 					var row = THtable.insertRow(-1);
 					row.id = "THsums";
 				}
@@ -381,6 +398,13 @@
 				var tooltip = "" + getPrefix(regions[region]['nd']) + Math.abs(regions[region]['nd']) + " (" + getPrefix(regions[region]['nd']) + (100.0*Math.abs(regions[region]['nd'])/regions[region]['td']).toFixed(1) + "%) gegenüber Vortag";
 				theCell.setAttribute('title', tooltip);
 			}
+			
+			if ( firstRun == true ) {
+				firstRun = false;
+				return;
+			}
+			
+			checkPieChartVisibility();
 		}
 		
 		function showErrorMsg() {
@@ -434,6 +458,8 @@
 			// add the last two lines again
 			THtable.appendChild(sLine1);
 			THtable.appendChild(sLine2);
+			
+			checkPieChartVisibility();
 		})));
 	</script>
 	<div class="centerText">
