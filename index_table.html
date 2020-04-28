@@ -168,6 +168,7 @@
 		Quelle: <a href="https://corona.rki.de">Robert Koch-Institut</a><span id="labelDate"></span>
 		<br>
 		<br>
+		<select id="RKI_date" style="display: none;"></select><br>
 		<div lang="de" style="hyphens: auto;">
 			<table id="THtable">
 				<tr id="headerrow">
@@ -189,6 +190,7 @@
 	<script>
 		var THtable = document.getElementById('THtable');
 		var loadedJSON = false;
+		var loadedJSONDates = false;
 		var regions = {
 			"ABG": { i:  1, s: 0, l: "Altenburger Land",                 ti: 0, tr: 0, td: 0, ni: 0, nr: 0, nd: 0, u: "./index_th_all.html#graph_ABG" },
 			"EIC": { i:  2, s: 0, l: "Eichsfeld",                        ti: 0, tr: 0, td: 0, ni: 0, nr: 0, nd: 0, u: "./index_th_all.html#graph_EIC" },
@@ -234,21 +236,72 @@
 					regions[region]['na'] = jsonObj[region][3] - jsonObj[region][4] - jsonObj[region][5];
 				}
 			}
+			/*
 			if ( jsonObj.hasOwnProperty("DateLabel") ) {
 				document.getElementById('labelDate').innerHTML = "<br><br><b>" + jsonObj["DateLabel"] + "</b>";
 			}
+			*/
 			setupTable();
 		}
 		
-		function loadRKIData() {
-			var url =  './data/rki_th/current_cases_by_region.json';
-			
+		function loadRKIData(url) {
 			var request = new XMLHttpRequest();
 			request.open('GET', url, true);
 			request.responseType = 'json';
 			request.onload = function() {
 				if ( request.status == 200 )
 					parseRKIData(request.response);
+			}
+			request.send();
+		}
+		
+		function parseRKIDates(jsonObj) {
+			loadedJSONDates = true;
+			jsonObj.reverse();
+			
+			var comboBox = document.getElementById('RKI_date');
+			if ( comboBox == null )
+				return;
+				
+			if ( THtable == null )
+				return;
+			
+			for ( d in jsonObj ) {
+				var option = document.createElement("option");
+				option.text = "Stand: " + jsonObj[d]["date"];
+				option.setAttribute("file", jsonObj[d]["file"]);
+				comboBox.add(option);
+			}
+			comboBox.selectedIndex = 0;
+			comboBox.onchange = function(){ onDateChanged(); };
+			comboBox.style = "display: block; margin: auto;";
+		}
+		
+		function onDateChanged() {
+			var comboBox = document.getElementById('RKI_date');
+			if ( comboBox == null )
+				return;
+				
+			var option = comboBox.options[ comboBox.selectedIndex ]
+			
+			loadedJSON = false;
+			while ( THtable.rows.length > 1 ) {
+				THtable.deleteRow(-1);
+			}
+			
+			setTimeout(function () { if ( loadedJSON == false) { showErrorMsg(); } }, 3000);
+			loadRKIData("./data/rki_th_by_date/" + option.getAttribute('file'));
+		}
+		
+		function loadRKIDates() {
+			var url =  './data/rki_th_by_date/cases_by_region_list.json';
+			
+			var request = new XMLHttpRequest();
+			request.open('GET', url, true);
+			request.responseType = 'json';
+			request.onload = function() {
+				if ( request.status == 200 )
+					parseRKIDates(request.response);
 			}
 			request.send();
 		}
@@ -346,7 +399,8 @@
 		}
 	
 		window.onload = function () {
-			loadRKIData();
+			loadRKIData("./data/rki_th_by_date/cases_by_region_list.json");
+			loadRKIDates();
 			setTimeout(function () { if ( loadedJSON == false) { showErrorMsg(); } }, 3000);
 		}
 		
