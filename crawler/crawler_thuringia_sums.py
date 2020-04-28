@@ -81,9 +81,13 @@ if __name__ == "__main__":
         
         # get latest values
         data = parseTHBulletinTable(entry[1].replace(".", ""))
-        
+                        
         new_record = {}
         new_record[0] = int(strToTimestamp(entry[0]))
+        
+        # 28.04.2020: fix for incorrect date
+        if ( data[0] == 2145 ):
+            new_record[0] = int(strToTimestamp("28. April 2020"))
         
         for i in range(len(data)):
             new_record[i+1] = data[i]
