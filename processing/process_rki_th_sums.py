@@ -64,13 +64,16 @@ if __name__ == "__main__":
                     break
                 array_dates.append(int(row[1][0]))
         
+        array_dates.sort()
         last_date = array_dates[-1]
         
         # additional CSV filenames
         last_date_label = datetime.datetime.fromtimestamp(last_date + 86400).strftime("%d.%m.%Y")
         last_date_minus_one_label = datetime.datetime.fromtimestamp(last_date).strftime("%d.%m.%Y")
         DATAFILE4  = SCRIPTPATH + '/../data/rki_th_by_date/cases_by_region_' + last_date_label + '.csv'
+        DATAFILE4J = SCRIPTPATH + '/../data/rki_th_by_date/cases_by_region_' + last_date_label + '.json'
         DATAFILE5  = SCRIPTPATH + '/../data/rki_th_by_date/cases_by_region_' + last_date_minus_one_label + '.csv'
+        DATAFILE5J = SCRIPTPATH + '/../data/rki_th_by_date/cases_by_region_' + last_date_minus_one_label + '.json'
                 
         # read yesterdays data
         if not os.path.isfile(DATAFILE5):
@@ -146,7 +149,7 @@ if __name__ == "__main__":
                 
         # copy new CSV to folder with daily tables
         os.system("cp {} {} > /dev/null".format(DATAFILE2, DATAFILE4))
-                
+        
         # add date for JSON
         current_data_per_region["Timestamp"] = last_date
         current_data_per_region["DateLabel"] = "Stand: " + datetime.datetime.fromtimestamp(last_date + 86400).strftime("%d.%m.%Y") + ", 0 Uhr"
@@ -155,10 +158,13 @@ if __name__ == "__main__":
         with open(DATAFILE3, "w") as df:
             df.write(json.dumps(current_data_per_region))
             
+        # copy current JSON in '../data/rki_th_by_date/'
+        os.system("cp {} {} > /dev/null".format(DATAFILE3, DATAFILE4J))
+            
         # update JSON list with available data        
         DATAPATH  = SCRIPTPATH + '/../data/rki_th_by_date/' # cases_by_region_' + last_date_minus_one_label + '.csv'
         DATAFILE6 = SCRIPTPATH + '/../data/rki_th_by_date/cases_by_region_list.json'
-        fnpattern = re.compile(r"cases_by_region_([0-9]{2}).([0-9]{2}).([0-9]{4}).csv");
+        fnpattern = re.compile(r"cases_by_region_([0-9]{2}).([0-9]{2}).([0-9]{4}).json");
         
         dates_tmp_arr = []
         dates_list = []
