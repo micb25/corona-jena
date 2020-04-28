@@ -46,8 +46,9 @@ def getNumbers():
             
             if ( dt == 1587974400 ):
                 if ( hotfix == False ):
-                    dt += 86400
                     hotfix = True
+                else:
+                    dt += 86400
             
             if dt is not False:
                 
