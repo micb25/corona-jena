@@ -305,7 +305,7 @@
 				theCell.setAttribute('title', tooltip);
 				
 				var theCell = row.insertCell(-1);
-				theCell.innerHTML = getPrefix(regions[region]['ni']) + regions[region]['ni'];
+				theCell.innerHTML = getPrefix(regions[region]['ni']) + Math.abs(regions[region]['ni']);
 				theCell.setAttribute('sorttable_customkey', regions[region]['ni']);
 				theCell.setAttribute('title', tooltip);
 				
