@@ -236,11 +236,6 @@
 					regions[region]['na'] = jsonObj[region][3] - jsonObj[region][4] - jsonObj[region][5];
 				}
 			}
-			/*
-			if ( jsonObj.hasOwnProperty("DateLabel") ) {
-				document.getElementById('labelDate').innerHTML = "<br><br><b>" + jsonObj["DateLabel"] + "</b>";
-			}
-			*/
 			setupTable();
 		}
 		
@@ -399,7 +394,7 @@
 		}
 	
 		window.onload = function () {
-			loadRKIData("./data/rki_th_by_date/cases_by_region_list.json");
+			loadRKIData("./data/rki_th/current_cases_by_region.json");
 			loadRKIDates();
 			setTimeout(function () { if ( loadedJSON == false) { showErrorMsg(); } }, 3000);
 		}
