@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import os, csv, json, datetime
+import os, csv, json, datetime, re
 
 
 if __name__ == "__main__":
@@ -154,4 +154,29 @@ if __name__ == "__main__":
         # write JSON with latest results per region
         with open(DATAFILE3, "w") as df:
             df.write(json.dumps(current_data_per_region))
-    
+            
+        # update JSON list with available data        
+        DATAPATH  = SCRIPTPATH + '/../data/rki_th_by_date/' # cases_by_region_' + last_date_minus_one_label + '.csv'
+        DATAFILE6 = SCRIPTPATH + '/../data/rki_th_by_date/cases_by_region_list.json'
+        fnpattern = re.compile(r"cases_by_region_([0-9]{2}).([0-9]{2}).([0-9]{4}).csv");
+        
+        dates_tmp_arr = []
+        dates_list = []
+        i = 0
+        csvfiles = [f for f in os.listdir(DATAPATH) if os.path.isfile(os.path.join(DATAPATH, f))]
+        for f in csvfiles:
+            pm = fnpattern.findall(f)
+            if ( len(pm) == 1 ) and ( len(pm[0]) == 3 ):                
+                dt = datetime.date(int(pm[0][2]), int(pm[0][1]), int(pm[0][0]))
+                
+                date_entry = {}
+                date_entry["date"] = dt.strftime("%d.%m.%Y") + ", 0 Uhr"
+                date_entry["timestamp"] = int(dt.strftime("%s"))
+                date_entry["file"] = f
+                dates_tmp_arr.append(date_entry)
+                dates_list.append(date_entry["timestamp"])
+                
+        dates_arr = sorted(dates_tmp_arr, key=lambda k: k['timestamp']) 
+        with open(DATAFILE6, "w") as df:
+            df.write(json.dumps(dates_arr))
+            
