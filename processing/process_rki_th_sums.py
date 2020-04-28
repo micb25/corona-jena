@@ -167,8 +167,6 @@ if __name__ == "__main__":
         fnpattern = re.compile(r"cases_by_region_([0-9]{2}).([0-9]{2}).([0-9]{4}).json");
         
         dates_tmp_arr = []
-        dates_list = []
-        i = 0
         csvfiles = [f for f in os.listdir(DATAPATH) if os.path.isfile(os.path.join(DATAPATH, f))]
         for f in csvfiles:
             pm = fnpattern.findall(f)
@@ -180,7 +178,6 @@ if __name__ == "__main__":
                 date_entry["timestamp"] = int(dt.strftime("%s"))
                 date_entry["file"] = f
                 dates_tmp_arr.append(date_entry)
-                dates_list.append(date_entry["timestamp"])
                 
         dates_arr = sorted(dates_tmp_arr, key=lambda k: k['timestamp']) 
         with open(DATAFILE6, "w") as df:
