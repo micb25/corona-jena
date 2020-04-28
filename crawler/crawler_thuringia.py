@@ -26,6 +26,8 @@ def getNumbers():
     url          = "https://www.landesregierung-thueringen.de/corona-bulletin"
     headers      = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
 
+    hotfix = False
+
     date_pattern = re.compile(r"(?:<strong>)?.*?\s\(Stand: (.*?)\)(?:<\/strong>)?.*?\<table.*?\<\/table\>.*?<table.*?\<tbody\>(.*?)\<\/tbody\>")
     num_pattern  = re.compile(r"\<tr\>\<th scope=\"row\">([A-Za-z\s\-äöüÄÖÜ]{1,})\<\/th\>\<td\>([\-0-9]{1,})\<\/td\>\<td\>([\-0-9]{1,})\<\/td\>\<td\>([\-0-9]{1,})\<\/td\>\<td\>([\-0-9]{1,})\<\/td\>\<td\>([\-0-9]{1,})\<\/td\>\<td\>([\-0-9]{1,})\<\/td\><\/tr\>") # 
     
@@ -41,6 +43,12 @@ def getNumbers():
         
         for p in pd:
             dt = strToTimestamp(p[0])
+            
+            if ( dt == 1587974400 ):
+                if ( hotfix == False ):
+                    dt += 86400
+                    hotfix = True
+            
             if dt is not False:
                 
                 # old layout
