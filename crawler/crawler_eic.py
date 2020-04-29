@@ -7,7 +7,7 @@ import time, requests, re, os
 def getEICNumbers(url):
     headers = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
     
-    num_pattern_T = re.compile(r"(?:der\ Infizierten?)\s?(?:\([^\)]*?\)):\s?([0-9]{1,})")
+    num_pattern_T = re.compile(r"Infizierten\s?:?\s?([0-9]{1,})")
     num_pattern_R = re.compile(r"(?:Genesenen?|Genesungen):\s?([0-9]{1,})")
     num_pattern_D = re.compile(r"(?:Todesfälle|Verstorbene|Tote)\:\s?([0-9]{1,})")
     num_pattern_H = re.compile(r"(?:stationäre?)\:\s?([0-9]{1,})")
