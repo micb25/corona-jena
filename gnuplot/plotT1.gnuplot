@@ -4,7 +4,7 @@ set output '../plotT1.png'
 
 # stats for x
 stats "<awk -F, '{if ( NR > 1 ) print int($1/86400)*86400}' ../data/cases_th_sums.csv" using 1 nooutput
-set xrange [ STATS_min - 86400 : STATS_max + 3.5 * 86400 ]
+set xrange [ STATS_min : STATS_max + 4.0 * 86400 ]
 
 # stats for y
 stats "<awk -F, '{if ( NR > 1 ) print $2}' ../data/cases_th_sums.csv" using 1 nooutput
