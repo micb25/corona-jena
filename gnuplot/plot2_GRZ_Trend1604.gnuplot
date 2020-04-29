@@ -51,5 +51,6 @@ plot  \
   [xmin:xmax] 1/0 lc rgb '#f2f2f2' title update_str, \
   [xmin_f:xmax_f] '+' using 1:(fomin(($1 - xmin_f)/86400)):(fomax((x - xmin_f)/86400)) with filledcurves closed ls 2 title "{/*0.75 stat. Fehlerbereich Trend (letzte 7 Tage)}", \
   [xmin_f:xmax_f] fo((x - xmin_f)/86400) w l ls 12 title "exponentieller Trend (letzte 7 Tage)", \
-  "<awk -F, '{if (NR>1) print $1, $2}' ../data/cases_grz.csv" using 1:(filter_neg($2)) with linespoints ls 1 title "bestätigte Fälle"
+  "<awk -F, '{if (NR>1) print $1, $2}' ../data/cases_grz.csv" using 1:(filter_neg($2)) with linespoints ls 1 title "bestätigte Fälle", \
+  [xmin_f:xmax_f] fo((x - xmin_f)/86400) w l ls 12 notitle
   
