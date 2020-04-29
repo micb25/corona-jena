@@ -312,13 +312,13 @@
 				return;
 				
 			var headerCells = Array.from(THtable.querySelectorAll('th'));
-			headerCells[2].style = (comboBox.selectedIndex == 0 ? "display: block;" : "display: none;" );
+			headerCells[2].style = (comboBox.selectedIndex == 0 ? "display: inherit;" : "display: none;" );
 			
 			var tableRows = Array.from(THtable.querySelectorAll('tr'));
 			for ( row in tableRows ) {
 				var cellsInRow = Array.from(tableRows[row].querySelectorAll('td'));
 				if ( cellsInRow.length > 3 ) {
-					cellsInRow[2].style = (comboBox.selectedIndex == 0 ? "display: block;" : "display: none;" );
+					cellsInRow[2].style = (comboBox.selectedIndex == 0 ? "display: inherit;" : "display: none;" );
 				}
 			}
 		}
