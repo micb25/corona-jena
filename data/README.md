@@ -23,6 +23,7 @@ In diesem [Verzeichnis](/data/) befinden sich die gesammelten Daten COVID-19 Dat
 | Landkreis Sonneberg   | [cases_son.csv](cases_son.csv)                                                     |
 | Unstrut-Hainich-Kreis | [cases_uh.csv](cases_uh.csv)                                                       |
 | Wartburgkreis         | [cases_wak.csv](cases_wak.csv)                                                     |
+| Weimar                | [cases_weimar.csv](cases_weimar.csv)                                               |
 
 Sonstige Formate:
 
@@ -30,13 +31,6 @@ Sonstige Formate:
 |------------------------|--------|----------------------------------------------------------------|----------------------------------------------------------------------|
 | Saalfeld-Rudolstadt    | JPG    | [Bilderordner](cases_slf/)                                     | [Bilderordner](https://michael-böhme.de/corona/data/cases_slf/)      |
 | Schmalkalden-Meiningen | PDF    | [Dokumentenordner](cases_sm/)                                  | [Dokumentenordner](https://michael-böhme.de/corona/data/cases_sm/)   |
-
-Die folgenden Dateien sind momentan noch in einem älteren Format gespeichert und werden demnächst zum CSV-Format transformiert:
-
-| Region               | Datei                                                          |
-|----------------------|----------------------------------------------------------------|
-| Weimar               | [cases_weimar.dat](cases_weimar.dat)                           |
-
 
 # Format
 

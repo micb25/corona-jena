@@ -3,14 +3,14 @@ load "template.gnuplot"
 set output '../plot2_Weimar_Trend2403.png'
 
 # stats for x
-stats "<awk '!_[$2]++' ../data/cases_weimar.dat" using 1 nooutput
-xmin = int(STATS_min) - 1 * 86400
+stats "<awk -F, '{print $1}' ../data/cases_weimar.csv" using 1 nooutput
+xmin = int(STATS_min) 
 xmin_o = int(STATS_min)
 xmin_f = int(STATS_max) - 7 * 86400
 xmax = int(STATS_max) + 1 * 86400
 xmax_f = int(STATS_max)
 
-stats "<awk '{print $2}' ../data/cases_weimar.dat | tail -n 169" using 1 prefix "A" nooutput
+stats "<awk -F, '{print $2}' ../data/cases_weimar.csv | tail -n 169" using 1 prefix "A" nooutput
 
 # fit
 filterx(x)=(x>=xmin_f)?(x):(1/0)
@@ -25,7 +25,7 @@ if ( A_max - A_min < 2.0 ) {
 	fit_performed = 1;
 	
 	fo(x) = ao * exp( bo * x )
-	fit fo(x) "<awk '!_[$2]++' ../data/cases_weimar.dat" using ((filterx($1) - xmin_f)/86400):(filter_neg($2)) via ao, bo
+	fit fo(x) "<awk -F, '{print $1, $2}' ../data/cases_weimar.csv" using ((filterx($1) - xmin_f)/86400):(filter_neg($2)) via ao, bo
 
 	foerr(x) = sqrt( (ao_err*exp(bo*x))*(ao_err*exp(bo*x)) + (bo_err*ao*bo*exp(bo*x))*(bo_err*ao*bo*exp(bo*x)) )
 	fomin(x) = fo(x) - foerr(x)
@@ -46,7 +46,7 @@ set ylabel 'Gesamtzahl der Fälle in Weimar'
 set yrange [ymin:ymax]
 
 # latest update
-date_cmd = sprintf("%s", "`awk '{print "@"$1}' ../data/cases_weimar.dat | tail -n 1 | xargs date +"%d.%m., %H:%M" -d`")
+date_cmd = sprintf("%s", "`awk -F, '{print "@"$1}' ../data/cases_weimar.csv | tail -n 1 | xargs date +"%d.%m., %H:%M" -d`")
 update_str = "{/*0.75 letztes Update: " . date_cmd . " Uhr}"
 
 # key
@@ -72,10 +72,11 @@ plot  \
   [xmin:xmax] 1/0 lc rgb '#f2f2f2' title update_str, \
   [xmin_f:xmax_f] '+' using 1:(fomin(($1 - xmin_f)/86400)):(fomax((x - xmin_f)/86400)) with filledcurves closed ls 2 title "{/*0.75 stat. Fehlerbereich Trend (letzte 7 Tage)}", \
   [xmin_f:xmax_f] fo((x - xmin_f)/86400) w l ls 12 title "exponentieller Trend (letzte 7 Tage)", \
-  "<awk '!_[$2]++' ../data/cases_weimar.dat" using 1:2 with linespoints ls 1 title "bestätigte Fälle"
+  "<awk -F, '{print $1, $2}' ../data/cases_weimar.csv" using 1:2 with linespoints ls 1 title "bestätigte Fälle", \
+  [xmin_f:xmax_f] fo((x - xmin_f)/86400) w l ls 12 notitle
 } else {
 plot  \
   1/0 lc rgb '#f2f2f2' title "{/*0.75 Quelle: Stadt Weimar}", \
   [xmin:xmax] 1/0 lc rgb '#f2f2f2' title update_str, \
-  "<awk '!_[$2]++' ../data/cases_weimar.dat" using 1:2 with linespoints ls 1 title "bestätigte Fälle"
+  "<awk -F, '{print $1, $2}' ../data/cases_weimar.csv" using 1:2 with linespoints ls 1 title "bestätigte Fälle"
 }

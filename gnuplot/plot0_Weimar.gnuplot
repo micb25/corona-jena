@@ -15,22 +15,17 @@ unset tics
 unset border
 
 # latest update
-date_cmd = sprintf("%s", "`awk '{print "@"$1}' ../data/cases_weimar.dat | tail -n 1 | xargs date +"%d.%m., %H:%M" -d`")
+date_cmd = sprintf("%s", "`awk -F, '{print "@"$1}' ../data/cases_weimar.csv | tail -n 1 | xargs date +"%d.%m., %H:%M" -d`")
 update_str = "letztes Update: " . date_cmd . " Uhr"
 
 # gets sum of infected people
-stats "<cat ../data/cases_weimar.dat | awk '{print $2, $2}'" u 2 prefix "A" nooutput
+stats "<cat ../data/cases_weimar.csv | awk -F, '{print $2, $2}'" u 2 prefix "A" nooutput
 
 # gets maximum number of recovered people
-stats "<cat ../data/cases_weimar.dat | awk '{print $2, $3}'" u 2 prefix "B" nooutput
+stats "<cat ../data/cases_weimar.csv | awk -F, '{print $2, $3}'" u 2 prefix "B" nooutput
 
 # gets maximum number of deceased
-stats "<cat ../data/cases_weimar.dat | awk '{print $2, $4}'" u 2 prefix "C" nooutput
-
-# calculate diffs
-stats "<awk '!_[$2]++' ../data/cases_weimar.dat | awk '{if ($2 >= 0) print $0}' | tail -n 2" u 2 prefix "G" nooutput
-
-diff_c = G_max - G_min
+stats "<cat ../data/cases_weimar.csv | awk -F, '{print $2, $4}'" u 2 prefix "C" nooutput
 
 angle(x)=x*360/A_max
 

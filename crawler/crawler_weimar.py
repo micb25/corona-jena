@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import time, requests, re, os
+import datetime, requests, re, os
 
-DATAFILE = os.path.dirname(os.path.realpath(__file__)) + "/../data/cases_weimar.dat"
 
-def getNumber():
-    url          = "https://stadt.weimar.de/aktuell/coronavirus/"
+def getWENumbers(url):
     headers      = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
     num_pattern1 = re.compile(r"von\s(?:insgesamt\s)([0-9]{1,})\spositiv.*\sf.*")
     num_pattern2 = re.compile(r"([0-9]{1,})\sperson.*?(?:geheilt|genesen)")
@@ -46,12 +44,34 @@ def getNumber():
     
     except:
         return False
+
     
 if __name__ == "__main__":
 
-    n = getNumber()
+    DATAFILE = os.path.dirname(os.path.realpath(__file__)) + "/../data/cases_weimar.csv"
+    URL = "https://stadt.weimar.de/aktuell/coronavirus/"
     
-    if (n != False) and (n[0] > -1):
-        f = open(DATAFILE, 'a')
-        f.write("%-16i %-8i %-8i %-8i %-8i %-8i\n" % (int(time.time()), n[0], n[1], n[2], n[3], n[4]))
-        f.close()
+    # do the request
+    num_latest = getWENumbers(URL)
+    
+    if (num_latest != False) and (num_latest[0] > -1):
+        # get old values
+        with open(DATAFILE, 'r') as df:
+            raw_data = df.read().splitlines()
+        current_values = raw_data[-1].split(",")[1:6]
+        
+        # check for changes
+        value_changed = False        
+        for i in enumerate(current_values):
+            if ( int(i[1]) != num_latest[i[0]] ):
+                if ( num_latest[i[0]] != -1 ):
+                    value_changed = True
+            
+        if value_changed:
+            # timestamp
+            timestamp = int(datetime.datetime.now().timestamp())
+            
+            # write new csv data
+            f = open(DATAFILE, 'a')
+            f.write("%i,%i,%i,%i,%i,%i,%i,%s\n" % (timestamp, num_latest[0], num_latest[1], num_latest[2], num_latest[3], num_latest[4], 0, URL))
+            f.close()

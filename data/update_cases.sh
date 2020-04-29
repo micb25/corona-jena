@@ -54,8 +54,8 @@ curl -O https://www.michael-böhme.de/corona/data/cases_thuringia_rki.csv
 rm cases_uh.csv
 curl -O https://www.michael-böhme.de/corona/data/cases_uh.csv
 
-rm cases_weimar.dat
-curl -O https://www.michael-böhme.de/corona/data/cases_weimar.dat
+rm cases_weimar.csv
+curl -O https://www.michael-böhme.de/corona/data/cases_weimar.csv
 
 rm cases_wak.csv
 curl -O https://www.michael-böhme.de/corona/data/cases_wak.csv
