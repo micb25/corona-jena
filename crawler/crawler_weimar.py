@@ -4,10 +4,27 @@
 import datetime, requests, re, os
 
 
+def getWENumbersRKI():
+    RKIFILE = os.path.dirname(os.path.realpath(__file__)) + "/../data/rki_th/current_cases_by_region.csv"
+    try:
+        with open(RKIFILE, 'r') as df:
+            raw_data = df.read().splitlines()
+        for l in raw_data:
+            if ( l[0:2] == 'WE' ):
+                current_values = l.split(",")[1:6]
+                return (int(current_values[2]), int(current_values[3]))
+        
+        return (-1, -1)
+    except:
+        return (-1, -1)
+    
+
 def getWENumbers(url):
     headers      = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
     num_pattern1 = re.compile(r"von\s(?:insgesamt\s)([0-9]{1,})\spositiv.*\sf.*")
     num_pattern2 = re.compile(r"([0-9]{1,})\sperson.*?(?:geheilt|genesen)")
+    
+    n = getWENumbersRKI()
     
     try:
         r = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0)
@@ -36,7 +53,7 @@ def getWENumbers(url):
     
         num_t = int(ps1[0]) if len(ps1) >= 1 else -1
         num_r = int(ps2[0]) if len(ps2) >= 1 else -1
-        num_d = -1
+        num_d = n[1] # RKI number
         num_h = -1
         num_s = -1
     
