@@ -90,5 +90,5 @@ if __name__ == "__main__":
             
             # write new csv data
             f = open(DATAFILE, 'a')
-            f.write("%i,%i,%i,%i,%i,%i,%i,%s\n" % (timestamp, num_latest[0], num_latest[1], num_latest[2], num_latest[3], num_latest[4], 0, URL))
+            f.write("%i,%i,%i,%i,%i,%i,%s\n" % (timestamp, num_latest[0], num_latest[1], num_latest[2], num_latest[3], num_latest[4], URL))
             f.close()
