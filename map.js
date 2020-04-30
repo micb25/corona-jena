@@ -357,7 +357,7 @@ function getData() {
 				// get start type
 				url = window.location.href.split("#");
 				startType = (url[1] in json.types) ? url[1] : firstentry["key"] ;
-                //console.log( 'selector_' + startType );
+                
 				changeViewTo( 'selector_' + startType );
 
 				// hide case count legend
@@ -379,6 +379,9 @@ function getData() {
 				city_template_exists( 'TH' );
 				document.getElementById( 'needsJS' ).style.display = 'block';
 				showUnits( );
+				
+				// initially show values
+				hide_region_texts();
 			}
 		}
 	);
