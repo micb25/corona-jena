@@ -78,4 +78,4 @@ plot \
      \
      "<echo 0" u (xpos-0.21):(ypos(6.30)):("Quelle: DIVI-Intensivregister") w labels font ", 12" left offset 2.5, 0, \
      "<echo 0" u (xpos-0.21):(ypos(7.00)):(update_str) w labels font ", 12" left offset 2.5, 0, \
-     "<echo 0" u (xpos-0.21):(ypos(7.70)):("Zahlen basieren auf den eigenständigen Meldungen der Kliniken\nin Thüringen in den vergangenen 60 Stunden.") w labels font ", 12" left offset 2.5, 0, \
+     "<echo 0" u (xpos-0.21):(ypos(7.70)):("Zahlen basieren auf den eigenständigen Meldungen der Kliniken\nin Thüringen in den vergangenen 60 Stunden.") w labels font ", 12" left offset 2.5, 0
