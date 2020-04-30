@@ -293,7 +293,13 @@ function generateMenu( ) {
 		document.getElementById( 'selector_' + key ).onclick = (
 			function( e ) {
 				changeViewTo( e.target.id );
-				if ( labelState != 'regionLabels' ) show_region_texts();
+				if ( labelState != 'regionLabels' ) {
+					show_region_texts();
+					hide_region_texts();
+				} else {
+					hide_region_texts();
+					show_region_texts();
+				}
 			} 
 		);
 	}
