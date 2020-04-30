@@ -149,8 +149,8 @@ h1 {
 svg#thuringiaMap {
 	margin: 0 auto;
 	width: 95%;
-    max-width: 966px;
-    max-height: 758px;
+	max-width: 840px;
+	max-height: 659px;
 }
 
 svg text {
