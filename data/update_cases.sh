@@ -18,6 +18,9 @@ curl -O https://www.michael-böhme.de/corona/data/cases_gera.csv
 rm cases_grz.csv
 curl -O https://www.michael-böhme.de/corona/data/cases_grz.csv
 
+rm cases_hbn.csv
+curl -O https://www.michael-böhme.de/corona/data/cases_hbn.csv
+
 rm cases_jena_opendata.csv
 curl -O https://www.michael-böhme.de/corona/data/cases_jena_opendata.csv
 

@@ -15,6 +15,7 @@ In diesem [Verzeichnis](/data/) befinden sich die gesammelten Daten COVID-19 Dat
 | Erfurt                | [cases_erfurt.csv](cases_erfurt.csv)                                               |
 | Gera                  | [cases_gera.csv](cases_gera.csv)                                                   |
 | Landkreis Greiz       | [cases_grz.csv](cases_grz.csv)                                                     |
+| Hildburghausen        | [cases_hbn.csv](cases_hbn.csv)                                                     |
 | Jena                  | [cases_jena_opendata.csv](cases_jena_opendata.csv)                                 |
 | Landkreis Nordhausen  | [cases_ndh.csv](cases_ndh.csv)                                                     |
 | Saale-Holzland-Kreis  | [cases_shk.csv](cases_shk.csv)                                                     |
