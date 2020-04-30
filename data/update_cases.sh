@@ -62,3 +62,14 @@ curl -O https://www.michael-böhme.de/corona/data/cases_weimar.csv
 
 rm cases_wak.csv
 curl -O https://www.michael-böhme.de/corona/data/cases_wak.csv
+
+
+cd divi_db_th
+
+rm divi_data_germany.csv
+curl -O https://www.michael-böhme.de/corona/data/divi_db_th/divi_data_germany.csv
+
+rm divi_data_th.csv
+curl -O https://www.michael-böhme.de/corona/data/divi_db_th/divi_data_th.csv
+
+cd ..
