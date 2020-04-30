@@ -312,7 +312,7 @@
 				return;
 				
 			var headerCells = Array.from(THtable.querySelectorAll('th'));
-			headerCells[2].style = (comboBox.selectedIndex == 0 ? "display: inline-block; vertical-align: middle" : "display: none;" );
+			headerCells[2].style = (comboBox.selectedIndex == 0 ? "display: table-cell; vertical-align: middle" : "display: none;" );
 			
 			var tableRows = Array.from(THtable.querySelectorAll('tr'));
 			for ( row in tableRows ) {
