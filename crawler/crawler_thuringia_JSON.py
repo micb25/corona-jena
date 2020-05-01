@@ -135,8 +135,13 @@ def writeAsJSON( pd, num_patterns ):
         }
     }
 
-    for p in pd:
+    p = pd
+    if True:
         dt = strToTimestamp(p[0])
+        
+        if ( dt == 1588233600 ):
+                dt += 86400
+                
         if dt is not False:
             ps = num_patterns[1].findall( p[1].replace("&nbsp;", "0") )
             for d in ps:
@@ -176,9 +181,8 @@ def parseNumbers():
     try:
         r = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0)
         pd = date_pattern.findall( r.text.replace("\n", "").replace("\r", "").replace("<p>", "").replace("</p>", "") )
-        pd.reverse()
         
-        writeAsJSON( pd, num_patterns )
+        writeAsJSON( pd[0], num_patterns )
         
     except:
         return False

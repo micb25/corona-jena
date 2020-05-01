@@ -39,9 +39,10 @@ def getNumbers():
     try:
         r = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0)
         pd = date_pattern.findall( r.text.replace("\n", "").replace("\r", "").replace("<p>", "").replace("</p>", "").replace("*", "") )
-        pd.reverse()
+        p = pd[0]
         
-        for p in pd:
+        #for p in pd:
+        if True:
             dt = strToTimestamp(p[0])
             
             if ( dt == 1587974400 ):
@@ -49,6 +50,9 @@ def getNumbers():
                     hotfix = True
                 else:
                     dt += 86400
+                    
+            if ( dt == 1588233600 ):
+                dt += 86400
             
             if dt is not False:
                 
@@ -81,7 +85,7 @@ def getNumbers():
 if __name__ == "__main__":
 
     n = getNumbers()
-    
+
     if n != False:
         f = open(DATAFILE, 'a')
         f.write(n) 

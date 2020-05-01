@@ -88,6 +88,10 @@ if __name__ == "__main__":
         # 28.04.2020: fix for incorrect date
         if ( data[0] == 2145 ):
             new_record[0] = int(strToTimestamp("28. April 2020"))
+            
+        # 01.05.2020: fix for incorrect date
+        if ( data[0] == 2323 ):
+            new_record[0] = int(strToTimestamp("01. Mai 2020"))
         
         for i in range(len(data)):
             new_record[i+1] = data[i]
