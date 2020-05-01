@@ -4,7 +4,7 @@ set output '../plotT1_%FILENAME%.png'
 
 # stats for x
 stats "<awk -F, '{if ($2==\"%NAME%\")a[$1]+=$4}END{for(i in a) print int(i/86400)*86400,a[i]}' ../data/cases_thuringia.csv | sort -n -k1" using 1 nooutput
-set xrange [ STATS_min : STATS_max + 7.0 * 86400 ]
+set xrange [ STATS_min : STATS_max + 8.0 * 86400 ]
 
 # stats for y
 stats "<awk -F, '{if ($2==\"%NAME%\")a[$1]+=$4}END{for(i in a) print int(i/86400)*86400,a[i]}' ../data/cases_thuringia.csv | awk '{if ($2 >= 0) print $0}' | sort -n -k1" using 2 nooutput
