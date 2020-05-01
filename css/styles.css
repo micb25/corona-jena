@@ -19,8 +19,7 @@ body {
 	color:#333;
 	margin: auto;
 	padding: 0;
-	width:96%;
-	max-width: 1850px;/*800px*/
+	width:98%;
 	line-height: 200%;
 }
 a, a:active, a:visited {
@@ -48,11 +47,11 @@ a:hover {
 }
 .graphBlock img {
 	width: 95%;
-	max-width: 800px;
+	max-width: 700px;
 }
 .graphBlock .piechart {
 	width: 98%;
-	max-width: 800px;
+	max-width: 700px;
 }
 .graphBlock h2 {
 	margin-bottom: 0px;
@@ -262,5 +261,15 @@ div#selectorLinks span.menu_focus {
 	}
 	.graphBlockSpacer {
 		display: none;
+	}
+}
+@media (min-width: 2000px) {
+	.graphBlock img {
+		width: 95%;
+		max-width: 800px;
+	}
+	.graphBlock .piechart {
+		width: 98%;
+		max-width: 800px;
 	}
 }
