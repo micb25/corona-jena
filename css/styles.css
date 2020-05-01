@@ -41,6 +41,11 @@ a:hover {
 	display: inline-block;
 	width: 100%;
 }
+.graphBlockSpacer {
+	display: inline-block;
+	width: 47.5%;
+	max-width: 400px;
+}
 .graphBlock img {
 	width: 95%;
 	max-width: 800px;
@@ -254,5 +259,8 @@ div#selectorLinks span.menu_focus {
 		padding: 0px 8px;
 		font-size: 10px;
 		line-height: 18px;
+	}
+	.graphBlockSpacer {
+		display: none;
 	}
 }
