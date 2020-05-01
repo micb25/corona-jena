@@ -78,7 +78,7 @@ def getNumbers():
                         else:
                             res = res + "%i,%s,%i,%i,%i,%i,%i,%i\n" % (dt, d[0], int(d[3]), int(d[2]), int(d[5]), int(d[6]), int(d[7]), 0)
                             
-        return res
+        return [dt, res]
     except:
         return False
     
@@ -87,6 +87,13 @@ if __name__ == "__main__":
     n = getNumbers()
 
     if n != False:
-        f = open(DATAFILE, 'a')
-        f.write(n) 
-        f.close()
+        # get old data
+        with open(DATAFILE, 'r') as df:
+            raw_data = df.read().splitlines()
+        current_date = int(raw_data[-1].split(",")[0])
+        
+        # write new data
+        if ( n[0] > current_date ):
+            f = open(DATAFILE, 'a')
+            f.write(n[1]) 
+            f.close()
