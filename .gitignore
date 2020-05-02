@@ -1,4 +1,5 @@
 *.log
+icons/pie*png
 plot*.png
 map*.jpg
 data/*ods
