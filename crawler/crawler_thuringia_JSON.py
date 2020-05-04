@@ -69,8 +69,17 @@ def writeAsJSON( pd, num_patterns ):
             "pm" : 1,
             "showSum": 1
         },
-        "hospinf": {
+        "diffweek": {
             "id": 2,
+            "de": "Entwicklung zur Vorwoche",
+            "color": "#A000FFFF",
+            "unit": "Fälle",
+            "unit1": "Fall",
+            "pm" : 1,
+            "showSum": 1
+        },
+        "hospinf": {
+            "id": 3,
             "de": "stationäre Fälle mit COVID19",
             "color": "#EBE800",
             "unit": "Fälle",
@@ -78,7 +87,7 @@ def writeAsJSON( pd, num_patterns ):
             "showSum": 1
         },
         "hosp": {
-            "id": 3,
+            "id": 4,
             "de": "stationäre Fälle wegen COVID19",
             "color": "#FFAD00",
             "unit": "Fälle",
@@ -86,7 +95,7 @@ def writeAsJSON( pd, num_patterns ):
             "showSum": 1
         },
         "severe": {
-            "id": 4,
+            "id": 5,
             "de": "schwere Verläufe",
             "color": "#D30000",
             "unit": "Fälle",
@@ -94,7 +103,7 @@ def writeAsJSON( pd, num_patterns ):
             "showSum": 1
         },
         "deceased": {
-            "id": 5,
+            "id": 6,
             "de": "Todesfälle",
             "color": "#333333",
             "unit": "Verstorbene",
@@ -102,53 +111,66 @@ def writeAsJSON( pd, num_patterns ):
             "showSum": 1
         },
         "caseres" : {
-            "id": 6,
+            "id": 7,
             "de": 'relative Fallzahlen',
             "color": '#0000D3',
             "unit": 'Fälle / 100 000 EW'
         },
         "casedens" : { 
-            "id": 7,
+            "id": 8,
             "de": 'flächenbezogene Fälle',
             "color": '#0000D3',
             "unit": 'Fälle / km²'
         },
         "res" : {
-            "id": 8,
+            "id": 9,
             "de": 'Einwohner',
             "color": '#00A000',
             "unit": 'EW',
             "showSum": 1
         },
         "area" : {
-            "id": 9,
+            "id": 10,
             "de": 'Fläche',
             "color": '#00A000',
             "unit": 'km²',
             "showSum": 1
         },
         "dens" : {
-            "id": 10,
+            "id": 11,
             "de": 'Einwohnerdichte',
             "color": '#00A000',
             "unit": 'EW / km²'
         }
     }
+        
+
 
     p = pd
     if True:
         dt = strToTimestamp(p[0])
-        
-        if ( dt == 1588233600 ):
-                dt += 86400
+                        
+        if dt is not False:            
+            # get numbers one week ago
+            last_week = dt - 7 * 86400
+            DATAFILE = os.path.dirname(os.path.realpath(__file__)) + "/../data/cases_thuringia.csv"    
+            with open(DATAFILE, 'r') as df:
+                raw_data = df.read().splitlines()
                 
-        if dt is not False:
+            for line in raw_data:
+                cols = line.split(",")
+                if ( int(cols[0]) == last_week ):
+                    for key in regions:
+                        if ( regions[key]["name"] == cols[1] ):
+                            regions[key]["diffweek"]  = -int(cols[3])
+            
             ps = num_patterns[1].findall( p[1].replace("&nbsp;", "0") )
             for d in ps:
                 for key in regions:
                     if ( regions[key]["name"] == d[0] ):
                         regions[key]["cases"] = int(d[2])
                         regions[key]["diff"]  = int(d[3])
+                        regions[key]["diffweek"] += int(d[2])
                         regions[key]["hospinf"]  = int(d[4])
                         regions[key]["hosp"]  = int(d[5])
                         regions[key]["severe"]  = int(d[6])
