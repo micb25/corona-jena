@@ -21,8 +21,8 @@ def getGeraNumbersRKI():
 
 def getGeraNumbers(url):
     headers      = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
-    num_pattern1 = re.compile(r"Infizierte\s([0-9]{1,})")
-    num_pattern2 = re.compile(r"\s([0-9]{1,})\s(?:Person)?.*?\s?genesen")
+    num_pattern1 = re.compile(r"Infizierte\s([0-9]{1,})\s")
+    num_pattern2 = re.compile(r"\s([0-9]{1,})\sPersonen\sgenesen")
     num_pattern3 = re.compile(r"\s[vV]erstorbene\:?\s?([0-9]{1,})")
     
     n = getGeraNumbersRKI()
