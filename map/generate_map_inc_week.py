@@ -90,7 +90,7 @@ if __name__ == "__main__":
             svgdata = svgdata.replace(r, area_color)
 
         # change labels
-        svgdata = svgdata.replace("%TITLE%", "Entwicklung der Fallzahlen zum Vortag")
+        svgdata = svgdata.replace("%TITLE%", "Entwicklung der Fallzahlen zur Vorwoche")
         svgdata = svgdata.replace("%MIN_VAL%", "+0 Fälle")
         svgdata = svgdata.replace("%MID_VAL%", "%+i Fälle" % (int(max_cases/2)))
         svgdata = svgdata.replace("%MAX_VAL%", "%+i Fälle" % (max_cases))
