@@ -7,7 +7,7 @@ stats "<awk -F, '{if (NR > 1) print int($1/86400)*86400,$2}' ../data/cases_th_su
 xmin = 1583884800 + 8 * 86400
 xmin_o = int(STATS_min)
 xmax = int(STATS_max) + 18 * 86400
-xmax = xmin + (28 + 18) * 86400
+xmax = xmin + (40 + 18) * 86400
 
 fitmin = int(STATS_max) - 7 * 86400
 fitmax = int(STATS_max)
@@ -28,7 +28,7 @@ fmax(x) = f(x) + ferr(x)
 gA(x) = 100 * exp( log(2) / 1 * x)
 gB(x) = 100 * exp( log(2) / 2 * x)
 gC(x) = 100 * exp( log(2) / 3 * x)
-gD(x) = 100 * exp( log(2) / 4 * x)
+gD(x) = 100 * exp( log(2) / 21 * x)
 gE(x) = 100 * exp( log(2) / 5 * x)
 gF(x) = 100 * exp( log(2) / 6 * x)
 gG(x) = 100 * exp( log(2) / 7 * x)
@@ -38,6 +38,10 @@ ymin = 100
 ymax = 100000
 
 # x-axis setup
+
+set xtics 4*86400
+set mxtics 4
+
 unset xlabel
 set xdata time
 set timefmt "%s"
@@ -58,12 +62,12 @@ set label 2 at graph 0.99, 0.04 right "Hilfslinien entsprechen Fallzahl-Verdoppl
 set label 3 at graph 0.13, 0.67 right "täglich" textcolor ls 0
 set label 4 at graph 0.18, 0.67 left "2 Tage" textcolor ls 0
 set label 5 at graph 0.33, 0.67 left  "3 Tage" textcolor ls 0
-set label 6 at first xmax - 0.5 * 86400, first gD( ((xmax-xmin)/86400) - 8.5) right "4 Tage" textcolor ls 0
-set label 7 at first xmax - 0.5 * 86400, first gG( ((xmax-xmin)/86400) - 6.5) right "7 Tage" textcolor ls 0
-set label 8 at first xmax - 0.5 * 86400, first gH( ((xmax-xmin)/86400) - 8.5) right "14 Tage" textcolor ls 0
+set label 6 at first xmax - 0.5 * 86400, first gD( ((xmax-xmin)/86400) - 9.5) right "21 Tage" textcolor ls 0
+set label 7 at first xmax - 0.5 * 86400, first gG( ((xmax-xmin)/86400) - 8.5) right "7 Tage" textcolor ls 0
+set label 8 at first xmax - 0.5 * 86400, first gH( ((xmax-xmin)/86400) - 9.5) right "14 Tage" textcolor ls 0
 
 label_double = log(2) / b > 21 ? sprintf(" Verdopplungszeit\n >21 Tage") : sprintf(" Verdopplungszeit\n ≈%.f Tage", log(2) / b )
-set label 9 at first fitmin, first f((fitmin - xmin_o - 8 * 86400) / 86400) label_double left textcolor ls 0
+set label 9 at first fitmax, first f((fitmin - xmin_o) / 86400) label_double right offset 0.0, 2.0 textcolor ls 0
 
 # date
 date_cmd = sprintf("%s", "`awk -F, '{print "@"$1}' ../data/cases_th_sums.csv | tail -n 1 | xargs date +"%d.%m., %H:%M" -d`")
