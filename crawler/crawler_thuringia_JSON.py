@@ -82,10 +82,9 @@ def writeAsJSON( pd, num_patterns ):
             "id": 3,
             "de": "rel. Entwicklung zur Vorwoche",
             "color": "#A000FFFF",
-            "unit": "Fälle / 100 000 EW",
-            "unit1": "Fall / 100 000 EW",
-            "pm" : 1,
-            "showSum": 0
+            "unit": "Fälle / 100&thinsp;000 EW",
+            "unit1": "Fall / 100&thinsp;000 EW",
+            "pm" : 1
         },
         "hospinf": {
             "id": 4,
@@ -123,7 +122,7 @@ def writeAsJSON( pd, num_patterns ):
             "id": 8,
             "de": 'relative Fallzahlen',
             "color": '#0000D3',
-            "unit": 'Fälle / 100 000 EW'
+            "unit": 'Fälle / 100&thinsp;000 EW'
         },
         "casedens" : { 
             "id": 9,
