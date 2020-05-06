@@ -10,7 +10,7 @@ xmin_f = int(STATS_max) - 7 * 86400
 xmax = int(STATS_max) + 1 * 86400
 xmax_f = int(STATS_max)
 
-stats "<awk -F, '{print $2}' ../data/cases_weimar.csv | tail -n 169" using 1 prefix "A" nooutput
+stats "<awk -F, '{print $2}' ../data/cases_weimar.csv | tail -n 7" using 1 prefix "A" nooutput
 
 # fit
 filterx(x)=(x>=xmin_f)?(x):(1/0)

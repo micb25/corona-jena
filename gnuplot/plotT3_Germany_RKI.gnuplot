@@ -7,7 +7,7 @@ stats "<awk -F, '!_[$2]++' ../data/cases_germany_total_rki.csv | awk -F, '{if (N
 xmin = 1583884800 + 5.9 * 86400
 xmin_o = int(STATS_min)
 xmax = int(STATS_max) + 18 * 86400
-xmax = xmin + (44 + 18) * 86400
+xmax = xmin + (48 + 18) * 86400
 
 fitmin = int(STATS_max) - 7 * 86400
 fitmax = int(STATS_max)
@@ -66,7 +66,7 @@ set label 3 at first xmax - 0.5 * 86400, first gA( ((xmax-xmin)/86400) - 11) rig
 set label 5 at first xmax - 0.5 * 86400, first gC( ((xmax-xmin)/86400) - 13) right "28 Tage" textcolor ls 0
 
 label_double = log(2) / b > 28 ? sprintf(" Verdopplungszeit\n >28 Tage") : sprintf(" Verdopplungszeit\n ≈%.f Tage", log(2) / b )
-set label 9 at first fitmin, first f((fitmin - xmin_o - 11 * 86400) / 86400) label_double left textcolor ls 0
+set label 9 at first fitmax, first f((fitmin - xmin_o) / 86400) label_double right offset 0, 2.0 textcolor ls 0
 
 # data
 plot  \

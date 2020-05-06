@@ -42,7 +42,9 @@ set xtics ( "KW 12\n{/*0.85 16.03.-}\n{/*0.85 22.03.}" 1584316800, \
             "KW 17\n{/*0.85 20.04.-}\n{/*0.85 26.04.}" 1587340800, \
             "KW 18\n{/*0.85 27.04.-}\n{/*0.85 03.05.}" 1587945600, \
             "KW 19\n{/*0.85 04.05.-}\n{/*0.85 10.05.}" 1588550400, \
-            "KW 20\n{/*0.85 11.05.-}\n{/*0.85 17.05.}" 1589155200 )
+            "KW 20\n{/*0.85 11.05.-}\n{/*0.85 17.05.}" 1589155200, \
+            "KW 21\n{/*0.85 18.05.-}\n{/*0.85 24.05.}" 1589760000, \
+            "KW 22\n{/*0.85 25.05.-}\n{/*0.85 31.05.}" 1590364800 )
 
 set label 1 at graph 0.98, 0.95 "{/Linux-Libertine-O-Bold Coronavirus-Todesfälle pro Kalenderwoche in Thüringen}" right textcolor ls 0
 set label 2 at graph 0.98, 0.90 update_str right textcolor ls 0
@@ -50,5 +52,6 @@ set label 2 at graph 0.98, 0.90 update_str right textcolor ls 0
 # data
 plot  \
   "<awk -F, 'BEGIN{d=0;w=0;tmin=1584316800}{if((NR>1)&&($1>=1584316800)){if ($1<=tmin+7*86400){w+=$4-d;d=$4;}else{print tmin,w;tmin=tmin+7*86400;w=0;}}}END{if (w>0) print tmin, w}' ../data/cases_th_sums.csv" using 1:2 with boxes lt rgb "#52555e" notitle, \
+  "<awk -F, 'BEGIN{d=0;w=0;tmin=1584316800}{if((NR>1)&&($1>=1584316800)){if ($1<=tmin+7*86400){w+=$4-d;d=$4;}else{print tmin,w;tmin=tmin+7*86400;w=0;}}}END{if (w>0) print tmin, w}' ../data/cases_th_sums.csv" using 1:2:2 with labels point pt 7 ps 0 center offset char -0.5, 0.5 tc ls 5 notitle, \
   1/0 lc rgb '#f2f2f2' title "{/*0.75 Quelle: Thüringer Landesregierung}"
   

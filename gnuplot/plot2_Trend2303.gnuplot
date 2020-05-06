@@ -65,17 +65,18 @@ if ( fit_performed == 1 ) {
 }
 set label 3  at graph 0.99, 0.04 label_double right textcolor ls 0
 
+set label 4 at graph 0.98, 0.95 update_str right textcolor ls 0
+set label 5 at graph 0.98, 0.90 "{/*0.75 Quelle: Stadt Jena}" right textcolor ls 0
+
 # data
 if ( fit_performed == 1 ) {
 plot  \
-  [xmin:xmax] 1/0 lc rgb '#f2f2f2' title update_str, \
   [xmin_f:xmax_f] '+' using 1:(fomin(($1 - xmin_f)/86400)):(fomax((x - xmin_f)/86400)) with filledcurves closed ls 2 title "{/*0.75 stat. Fehlerbereich Trend (letzte 7 Tage)}", \
   [xmin_f:xmax_f] fo((x - xmin_f)/86400) w l ls 12 title "exponentieller Trend (letzte 7 Tage)", \
   "<awk -F, '{print $1,$2}' ../data/cases_jena_opendata.csv" using 1:2 with linespoints ls 1 title "bestätigte Fälle", \
   [xmin_f:xmax_f] fo((x - xmin_f)/86400) w l ls 12 notitle
 } else {
 plot  \
-  [xmin:xmax] 1/0 lc rgb '#f2f2f2' title update_str, \
   "<awk -F, '{print $1,$2}' ../data/cases_jena_opendata.csv" using 1:2 with linespoints ls 1 title "bestätigte Fälle"
 }
   
