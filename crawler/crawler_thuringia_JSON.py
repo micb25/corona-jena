@@ -78,8 +78,16 @@ def writeAsJSON( pd, num_patterns ):
             "pm" : 1,
             "showSum": 1
         },
-        "hospinf": {
+        "reldiffweek": {
             "id": 3,
+            "de": "rel. Entwicklung zur Vorwoche",
+            "color": "#A000FFFF",
+            "unit": "Fälle / 100&thinsp;000 EW",
+            "unit1": "Fall / 100&thinsp;000 EW",
+            "pm" : 1
+        },
+        "hospinf": {
+            "id": 4,
             "de": "stationäre Fälle mit COVID19",
             "color": "#EBE800",
             "unit": "Fälle",
@@ -87,7 +95,7 @@ def writeAsJSON( pd, num_patterns ):
             "showSum": 1
         },
         "hosp": {
-            "id": 4,
+            "id": 5,
             "de": "stationäre Fälle wegen COVID19",
             "color": "#FFAD00",
             "unit": "Fälle",
@@ -95,7 +103,7 @@ def writeAsJSON( pd, num_patterns ):
             "showSum": 1
         },
         "severe": {
-            "id": 5,
+            "id": 6,
             "de": "schwere Verläufe",
             "color": "#D30000",
             "unit": "Fälle",
@@ -103,7 +111,7 @@ def writeAsJSON( pd, num_patterns ):
             "showSum": 1
         },
         "deceased": {
-            "id": 6,
+            "id": 7,
             "de": "Todesfälle",
             "color": "#333333",
             "unit": "Verstorbene",
@@ -111,33 +119,33 @@ def writeAsJSON( pd, num_patterns ):
             "showSum": 1
         },
         "caseres" : {
-            "id": 7,
+            "id": 8,
             "de": 'relative Fallzahlen',
             "color": '#0000D3',
-            "unit": 'Fälle / 100 000 EW'
+            "unit": 'Fälle / 100&thinsp;000 EW'
         },
         "casedens" : { 
-            "id": 8,
+            "id": 9,
             "de": 'flächenbezogene Fälle',
             "color": '#0000D3',
             "unit": 'Fälle / km²'
         },
         "res" : {
-            "id": 9,
+            "id": 10,
             "de": 'Einwohner',
             "color": '#00A000',
             "unit": 'EW',
             "showSum": 1
         },
         "area" : {
-            "id": 10,
+            "id": 11,
             "de": 'Fläche',
             "color": '#00A000',
             "unit": 'km²',
             "showSum": 1
         },
         "dens" : {
-            "id": 11,
+            "id": 12,
             "de": 'Einwohnerdichte',
             "color": '#00A000',
             "unit": 'EW / km²'
@@ -177,6 +185,7 @@ def writeAsJSON( pd, num_patterns ):
                         regions[key]["deceased"] = int(d[7])
                         regions[key]["casedens"] = regions[key]["cases"] / regions[key]["area"]
                         regions[key]["caseres"] = regions[key]["cases"] / regions[key]["res"]*100000
+                        regions[key]["reldiffweek"] = regions[key]["diffweek"] / regions[key]["res"]*100000
                         regions[key]["dens"] = regions[key]["res"] / regions[key]["area"]
     
     resultArray = {
