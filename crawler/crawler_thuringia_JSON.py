@@ -200,7 +200,7 @@ def writeAsJSON( pd, num_patterns ):
     return True
 
 def parseNumbers():
-    url          = "https://www.landesregierung-thueringen.de/corona-bulletin"
+    url          = "https://corona.thueringen.de/bulletin"
     headers      = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
 
     date_pattern = re.compile(r"(?:<strong>)?.*?\s\(Stand: (.*?)\)(?:<\/strong>)?.*?\<table.*?\<\/table\>.*?<table.*?\<tbody\>(.*?)\<\/tbody\>")

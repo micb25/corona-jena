@@ -23,7 +23,7 @@ def strToTimestamp(datetimestr):
         return False
 
 def getNumbers():
-    url          = "https://www.landesregierung-thueringen.de/corona-bulletin"
+    url          = "https://corona.thueringen.de/bulletin"
     headers      = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
 
     hotfix = False

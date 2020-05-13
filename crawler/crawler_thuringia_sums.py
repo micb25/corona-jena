@@ -57,7 +57,7 @@ def parseTHBulletinTable(text):
 if __name__ == "__main__":
     
     DATAFILE = os.path.dirname(os.path.realpath(__file__)) + "/../data/cases_th_sums.csv"
-    URL = 'https://corona.thueringen.de/covid-19-bulletin/'
+    URL = 'https://corona.thueringen.de/bulletin'
     
     # RE pattern for bulletin
     bulletin_pattern = re.compile(r"<h[23].*?>.*?\(Stand:?\s(.*?)\).*?<\/h[23]>(.*?<table.*?>.*?)<\/table>")
