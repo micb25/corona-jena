@@ -1,0 +1,35 @@
+<div class="news-single-item">
+  <div class="news-single-rightbox">
+    07.04.2020 11:00
+  </div>
+    <h1>Corona-Fallzahlen in den Städten und Gemeinden des Landkreises</h1>
+    <h2>Stand: 07.04.2020, 10.00 Uhr</h2>
+    <hr class="cl-right">
+
+    
+    
+    <p>Der Landkreis veröffentlicht hier in regelmäßigen Abständen die 
+Fallzahlen der positiv auf das Corona-Virus getesteten Personen in den 
+Städten und Gemeinden des Landkreises Greiz.</p><table class="contenttable"><thead><tr><th class="align-left" scope="col">Ort</th><th scope="col">Fallzahl</th></tr></thead><tbody><tr class="align-left"><td><p class="align-left">Auma-Weidatal</p></td><td class="align-center">1</td></tr><tr class="align-left"><td><p class="align-left">Bad Köstritz</p></td><td class="align-center">1</td></tr><tr><td><p class="align-left">Berga</p></td><td>2</td></tr><tr><td><p class="align-left">Greiz</p></td><td>101</td></tr><tr><td><p class="align-left">Harth-Pöllnitz</p></td><td>4</td></tr><tr><td><p class="align-left">Hohenleuben</p></td><td>3</td></tr><tr><td><p class="align-left">Kraftsdorf</p></td><td>4</td></tr><tr><td><p class="align-left">Langenwetzendorf</p></td><td>18</td></tr><tr><td rowspan="1" class="align-left">Lederhose</td><td rowspan="1">1</td></tr><tr><td><p class="align-left">Mohlsdorf-Teichwolframsdorf</p></td><td>21</td></tr><tr><td rowspan="1" class="align-left">Ronneburg</td><td rowspan="1">2</td></tr><tr><td rowspan="1" class="align-left">Saara</td><td rowspan="1">1</td></tr><tr><td><p class="align-left">Weida</p></td><td>8</td></tr><tr><td><p class="align-left">Wünschendorf</p></td><td>1</td></tr><tr><td><p class="align-left">Zeulenroda-Triebes</p></td><td>31</td></tr><tr><td class="align-left" rowspan="1"><b>gesamt<br></b></td><td rowspan="1"><b>199<br></b></td></tr></tbody></table><p style="text-indent:35.45pt">&nbsp;</p>
+    <hr class="cl-right">
+      
+
+            
+           
+
+          
+           
+
+          
+          
+
+          
+          
+
+      
+      
+      
+  <div class="news-single-backlink">
+  <a href="https://www.landkreis-greiz.de/landkreis-greiz/aktuell/">Zurück</a>
+  </div>
+</div>

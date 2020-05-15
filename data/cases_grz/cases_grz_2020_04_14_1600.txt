@@ -1,0 +1,39 @@
+<div class="news-single-item">
+  <div class="news-single-rightbox">
+    14.04.2020 16:00
+  </div>
+    <h1>Corona-Fallzahlen in den Städten und Gemeinden des Landkreises</h1>
+    <h2>Stand: 14.04.2020, 14:00 Uhr</h2>
+    <hr class="cl-right">
+
+    
+    
+    <p>Der Landkreis veröffentlicht hier in regelmäßigen Abständen die 
+Fallzahlen der positiv auf das Corona-Virus getesteten Personen in den 
+Städten und Gemeinden des Landkreises Greiz seit Ausbruch der Pandemie.
+</p>
+<p>In den Fallzahlen enthalten sind sowohl die bislang als genesen festgestellten 42 Personen sowie die 14 verstorbenen Patienten.
+</p>
+<p>&nbsp;</p><table class="contenttable"><thead><tr><th scope="col" class="align-left">Ort</th><th scope="col">Fallzahl</th></tr></thead><tbody><tr class="align-left"><td><p class="align-left">Auma-Weidatal</p></td><td class="align-center">3</td></tr><tr class="align-left"><td><p class="align-left">Bad Köstritz</p></td><td class="align-center">2</td></tr><tr><td><p class="align-left">Berga</p></td><td>4</td></tr><tr><td class="align-left" rowspan="1">Endschütz</td><td rowspan="1">3</td></tr><tr><td><p class="align-left">Greiz</p></td><td>117</td></tr><tr><td><p class="align-left">Harth-Pöllnitz</p></td><td>8</td></tr><tr><td><p class="align-left">Hohenleuben</p></td><td>3</td></tr><tr><td class="align-left" rowspan="1">Hirschfeld</td><td rowspan="1">1</td></tr><tr><td><p class="align-left">Kraftsdorf</p></td><td>5</td></tr><tr><td><p class="align-left">Langenwetzendorf</p></td><td>19</td></tr><tr><td class="align-left" rowspan="1">Lederhose</td><td rowspan="1">1</td></tr><tr><td><p class="align-left">Mohlsdorf-Teichwolframsdorf</p></td><td>21</td></tr><tr><td rowspan="1" class="indent align-left">Münchenbernsdorf</td><td rowspan="1">1</td></tr><tr><td class="align-left" rowspan="1">Ronneburg</td><td rowspan="1">4</td></tr><tr><td class="align-left" rowspan="1">Saara</td><td rowspan="1">1</td></tr><tr><td class="align-left" rowspan="1">Seelingstädt</td><td rowspan="1">2</td></tr><tr><td><p class="align-left">Weida</p></td><td>10</td></tr><tr><td><p class="align-left">Wünschendorf</p></td><td>1</td></tr><tr><td><p class="align-left">Zeulenroda-Triebes</p></td><td>46</td></tr><tr><td rowspan="1" class="align-left"><b>gesamt<br></b></td><td rowspan="1"><b>252<br></b></td></tr></tbody></table><p style="text-indent:35.45pt">&nbsp;</p>
+    <hr class="cl-right">
+      
+
+            
+           
+
+          
+           
+
+          
+          
+
+          
+          
+
+      
+      
+      
+  <div class="news-single-backlink">
+  <a href="https://www.landkreis-greiz.de/landkreis-greiz/aktuell/">Zurück</a>
+  </div>
+</div>
