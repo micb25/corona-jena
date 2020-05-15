@@ -7,14 +7,11 @@ date_cmd = sprintf("%s", "`awk -F, '{print "@"$1+86400}' ../data/cases_rki_db_th
 update_str = "{/*0.75 (Stand: " . date_cmd . ")}"
 
 # get maximum y value
-stats "<awk -F, 'BEGIN{a[\"A00-A04\"]=0;a[\"A05-A14\"]=0;a[\"A05-A14\"]=0;a[\"A15-A34\"]=0;a[\"A35-A59\"]=0;a[\"A60-A79\"]=0;a[\"A80+\"]=0;b[\"A00-A04\"]=0;b[\"A05-A14\"]=0;b[\"A05-A14\"]=0;b[\"A15-A34\"]=0;b[\"A35-A59\"]=0;b[\"A60-A79\"]=0;b[\"A80+\"]=0;}{if ((NR>1)&&($4==\"%NAME%\")&&($6>0)) {a[$10]+=$6; if ($9==\"W\") b[$10]+=$6}}END{for (i in a) print i,a[i]-b[i],b[i]}' ../data/cases_rki_db_th.csv | sort -k 1" using 2 name "M" nooutput
-stats "<awk -F, 'BEGIN{a[\"A00-A04\"]=0;a[\"A05-A14\"]=0;a[\"A05-A14\"]=0;a[\"A15-A34\"]=0;a[\"A35-A59\"]=0;a[\"A60-A79\"]=0;a[\"A80+\"]=0;b[\"A00-A04\"]=0;b[\"A05-A14\"]=0;b[\"A05-A14\"]=0;b[\"A15-A34\"]=0;b[\"A35-A59\"]=0;b[\"A60-A79\"]=0;b[\"A80+\"]=0;}{if ((NR>1)&&($4==\"%NAME%\")&&($6>0)) {a[$10]+=$6; if ($9==\"W\") b[$10]+=$6}}END{for (i in a) print i,a[i]-b[i],b[i]}' ../data/cases_rki_db_th.csv | sort -k 1" using 3 name "W" nooutput
-ymax = 1.3 * (W_max > M_max ? W_max : M_max)
-ymax = ymax > 5 ? ymax : 5
+stats "<awk -F, '{if ($1==\"%FILENAME%\") {a[\"A00-A04\"]=$2;b[\"A00-A04\"]=$3;a[\"A05-A14\"]=$4;b[\"A05-A14\"]=$5;a[\"A15-A34\"]=$6;b[\"A15-A34\"]=$7;a[\"A35-A59\"]=$8;b[\"A35-A59\"]=$9;a[\"A60-A79\"]=$10;b[\"A60-A79\"]=$11;a[\"A80+\"]=$12;b[\"A80+\"]=$13+0;}}END{ for (i in a) { print i, b[i], a[i] }}' ../data/rki_th/total_deceased_by_age.csv | sort -k 1" using 2 name "MM" 
+stats "<awk -F, '{if ($1==\"%FILENAME%\") {a[\"A00-A04\"]=$2;b[\"A00-A04\"]=$3;a[\"A05-A14\"]=$4;b[\"A05-A14\"]=$5;a[\"A15-A34\"]=$6;b[\"A15-A34\"]=$7;a[\"A35-A59\"]=$8;b[\"A35-A59\"]=$9;a[\"A60-A79\"]=$10;b[\"A60-A79\"]=$11;a[\"A80+\"]=$12;b[\"A80+\"]=$13+0;}}END{ for (i in a) { print i, b[i], a[i] }}' ../data/rki_th/total_deceased_by_age.csv | sort -k 1" using 3 name "WW" nooutput
 
-# get maximum values by gender
-stats "<awk -F, 'BEGIN{a[\"A00-A04\"]=0;a[\"A05-A14\"]=0;a[\"A05-A14\"]=0;a[\"A15-A34\"]=0;a[\"A35-A59\"]=0;a[\"A60-A79\"]=0;a[\"A80+\"]=0;b[\"A05-A14\"]=0;b[\"A05-A14\"]=0;b[\"A15-A34\"]=0;b[\"A35-A59\"]=0;b[\"A60-A79\"]=0;b[\"A80+\"]=0;}{if (($9==\"M\")&&($4==\"%NAME%\")&&($6>0)) s+=$6} END{print s}' ../data/cases_rki_db_th.csv" using 1 name "MM" nooutput
-stats "<awk -F, 'BEGIN{a[\"A00-A04\"]=0;a[\"A05-A14\"]=0;a[\"A05-A14\"]=0;a[\"A15-A34\"]=0;a[\"A35-A59\"]=0;a[\"A60-A79\"]=0;a[\"A80+\"]=0;b[\"A05-A14\"]=0;b[\"A05-A14\"]=0;b[\"A15-A34\"]=0;b[\"A35-A59\"]=0;b[\"A60-A79\"]=0;b[\"A80+\"]=0;}{if (($9==\"W\")&&($4==\"%NAME%\")&&($6>0)) s+=$6} END{print s}' ../data/cases_rki_db_th.csv" using 1 name "WW" nooutput
+ymax = 1.3 * (WW_max > MM_max ? WW_max : MM_max)
+ymax = ymax > 5 ? ymax : 5
 
 # x-axis setup
 set xrange [-0.5:5.5]
@@ -22,7 +19,7 @@ set xtics rotate by 0 offset 0, 0
 set xtics ("0-4\nJahre" 0, "5-14\nJahre" 1, "15-34\nJahre" 2, "35-59\nJahre" 3, "60-79\nJahre" 4, "80+\nJahre" 5)
 
 # y-axis setup
-set ylabel "bestätigte COVID19-Todesfälle %REGION%"
+set ylabel "COVID19-Todesfälle %REGION%"
 set yrange [0:ymax]
 
 # key
@@ -41,15 +38,15 @@ set style histogram clustered gap 1
 set label 1 at graph 0.98, 0.95 "{/Linux-Libertine-O-Bold Verstorbene nach Altersgruppe}" right textcolor ls 0
 set label 2 at graph 0.98, 0.90 update_str right textcolor ls 0
 
-M_title = sprintf("Männlich {/*0.75 (insgesamt: %i)}", MM_max)
-W_title = sprintf("Weiblich {/*0.75 (insgesamt: %i)}", WW_max)
+M_title = sprintf("Männlich {/*0.75 (insgesamt: %i)}", MM_sum)
+W_title = sprintf("Weiblich {/*0.75 (insgesamt: %i)}", WW_sum)
 
 # data
 plot  \
-  "<awk -F, 'BEGIN{a[\"A00-A04\"]=0;a[\"A05-A14\"]=0;a[\"A05-A14\"]=0;a[\"A15-A34\"]=0;a[\"A35-A59\"]=0;a[\"A60-A79\"]=0;a[\"A80+\"]=0;}{if ((NR>1)&&($4==\"%NAME%\")&&($6>0)) {a[$10]+=$6; if ($9==\"W\") b[$10]+=$6}}END{c=0; for (i in a) { c++; print i,c,a[i]-b[i],b[i]}}' ../data/cases_rki_db_th.csv | sort -k 1" using 3 with histograms lt rgb "#72777e" title M_title, \
-  "" using 4 with histograms lt rgb "#32373e" title W_title, \
+  "<awk -F, '{if ($1==\"%FILENAME%\") {a[\"A00-A04\"]=$2;b[\"A00-A04\"]=$3;a[\"A05-A14\"]=$4;b[\"A05-A14\"]=$5;a[\"A15-A34\"]=$6;b[\"A15-A34\"]=$7;a[\"A35-A59\"]=$8;b[\"A35-A59\"]=$9;a[\"A60-A79\"]=$10;b[\"A60-A79\"]=$11;a[\"A80+\"]=$12;b[\"A80+\"]=$13+0;}}END{ for (i in a) { print i, b[i], a[i] }}' ../data/rki_th/total_deceased_by_age.csv | sort -k 1" using 2 with histograms lt rgb "#72777e" title M_title, \
+  "" using 3 with histograms lt rgb "#32373e" title W_title, \
   \
-  "<awk -F, 'BEGIN{a[\"A00-A04\"]=0;a[\"A05-A14\"]=0;a[\"A05-A14\"]=0;a[\"A15-A34\"]=0;a[\"A35-A59\"]=0;a[\"A60-A79\"]=0;a[\"A80+\"]=0;}{if ((NR>1)&&($4==\"%NAME%\")&&($6>0)) {a[$10]+=$6; if ($9==\"W\") b[$10]+=$6}}END{c=0; for (i in a) { c++; print i,c,a[i]-b[i],b[i]}}' ../data/cases_rki_db_th.csv | sort -k 1" using (column(0) - 0.17):($3):($3>0?$3:"") with labels center offset 0, 0.7 notitle, \
-  "" using (column(0) + 0.17):($4):($4>0?$4:"") with labels center offset 0, 0.7 notitle, \
+  "<awk -F, '{if ($1==\"%FILENAME%\") {a[\"A00-A04\"]=$2;b[\"A00-A04\"]=$3;a[\"A05-A14\"]=$4;b[\"A05-A14\"]=$5;a[\"A15-A34\"]=$6;b[\"A15-A34\"]=$7;a[\"A35-A59\"]=$8;b[\"A35-A59\"]=$9;a[\"A60-A79\"]=$10;b[\"A60-A79\"]=$11;a[\"A80+\"]=$12;b[\"A80+\"]=$13+0;}}END{ for (i in a) { print i, b[i], a[i] }}' ../data/rki_th/total_deceased_by_age.csv | sort -k 1" using (column(0) - 0.17):($2):($2>0?$2:"") with labels center offset 0, 0.7 notitle, \
+  "" using (column(0) + 0.17):($3):($3>0?$3:"") with labels center offset 0, 0.7 notitle, \
   1/0 lc rgb '#f2f2f2' title "{/*0.75 Quelle: Robert Koch-Institut}"
   
