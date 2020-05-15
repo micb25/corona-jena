@@ -13,6 +13,9 @@ if __name__ == "__main__":
     TEMPLATE_B = SCRIPTPATH + "/plot5B_Template.gnuplot"
     GNUPFILE_B = SCRIPTPATH + "/plot5B.gnuplot"
     
+    TEMPLATE_C = SCRIPTPATH + "/plot5C_Template.gnuplot"
+    GNUPFILE_C = SCRIPTPATH + "/plot5C.gnuplot"
+    
     province_array = [
         ("LK Altenburger Land", "ABG", "im Altenburger Land"),
         ("LK Eichsfeld", "EIC", "im Eichsfeld"),
@@ -53,14 +56,19 @@ if __name__ == "__main__":
         
         with open(TEMPLATE_B, "r") as df:
             datafile_b = df.read()
+            
+        with open(TEMPLATE_C, "r") as df:
+            datafile_c = df.read()
         
         # iterate all entries
         for entry in province_array:
             gnuplot_source_a = datafile_a
             gnuplot_source_b = datafile_b
+            gnuplot_source_c = datafile_c
             for re in enumerate(replace_array):
                 gnuplot_source_a = gnuplot_source_a.replace(re[1], entry[re[0]])
                 gnuplot_source_b = gnuplot_source_b.replace(re[1], entry[re[0]])
+                gnuplot_source_c = gnuplot_source_c.replace(re[1], entry[re[0]])
 
             # write gnuplot files
             with open(GNUPFILE_A, "w") as gpf:
@@ -71,12 +79,17 @@ if __name__ == "__main__":
                 gpf.write(gnuplot_source_b)
                 gpf.close()
                 
+            with open(GNUPFILE_C, "w") as gpf:
+                gpf.write(gnuplot_source_c)
+                gpf.close()
+                
             # run gnuplot
             os.system("gnuplot {} >/dev/null 2>&1".format(GNUPFILE_A))
             os.system("gnuplot {} >/dev/null 2>&1".format(GNUPFILE_B))
+            os.system("gnuplot {} >/dev/null 2>&1".format(GNUPFILE_C))
         
         # clean-up
-        os.system( "rm -f {} {}".format(GNUPFILE_A, GNUPFILE_B) )
+        os.system( "rm -f {} {} {}".format(GNUPFILE_A, GNUPFILE_B, GNUPFILE_C) )
         
     except:
         print("Error occured!")
