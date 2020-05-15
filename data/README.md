@@ -30,6 +30,7 @@ Sonstige Formate:
 
 | Region                 | Format | lokaler Github-Link                                            | Link auf Webserver (wahrscheinlich aktueller)                        |
 |------------------------|--------|----------------------------------------------------------------|----------------------------------------------------------------------|
+| Landkreis Greiz        | HTML   | [Dokumentenordner](cases_grz/)                                 | [Dokumentenordner](https://michael-böhme.de/corona/data/cases_grz/)  |
 | Saalfeld-Rudolstadt    | JPG    | [Bilderordner](cases_slf/)                                     | [Bilderordner](https://michael-böhme.de/corona/data/cases_slf/)      |
 | Schmalkalden-Meiningen | PDF    | [Dokumentenordner](cases_sm/)                                  | [Dokumentenordner](https://michael-böhme.de/corona/data/cases_sm/)   |
 
