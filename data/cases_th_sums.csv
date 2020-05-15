@@ -59,3 +59,5 @@ date,sum,recovered,dead,hosp,hospcov,severe,url
 1589184000,2584,2060,118,515,337,84,https://corona.thueringen.de/covid-19-bulletin/
 1589270400,2617,2110,123,528,342,84,https://corona.thueringen.de/bulletin
 1589356800,2639,2140,127,535,349,85,https://corona.thueringen.de/bulletin
+1589443200,2663,2170,133,544,354,85,https://corona.thueringen.de/bulletin
+1589529600,2689,2190,135,550,358,86,https://corona.thueringen.de/bulletin

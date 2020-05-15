@@ -76,3 +76,47 @@ rm divi_data_th.csv
 curl -O https://www.michael-böhme.de/corona/data/divi_db_th/divi_data_th.csv
 
 cd ..
+
+
+cd rki_th
+
+rm cases_by_date.csv
+curl -O https://www.xn--michael-bhme-djb.de/corona/data/rki_th/cases_by_date.csv
+
+rm current_cases_by_region.csv
+curl -O https://www.xn--michael-bhme-djb.de/corona/data/rki_th/current_cases_by_region.csv
+
+rm current_cases_by_region.json
+curl -O https://www.xn--michael-bhme-djb.de/corona/data/rki_th/current_cases_by_region.json
+
+rm reproduction_rates_th.csv
+curl -O https://www.xn--michael-bhme-djb.de/corona/data/rki_th/reproduction_rates_th.csv
+
+rm total_active_cases_by_age.csv
+curl -O https://www.xn--michael-bhme-djb.de/corona/data/rki_th/total_active_cases_by_age.csv
+
+rm total_active_cases_by_age.json
+curl -O https://www.xn--michael-bhme-djb.de/corona/data/rki_th/total_active_cases_by_age.json
+
+rm total_cases_by_age.csv
+curl -O https://www.xn--michael-bhme-djb.de/corona/data/rki_th/total_cases_by_age.csv
+
+rm total_cases_by_age.json
+curl -O https://www.xn--michael-bhme-djb.de/corona/data/rki_th/total_cases_by_age.json
+
+rm total_cfr_by_age.csv
+curl -O https://www.xn--michael-bhme-djb.de/corona/data/rki_th/total_cfr_by_age.csv
+
+rm total_deceased_by_age.csv
+curl -O https://www.xn--michael-bhme-djb.de/corona/data/rki_th/total_deceased_by_age.csv
+
+rm total_deceased_by_age.json
+curl -O https://www.xn--michael-bhme-djb.de/corona/data/rki_th/total_deceased_by_age.json
+
+rm total_recovered_by_age.csv
+curl -O https://www.xn--michael-bhme-djb.de/corona/data/rki_th/total_recovered_by_age.csv
+
+rm total_recovered_by_age.json
+curl -O https://www.xn--michael-bhme-djb.de/corona/data/rki_th/total_recovered_by_age.json
+
+cd ..
