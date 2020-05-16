@@ -23,8 +23,10 @@ set style line  8 lc rgb '#ff8a1e' lt 1 lw 1 pt 7 ps 1.50 dt "."
 set style line  10 lc rgb '#000000' lw 1 lt 1 dt "  .  "
 set style line  11 lc rgb '#aaaaaa' lw 1 lt 1 dt "  .  "
 set style line  12 lc rgb '#FF0000' lw 1.5
+set style line  16 lc rgb '#800080' lt 1 lw 2
 set style line  17 lc rgb '#FF0000' lt 1 lw 2
 set style line  18 lc rgb '#ff8a1e' lt 1 lw 2
+set style line  19 lc rgb '#5c5c5c' lt 1 lw 2
 set style line  21 dt 3
 
 # grid
