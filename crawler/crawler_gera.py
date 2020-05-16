@@ -25,7 +25,8 @@ def getGeraNumbers(url):
     num_pattern2 = re.compile(r"genesene\sPersonen:?\s?([0-9]{1,})[,\s]")
     num_pattern3 = re.compile(r"verstorbene\sPersonen:?\s?([0-9]{1,})")
     
-    n = getGeraNumbersRKI()
+    # n = getGeraNumbersRKI()
+    n = (-1, -1)
     
     try:
     
