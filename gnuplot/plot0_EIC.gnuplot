@@ -57,7 +57,7 @@ plot \
      "<echo 0" u (xpos):(ypos(0.25)):(sprintf("%i bestätigte Fälle im LK Eichsfeld", A_max)) w labels left offset 2.5, 0, \
      "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(A_max-B_max-C_max)) w circle fc rgb "#007af2", \
      "<echo 0" u (xpos):(ypos(1.75)) w p pt 5 ps 4 lc rgb "#007af2", \
-     "<echo 0" u (xpos):(ypos(1.75)):(sprintf("%i aktive Fälle (%.1f%%), davon", A_max - B_max - C_max, 100*(A_max-B_max-C_max)/A_max)) w labels left offset 2.5, 0, \
+     "<echo 0" u (xpos):(ypos(1.75)):(sprintf(A_max - B_max - C_max != 1 ? "%i aktive Fälle (%.1f%%), davon" : "%i aktiver Fall (%.1f%%), davon", A_max - B_max - C_max, 100*(A_max-B_max-C_max)/A_max)) w labels left offset 2.5, 0, \
      "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(B_max)) w circle fc rgb "#006000", \
      "<echo 0" u (xpos):(ypos(5.00)) w p pt 5 ps 4 lc rgb "#006000", \
      "<echo 0" u (xpos):(ypos(5.00)):(sprintf("%i Genesene (%.1f%%)", B_max, 100*B_max/A_max)) w labels left offset 2.5, 0, \
