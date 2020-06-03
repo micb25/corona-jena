@@ -60,7 +60,7 @@ def getSONNumbers_B(url):
         if ( len(pd) < 1 ):
             return False
         
-        s = pd[0]
+        s = pd[1]
         
         ps1 = num_pattern_T.findall( s )
         ps2 = num_pattern_R.findall( s )
@@ -97,7 +97,7 @@ if __name__ == "__main__":
                 if ( i[1] != -1 ):
                     if ( i[1] > num_latest[i[0]] ):
                         num_latest[i[0]] = i[1]
-    
+                        
     if (num_latest != False) and (num_latest[0] > -1):
         
         # get old values
