@@ -8,7 +8,7 @@ update_str = "{/*0.75 letztes Update: " . date_cmd . " Uhr}"
 
 # stats for x
 stats "<awk -F, '{print $1}' ../data/cases_jena_opendata.csv" using 1 nooutput
-set xrange [ STATS_min - 0.5 * 86400 : STATS_max + 10.0 * 86400 ]
+set xrange [ STATS_min - 0.5 * 86400 : STATS_max + 14.0 * 86400 ]
 
 # stats for y
 stats "<awk -F, '{print $2}' ../data/cases_jena_opendata.csv" using 1 nooutput

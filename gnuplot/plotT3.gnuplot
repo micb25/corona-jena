@@ -6,8 +6,8 @@ set output '../plotT3.png'
 stats "<awk -F, '{if (NR > 1) print int($1/86400)*86400,$2}' ../data/cases_th_sums.csv" using 1 nooutput
 xmin = 1583884800 + 8 * 86400
 xmin_o = int(STATS_min)
-xmax = int(STATS_max) + 18 * 86400
-xmax = xmin + (50 + 18) * 86400
+xmax = int(STATS_max) + 2 * 86400
+# xmax = xmin + (50 + 18) * 86400
 
 fitmin = int(STATS_max) - 7 * 86400
 fitmax = int(STATS_max)
