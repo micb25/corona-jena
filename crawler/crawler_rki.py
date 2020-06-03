@@ -7,8 +7,8 @@ import time, requests, re, os
 def getRKINumbers(url):    
     headers = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
     
-    num_pattern_DA = re.compile(r"\>Stand: ([0-9]{1,}\.[0-9]{1,}\.[0-9]{4})")
-    num_pattern_TH = re.compile(r"Gesamt</td><td>([0-9]{1,})</td><td>([0-9]{1,})</td><td>([0-9]{1,})</td><td>([0-9]{1,})</td>")
+    num_pattern_DA = re.compile(r"\>Stand: ([0-9]{1,}\.[0-9]{1,}\.[0-9]{4}),")
+    num_pattern_TH = re.compile(r"Gesamt</td><td>([0-9]{1,})</td><td>([0-9]{1,})</td><td>([0-9]{1,})</td><td>([0-9\,]{1,})</td><td>([0-9]{1,})</td>")
     
     replace_array = [ "<strong>", "</strong>" ]
     
@@ -29,11 +29,12 @@ def getRKINumbers(url):
             s = s.replace(entry, "")
         
         ps1 = num_pattern_TH.findall( s )
+        print(s)
         if len(ps1) != 1:
             return False
                 
         num_t = int(ps1[0][0]) if (len(ps1[0]) >= 1) else 0
-        num_d = int(ps1[0][3]) if (len(ps1[0]) >= 4) else 0
+        num_d = int(ps1[0][4]) if (len(ps1[0]) >= 5) else 0
         
         return (date, num_t, -1, num_d, -1, -1)
     
