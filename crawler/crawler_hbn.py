@@ -4,16 +4,19 @@
 import datetime, requests, re, os
 
 
-def germanWordToInt(w):    
+def germanWordToInt(w):   
     if re.match("^[0-9]{1,}$", w) is not None:
         return int(w)
     else:        
         s = w.lower()        
         number_dict = {
                     "eine": 1, "einer": 1, "ein": 1, "zwei": 2, "drei": 3, "vier": 4, "fünf": 5, "sechs": 6, "sieben": 7, "acht": 8, "neun": 9, "zehn": 10,
-                    "elf": 11, "zwölf": 12, "dreizehn": 13, "vierzehn": 14, "fünfzehn": 15, "sechszehn": 16, "siebzehn": 17, "achtzehn": 18, "neunzehn": 19, "zwanzig": 20,
+                    "elf": 11, "zwölf": 12, "dreizehn": 13, "vierzehn": 14, "fünfzehn": 15, "sechzehn": 16, "siebzehn": 17, "achtzehn": 18, "neunzehn": 19, "zwanzig": 20,
                     "einundzwanzig": 21, "zweiundzwanzig": 22, "dreiundzwanzig": 23, "vierundzwanzig": 24, "fünfundzwanzig": 25, "sechsundzwanzig": 26, "siebenundzwanzig": 27, "achtundzwanzig": 28, "neunundzwanzig": 29, "dreißig": 30,
-                    "einunddreißig": 31, "zweiunddreißig": 32, "dreiunddreißig": 33, "vierunddreißig": 34, "fünfunddreißig": 35, "sechsunddreißig": 36, "siebenunddreißig": 37, "achtunddreißig": 38, "neununddreißig": 39, "vierzig": 40
+                    "einunddreißig": 31, "zweiunddreißig": 32, "dreiunddreißig": 33, "vierunddreißig": 34, "fünfunddreißig": 35, "sechsunddreißig": 36, "siebenunddreißig": 37, "achtunddreißig": 38, "neununddreißig": 39, "vierzig": 40,
+                    "einundvierzig": 41, "zweiundvierzig": 42, "dreiundvierzig": 43, "vierundvierzig": 44, "fünfundvierzig": 45, "sechsundvierzig": 46, "siebenundvierzig": 47, "achtundvierzig": 48, "neunundvierzig": 49, "fünfzig": 50,
+                    "einundfünfzig": 51, "zweiundfünfzig": 52, "dreiundfünfzig": 53, "vierundfünfzig": 54, "fünfundfünfzig": 55, "sechsundfünfzig": 56, "siebenundfünzig": 57, "achtundfünfzig": 58, "neunundfünzig": 59, "sechzig": 60,
+                    "einundsechzig": 61, "zweiundsechzig": 62, "dreiundsechzig": 63, "vierundsechzig": 64, "fünfundsechzig": 65, "sechsundsechzig": 66, "siebenundsechzig": 67, "achtundsechzig": 68, "neunundsechzig": 69, "siebzig": 70
                 }        
         for n in number_dict:
             if ( s == n ):
@@ -27,8 +30,8 @@ def getHBNNumbers(url):
     pattern_PM = re.compile(r"<h2 class=\"toggler-title\">([0-9][^<]*Fallzahlen[^<]*)<\/h2>(.*?)</div>", re.DOTALL)
     pattern_date = re.compile(r"([0-9]{1,})\.([0-9]{1,}).([0-9]{2,4}),\s?([0-9]{1,})[\.:]([0-9]{1,})")    
     
-    num_pattern_T = re.compile(r"\s([^\s]*)\spositiv\sgetestete\sPersonen")
-    num_pattern_R = re.compile(r"\s([^\s]*)\sPersonen[^\.]*?(?:genesen|überstanden)")
+    num_pattern_T = re.compile(r"\s([^\s]*)\s(?:positiv\sgetestete\sPersonen|Personen\spositiv)")
+    num_pattern_R = re.compile(r"([^\.\s]*)\sPersonen[^\.]*?(?:genesen|überstanden)")
     num_pattern_D = re.compile(r"\s([^\s]*)\s(?:Todesfall|Todesfälle|Verstorbene|Tote)")
     
     replace_array = ["<p>", "</p>", "<em>", "</em>", "<strong>", "</strong>", "\n", "\t", "\r" ]
@@ -40,7 +43,8 @@ def getHBNNumbers(url):
                 "&uuml;": "ü",
                 "&Auml;": "Ä",
                 "&Ouml;": "Ö",
-                "&Uuml;": "Ü"
+                "&Uuml;": "Ü",
+                "&szlig;": "ß"
             }
     
     deceased_cnt = 0
@@ -78,7 +82,7 @@ def getHBNNumbers(url):
             ps2 = num_pattern_R.findall( pm_content )
             
             num_r = germanWordToInt(ps2[0]) if len(ps2) >= 1 else -1
-            if num_r is False:            
+            if num_r is False:
                 num_r = -1
                 
             ps3 = num_pattern_D.findall( pm_content )
