@@ -40,8 +40,14 @@ set yrange [-1.1*radius:1.*1*radius]
 
 pos = 90
 
+if ( A_max != B_max ) {
 plot \
      1/0 notitle, \
      "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(A_max-B_max-C_max)) w circle fc rgb "#007af2", \
      "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(B_max)) w circle fc rgb "#006000", \
      "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(C_max)) w circle fc rgb "#000000"
+} else {
+plot \
+     1/0 notitle, \
+     "<echo 0" u (centerX):(centerY):(radius):(90):(pos=pos+359.9) w circle fc rgb "#006000"
+}
