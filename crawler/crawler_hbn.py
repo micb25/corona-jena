@@ -23,10 +23,20 @@ def germanWordToInt(w):
                 return number_dict[n]
         return False
     
+    
+def getHBNSubPage(url):
+    headers = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
+    try:
+        r = requests.get('https://www.landkreis-hildburghausen.de' + url.replace("&amp;", "&"), headers=headers, allow_redirects=True, timeout=5.0)
+        return r.text
+    except:
+        return False
+    
 
 def getHBNNumbers(url):
     headers = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
     
+    pattern_Subpage = re.compile(r"<small class=\"date\">([0-9]{1,2}\.[0-9]{1,2}\.[0-9]{4,4})</small>\s*?<h4 class=\"liste-titel\"><a href=\"(.*?)\">.*?Aktuelle\sFallzahlen.*?</a></h4>")
     pattern_PM = re.compile(r"<h2 class=\"toggler-title\">([0-9][^<]*Fallzahlen[^<]*)<\/h2>(.*?)</div>", re.DOTALL)
     pattern_date = re.compile(r"([0-9]{1,})\.([0-9]{1,}).([0-9]{2,4}),\s?([0-9]{1,})[\.:]([0-9]{1,})")    
     
@@ -51,12 +61,12 @@ def getHBNNumbers(url):
     
     try:
         r = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0)
+                
+        pmsub = pattern_Subpage.findall( r.text )
+        pmsub.reverse()        
         
-        pms = pattern_PM.findall( r.text )
-        pms.reverse()
-        
-        for pm in pms:
-            pm_content = pm[1]
+        for pm in pmsub:
+            pm_content = getHBNSubPage(pm[1])
             
             for entry in replace_array:
                 pm_content = pm_content.replace(entry, "")
@@ -69,7 +79,7 @@ def getHBNNumbers(url):
             if ( len(pd) < 1 ):
                 continue
                             
-            timestamp = int(datetime.datetime(int(pd[0][2]), int(pd[0][1]), int(pd[0][0]), int(pd[0][3]), int(pd[0][4]) ).strftime("%s"))
+            timestamp = int(datetime.datetime(int(pd[0][2]), int(pd[0][1]), int(pd[0][0]), int(pd[0][3]) if int(pd[0][3]) < 24 else 23, int(pd[0][4]) ).strftime("%s"))
             
             ps1 = num_pattern_T.findall( pm_content )
             if ( len(ps1) < 0 ):
@@ -121,9 +131,13 @@ if __name__ == "__main__":
         value_changed = False
         for i in enumerate(last_values):
             if ( int(i[1]) != num_latest[i[0]+1] ):
-                if ( num_latest[i[0]+1] != -1 ):
+                if ( ( num_latest[i[0]+1] != -1 ) and ( i[0] != 2 ) ):
                     value_changed = True
-        
+                
+        # deceased number is not always included in new reports
+        if value_changed:
+            num_latest[3] = max(num_latest[3], int(last_values[2]))
+                    
         if value_changed:
             # write new csv data
             f = open(DATAFILE, 'a')
