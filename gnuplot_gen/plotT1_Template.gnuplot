@@ -8,18 +8,18 @@ update_str = "{/*0.75 letztes Update: " . date_cmd . "}"
 
 # stats for x
 stats "<awk -F, '{if ($2==\"%NAME%\")a[$1]+=$4}END{for(i in a) print int(i/86400)*86400,a[i]}' ../data/cases_thuringia.csv | sort -n -k1" using 1 nooutput
-set xrange [ STATS_min : STATS_max + 16.0 * 86400 ]
+set xrange [ STATS_min : STATS_max + 18.0 * 86400 ]
 
 # stats for y
 stats "<awk -F, '{if ($2==\"%NAME%\")a[$1]+=$4}END{for(i in a) print int(i/86400)*86400,a[i]}' ../data/cases_thuringia.csv | awk '{if ($2 >= 0) print $0}' | sort -n -k1" using 2 nooutput
 
 if ( STATS_max > 200 ) {
-	set yrange [ 0 : 100*int(1+int(1.40*STATS_max)/100.0) ]
+	set yrange [ 0 : 100*int(1+int(1.35*STATS_max)/100.0) ]
 } else {
 	if ( STATS_max > 50 ) {
-		set yrange [ 0 : 50*int(1+int(1.40*STATS_max)/50.0) ]
+		set yrange [ 0 : 50*int(1+int(1.35*STATS_max)/50.0) ]
 	} else {
-		set yrange [ 0 : 10*int(1+int(1.40*STATS_max)/10.0) ]
+		set yrange [ 0 : 10*int(1+int(1.35*STATS_max)/10.0) ]
 	}
 }
 

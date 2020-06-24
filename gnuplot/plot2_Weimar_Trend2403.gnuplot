@@ -18,7 +18,7 @@ ao = 110.0
 bo = 0.15
 
 ymin = 0
-if ( A_max - A_min < 2.0 ) {
+if ( A_max - A_min < 5.0 ) {
 	fit_performed = 0;
 	ymax = 1.35 * A_max
 } else {

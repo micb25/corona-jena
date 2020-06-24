@@ -23,6 +23,7 @@ set xtics ("0-4\nJahre" 0, "5-14\nJahre" 1, "15-34\nJahre" 2, "35-59\nJahre" 3, 
 # y-axis setup
 set ylabel "bestätigte Coronavirus-Todesfälle in Thüringen"
 set yrange [0:ymax]
+set mytics 2
 
 # key
 set key at graph 0.02, 0.98 left top spacing 1.2 box ls 3
@@ -37,8 +38,6 @@ set style fill solid 1.00
 set style data histograms
 set style histogram clustered gap 1
 
-set mytics 1
-
 set label 1 at graph 0.98, 0.95 "{/Linux-Libertine-O-Bold Verstorbene nach Altersgruppe}" right textcolor ls 0
 set label 2 at graph 0.98, 0.90 update_str right textcolor ls 0
 
@@ -49,8 +48,8 @@ W_title = sprintf("Weiblich {/*0.75 (insgesamt: %i)}", WW_max)
 plot  \
   "<awk -F, 'BEGIN{a[\"A00-A04\"]=0;a[\"A05-A14\"]=0;a[\"A05-A14\"]=0;a[\"A15-A34\"]=0;a[\"A35-A59\"]=0;a[\"A60-A79\"]=0;a[\"A80+\"]=0;}{if ((NR>1)&&($6>0)) {a[$10]+=$6; if ($9==\"W\") b[$10]+=$6}}END{c=0; for (i in a) { c++; print i,c,a[i]-b[i],b[i]}}' ../data/cases_rki_db_th.csv | sort -k 1" using 3 with histograms lt rgb "#72777e" title M_title, \
   "" using 4 with histograms lt rgb "#32373e" title W_title, \
-  "<awk -F, 'BEGIN{a[\"A00-A04\"]=0;a[\"A05-A14\"]=0;a[\"A05-A14\"]=0;a[\"A15-A34\"]=0;a[\"A35-A59\"]=0;a[\"A60-A79\"]=0;a[\"A80+\"]=0;}{if ((NR>1)&&($6>0)) {a[$10]+=$6; if ($9==\"W\") b[$10]+=$6}}END{c=0; for (i in a) { c++; print i,c,a[i]-b[i],b[i]}}' ../data/cases_rki_db_th.csv | sort -k 1" using (column(0) - 0.17):($3):($3>0?$3:"") with labels center offset 0, 0.7 notitle, \
-  "" using (column(0) + 0.17):($4):($4>0?$4:"") with labels center offset 0, 0.7 notitle, \
+  "<awk -F, 'BEGIN{a[\"A00-A04\"]=0;a[\"A05-A14\"]=0;a[\"A05-A14\"]=0;a[\"A15-A34\"]=0;a[\"A35-A59\"]=0;a[\"A60-A79\"]=0;a[\"A80+\"]=0;}{if ((NR>1)&&($6>0)) {a[$10]+=$6; if ($9==\"W\") b[$10]+=$6}}END{c=0; for (i in a) { c++; print i,c,a[i]-b[i],b[i]}}' ../data/cases_rki_db_th.csv | sort -k 1" using (column(0) - 0.17):($3):($3>0?sprintf("{/*0.85 %.0f}", $3):"") with labels center offset 0, 0.7 notitle, \
+  "" using (column(0) + 0.17):($4):($4>0?sprintf("{/*0.85 %.0f}", $4):"") with labels center offset 0, 0.7 notitle, \
   \
-  1/0 lc rgb '#f2f2f2' title "{/*0.75 Quelle: Robert Koch-Institut}"
+  1/0 lc rgb '#f2f2f2' title "{/*0.65 Quelle: Robert Koch-Institut}"
   

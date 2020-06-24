@@ -26,21 +26,18 @@ fmin(x) = f(x) - ferr(x)
 fmax(x) = f(x) + ferr(x)
 
 gA(x) = 100 * exp( log(2) / 1 * x)
-gB(x) = 100 * exp( log(2) / 2 * x)
 gC(x) = 100 * exp( log(2) / 3 * x)
-gD(x) = 100 * exp( log(2) / 21 * x)
 gE(x) = 100 * exp( log(2) / 5 * x)
 gF(x) = 100 * exp( log(2) / 6 * x)
 gG(x) = 100 * exp( log(2) / 7 * x)
 gH(x) = 100 * exp( log(2) / 14 * x)
+gD(x) = 100 * exp( log(2) / 21 * x)
+gB(x) = 100 * exp( log(2) / 28 * x)
 
 ymin = 100
 ymax = 100000
 
 # x-axis setup
-
-set xtics 4*86400
-set mxtics 4
 
 unset xlabel
 set xdata time
@@ -59,12 +56,12 @@ set key at graph 0.02, 0.98 left top invert spacing 1.2 box ls 3
 
 set label 2 at graph 0.99, 0.04 right "Hilfslinien entsprechen Fallzahl-Verdopplung alle {/Linux-Libertine-O-Italic N} Tage" textcolor ls 0
 
-set label 3 at graph 0.13, 0.67 right "täglich" textcolor ls 0
-set label 4 at graph 0.18, 0.67 left "2 Tage" textcolor ls 0
-set label 5 at graph 0.33, 0.67 left  "3 Tage" textcolor ls 0
-set label 6 at first xmax - 0.5 * 86400, first gD( ((xmax-xmin)/86400) - 9.5) right "21 Tage" textcolor ls 0
-set label 7 at first xmax - 0.5 * 86400, first gG( ((xmax-xmin)/86400) - 8.5) right "7 Tage" textcolor ls 0
-set label 8 at first xmax - 0.5 * 86400, first gH( ((xmax-xmin)/86400) - 9.5) right "14 Tage" textcolor ls 0
+set label 3 at graph 0.13, first 10000 right "täglich" offset 2.0, 0.0 textcolor ls 0
+set label 5 at graph 0.18, first 10000 left  "3 Tage" offset 2.0, 0.0 textcolor ls 0
+set label 6 at graph 0.56, first 10000 right "7 Tage" offset 2.0, 0.0 textcolor ls 0
+set label 7 at first xmax - 0.5 * 86400, first gH( ((xmax-xmin)/86400) ) right "14 Tage" offset 0, +1.0 textcolor ls 0
+set label 8 at first xmax - 0.5 * 86400, first gD( ((xmax-xmin)/86400) ) right "21 Tage" offset 0, -1.5 textcolor ls 0
+set label 4 at first xmax - 0.5 * 86400, first gB( ((xmax-xmin)/86400) ) right "28 Tage" offset 0, -1.5 textcolor ls 0
 
 label_double = log(2) / b > 21 ? sprintf(" Verdopplungszeit\n >21 Tage") : sprintf(" Verdopplungszeit\n ≈%.f Tage", log(2) / b )
 set label 9 at first fitmax, first f((fitmin - xmin_o) / 86400) label_double right offset 0.0, 2.0 textcolor ls 0
@@ -78,11 +75,11 @@ plot  \
   [xmin:xmax] 1/0 lc rgb '#f2f2f2' title "{/*0.75 Quelle: Thüringer Landesregierung}", \
   1/0 lc rgb '#f2f2f2' title "{/*0.75 " . update_str . "}", \
   gA((x - xmin)/86400) w l ls 2 notitle, \
-  gB((x - xmin)/86400) w l ls 2 notitle, \
   gC((x - xmin)/86400) w l ls 2 notitle, \
   gD((x - xmin)/86400) w l ls 2 notitle, \
   gG((x - xmin)/86400) w l ls 2 notitle, \
   gH((x - xmin)/86400) w l ls 2 notitle, \
+  gB((x - xmin)/86400) w l ls 2 notitle, \
   1/0 w l ls 12 title  "exponentieller Fit (letzte 7 Tage)", \
   "<awk -F, '{if (NR > 1) print int($1/86400)*86400,$2}' ../data/cases_th_sums.csv" using 1:(filter_neg($2)) with linespoints ls 1 title "bestätigte Fälle", \
   [fitmin:fitmax] f((x - xmin_o)/86400) w l ls 12 notitle

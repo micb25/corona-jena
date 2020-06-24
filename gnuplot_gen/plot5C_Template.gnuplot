@@ -25,7 +25,7 @@ set mytics 2
 if ( ymax > 65 ) {
 set yrange [0:125]
 } else {
-if ( ymax > 45 ) {
+if ( ymax > 42 ) {
 set yrange [0:80]
 } else {
 set yrange [0:50]

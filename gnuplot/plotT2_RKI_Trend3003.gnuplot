@@ -22,8 +22,7 @@ fmin(x) = f(x) - ferr(x)
 fmax(x) = f(x) + ferr(x)
 
 ymin = 0
-# ymax = 5.0/3.0 * f( (xmax - xmin_f) / 86400 )
-ymax = 2500
+ymax = 5.0/3.0 * f( (xmax - xmin_f) / 86400 )
 
 # x-axis setup
 unset xlabel
@@ -40,16 +39,19 @@ set yrange [ymin:ymax]
 set key at graph 0.02, 0.98 left top invert spacing 1.2 box ls 3
 
 label_trend = sprintf("f({/Linux-Libertine-O-Italic x}) = (%.3f±%.3f) e^{(%.3f±%.3f){/Linux-Libertine-O-Italic x}}", a, a_err, b, b_err)
-set label 2 at graph 0.02, 0.60 label_trend left textcolor ls 0
+set label 2 at graph 0.02, 0.70 label_trend left textcolor ls 0
 
 label_double = log(2) / b > 28 ? sprintf("aktuelle Verdopplungszeit: >28 Tage") : sprintf("aktuelle Verdopplungszeit: ≈%.0f Tage",log(2) / b )
 set label 3  at graph 0.99, 0.04 label_double right textcolor ls 0
 
+set label 4 at graph 0.98, 0.95 update_str right textcolor ls 0
+set label 5 at graph 0.98, 0.90 "{/*0.75 Quelle: Robert Koch-Institut}" right textcolor ls 0
+
 # data
 plot  \
-  [xmin:xmax] 1/0 lc rgb '#f2f2f2' title "{/*0.75 Quelle: Robert Koch-Institut}", \
-  1/0 lc rgb '#f2f2f2' title update_str, \
-  [xmin_f :xmax_o]'+' using 1:(fmin(($1 - xmin_f)/86400)):(fmax((x - xmin_f)/86400)) with filledcurves closed ls 2 title "{/*0.75 stat. Fehlerbereich Trend (ab 30.03.)}", \
-  [xmin_f:xmax_o] f((x - xmin_f)/86400) w l ls 12 title "exponentieller Trend (letzte 7 Tage)", \
-  "<awk -F, '{print $1,$2,$3}' ../data/cases_thuringia_rki.csv" using 1:(filter_neg($2)) with linespoints ls 1 title "bestätigte Fälle"
+  1/0 notitle, \
+  [xmin_f :xmax_o]'+' using 1:(fmin(($1 - xmin_f)/86400)):(fmax((x - xmin_f)/86400)) with filledcurves closed ls 2 title "{/*0.75 statistischer Fehlerbereich}", \
+  [xmin_f:xmax_o] f((x - xmin_f)/86400) w l ls 12 lw 3.0 title "exp. Trend (letzte 7 Tage)", \
+  "<awk -F, '{print $1,$2,$3}' ../data/cases_thuringia_rki.csv" using 1:(filter_neg($2)) with linespoints ls 1 title "bestätigte Fälle", \
+  [xmin_f:xmax_o] f((x - xmin_f)/86400) w l ls 12 lw 3.0 notitle
   
