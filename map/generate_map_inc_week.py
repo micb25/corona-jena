@@ -97,7 +97,7 @@ if __name__ == "__main__":
             svgdata = svgdata.replace("%MID_VAL%", "%+i Fälle" % (int(max_cases/2)))
             svgdata = svgdata.replace("%MAX_VAL%", "%+i Fälle" % (max_cases))
         else:
-            svgdata = svgdata.replace("%MID_VAL%", ""))
+            svgdata = svgdata.replace("%MID_VAL%", "")
             svgdata = svgdata.replace("%MAX_VAL%", "%+i Fall" % (max_cases))            
         
         if ( sum_cases != 1 ):
