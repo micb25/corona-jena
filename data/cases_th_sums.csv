@@ -101,3 +101,8 @@ date,sum,recovered,dead,hosp,hospcov,severe,url
 1592812800,3221,2950,178,670,100,100,https://corona.thueringen.de/bulletin
 1592899200,3229,2960,178,674,101,101,https://corona.thueringen.de/bulletin
 1592985600,3231,2970,178,675,101,101,https://corona.thueringen.de/bulletin
+1593072000,3235,3000,178,677,101,101,https://corona.thueringen.de/bulletin
+1593158400,3244,3000,181,680,102,102,https://corona.thueringen.de/bulletin
+1593244800,3249,3020,181,682,102,102,https://corona.thueringen.de/bulletin
+1593331200,3249,3020,181,682,102,102,https://corona.thueringen.de/bulletin
+1593417600,3250,3020,181,682,102,102,https://corona.thueringen.de/bulletin
