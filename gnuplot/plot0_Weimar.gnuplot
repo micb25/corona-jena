@@ -27,7 +27,7 @@ stats "<cat ../data/cases_weimar.csv | awk -F, '{print $2, $3}'" u 2 prefix "B" 
 # gets maximum number of deceased
 stats "<cat ../data/cases_weimar.csv | awk -F, '{print $2, $4}'" u 2 prefix "C" nooutput
 
-angle(x) = x*360 >= A_max ? 359.999 : x*360/A_max
+angle(x)=x*360/A_max
 
 centerX=-0.15
 centerY=0
