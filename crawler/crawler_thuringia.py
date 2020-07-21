@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import time, requests, re, os
+import datetime, time, requests, re, os
 
-DATAFILE = os.path.dirname(os.path.realpath(__file__)) + "/../data/cases_thuringia.csv"
 
 def strToTimestamp(datetimestr):    
     s = datetimestr.replace("Uhr", "").strip()
@@ -16,82 +15,109 @@ def strToTimestamp(datetimestr):
     for key in months.keys():
         s = s.replace(key, months[key])
             
+    complex_date_pattern = re.compile(r"([0-9]{1,2})\.\s?([0-9]{1,2})\s?\.?\s?([0-9]{2,4}),?\s?([0-9]{0,2})")
+        
     try:    
-        struct_time = time.strptime(s, "%d. %m %Y, %H")
-        return int(time.mktime(struct_time))
+        pd = complex_date_pattern.findall(s)
+        
+        timestamp = 0
+        if ( len(pd) < 0 ) or ( len(pd[0]) < 3 ):
+            return False
+        
+        date_day   = int(pd[0][0])
+        date_month = int(pd[0][1])
+        date_year  = int(pd[0][2])
+        
+        # fix short year notation
+        if date_year < 2020:
+            date_year += 2000
+        
+        if len(pd[0]) >= 4:
+            date_hour = int(pd[0][3])
+        else:
+            date_hour = 10
+        
+        timestamp = int(datetime.datetime(year=date_year, month=date_month, day=date_day, hour=date_hour).strftime("%s"))
+        return timestamp
     except:
         return False
 
-def getNumbers():
-    url          = "https://corona.thueringen.de/bulletin"
-    headers      = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
 
-    hotfix = False
-
-    date_pattern = re.compile(r"(?:<strong>)?.*?\s\(Stand: (.*?)\)(?:<\/strong>)?.*?\<table.*?\<\/table\>.*?<table.*?\<tbody\>(.*?)\<\/tbody\>")
-    num_pattern  = re.compile(r"\<tr\>\<th scope=\"row\">([A-Za-z\s\-äöüÄÖÜ]{1,})\<\/th\>\<td\>([\-0-9]{1,})\<\/td\>\<td\>([\-0-9]{1,})\<\/td\>\<td\>([\-0-9]{1,})\<\/td\>\<td\>([\-0-9]{1,})\<\/td\>\<td\>([\-0-9]{1,})\<\/td\>\<td\>([\-0-9]{1,})\<\/td\><\/tr\>") # 
+def getTHStatistics(url):
+    # general patterns
+    date_pattern     = re.compile(r"Stand: (.*?)</")
+    district_pattern = re.compile(r"(<div class=\"accordion__item\".*?</div></div></div></div></div>)")
     
-    # new layout, since 21.03.2020
-    num_pattern2 = re.compile(r"\<tr\>\<th scope=\"row\">([A-Za-z\s\-äöüÄÖÜ]{1,})\<\/th\>\<td\>([\-0-9]{1,})\<\/td\>\<td\>([\-0-9]{1,})\<\/td\>\<td\>([\-0-9]{1,})\<\/td\>\<td\>(?:[\-0,-9]{1,})\<\/td\>\<td\>([\-0-9]{1,})\<\/td\>\<td\>([\-0-9]{1,})\<\/td\>\<td\>([\-0-9]{1,})\<\/td\>\<td\>([\-0-9]{1,})\<\/td\><\/tr\>") # 
+    # district patterns
+    dp_name    = re.compile(r">([a-zäöüÄÖÜßA-Z\s\-]*?)</h3>")
+    dp_new_inf = re.compile(r"<li>Neuinfektionen letzte 24h\s?:?\s?([\+\-0-9]{1,})")
+    dp_sum_inf = re.compile(r"<li>Infizierte insgesamt\s?:?\s?([\+\-0-9]{1,})")
+    dp_hosp    = re.compile(r"Patienten stationär\s?:?\s([\+\-0-9]{1,})")
+    dp_severe  = re.compile(r"schwerer?\s(?:Verläufe|Verlauf)\s?:?\s([\+\-0-9]{1,})")
+    dp_dec     = re.compile(r"<li>Verstorbene?\s?:?\s?([\+\-0-9]{1,})")
     
-    res = ""
+    data_timestamp = 0
     
     try:
-        r = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0)
-        pd = date_pattern.findall( r.text.replace("\n", "").replace("\r", "").replace("<p>", "").replace("</p>", "").replace("*", "") )
-        p = pd[0]
+        # result buffer
+        res = ""
         
-        #for p in pd:
-        if True:
-            dt = strToTimestamp(p[0])
-            
-            if ( dt == 1587974400 ):
-                if ( hotfix == False ):
-                    hotfix = True
-                else:
-                    dt += 86400
-                    
-            if ( dt == 1588233600 ):
-                dt += 86400
-            
-            if dt is not False:
+        # perform HTML request
+        headers = {'Pragma': 'no-cache', 'Cache-Control': 'no-cache'}
+        r = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0)
+        
+        # filter some stuff
+        raw_text = r.text.replace("\n", "").replace("\r", "").replace("<p>", "").replace("</p>", "").replace("*", "")
+        
+        # get the timestamp and try to recognize missing updated date labels
+        pd = date_pattern.findall( raw_text )
+        for date_entry in pd:
+            current_timestamp = strToTimestamp(date_entry)
+            if current_timestamp > data_timestamp:
+                data_timestamp = current_timestamp
                 
-                # old layout
-                ps = num_pattern.findall( p[1].replace("&nbsp;", "0") )             
-                for d in ps:
-                    
-                    # fix for data since 26.03.2020:
-                    # number of recovered people is not included any more
-                    
-                    if ( dt < 1585180800 ):
-                        res = res + "%i,%s,%i,%i,%i,%i,%i,%i\n" % (dt, d[0], int(d[1]), int(d[2]), int(d[3]), int(d[4]), int(d[5]), int(d[6]))
-                    else:
-                        res = res + "%i,%s,%i,%i,%i,%i,%i,%i\n" % (dt, d[0], int(d[3]), int(d[2]), int(d[4]), int(d[5]), int(d[6]), 0)                    
+        # return if date could not be read
+        if data_timestamp == 0:
+            return False
                 
-                # fix for data since 21.03.2020
-                if ( len(ps) == 0 ):
-                    ps = num_pattern2.findall( p[1].replace("&nbsp;", "0") )
-                    for d in ps:
-                        # fix for data since 27.03.
-                        if ( dt < 1585299600 ):
-                            res = res + "%i,%s,%i,%i,%i,%i,%i,%i\n" % (dt, d[0], int(d[3]), int(d[2]), int(d[4]), int(d[5]), int(d[6]), int(d[7]))
-                        else:
-                            res = res + "%i,%s,%i,%i,%i,%i,%i,%i\n" % (dt, d[0], int(d[3]), int(d[2]), int(d[5]), int(d[6]), int(d[7]), 0)
-                            
-        return [dt, res]
+        # get all district data
+        pv = district_pattern.findall(raw_text)
+        for entry in pv:
+            dName = dp_name.findall(entry)
+            dNew  = dp_new_inf.findall(entry)
+            dSum  = dp_sum_inf.findall(entry)
+            dHosp = dp_hosp.findall(entry)
+            dSev  = dp_severe.findall(entry)
+            dDec  = dp_dec.findall(entry)
+            
+            d = []
+            d.append(dName[0] if len(dName) > 0 else "")
+            d.append(int(dNew[0]) if len(dNew) > 0 else -1)
+            d.append(int(dSum[0]) if len(dSum) > 0 else -1)
+            d.append(int(dHosp[0]) if len(dHosp) > 0 else -1)
+            d.append(int(dSev[0]) if len(dSev) > 0 else -1)
+            d.append(int(dDec[0]) if len(dDec) > 0 else -1)
+            
+            res = res + "%i,%s,%i,%i,%i,%i,%i,%i\n" % (data_timestamp, d[0], d[1], d[2], d[3], d[4], d[5], 0)
+        
+        return [data_timestamp, res]
     except:
         return False
     
 if __name__ == "__main__":
 
-    n = getNumbers()
+    DATAFILE = os.path.dirname(os.path.realpath(__file__)) + "/../data/cases_thuringia.csv"
+    
+    URL = "https://www.tmasgff.de/covid-19/fallzahlen"
+    
+    n = getTHStatistics(URL)
 
     if n != False:
-        # get old data
+        # get latest values
         with open(DATAFILE, 'r') as df:
             raw_data = df.read().splitlines()
         current_date = int(raw_data[-1].split(",")[0])
-        
+                
         # write new data
         if ( n[0] > current_date ):
             f = open(DATAFILE, 'a')
