@@ -16,8 +16,8 @@ fitmino = (fitmin - xmin_o) / 86400
 fitmaxo = (fitmax - xmin_o) / 86400
 
 # fit 
-a = 1.0
-b = 0.30
+a = 3000.0
+b = 0.03
 f(x) = a * exp( b * x )
 fit [fitmino:fitmaxo] f(x) "<awk -F, '{print $1,$2,$3}' ../data/cases_thuringia_rki.csv" using (($1 - xmin_o) / 86400):2 via a, b
 
