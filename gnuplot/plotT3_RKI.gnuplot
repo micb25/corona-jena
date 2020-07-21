@@ -6,8 +6,7 @@ set output '../plotT3_RKI.png'
 stats "<awk -F, '{print $1,$2,$3}' ../data/cases_thuringia_rki.csv" using 1 nooutput
 xmin = 1583884800
 xmin_o = int(STATS_min)
-xmax = int(STATS_max) + 18 * 86400
-xmax = xmin + (52 + 18) * 86400
+xmax = int(STATS_max) + 20 * 86400
 
 fitmin = int(STATS_max) - 7 * 86400
 fitmax = int(STATS_max)
