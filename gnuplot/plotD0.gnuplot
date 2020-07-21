@@ -70,11 +70,11 @@ plot \
      \
      "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(E_max-F_max)) w circle fc rgb "#ff8a1e", \
      '+' u (xpos + 0.21):(ypos(4.20)) w p pt 5 ps 4 lc rgb "#ff2020", \
-     "<echo 0" u (xpos + 0.21):(ypos(4.20)):(sprintf("%i beatmete COVID19-Fälle (%.1f%%)", F_max, 100*(F_max)/B_max)) w labels left offset 2.5, 0, \
+     "<echo 0" u (xpos + 0.21):(ypos(4.20)):(F_max!=1?sprintf("%i beatmete COVID19-Fälle (%.1f%%)", F_max, 100*(F_max)/B_max):sprintf("%i beatmeter COVID19-Fall (%.1f%%)", F_max, 100*(F_max)/B_max)) w labels left offset 2.5, 0, \
      \
      "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(F_max)) w circle fc rgb "#ff2020", \
      '+' u (xpos + 0.21):(ypos(5.20)) w p pt 5 ps 4 lc rgb "#ff8a1e", \
-     "<echo 0" u (xpos + 0.21):(ypos(5.20)):(sprintf("%i weitere COVID19-Fälle (%.1f%%)", E_max-F_max, 100*(E_max-F_max)/B_max)) w labels left offset 2.5, 0, \
+     "<echo 0" u (xpos + 0.21):(ypos(5.20)):(E_max-F_max!=1?sprintf("%i weitere COVID19-Fälle (%.1f%%)", E_max-F_max, 100*(E_max-F_max)/B_max):sprintf("%i weiterer COVID19-Fall (%.1f%%)", E_max-F_max, 100*(E_max-F_max)/B_max)) w labels left offset 2.5, 0, \
      \
      "<echo 0" u (xpos-0.21):(ypos(6.30)):("Quelle: DIVI-Intensivregister") w labels font ", 12" left offset 2.5, 0, \
      "<echo 0" u (xpos-0.21):(ypos(7.00)):(update_str) w labels font ", 12" left offset 2.5, 0, \
