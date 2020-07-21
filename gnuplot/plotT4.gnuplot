@@ -27,7 +27,7 @@ date_cmd = sprintf("%s", "`awk -F, '{print "@"$1}' ../data/cases_th_sums.csv | t
 update_str = "{/*0.75 letztes Update: " . date_cmd . " Uhr}"
 
 set label 1 at graph 0.98, 0.95 update_str right textcolor ls 0
-set label 2 at graph 0.98, 0.90 "{/*0.75 Quelle: Thüringer Landesregierung}" right textcolor ls 0
+set label 2 at graph 0.98, 0.90 "{/*0.75 Quelle: TMASGFF}" right textcolor ls 0
 
 # data
 plot  \

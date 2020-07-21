@@ -75,5 +75,5 @@ plot \
      \
      "<echo 0" u (xpos):(ypos(6.75)):("* geschätzt ab dem 26.03.") w labels font ", 12" left offset 2.5, 0, \
      "<echo 0" u (xpos):(ypos(7.35)):(update_str) w labels font ", 12" left offset 2.5, 0, \
-     "<echo 0" u (xpos):(ypos(7.95)):("Quelle: Thüringer Landesregierung") w labels font ", 12" left offset 2.5, 0
+     "<echo 0" u (xpos):(ypos(7.95)):("Quelle: TMASGFF") w labels font ", 12" left offset 2.5, 0
 

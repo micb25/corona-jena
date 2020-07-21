@@ -72,7 +72,7 @@ update_str = "letztes Update: " . date_cmd . " Uhr"
 
 # data
 plot  \
-  [xmin:xmax] 1/0 lc rgb '#f2f2f2' title "{/*0.75 Quelle: Thüringer Landesregierung}", \
+  [xmin:xmax] 1/0 lc rgb '#f2f2f2' title "{/*0.75 Quelle: TMASGFF}", \
   1/0 lc rgb '#f2f2f2' title "{/*0.75 " . update_str . "}", \
   gA((x - xmin)/86400) w l ls 2 notitle, \
   gC((x - xmin)/86400) w l ls 2 notitle, \

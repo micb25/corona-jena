@@ -27,7 +27,7 @@ set ylabel 'Gesamtzahl der Fälle in Thüringen'
 set key at graph 0.02, 0.98 left top invert spacing 1.2 box ls 3
 
 set label 1 at graph 0.98, 0.95 update_str right textcolor ls 0
-set label 2 at graph 0.98, 0.90 "{/*0.75 Quelle: Thüringer Landesregierung}" right textcolor ls 0
+set label 2 at graph 0.98, 0.90 "{/*0.75 Quelle: TMASGFF}" right textcolor ls 0
 
 # data
 plot  \
