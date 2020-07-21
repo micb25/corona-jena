@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import time, requests, re, os
+import time, requests, re, os, sys, datetime
 
 
 def strToTimestamp(datetimestr):    
@@ -22,27 +22,25 @@ def strToTimestamp(datetimestr):
         return False
 
 
-def parseTHBulletinTable(text):
+def parseTHData(text):
 
-    num_pattern_T1 = re.compile(r"<tr><td>(?:<strong>)?Gesamtzahl der Infizierten:\s?(?:<\/strong>)?</td><td>(?:<strong>)?([0-9]{1,})(?:<\/strong>)?</td></tr>")
-    num_pattern_R1 = re.compile(r"<tr><td>(?:<strong>)?.*?(?:Gesamtzahl\ der\ Genesenen|Anzahl\ Genesene).*?(?:<\/strong>)?</td><td>(?:<strong>)?([0-9]{1,})(?:<\/strong>)?</td></tr>")
-    num_pattern_R2 = re.compile(r"von\ ([0-9]{1,})\ Genesenen")
-    num_pattern_D1 = re.compile(r"[vV]erstorbene.*?</td><td.*?>(?:<strong>)?([\+\-0-9]{1,})(?:<\/strong>)?<\/td>")
-    num_pattern_HI = re.compile(r"Patienten\ stationär\ \/\ Gesamt.*?</td><td.*?>(?:<strong>|<p>)?([\+\-0-9]{1,})(?:<\/strong>|<\/p>)?<\/td>")
-    num_pattern_HC = re.compile(r"Patienten\ stationär\ \/\ aufgrund.*?</td><td.*?>(?:<strong>)?([\+\-0-9]{1,})(?:<\/strong>)?<\/td>")
-    num_pattern_S1 = re.compile(r"[sS]chwere Verläufe.*?</td><td.*?>(?:<strong>)?([\+\-0-9]{1,})(?:<\/strong>)?<\/td>")
+    num_pattern_T1 = re.compile(r"Gesamtzahl der Infizierten\s?:\s?([\+\-0-9]{1,})")
+    num_pattern_R1 = re.compile(r"(?:Gesamtzahl\ der\ Genesenen|Anzahl\ Genesene|Genesene\*)\s?:\s?([\+\-0-9]{1,})")
+    num_pattern_D1 = re.compile(r"[vV]erstorbene\s?:\s([\+\-0-9]{1,})")
+    num_pattern_HI = re.compile(r"Patienten\ stationär\s\/\sGesamt.*?\s?:\s?([\+\-0-9]{1,})")
+    num_pattern_HC = re.compile(r"Patienten\ stationär\s\/\saufgrund.*?\s?:\s?([\+\-0-9]{1,})")
+    num_pattern_S1 = re.compile(r"[sS]chwere Verläufe\s?:\s?([\+\-0-9]{1,})")
             
     try:
         ps1  = num_pattern_T1.findall( text )
-        ps2A = num_pattern_R1.findall( text )
-        ps2B = num_pattern_R2.findall( text )
+        ps2  = num_pattern_R1.findall( text )
         ps3  = num_pattern_D1.findall( text )
         ps4  = num_pattern_HI.findall( text )
         ps5  = num_pattern_HC.findall( text )
         ps6  = num_pattern_S1.findall( text )
                                         
         num_t  = int(ps1[0])  if (len(ps1) >= 1) else -1
-        num_r  = int(ps2A[0]) if (len(ps2A) >= 1) else ( int(ps2B[0]) if (len(ps2B) >= 1) else -1 )
+        num_r  = int(ps2[0])  if (len(ps2) >= 1) else -1
         num_d  = int(ps3[0])  if (len(ps3) >= 1) else -1
         num_hi = int(ps4[0])  if (len(ps4) >= 1) else -1
         num_hc = int(ps5[0])  if (len(ps5) >= 1) else -1
@@ -57,10 +55,11 @@ def parseTHBulletinTable(text):
 if __name__ == "__main__":
     
     DATAFILE = os.path.dirname(os.path.realpath(__file__)) + "/../data/cases_th_sums.csv"
-    URL = 'https://corona.thueringen.de/bulletin'
+    URL = 'https://www.tmasgff.de/covid-19/fallzahlen'
     
-    # RE pattern for bulletin
-    bulletin_pattern = re.compile(r"<h[23].*?>.*?\(Stand:?\s(.*?)\).*?<\/h[23]>(.*?<table.*?>.*?)<\/table>")
+    # RE pattern for TMASGFF data
+    th_data_pattern = re.compile(r"<h2>(Gesamt.*?)<\/div>")
+    th_date_pattern = re.compile(r"Stand: ([0-9]{1,2}).([0-9]{1,2}).([0-9]{2,4})")
         
     # do the request
     headers = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
@@ -68,35 +67,43 @@ if __name__ == "__main__":
     s = r.text.replace("\t", "")
     
     # parse data
-    bulletin_rawdata = bulletin_pattern.findall( s )
-    
-    if ( len(bulletin_rawdata) > 0 ):
+    rawdata = th_data_pattern.findall( s )
+    if ( len(rawdata) > 0 ):
         
-        entry = bulletin_rawdata[0]
+        entry = rawdata[0]
         
+        # read date
+        date_day = date_month = date_year = 0
+        rawdate = th_date_pattern.findall( rawdata[0] )
+        if len(rawdate) < 1 or len(rawdate[0]) < 2:
+            sys.exit(0)
+            
+        date_day = int(rawdate[0][0])
+        date_month = int(rawdate[0][1])
+        if len(rawdate[0]) < 3:
+            date_year = int(rawdate[0][2])
+        if date_year == 0:
+            date_year = 2020
+        elif date_year < 2020:
+            date_year += 2000
+        
+        timestamp = int(datetime.datetime(year=date_year, month=date_month, day=date_day, hour=10).strftime("%s"))
+                
         # get old values
         with open(DATAFILE, 'r') as df:
             raw_data = df.read().splitlines()
         timestamp_last = int(raw_data[-1].split(",")[0])
         
         # get latest values
-        data = parseTHBulletinTable(entry[1].replace(".", ""))
-                        
+        data = parseTHData(entry.replace(".", ""))
+                                
         new_record = {}
-        new_record[0] = int(strToTimestamp(entry[0]))
-        
-        # 28.04.2020: fix for incorrect date
-        if ( data[0] == 2145 ):
-            new_record[0] = int(strToTimestamp("28. April 2020"))
-            
-        # 01.05.2020: fix for incorrect date
-        if ( data[0] == 2323 ):
-            new_record[0] = int(strToTimestamp("01. Mai 2020"))
+        new_record[0] = timestamp
         
         for i in range(len(data)):
             new_record[i+1] = data[i]
         new_record[len(new_record)] = URL
-        
+                
         if ( new_record[0] > timestamp_last ):
             
             # generate csv line
