@@ -43,7 +43,7 @@ def strToTimestamp(datetimestr):
         return False
 
 
-def getTHStatistics(url):
+def getTHStatistics(url, latest_case_numbers):
     # general patterns
     date_pattern     = re.compile(r"Stand: (.*?)</")
     district_pattern = re.compile(r"(<div class=\"accordion__item\".*?</div></div></div></div></div>)")
@@ -92,7 +92,24 @@ def getTHStatistics(url):
             
             d = []
             d.append(dName[0] if len(dName) > 0 else "")
-            d.append(int(dNew[0]) if len(dNew) > 0 else -1)
+            
+            # try to verify/fix per day
+            if len(dNew) > 0:
+                if (len(dSum) > 0) and (len(dName) > 0):
+                    
+                    # calculate delta in case numbers
+                    delta_cases = int(dSum[0]) - latest_case_numbers[dName[0]]
+                    
+                    # check if "new cases" entry has not been correctly updated
+                    if delta_cases < int(dNew[0]):
+                        d.append(delta_cases)
+                    else:
+                        d.append(int(dNew[0]) if len(dNew) > 0 else -1)
+                else:
+                    d.append(int(dNew[0]))        
+            else:
+                d.append(-1)
+                
             d.append(int(dSum[0]) if len(dSum) > 0 else -1)
             d.append(int(dHosp[0]) if len(dHosp) > 0 else -1)
             d.append(int(dSev[0]) if len(dSev) > 0 else -1)
@@ -110,14 +127,21 @@ if __name__ == "__main__":
     
     URL = "https://www.tmasgff.de/covid-19/fallzahlen"
     
-    n = getTHStatistics(URL)
+    # get latest values
+    with open(DATAFILE, 'r') as df:
+        raw_data = df.read().splitlines()
+    current_date = int(raw_data[-1].split(",")[0])
+    
+    # try to detect mistakes in "new cases since 24h"
+    latest_values = {}
+    for line in raw_data[1:]:
+        entries = line.split(",")
+        if int(entries[0]) == current_date:
+            latest_values[entries[1]] = int(entries[3])
+    
+    n = getTHStatistics(URL, latest_values)
 
     if n != False:
-        # get latest values
-        with open(DATAFILE, 'r') as df:
-            raw_data = df.read().splitlines()
-        current_date = int(raw_data[-1].split(",")[0])
-                
         # write new data
         if ( n[0] > current_date ):
             f = open(DATAFILE, 'a')
