@@ -40,6 +40,7 @@ if __name__ == "__main__":
     
     # do the request
     num_latest = getEFNumbers(URL)
+    print(num_latest)
                 
     if (num_latest != False) and (num_latest[0] > -1):
         
