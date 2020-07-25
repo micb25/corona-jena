@@ -76,12 +76,17 @@ if __name__ == "__main__":
         with open(DATAFILE, 'r') as df:
             raw_data = df.read().splitlines()
         current_values = raw_data[-1].split(",")[1:6]
+        source = raw_data[-1].split(",")[-1]
         
-        # check for changes
+        # check for changes and manually added numbers
         value_changed = False        
         for i in enumerate(current_values):
-            if ( int(i[1]) != num_latest[i[0]] ):
-                if ( num_latest[i[0]] != -1 ):
+            if source == URL:
+                if ( int(i[1]) != num_latest[i[0]] ):
+                    if ( num_latest[i[0]] != -1 ): 
+                        value_changed = True
+            else:
+                if ( num_latest[i[0]] > int(i[1]) ):
                     value_changed = True
             
         if value_changed:
