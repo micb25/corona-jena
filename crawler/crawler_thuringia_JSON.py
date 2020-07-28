@@ -1,29 +1,14 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import time, requests, re, os, json
+import os, json
 
-DATAFILE_JSON = os.path.dirname(os.path.realpath(__file__)) + "/../data/cases_thuringia.json"
 
-def strToTimestamp(datetimestr):    
-    s = datetimestr.replace("Uhr", "").strip()
+def readTHdata(data_file):
     
-    # fix for dates, since 25.03.
-    if re.search(",", s) is None:
-        s += ", 10"
-            
-    months = {"Januar": "1", "Februar": "2", "März": "3", "April": "4", "Mai": "5", "Juni": "6", "Juli": "7", "August": "8", "September": "9", "Oktober": "10", "November": "11", "Dezember": "12" }    
-    for key in months.keys():
-        s = s.replace(key, months[key])
-            
-    try:    
-        struct_time = time.strptime(s, "%d. %m %Y, %H")
-        return int(time.mktime(struct_time))
-    except:
-        return False
-
-def writeAsJSON( pd, num_patterns ):
-    global DATAFILE_JSON
+    timestamp_array    = []
+    timestamp_last     = -1
+    timestamp_lastweek = -1
     
     regions = {
         "ABG": { "name": "Altenburger Land", "res": 90118, "area": 569.40 },
@@ -58,49 +43,53 @@ def writeAsJSON( pd, num_patterns ):
             "color": "#0000d3",
             "unit": "Fälle",
             "unit1": "Fall",
-            "showSum": 1
+            "showSum": 1,
+            "source": "TMASGFF"
+        },
+        "caseres" : {
+            "id": 1,
+            "de": "Fälle / 100&thinsp;000 EW",
+            "color": "#0000D3",
+            "unit": "Fälle / 100&thinsp;000 EW",
+            "source": "TMASGFF"
         },
         "diff": {
-            "id": 1,
+            "id": 2,
             "de": "Entwicklung zum Vortag",
             "color": "#A000FFFF",
             "unit": "Fälle",
             "unit1": "Fall",
             "pm" : 1,
-            "showSum": 1
+            "showSum": 1,
+            "source": "TMASGFF"
         },
         "diffweek": {
-            "id": 2,
+            "id": 3,
             "de": "Entwicklung zur Vorwoche",
             "color": "#A000FFFF",
             "unit": "Fälle",
             "unit1": "Fall",
             "pm" : 1,
-            "showSum": 1
+            "showSum": 1,
+            "source": "TMASGFF"
         },
         "reldiffweek": {
-            "id": 3,
-            "de": "rel. Entwicklung zur Vorwoche",
+            "id": 4,
+            "de": "7-Tages-Inzidenz",
             "color": "#A000FFFF",
             "unit": "Fälle / 100&thinsp;000 EW",
             "unit1": "Fall / 100&thinsp;000 EW",
-            "pm" : 1
+            "pm" : 1,
+            "source": "TMASGFF"
         },
         "hospinf": {
-            "id": 4,
+            "id": 5,
             "de": "stationäre Fälle mit COVID19",
             "color": "#EBE800",
             "unit": "Fälle",
             "unit1": "Fall",
-            "showSum": 1
-        },
-        "hosp": {
-            "id": 5,
-            "de": "stationäre Fälle wegen COVID19",
-            "color": "#FFAD00",
-            "unit": "Fälle",
-            "unit1": "Fall",
-            "showSum": 1
+            "showSum": 1,
+            "source": "TMASGFF"
         },
         "severe": {
             "id": 6,
@@ -108,7 +97,8 @@ def writeAsJSON( pd, num_patterns ):
             "color": "#D30000",
             "unit": "Fälle",
             "unit1": "Fall",
-            "showSum": 1
+            "showSum": 1,
+            "source": "TMASGFF"
         },
         "deceased": {
             "id": 7,
@@ -116,109 +106,116 @@ def writeAsJSON( pd, num_patterns ):
             "color": "#333333",
             "unit": "Verstorbene",
             "unit1": "Verstorbene(r)",
-            "showSum": 1
-        },
-        "caseres" : {
-            "id": 8,
-            "de": 'relative Fallzahlen',
-            "color": '#0000D3',
-            "unit": 'Fälle / 100&thinsp;000 EW'
+            "showSum": 1,
+            "source": "TMASGFF"
         },
         "casedens" : { 
-            "id": 9,
-            "de": 'flächenbezogene Fälle',
-            "color": '#0000D3',
-            "unit": 'Fälle / km²'
+            "id": 8,
+            "de": "flächenbezogene Fallzahlen",
+            "color": "#0000D3",
+            "unit": "Fälle / km²",
+            "source": "TMASGFF, statistik.thueringen.de"
         },
         "res" : {
-            "id": 10,
+            "id": 9,
             "de": 'Einwohner',
             "color": '#00A000',
             "unit": 'EW',
-            "showSum": 1
+            "showSum": 1,
+            "source": "statistik.thueringen.de"
         },
         "area" : {
-            "id": 11,
+            "id": 10,
             "de": 'Fläche',
             "color": '#00A000',
             "unit": 'km²',
-            "showSum": 1
+            "showSum": 1,
+            "source": "statistik.thueringen.de"
         },
         "dens" : {
-            "id": 12,
+            "id": 11,
             "de": 'Einwohnerdichte',
             "color": '#00A000',
-            "unit": 'EW / km²'
+            "unit": 'EW / km²',
+            "source": "statistik.thueringen.de"
         }
     }
-        
-
-
-    p = pd
-    if True:
-        dt = strToTimestamp(p[0])
-                        
-        if dt is not False:            
-            # get numbers one week ago
-            last_week = dt - 7 * 86400
-            DATAFILE = os.path.dirname(os.path.realpath(__file__)) + "/../data/cases_thuringia.csv"    
-            with open(DATAFILE, 'r') as df:
-                raw_data = df.read().splitlines()
-                
-            for line in raw_data:
-                cols = line.split(",")
-                if ( int(cols[0]) == last_week ):
-                    for key in regions:
-                        if ( regions[key]["name"] == cols[1] ):
-                            regions[key]["diffweek"]  = -int(cols[3])
+    
+    try:
+        with open(data_file, 'r') as df:
+            raw_data = df.read().splitlines()[1:]
             
-            ps = num_patterns[1].findall( p[1].replace("&nbsp;", "0") )
-            for d in ps:
-                for key in regions:
-                    if ( regions[key]["name"] == d[0] ):
-                        regions[key]["cases"] = int(d[2])
-                        regions[key]["diff"]  = int(d[3])
-                        regions[key]["diffweek"] += int(d[2])
-                        regions[key]["hospinf"]  = int(d[4])
-                        regions[key]["hosp"]  = int(d[5])
-                        regions[key]["severe"]  = int(d[6])
-                        regions[key]["deceased"] = int(d[7])
-                        regions[key]["casedens"] = regions[key]["cases"] / regions[key]["area"]
-                        regions[key]["caseres"] = regions[key]["cases"] / regions[key]["res"]*100000
-                        regions[key]["reldiffweek"] = regions[key]["diffweek"] / regions[key]["res"]*100000
-                        regions[key]["dens"] = regions[key]["res"] / regions[key]["area"]
+        for line in raw_data:
+            timestamp = int(line.split(",")[0])
+            if timestamp not in timestamp_array:
+                timestamp_array.append(timestamp)
+                
+        if len(timestamp_array) > 0:
+            timestamp_last = timestamp_array[-1]
+            
+            for line in raw_data:
+                line_data = line.split(",")
+                if int(line_data[0]) == timestamp_last:
+                    for key in regions:
+                        if regions[key]["name"] == line_data[1]:
+                            regions[key]["cases"]    = int(line_data[3])
+                            regions[key]["diff"]     = int(line_data[2])
+                            regions[key]["diffweek"] = int(line_data[3])
+                            regions[key]["hospinf"]  = int(line_data[4])
+                            regions[key]["severe"]   = int(line_data[5])
+                            regions[key]["deceased"] = int(line_data[6])
+                            regions[key]["casedens"] = regions[key]["cases"] / regions[key]["area"]
+                            regions[key]["caseres"] = regions[key]["cases"] / regions[key]["res"]*100000
+                            regions[key]["dens"] = regions[key]["res"] / regions[key]["area"]
+                    
+        else:
+            return False
+        
+        for ts in timestamp_array:
+            timestamp_delta = (timestamp_last - ts) / 86400
+            if ( timestamp_delta >= 6.5 ) and ( timestamp_delta < 7.5 ):
+                timestamp_lastweek = ts
+                break
+            
+        if timestamp_lastweek > 0:
+            for line in raw_data:
+                line_data = line.split(",")
+                if int(line_data[0]) == timestamp_lastweek:
+                    for key in regions:
+                        if regions[key]["name"] == line_data[1]:
+                            regions[key]["diffweek"] -= int(line_data[3])
+                            regions[key]["reldiffweek"] = regions[key]["diffweek"] / regions[key]["res"]*100000
+        else:
+            for key in regions:
+                regions[key]["diffweek"] = 0
+                regions[key]["reldiffweek"] = 0
+            
+    except:
+        return False
     
     resultArray = {
-        "ts" : dt,
+        "ts" : timestamp_last,
         "types": types,
         "values": regions
     }
-    
-    f = open(DATAFILE_JSON, 'w')
-    f.write( json.dumps( resultArray ) ) 
-    f.close()
-    return True
-
-def parseNumbers():
-    url          = "https://corona.thueringen.de/bulletin"
-    headers      = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
-
-    date_pattern = re.compile(r"(?:<strong>)?.*?\s\(Stand: (.*?)\)(?:<\/strong>)?.*?\<table.*?\<\/table\>.*?<table.*?\<tbody\>(.*?)\<\/tbody\>")
-    num_pattern0 = re.compile(r"\<tr\>\<th scope=\"row\">([A-Za-z\s\-äöüÄÖÜ]{1,})\<\/th\>\<td\>([\-0-9]{1,})\<\/td\>\<td\>([\-0-9]{1,})\<\/td\>\<td\>([\-0-9]{1,})\<\/td\>\<td\>([\-0-9]{1,})\<\/td\>\<td\>([\-0-9]{1,})\<\/td\>\<td\>([\-0-9]{1,})\<\/td\><\/tr\>") # 
-    # new layout, since 21.03.2020
-    num_pattern1 = re.compile(r"\<tr\>\<th scope=\"row\">([A-Za-z\s\-äöüÄÖÜ]{1,})\<\/th\>\<td\>([\-0-9]{1,})\<\/td\>\<td\>([\-0-9]{1,})\<\/td\>\<td\>([\-0-9]{1,})\<\/td\>\<td\>(?:[\-0,-9]{1,})\<\/td\>\<td\>([\-0-9]{1,})\<\/td\>\<td\>([\-0-9]{1,})\<\/td\>\<td\>([\-0-9]{1,})\<\/td\>\<td\>([\-0-9]{1,})\<\/td\><\/tr\>") # 
-    num_patterns = [ num_pattern0, num_pattern1 ]
-    
-    try:
-        r = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0)
-        pd = date_pattern.findall( r.text.replace("\n", "").replace("\r", "").replace("<p>", "").replace("</p>", "").replace("*", "") )
         
-        writeAsJSON( pd[0], num_patterns )
-        
-    except:
-        return False
+    return resultArray
 
 
 if __name__ == "__main__":
+    
+    ###########################################################################
+    # Filenames
+    ###########################################################################
 
-    parseNumbers()
+    DATA_FOLDER = os.path.dirname(os.path.realpath(__file__)) + "/../data/"
+    
+    CSV_FILE  = DATA_FOLDER + "cases_thuringia.csv"    
+    JSON_FILE = DATA_FOLDER + "cases_thuringia.json"
+    
+    data = readTHdata(CSV_FILE)
+    
+    if data != False:
+        f = open(JSON_FILE, 'w')
+        f.write( json.dumps( data ) ) 
+        f.close()
