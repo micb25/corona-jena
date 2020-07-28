@@ -7,11 +7,8 @@ date_cmd = sprintf("%s", "`awk -F, '{print "@"$1+86400}' ../data/cases_rki_db_th
 update_str = "{/*0.75 (Stand: " . date_cmd . "; Quelle: Robert Koch-Institut)}"
 
 # get maximum y value
-stats "<awk -F, '{if ($1==\"%FILENAME%\") {a[\"A00-A04\"]=$2;b[\"A00-A04\"]=$3;a[\"A05-A14\"]=$4;b[\"A05-A14\"]=$5;a[\"A15-A34\"]=$6;b[\"A15-A34\"]=$7;a[\"A35-A59\"]=$8;b[\"A35-A59\"]=$9;a[\"A60-A79\"]=$10;b[\"A60-A79\"]=$11;a[\"A80+\"]=$12;b[\"A80+\"]=$13+0;}}END{ for (i in a) { print i, b[i], a[i] }}' ../data/rki_th/total_deceased_by_age.csv | sort -k 1" using 2 name "MM" 
+stats "<awk -F, '{if ($1==\"%FILENAME%\") {a[\"A00-A04\"]=$2;b[\"A00-A04\"]=$3;a[\"A05-A14\"]=$4;b[\"A05-A14\"]=$5;a[\"A15-A34\"]=$6;b[\"A15-A34\"]=$7;a[\"A35-A59\"]=$8;b[\"A35-A59\"]=$9;a[\"A60-A79\"]=$10;b[\"A60-A79\"]=$11;a[\"A80+\"]=$12;b[\"A80+\"]=$13+0;}}END{ for (i in a) { print i, b[i], a[i] }}' ../data/rki_th/total_deceased_by_age.csv | sort -k 1" using 2 name "MM" nooutput
 stats "<awk -F, '{if ($1==\"%FILENAME%\") {a[\"A00-A04\"]=$2;b[\"A00-A04\"]=$3;a[\"A05-A14\"]=$4;b[\"A05-A14\"]=$5;a[\"A15-A34\"]=$6;b[\"A15-A34\"]=$7;a[\"A35-A59\"]=$8;b[\"A35-A59\"]=$9;a[\"A60-A79\"]=$10;b[\"A60-A79\"]=$11;a[\"A80+\"]=$12;b[\"A80+\"]=$13+0;}}END{ for (i in a) { print i, b[i], a[i] }}' ../data/rki_th/total_deceased_by_age.csv | sort -k 1" using 3 name "WW" nooutput
-
-ymax = 1.3 * (WW_max > MM_max ? WW_max : MM_max)
-ymax = ymax > 5 ? ymax : 5
 
 # x-axis setup
 set xrange [-0.5:5.5]
@@ -20,7 +17,7 @@ set xtics ("0-4\nJahre" 0, "5-14\nJahre" 1, "15-34\nJahre" 2, "35-59\nJahre" 3, 
 
 # y-axis setup
 set ylabel "COVID19-Todesfälle %REGION%"
-set yrange [0:ymax]
+set yrange [0:5 < * < 100000]
 
 # key
 set key at graph 0.02, 0.98 left top spacing 1.2 box ls 3
@@ -40,6 +37,8 @@ set label 2 at graph 0.98, 0.90 update_str right textcolor ls 0
 
 M_title = sprintf("Männlich {/*0.75 (insgesamt: %i)}", MM_sum)
 W_title = sprintf("Weiblich {/*0.75 (insgesamt: %i)}", WW_sum)
+
+set offsets 0.00, 0.00, graph 0.25, 0.00
 
 # data
 plot  \
