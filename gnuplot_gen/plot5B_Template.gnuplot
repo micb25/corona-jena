@@ -4,7 +4,7 @@ set output '../plot5B_RKI_%FILENAME%.png'
 
 # get last update
 date_cmd = sprintf("%s", "`awk -F, '{print "@"$1+86400}' ../data/cases_rki_db_th.csv | tail -n 1 | xargs date +"%d.%m.%Y" -d`")
-update_str = "{/*0.75 (Stand: " . date_cmd . ")}"
+update_str = "{/*0.75 (Stand: " . date_cmd . "; Quelle: Robert Koch-Institut)}"
 
 # get maximum y value
 stats "<awk -F, '{if ($1==\"%FILENAME%\") {a[\"A00-A04\"]=$2;b[\"A00-A04\"]=$3;a[\"A05-A14\"]=$4;b[\"A05-A14\"]=$5;a[\"A15-A34\"]=$6;b[\"A15-A34\"]=$7;a[\"A35-A59\"]=$8;b[\"A35-A59\"]=$9;a[\"A60-A79\"]=$10;b[\"A60-A79\"]=$11;a[\"A80+\"]=$12;b[\"A80+\"]=$13+0;}}END{ for (i in a) { print i, b[i], a[i] }}' ../data/rki_th/total_deceased_by_age.csv | sort -k 1" using 2 name "MM" 
@@ -47,6 +47,4 @@ plot  \
   "" using 3 with histograms lt rgb "#32373e" title W_title, \
   \
   "<awk -F, '{if ($1==\"%FILENAME%\") {a[\"A00-A04\"]=$2;b[\"A00-A04\"]=$3;a[\"A05-A14\"]=$4;b[\"A05-A14\"]=$5;a[\"A15-A34\"]=$6;b[\"A15-A34\"]=$7;a[\"A35-A59\"]=$8;b[\"A35-A59\"]=$9;a[\"A60-A79\"]=$10;b[\"A60-A79\"]=$11;a[\"A80+\"]=$12;b[\"A80+\"]=$13+0;}}END{ for (i in a) { print i, b[i], a[i] }}' ../data/rki_th/total_deceased_by_age.csv | sort -k 1" using (column(0) - 0.17):($2):($2>0?sprintf("{/*0.85 %.0f}", $2):"") with labels center offset 0, 0.7 notitle, \
-  "" using (column(0) + 0.17):($3):($3>0?sprintf("{/*0.85 %.0f}", $3):"") with labels center offset 0, 0.7 notitle, \
-  1/0 lc rgb '#f2f2f2' title "{/*0.65 Quelle: Robert Koch-Institut}"
-  
+  "" using (column(0) + 0.17):($3):($3>0?sprintf("{/*0.85 %.0f}", $3):"") with labels center offset 0, 0.7 notitle  
