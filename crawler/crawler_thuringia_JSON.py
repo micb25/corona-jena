@@ -85,7 +85,7 @@ def readTHdata(data_file):
         "hospinf": {
             "id": 5,
             "de": "stationäre Fälle mit COVID19",
-            "color": "#EBE800",
+            "color": "#FF891D",
             "unit": "Fälle",
             "unit1": "Fall",
             "showSum": 1,
