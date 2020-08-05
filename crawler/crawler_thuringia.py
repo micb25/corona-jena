@@ -108,7 +108,12 @@ def getTHStatistics(url, latest_case_numbers):
                 else:
                     d.append(int(dNew[0]))        
             else:
-                d.append(-1)
+                if (len(dSum) > 0) and (len(dName) > 0):
+                    # calculate delta in case numbers
+                    delta_cases = int(dSum[0]) - latest_case_numbers[dName[0]]
+                    d.append(delta_cases)
+                else:
+                    d.append(0)
                 
             d.append(int(dSum[0]) if len(dSum) > 0 else -1)
             d.append(int(dHosp[0]) if len(dHosp) > 0 else -1)
