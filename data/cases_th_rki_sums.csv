@@ -168,19 +168,27 @@ Meldedatum,Landkreis,SummeFall,SummeGenesen,SummeTodesfall,AnzahlFall,AnzahlGene
 1594512000,LK Altenburger Land,76,72,4,0,0,0
 1594598400,LK Altenburger Land,76,72,4,0,0,0
 1594684800,LK Altenburger Land,77,73,4,1,1,0
-1594771200,LK Altenburger Land,79,73,4,2,0,0
-1594857600,LK Altenburger Land,79,73,4,0,0,0
-1594944000,LK Altenburger Land,79,73,4,0,0,0
-1595030400,LK Altenburger Land,79,73,4,0,0,0
-1595116800,LK Altenburger Land,79,73,4,0,0,0
-1595203200,LK Altenburger Land,79,73,4,0,0,0
-1595289600,LK Altenburger Land,79,73,4,0,0,0
-1595376000,LK Altenburger Land,79,73,4,0,0,0
-1595462400,LK Altenburger Land,79,73,4,0,0,0
-1595548800,LK Altenburger Land,79,73,4,0,0,0
-1595635200,LK Altenburger Land,79,73,4,0,0,0
-1595721600,LK Altenburger Land,79,73,4,0,0,0
-1595808000,LK Altenburger Land,79,73,4,0,0,0
+1594771200,LK Altenburger Land,79,75,4,2,2,0
+1594857600,LK Altenburger Land,79,75,4,0,0,0
+1594944000,LK Altenburger Land,79,75,4,0,0,0
+1595030400,LK Altenburger Land,79,75,4,0,0,0
+1595116800,LK Altenburger Land,79,75,4,0,0,0
+1595203200,LK Altenburger Land,79,75,4,0,0,0
+1595289600,LK Altenburger Land,79,75,4,0,0,0
+1595376000,LK Altenburger Land,79,75,4,0,0,0
+1595462400,LK Altenburger Land,79,75,4,0,0,0
+1595548800,LK Altenburger Land,79,75,4,0,0,0
+1595635200,LK Altenburger Land,79,75,4,0,0,0
+1595721600,LK Altenburger Land,79,75,4,0,0,0
+1595808000,LK Altenburger Land,79,75,4,0,0,0
+1595894400,LK Altenburger Land,79,75,4,0,0,0
+1595980800,LK Altenburger Land,79,75,4,0,0,0
+1596067200,LK Altenburger Land,79,75,4,0,0,0
+1596153600,LK Altenburger Land,79,75,4,0,0,0
+1596240000,LK Altenburger Land,79,75,4,0,0,0
+1596326400,LK Altenburger Land,79,75,4,0,0,0
+1596412800,LK Altenburger Land,79,75,4,0,0,0
+1596499200,LK Altenburger Land,79,75,4,0,0,0
 1580169600,LK Eichsfeld,0,0,0,0,0,0
 1580256000,LK Eichsfeld,0,0,0,0,0,0
 1580342400,LK Eichsfeld,0,0,0,0,0,0
@@ -363,6 +371,14 @@ Meldedatum,Landkreis,SummeFall,SummeGenesen,SummeTodesfall,AnzahlFall,AnzahlGene
 1595635200,LK Eichsfeld,162,153,9,0,0,0
 1595721600,LK Eichsfeld,162,153,9,0,0,0
 1595808000,LK Eichsfeld,162,153,9,0,0,0
+1595894400,LK Eichsfeld,162,153,9,0,0,0
+1595980800,LK Eichsfeld,162,153,9,0,0,0
+1596067200,LK Eichsfeld,162,153,9,0,0,0
+1596153600,LK Eichsfeld,162,153,9,0,0,0
+1596240000,LK Eichsfeld,162,153,9,0,0,0
+1596326400,LK Eichsfeld,162,153,9,0,0,0
+1596412800,LK Eichsfeld,162,153,9,0,0,0
+1596499200,LK Eichsfeld,162,153,9,0,0,0
 1580169600,LK Gotha,0,0,0,0,0,0
 1580256000,LK Gotha,0,0,0,0,0,0
 1580342400,LK Gotha,0,0,0,0,0,0
@@ -519,32 +535,40 @@ Meldedatum,Landkreis,SummeFall,SummeGenesen,SummeTodesfall,AnzahlFall,AnzahlGene
 1593388800,LK Gotha,312,282,30,0,0,0
 1593475200,LK Gotha,312,282,30,0,0,0
 1593561600,LK Gotha,312,282,30,0,0,0
-1593648000,LK Gotha,313,282,30,1,0,0
-1593734400,LK Gotha,313,282,30,0,0,0
-1593820800,LK Gotha,313,282,30,0,0,0
-1593907200,LK Gotha,315,284,30,2,2,0
-1593993600,LK Gotha,315,284,30,0,0,0
-1594080000,LK Gotha,315,284,30,0,0,0
-1594166400,LK Gotha,315,284,30,0,0,0
-1594252800,LK Gotha,315,284,30,0,0,0
-1594339200,LK Gotha,315,284,30,0,0,0
-1594425600,LK Gotha,315,284,30,0,0,0
-1594512000,LK Gotha,315,284,30,0,0,0
-1594598400,LK Gotha,315,284,30,0,0,0
-1594684800,LK Gotha,316,285,30,1,1,0
-1594771200,LK Gotha,317,286,30,1,1,0
-1594857600,LK Gotha,317,286,30,0,0,0
-1594944000,LK Gotha,318,287,30,1,1,0
-1595030400,LK Gotha,318,287,30,0,0,0
-1595116800,LK Gotha,318,287,30,0,0,0
-1595203200,LK Gotha,318,287,30,0,0,0
-1595289600,LK Gotha,318,287,30,0,0,0
-1595376000,LK Gotha,318,287,30,0,0,0
-1595462400,LK Gotha,318,287,30,0,0,0
-1595548800,LK Gotha,318,287,30,0,0,0
-1595635200,LK Gotha,319,287,30,1,0,0
-1595721600,LK Gotha,319,287,30,0,0,0
-1595808000,LK Gotha,319,287,30,0,0,0
+1593648000,LK Gotha,313,283,30,1,1,0
+1593734400,LK Gotha,313,283,30,0,0,0
+1593820800,LK Gotha,313,283,30,0,0,0
+1593907200,LK Gotha,315,285,30,2,2,0
+1593993600,LK Gotha,315,285,30,0,0,0
+1594080000,LK Gotha,315,285,30,0,0,0
+1594166400,LK Gotha,315,285,30,0,0,0
+1594252800,LK Gotha,315,285,30,0,0,0
+1594339200,LK Gotha,315,285,30,0,0,0
+1594425600,LK Gotha,315,285,30,0,0,0
+1594512000,LK Gotha,315,285,30,0,0,0
+1594598400,LK Gotha,315,285,30,0,0,0
+1594684800,LK Gotha,316,286,30,1,1,0
+1594771200,LK Gotha,317,287,30,1,1,0
+1594857600,LK Gotha,317,287,30,0,0,0
+1594944000,LK Gotha,318,288,30,1,1,0
+1595030400,LK Gotha,318,288,30,0,0,0
+1595116800,LK Gotha,318,288,30,0,0,0
+1595203200,LK Gotha,318,288,30,0,0,0
+1595289600,LK Gotha,318,288,30,0,0,0
+1595376000,LK Gotha,318,288,30,0,0,0
+1595462400,LK Gotha,318,288,30,0,0,0
+1595548800,LK Gotha,318,288,30,0,0,0
+1595635200,LK Gotha,319,288,30,1,0,0
+1595721600,LK Gotha,319,288,30,0,0,0
+1595808000,LK Gotha,319,288,30,0,0,0
+1595894400,LK Gotha,319,288,30,0,0,0
+1595980800,LK Gotha,319,288,30,0,0,0
+1596067200,LK Gotha,319,288,30,0,0,0
+1596153600,LK Gotha,319,288,30,0,0,0
+1596240000,LK Gotha,319,288,30,0,0,0
+1596326400,LK Gotha,319,288,30,0,0,0
+1596412800,LK Gotha,319,288,30,0,0,0
+1596499200,LK Gotha,319,288,30,0,0,0
 1580169600,LK Greiz,0,0,0,0,0,0
 1580256000,LK Greiz,0,0,0,0,0,0
 1580342400,LK Greiz,0,0,0,0,0,0
@@ -727,6 +751,14 @@ Meldedatum,Landkreis,SummeFall,SummeGenesen,SummeTodesfall,AnzahlFall,AnzahlGene
 1595635200,LK Greiz,668,620,48,0,0,0
 1595721600,LK Greiz,668,620,48,0,0,0
 1595808000,LK Greiz,668,620,48,0,0,0
+1595894400,LK Greiz,668,620,48,0,0,0
+1595980800,LK Greiz,668,620,48,0,0,0
+1596067200,LK Greiz,668,620,48,0,0,0
+1596153600,LK Greiz,668,620,48,0,0,0
+1596240000,LK Greiz,668,620,48,0,0,0
+1596326400,LK Greiz,668,620,48,0,0,0
+1596412800,LK Greiz,669,620,48,1,0,0
+1596499200,LK Greiz,669,620,48,0,0,0
 1580169600,LK Hildburghausen,0,0,0,0,0,0
 1580256000,LK Hildburghausen,0,0,0,0,0,0
 1580342400,LK Hildburghausen,0,0,0,0,0,0
@@ -883,32 +915,40 @@ Meldedatum,Landkreis,SummeFall,SummeGenesen,SummeTodesfall,AnzahlFall,AnzahlGene
 1593388800,LK Hildburghausen,72,71,1,0,0,0
 1593475200,LK Hildburghausen,72,71,1,0,0,0
 1593561600,LK Hildburghausen,72,71,1,0,0,0
-1593648000,LK Hildburghausen,74,72,1,2,1,0
-1593734400,LK Hildburghausen,74,72,1,0,0,0
-1593820800,LK Hildburghausen,77,72,1,3,0,0
-1593907200,LK Hildburghausen,77,72,1,0,0,0
-1593993600,LK Hildburghausen,77,72,1,0,0,0
-1594080000,LK Hildburghausen,78,73,1,1,1,0
-1594166400,LK Hildburghausen,79,73,1,1,0,0
-1594252800,LK Hildburghausen,80,74,1,1,1,0
-1594339200,LK Hildburghausen,81,75,1,1,1,0
-1594425600,LK Hildburghausen,82,75,1,1,0,0
-1594512000,LK Hildburghausen,82,75,1,0,0,0
-1594598400,LK Hildburghausen,82,75,1,0,0,0
-1594684800,LK Hildburghausen,82,75,1,0,0,0
-1594771200,LK Hildburghausen,83,75,1,1,0,0
-1594857600,LK Hildburghausen,83,75,1,0,0,0
-1594944000,LK Hildburghausen,83,75,1,0,0,0
-1595030400,LK Hildburghausen,83,75,1,0,0,0
-1595116800,LK Hildburghausen,83,75,1,0,0,0
-1595203200,LK Hildburghausen,84,75,1,1,0,0
-1595289600,LK Hildburghausen,84,75,1,0,0,0
-1595376000,LK Hildburghausen,84,75,1,0,0,0
-1595462400,LK Hildburghausen,84,75,1,0,0,0
-1595548800,LK Hildburghausen,84,75,1,0,0,0
-1595635200,LK Hildburghausen,84,75,1,0,0,0
-1595721600,LK Hildburghausen,84,75,1,0,0,0
-1595808000,LK Hildburghausen,84,75,1,0,0,0
+1593648000,LK Hildburghausen,74,73,1,2,2,0
+1593734400,LK Hildburghausen,74,73,1,0,0,0
+1593820800,LK Hildburghausen,77,76,1,3,3,0
+1593907200,LK Hildburghausen,77,76,1,0,0,0
+1593993600,LK Hildburghausen,77,76,1,0,0,0
+1594080000,LK Hildburghausen,78,77,1,1,1,0
+1594166400,LK Hildburghausen,79,78,1,1,1,0
+1594252800,LK Hildburghausen,80,79,1,1,1,0
+1594339200,LK Hildburghausen,81,80,1,1,1,0
+1594425600,LK Hildburghausen,82,80,1,1,0,0
+1594512000,LK Hildburghausen,82,80,1,0,0,0
+1594598400,LK Hildburghausen,82,80,1,0,0,0
+1594684800,LK Hildburghausen,82,80,1,0,0,0
+1594771200,LK Hildburghausen,83,80,1,1,0,0
+1594857600,LK Hildburghausen,83,80,1,0,0,0
+1594944000,LK Hildburghausen,83,80,1,0,0,0
+1595030400,LK Hildburghausen,83,80,1,0,0,0
+1595116800,LK Hildburghausen,83,80,1,0,0,0
+1595203200,LK Hildburghausen,84,80,1,1,0,0
+1595289600,LK Hildburghausen,84,80,1,0,0,0
+1595376000,LK Hildburghausen,84,80,1,0,0,0
+1595462400,LK Hildburghausen,84,80,1,0,0,0
+1595548800,LK Hildburghausen,84,80,1,0,0,0
+1595635200,LK Hildburghausen,84,80,1,0,0,0
+1595721600,LK Hildburghausen,84,80,1,0,0,0
+1595808000,LK Hildburghausen,84,80,1,0,0,0
+1595894400,LK Hildburghausen,84,80,1,0,0,0
+1595980800,LK Hildburghausen,84,80,1,0,0,0
+1596067200,LK Hildburghausen,84,80,1,0,0,0
+1596153600,LK Hildburghausen,84,80,1,0,0,0
+1596240000,LK Hildburghausen,84,80,1,0,0,0
+1596326400,LK Hildburghausen,84,80,1,0,0,0
+1596412800,LK Hildburghausen,84,80,1,0,0,0
+1596499200,LK Hildburghausen,84,80,1,0,0,0
 1580169600,LK Ilm-Kreis,0,0,0,0,0,0
 1580256000,LK Ilm-Kreis,0,0,0,0,0,0
 1580342400,LK Ilm-Kreis,0,0,0,0,0,0
@@ -1078,19 +1118,27 @@ Meldedatum,Landkreis,SummeFall,SummeGenesen,SummeTodesfall,AnzahlFall,AnzahlGene
 1594512000,LK Ilm-Kreis,137,131,6,0,0,0
 1594598400,LK Ilm-Kreis,137,131,6,0,0,0
 1594684800,LK Ilm-Kreis,137,131,6,0,0,0
-1594771200,LK Ilm-Kreis,140,133,6,3,2,0
-1594857600,LK Ilm-Kreis,142,135,6,2,2,0
-1594944000,LK Ilm-Kreis,143,135,6,1,0,0
-1595030400,LK Ilm-Kreis,143,135,6,0,0,0
-1595116800,LK Ilm-Kreis,143,135,6,0,0,0
-1595203200,LK Ilm-Kreis,144,135,6,1,0,0
-1595289600,LK Ilm-Kreis,144,135,6,0,0,0
-1595376000,LK Ilm-Kreis,144,135,6,0,0,0
-1595462400,LK Ilm-Kreis,144,135,6,0,0,0
-1595548800,LK Ilm-Kreis,144,135,6,0,0,0
-1595635200,LK Ilm-Kreis,144,135,6,0,0,0
-1595721600,LK Ilm-Kreis,144,135,6,0,0,0
-1595808000,LK Ilm-Kreis,144,135,6,0,0,0
+1594771200,LK Ilm-Kreis,140,134,6,3,3,0
+1594857600,LK Ilm-Kreis,142,136,6,2,2,0
+1594944000,LK Ilm-Kreis,143,137,6,1,1,0
+1595030400,LK Ilm-Kreis,143,137,6,0,0,0
+1595116800,LK Ilm-Kreis,143,137,6,0,0,0
+1595203200,LK Ilm-Kreis,144,138,6,1,1,0
+1595289600,LK Ilm-Kreis,144,138,6,0,0,0
+1595376000,LK Ilm-Kreis,144,138,6,0,0,0
+1595462400,LK Ilm-Kreis,144,138,6,0,0,0
+1595548800,LK Ilm-Kreis,144,138,6,0,0,0
+1595635200,LK Ilm-Kreis,144,138,6,0,0,0
+1595721600,LK Ilm-Kreis,144,138,6,0,0,0
+1595808000,LK Ilm-Kreis,144,138,6,0,0,0
+1595894400,LK Ilm-Kreis,144,138,6,0,0,0
+1595980800,LK Ilm-Kreis,146,140,6,2,2,0
+1596067200,LK Ilm-Kreis,146,140,6,0,0,0
+1596153600,LK Ilm-Kreis,146,140,6,0,0,0
+1596240000,LK Ilm-Kreis,146,140,6,0,0,0
+1596326400,LK Ilm-Kreis,146,140,6,0,0,0
+1596412800,LK Ilm-Kreis,149,140,6,3,0,0
+1596499200,LK Ilm-Kreis,149,140,6,0,0,0
 1580169600,LK Kyffhäuserkreis,0,0,0,0,0,0
 1580256000,LK Kyffhäuserkreis,0,0,0,0,0,0
 1580342400,LK Kyffhäuserkreis,0,0,0,0,0,0
@@ -1263,16 +1311,24 @@ Meldedatum,Landkreis,SummeFall,SummeGenesen,SummeTodesfall,AnzahlFall,AnzahlGene
 1594771200,LK Kyffhäuserkreis,52,52,0,0,0,0
 1594857600,LK Kyffhäuserkreis,52,52,0,0,0,0
 1594944000,LK Kyffhäuserkreis,52,52,0,0,0,0
-1595030400,LK Kyffhäuserkreis,53,52,0,1,0,0
-1595116800,LK Kyffhäuserkreis,53,52,0,0,0,0
-1595203200,LK Kyffhäuserkreis,53,52,0,0,0,0
-1595289600,LK Kyffhäuserkreis,53,52,0,0,0,0
-1595376000,LK Kyffhäuserkreis,53,52,0,0,0,0
-1595462400,LK Kyffhäuserkreis,55,52,0,2,0,0
-1595548800,LK Kyffhäuserkreis,55,52,0,0,0,0
-1595635200,LK Kyffhäuserkreis,55,52,0,0,0,0
-1595721600,LK Kyffhäuserkreis,55,52,0,0,0,0
-1595808000,LK Kyffhäuserkreis,55,52,0,0,0,0
+1595030400,LK Kyffhäuserkreis,53,53,0,1,1,0
+1595116800,LK Kyffhäuserkreis,53,53,0,0,0,0
+1595203200,LK Kyffhäuserkreis,53,53,0,0,0,0
+1595289600,LK Kyffhäuserkreis,53,53,0,0,0,0
+1595376000,LK Kyffhäuserkreis,53,53,0,0,0,0
+1595462400,LK Kyffhäuserkreis,55,53,0,2,0,0
+1595548800,LK Kyffhäuserkreis,55,53,0,0,0,0
+1595635200,LK Kyffhäuserkreis,55,53,0,0,0,0
+1595721600,LK Kyffhäuserkreis,55,53,0,0,0,0
+1595808000,LK Kyffhäuserkreis,55,53,0,0,0,0
+1595894400,LK Kyffhäuserkreis,55,53,0,0,0,0
+1595980800,LK Kyffhäuserkreis,55,53,0,0,0,0
+1596067200,LK Kyffhäuserkreis,55,53,0,0,0,0
+1596153600,LK Kyffhäuserkreis,55,53,0,0,0,0
+1596240000,LK Kyffhäuserkreis,55,53,0,0,0,0
+1596326400,LK Kyffhäuserkreis,55,53,0,0,0,0
+1596412800,LK Kyffhäuserkreis,55,53,0,0,0,0
+1596499200,LK Kyffhäuserkreis,55,53,0,0,0,0
 1580169600,LK Nordhausen,0,0,0,0,0,0
 1580256000,LK Nordhausen,0,0,0,0,0,0
 1580342400,LK Nordhausen,0,0,0,0,0,0
@@ -1443,18 +1499,26 @@ Meldedatum,Landkreis,SummeFall,SummeGenesen,SummeTodesfall,AnzahlFall,AnzahlGene
 1594598400,LK Nordhausen,66,64,2,0,0,0
 1594684800,LK Nordhausen,66,64,2,0,0,0
 1594771200,LK Nordhausen,66,64,2,0,0,0
-1594857600,LK Nordhausen,67,64,2,1,0,0
-1594944000,LK Nordhausen,67,64,2,0,0,0
-1595030400,LK Nordhausen,67,64,2,0,0,0
-1595116800,LK Nordhausen,67,64,2,0,0,0
-1595203200,LK Nordhausen,67,64,2,0,0,0
-1595289600,LK Nordhausen,67,64,2,0,0,0
-1595376000,LK Nordhausen,67,64,2,0,0,0
-1595462400,LK Nordhausen,67,64,2,0,0,0
-1595548800,LK Nordhausen,67,64,2,0,0,0
-1595635200,LK Nordhausen,67,64,2,0,0,0
-1595721600,LK Nordhausen,67,64,2,0,0,0
-1595808000,LK Nordhausen,67,64,2,0,0,0
+1594857600,LK Nordhausen,67,65,2,1,1,0
+1594944000,LK Nordhausen,67,65,2,0,0,0
+1595030400,LK Nordhausen,67,65,2,0,0,0
+1595116800,LK Nordhausen,67,65,2,0,0,0
+1595203200,LK Nordhausen,67,65,2,0,0,0
+1595289600,LK Nordhausen,67,65,2,0,0,0
+1595376000,LK Nordhausen,67,65,2,0,0,0
+1595462400,LK Nordhausen,67,65,2,0,0,0
+1595548800,LK Nordhausen,67,65,2,0,0,0
+1595635200,LK Nordhausen,67,65,2,0,0,0
+1595721600,LK Nordhausen,67,65,2,0,0,0
+1595808000,LK Nordhausen,67,65,2,0,0,0
+1595894400,LK Nordhausen,67,65,2,0,0,0
+1595980800,LK Nordhausen,67,65,2,0,0,0
+1596067200,LK Nordhausen,67,65,2,0,0,0
+1596153600,LK Nordhausen,67,65,2,0,0,0
+1596240000,LK Nordhausen,67,65,2,0,0,0
+1596326400,LK Nordhausen,67,65,2,0,0,0
+1596412800,LK Nordhausen,67,65,2,0,0,0
+1596499200,LK Nordhausen,67,65,2,0,0,0
 1580169600,LK Saale-Holzland-Kreis,0,0,0,0,0,0
 1580256000,LK Saale-Holzland-Kreis,0,0,0,0,0,0
 1580342400,LK Saale-Holzland-Kreis,0,0,0,0,0,0
@@ -1637,6 +1701,14 @@ Meldedatum,Landkreis,SummeFall,SummeGenesen,SummeTodesfall,AnzahlFall,AnzahlGene
 1595635200,LK Saale-Holzland-Kreis,73,70,3,0,0,0
 1595721600,LK Saale-Holzland-Kreis,73,70,3,0,0,0
 1595808000,LK Saale-Holzland-Kreis,73,70,3,0,0,0
+1595894400,LK Saale-Holzland-Kreis,73,70,3,0,0,0
+1595980800,LK Saale-Holzland-Kreis,73,70,3,0,0,0
+1596067200,LK Saale-Holzland-Kreis,73,70,3,0,0,0
+1596153600,LK Saale-Holzland-Kreis,73,70,3,0,0,0
+1596240000,LK Saale-Holzland-Kreis,73,70,3,0,0,0
+1596326400,LK Saale-Holzland-Kreis,73,70,3,0,0,0
+1596412800,LK Saale-Holzland-Kreis,73,70,3,0,0,0
+1596499200,LK Saale-Holzland-Kreis,73,70,3,0,0,0
 1580169600,LK Saale-Orla-Kreis,0,0,0,0,0,0
 1580256000,LK Saale-Orla-Kreis,0,0,0,0,0,0
 1580342400,LK Saale-Orla-Kreis,0,0,0,0,0,0
@@ -1819,6 +1891,14 @@ Meldedatum,Landkreis,SummeFall,SummeGenesen,SummeTodesfall,AnzahlFall,AnzahlGene
 1595635200,LK Saale-Orla-Kreis,150,138,12,0,0,0
 1595721600,LK Saale-Orla-Kreis,150,138,12,0,0,0
 1595808000,LK Saale-Orla-Kreis,150,138,12,0,0,0
+1595894400,LK Saale-Orla-Kreis,151,138,12,1,0,0
+1595980800,LK Saale-Orla-Kreis,151,138,12,0,0,0
+1596067200,LK Saale-Orla-Kreis,151,138,12,0,0,0
+1596153600,LK Saale-Orla-Kreis,151,138,12,0,0,0
+1596240000,LK Saale-Orla-Kreis,151,138,12,0,0,0
+1596326400,LK Saale-Orla-Kreis,151,138,12,0,0,0
+1596412800,LK Saale-Orla-Kreis,152,138,12,1,0,0
+1596499200,LK Saale-Orla-Kreis,153,138,12,1,0,0
 1580169600,LK Saalfeld-Rudolstadt,0,0,0,0,0,0
 1580256000,LK Saalfeld-Rudolstadt,0,0,0,0,0,0
 1580342400,LK Saalfeld-Rudolstadt,0,0,0,0,0,0
@@ -2001,6 +2081,14 @@ Meldedatum,Landkreis,SummeFall,SummeGenesen,SummeTodesfall,AnzahlFall,AnzahlGene
 1595635200,LK Saalfeld-Rudolstadt,72,72,0,0,0,0
 1595721600,LK Saalfeld-Rudolstadt,72,72,0,0,0,0
 1595808000,LK Saalfeld-Rudolstadt,72,72,0,0,0,0
+1595894400,LK Saalfeld-Rudolstadt,72,72,0,0,0,0
+1595980800,LK Saalfeld-Rudolstadt,72,72,0,0,0,0
+1596067200,LK Saalfeld-Rudolstadt,72,72,0,0,0,0
+1596153600,LK Saalfeld-Rudolstadt,72,72,0,0,0,0
+1596240000,LK Saalfeld-Rudolstadt,72,72,0,0,0,0
+1596326400,LK Saalfeld-Rudolstadt,72,72,0,0,0,0
+1596412800,LK Saalfeld-Rudolstadt,72,72,0,0,0,0
+1596499200,LK Saalfeld-Rudolstadt,72,72,0,0,0,0
 1580169600,LK Schmalkalden-Meiningen,0,0,0,0,0,0
 1580256000,LK Schmalkalden-Meiningen,0,0,0,0,0,0
 1580342400,LK Schmalkalden-Meiningen,0,0,0,0,0,0
@@ -2157,32 +2245,40 @@ Meldedatum,Landkreis,SummeFall,SummeGenesen,SummeTodesfall,AnzahlFall,AnzahlGene
 1593388800,LK Schmalkalden-Meiningen,151,147,4,0,0,0
 1593475200,LK Schmalkalden-Meiningen,152,148,4,1,1,0
 1593561600,LK Schmalkalden-Meiningen,152,148,4,0,0,0
-1593648000,LK Schmalkalden-Meiningen,153,148,4,1,0,0
-1593734400,LK Schmalkalden-Meiningen,153,148,4,0,0,0
-1593820800,LK Schmalkalden-Meiningen,153,148,4,0,0,0
-1593907200,LK Schmalkalden-Meiningen,153,148,4,0,0,0
-1593993600,LK Schmalkalden-Meiningen,156,150,4,3,2,0
-1594080000,LK Schmalkalden-Meiningen,159,151,4,3,1,0
-1594166400,LK Schmalkalden-Meiningen,159,151,4,0,0,0
-1594252800,LK Schmalkalden-Meiningen,159,151,4,0,0,0
-1594339200,LK Schmalkalden-Meiningen,159,151,4,0,0,0
-1594425600,LK Schmalkalden-Meiningen,159,151,4,0,0,0
-1594512000,LK Schmalkalden-Meiningen,159,151,4,0,0,0
-1594598400,LK Schmalkalden-Meiningen,160,152,4,1,1,0
-1594684800,LK Schmalkalden-Meiningen,161,153,4,1,1,0
-1594771200,LK Schmalkalden-Meiningen,161,153,4,0,0,0
-1594857600,LK Schmalkalden-Meiningen,161,153,4,0,0,0
-1594944000,LK Schmalkalden-Meiningen,161,153,4,0,0,0
-1595030400,LK Schmalkalden-Meiningen,161,153,4,0,0,0
-1595116800,LK Schmalkalden-Meiningen,162,154,4,1,1,0
-1595203200,LK Schmalkalden-Meiningen,162,154,4,0,0,0
-1595289600,LK Schmalkalden-Meiningen,162,154,4,0,0,0
-1595376000,LK Schmalkalden-Meiningen,162,154,4,0,0,0
-1595462400,LK Schmalkalden-Meiningen,162,154,4,0,0,0
-1595548800,LK Schmalkalden-Meiningen,162,154,4,0,0,0
-1595635200,LK Schmalkalden-Meiningen,162,154,4,0,0,0
-1595721600,LK Schmalkalden-Meiningen,162,154,4,0,0,0
-1595808000,LK Schmalkalden-Meiningen,162,154,4,0,0,0
+1593648000,LK Schmalkalden-Meiningen,153,149,4,1,1,0
+1593734400,LK Schmalkalden-Meiningen,153,149,4,0,0,0
+1593820800,LK Schmalkalden-Meiningen,153,149,4,0,0,0
+1593907200,LK Schmalkalden-Meiningen,153,149,4,0,0,0
+1593993600,LK Schmalkalden-Meiningen,156,152,4,3,3,0
+1594080000,LK Schmalkalden-Meiningen,159,155,4,3,3,0
+1594166400,LK Schmalkalden-Meiningen,159,155,4,0,0,0
+1594252800,LK Schmalkalden-Meiningen,159,155,4,0,0,0
+1594339200,LK Schmalkalden-Meiningen,159,155,4,0,0,0
+1594425600,LK Schmalkalden-Meiningen,159,155,4,0,0,0
+1594512000,LK Schmalkalden-Meiningen,159,155,4,0,0,0
+1594598400,LK Schmalkalden-Meiningen,160,156,4,1,1,0
+1594684800,LK Schmalkalden-Meiningen,161,157,4,1,1,0
+1594771200,LK Schmalkalden-Meiningen,161,157,4,0,0,0
+1594857600,LK Schmalkalden-Meiningen,161,157,4,0,0,0
+1594944000,LK Schmalkalden-Meiningen,161,157,4,0,0,0
+1595030400,LK Schmalkalden-Meiningen,161,157,4,0,0,0
+1595116800,LK Schmalkalden-Meiningen,162,158,4,1,1,0
+1595203200,LK Schmalkalden-Meiningen,162,158,4,0,0,0
+1595289600,LK Schmalkalden-Meiningen,162,158,4,0,0,0
+1595376000,LK Schmalkalden-Meiningen,162,158,4,0,0,0
+1595462400,LK Schmalkalden-Meiningen,162,158,4,0,0,0
+1595548800,LK Schmalkalden-Meiningen,162,158,4,0,0,0
+1595635200,LK Schmalkalden-Meiningen,162,158,4,0,0,0
+1595721600,LK Schmalkalden-Meiningen,162,158,4,0,0,0
+1595808000,LK Schmalkalden-Meiningen,163,158,4,1,0,0
+1595894400,LK Schmalkalden-Meiningen,163,158,4,0,0,0
+1595980800,LK Schmalkalden-Meiningen,164,158,4,1,0,0
+1596067200,LK Schmalkalden-Meiningen,166,158,4,2,0,0
+1596153600,LK Schmalkalden-Meiningen,168,158,4,2,0,0
+1596240000,LK Schmalkalden-Meiningen,169,158,4,1,0,0
+1596326400,LK Schmalkalden-Meiningen,170,158,4,1,0,0
+1596412800,LK Schmalkalden-Meiningen,170,158,4,0,0,0
+1596499200,LK Schmalkalden-Meiningen,172,158,4,2,0,0
 1580169600,LK Sömmerda,0,0,0,0,0,0
 1580256000,LK Sömmerda,0,0,0,0,0,0
 1580342400,LK Sömmerda,0,0,0,0,0,0
@@ -2363,8 +2459,16 @@ Meldedatum,Landkreis,SummeFall,SummeGenesen,SummeTodesfall,AnzahlFall,AnzahlGene
 1595462400,LK Sömmerda,41,40,1,0,0,0
 1595548800,LK Sömmerda,41,40,1,0,0,0
 1595635200,LK Sömmerda,41,40,1,0,0,0
-1595721600,LK Sömmerda,42,40,1,1,0,0
-1595808000,LK Sömmerda,42,40,1,0,0,0
+1595721600,LK Sömmerda,42,41,1,1,1,0
+1595808000,LK Sömmerda,42,41,1,0,0,0
+1595894400,LK Sömmerda,42,41,1,0,0,0
+1595980800,LK Sömmerda,42,41,1,0,0,0
+1596067200,LK Sömmerda,43,41,1,1,0,0
+1596153600,LK Sömmerda,43,41,1,0,0,0
+1596240000,LK Sömmerda,43,41,1,0,0,0
+1596326400,LK Sömmerda,43,41,1,0,0,0
+1596412800,LK Sömmerda,43,41,1,0,0,0
+1596499200,LK Sömmerda,43,41,1,0,0,0
 1580169600,LK Sonneberg,0,0,0,0,0,0
 1580256000,LK Sonneberg,0,0,0,0,0,0
 1580342400,LK Sonneberg,0,0,0,0,0,0
@@ -2547,6 +2651,14 @@ Meldedatum,Landkreis,SummeFall,SummeGenesen,SummeTodesfall,AnzahlFall,AnzahlGene
 1595635200,LK Sonneberg,306,284,22,0,0,0
 1595721600,LK Sonneberg,306,284,22,0,0,0
 1595808000,LK Sonneberg,306,284,22,0,0,0
+1595894400,LK Sonneberg,306,284,22,0,0,0
+1595980800,LK Sonneberg,306,284,22,0,0,0
+1596067200,LK Sonneberg,306,284,22,0,0,0
+1596153600,LK Sonneberg,307,284,22,1,0,0
+1596240000,LK Sonneberg,307,284,22,0,0,0
+1596326400,LK Sonneberg,307,284,22,0,0,0
+1596412800,LK Sonneberg,307,284,22,0,0,0
+1596499200,LK Sonneberg,307,284,22,0,0,0
 1580169600,LK Unstrut-Hainich-Kreis,0,0,0,0,0,0
 1580256000,LK Unstrut-Hainich-Kreis,0,0,0,0,0,0
 1580342400,LK Unstrut-Hainich-Kreis,0,0,0,0,0,0
@@ -2729,6 +2841,14 @@ Meldedatum,Landkreis,SummeFall,SummeGenesen,SummeTodesfall,AnzahlFall,AnzahlGene
 1595635200,LK Unstrut-Hainich-Kreis,92,89,3,0,0,0
 1595721600,LK Unstrut-Hainich-Kreis,92,89,3,0,0,0
 1595808000,LK Unstrut-Hainich-Kreis,92,89,3,0,0,0
+1595894400,LK Unstrut-Hainich-Kreis,92,89,3,0,0,0
+1595980800,LK Unstrut-Hainich-Kreis,92,89,3,0,0,0
+1596067200,LK Unstrut-Hainich-Kreis,92,89,3,0,0,0
+1596153600,LK Unstrut-Hainich-Kreis,92,89,3,0,0,0
+1596240000,LK Unstrut-Hainich-Kreis,92,89,3,0,0,0
+1596326400,LK Unstrut-Hainich-Kreis,92,89,3,0,0,0
+1596412800,LK Unstrut-Hainich-Kreis,92,89,3,0,0,0
+1596499200,LK Unstrut-Hainich-Kreis,92,89,3,0,0,0
 1580169600,LK Wartburgkreis,0,0,0,0,0,0
 1580256000,LK Wartburgkreis,0,0,0,0,0,0
 1580342400,LK Wartburgkreis,0,0,0,0,0,0
@@ -2904,13 +3024,21 @@ Meldedatum,Landkreis,SummeFall,SummeGenesen,SummeTodesfall,AnzahlFall,AnzahlGene
 1595030400,LK Wartburgkreis,90,86,2,0,0,0
 1595116800,LK Wartburgkreis,90,86,2,0,0,0
 1595203200,LK Wartburgkreis,90,86,2,0,0,0
-1595289600,LK Wartburgkreis,91,86,2,1,0,0
-1595376000,LK Wartburgkreis,91,86,2,0,0,0
-1595462400,LK Wartburgkreis,92,86,2,1,0,0
-1595548800,LK Wartburgkreis,92,86,2,0,0,0
-1595635200,LK Wartburgkreis,92,86,2,0,0,0
-1595721600,LK Wartburgkreis,92,86,2,0,0,0
-1595808000,LK Wartburgkreis,92,86,2,0,0,0
+1595289600,LK Wartburgkreis,91,87,2,1,1,0
+1595376000,LK Wartburgkreis,91,87,2,0,0,0
+1595462400,LK Wartburgkreis,92,87,2,1,0,0
+1595548800,LK Wartburgkreis,92,87,2,0,0,0
+1595635200,LK Wartburgkreis,92,87,2,0,0,0
+1595721600,LK Wartburgkreis,92,87,2,0,0,0
+1595808000,LK Wartburgkreis,92,87,2,0,0,0
+1595894400,LK Wartburgkreis,92,87,2,0,0,0
+1595980800,LK Wartburgkreis,92,87,2,0,0,0
+1596067200,LK Wartburgkreis,94,87,2,2,0,0
+1596153600,LK Wartburgkreis,96,87,2,2,0,0
+1596240000,LK Wartburgkreis,97,87,2,1,0,0
+1596326400,LK Wartburgkreis,97,87,2,0,0,0
+1596412800,LK Wartburgkreis,98,87,2,1,0,0
+1596499200,LK Wartburgkreis,98,87,2,0,0,0
 1580169600,LK Weimarer Land,0,0,0,0,0,0
 1580256000,LK Weimarer Land,0,0,0,0,0,0
 1580342400,LK Weimarer Land,0,0,0,0,0,0
@@ -3093,6 +3221,14 @@ Meldedatum,Landkreis,SummeFall,SummeGenesen,SummeTodesfall,AnzahlFall,AnzahlGene
 1595635200,LK Weimarer Land,77,71,4,0,0,0
 1595721600,LK Weimarer Land,77,71,4,0,0,0
 1595808000,LK Weimarer Land,77,71,4,0,0,0
+1595894400,LK Weimarer Land,77,71,4,0,0,0
+1595980800,LK Weimarer Land,77,71,4,0,0,0
+1596067200,LK Weimarer Land,77,71,4,0,0,0
+1596153600,LK Weimarer Land,78,71,4,1,0,0
+1596240000,LK Weimarer Land,78,71,4,0,0,0
+1596326400,LK Weimarer Land,78,71,4,0,0,0
+1596412800,LK Weimarer Land,78,71,4,0,0,0
+1596499200,LK Weimarer Land,78,71,4,0,0,0
 1580169600,SK Eisenach,0,0,0,0,0,0
 1580256000,SK Eisenach,0,0,0,0,0,0
 1580342400,SK Eisenach,0,0,0,0,0,0
@@ -3271,10 +3407,18 @@ Meldedatum,Landkreis,SummeFall,SummeGenesen,SummeTodesfall,AnzahlFall,AnzahlGene
 1595289600,SK Eisenach,31,28,2,0,0,0
 1595376000,SK Eisenach,31,28,2,0,0,0
 1595462400,SK Eisenach,31,28,2,0,0,0
-1595548800,SK Eisenach,33,28,2,2,0,0
-1595635200,SK Eisenach,33,28,2,0,0,0
-1595721600,SK Eisenach,33,28,2,0,0,0
-1595808000,SK Eisenach,33,28,2,0,0,0
+1595548800,SK Eisenach,33,29,2,2,1,0
+1595635200,SK Eisenach,33,29,2,0,0,0
+1595721600,SK Eisenach,33,29,2,0,0,0
+1595808000,SK Eisenach,33,29,2,0,0,0
+1595894400,SK Eisenach,34,29,2,1,0,0
+1595980800,SK Eisenach,34,29,2,0,0,0
+1596067200,SK Eisenach,35,29,2,1,0,0
+1596153600,SK Eisenach,35,29,2,0,0,0
+1596240000,SK Eisenach,35,29,2,0,0,0
+1596326400,SK Eisenach,35,29,2,0,0,0
+1596412800,SK Eisenach,36,29,2,1,0,0
+1596499200,SK Eisenach,36,29,2,0,0,0
 1580169600,SK Erfurt,0,0,0,0,0,0
 1580256000,SK Erfurt,0,0,0,0,0,0
 1580342400,SK Erfurt,0,0,0,0,0,0
@@ -3457,6 +3601,14 @@ Meldedatum,Landkreis,SummeFall,SummeGenesen,SummeTodesfall,AnzahlFall,AnzahlGene
 1595635200,SK Erfurt,140,138,2,0,0,0
 1595721600,SK Erfurt,140,138,2,0,0,0
 1595808000,SK Erfurt,140,138,2,0,0,0
+1595894400,SK Erfurt,142,138,2,2,0,0
+1595980800,SK Erfurt,142,138,2,0,0,0
+1596067200,SK Erfurt,142,138,2,0,0,0
+1596153600,SK Erfurt,142,138,2,0,0,0
+1596240000,SK Erfurt,142,138,2,0,0,0
+1596326400,SK Erfurt,142,138,2,0,0,0
+1596412800,SK Erfurt,143,138,2,1,0,0
+1596499200,SK Erfurt,143,138,2,0,0,0
 1580169600,SK Gera,0,0,0,0,0,0
 1580256000,SK Gera,0,0,0,0,0,0
 1580342400,SK Gera,0,0,0,0,0,0
@@ -3628,17 +3780,25 @@ Meldedatum,Landkreis,SummeFall,SummeGenesen,SummeTodesfall,AnzahlFall,AnzahlGene
 1594684800,SK Gera,259,237,22,0,0,0
 1594771200,SK Gera,259,237,22,0,0,0
 1594857600,SK Gera,259,237,22,0,0,0
-1594944000,SK Gera,260,237,22,1,0,0
-1595030400,SK Gera,260,237,22,0,0,0
-1595116800,SK Gera,260,237,22,0,0,0
-1595203200,SK Gera,260,237,22,0,0,0
-1595289600,SK Gera,260,237,22,0,0,0
-1595376000,SK Gera,261,237,22,1,0,0
-1595462400,SK Gera,261,237,22,0,0,0
-1595548800,SK Gera,261,237,22,0,0,0
-1595635200,SK Gera,261,237,22,0,0,0
-1595721600,SK Gera,261,237,22,0,0,0
-1595808000,SK Gera,261,237,22,0,0,0
+1594944000,SK Gera,260,238,22,1,1,0
+1595030400,SK Gera,260,238,22,0,0,0
+1595116800,SK Gera,260,238,22,0,0,0
+1595203200,SK Gera,260,238,22,0,0,0
+1595289600,SK Gera,260,238,22,0,0,0
+1595376000,SK Gera,261,239,22,1,1,0
+1595462400,SK Gera,261,239,22,0,0,0
+1595548800,SK Gera,261,239,22,0,0,0
+1595635200,SK Gera,261,239,22,0,0,0
+1595721600,SK Gera,261,239,22,0,0,0
+1595808000,SK Gera,261,239,22,0,0,0
+1595894400,SK Gera,262,239,22,1,0,0
+1595980800,SK Gera,262,239,22,0,0,0
+1596067200,SK Gera,262,239,22,0,0,0
+1596153600,SK Gera,262,239,22,0,0,0
+1596240000,SK Gera,263,239,22,1,0,0
+1596326400,SK Gera,263,239,22,0,0,0
+1596412800,SK Gera,264,239,22,1,0,0
+1596499200,SK Gera,264,239,22,0,0,0
 1580169600,SK Jena,0,0,0,0,0,0
 1580256000,SK Jena,0,0,0,0,0,0
 1580342400,SK Jena,0,0,0,0,0,0
@@ -3821,6 +3981,14 @@ Meldedatum,Landkreis,SummeFall,SummeGenesen,SummeTodesfall,AnzahlFall,AnzahlGene
 1595635200,SK Jena,163,160,3,0,0,0
 1595721600,SK Jena,163,160,3,0,0,0
 1595808000,SK Jena,163,160,3,0,0,0
+1595894400,SK Jena,163,160,3,0,0,0
+1595980800,SK Jena,163,160,3,0,0,0
+1596067200,SK Jena,163,160,3,0,0,0
+1596153600,SK Jena,163,160,3,0,0,0
+1596240000,SK Jena,163,160,3,0,0,0
+1596326400,SK Jena,163,160,3,0,0,0
+1596412800,SK Jena,163,160,3,0,0,0
+1596499200,SK Jena,163,160,3,0,0,0
 1580169600,SK Suhl,0,0,0,0,0,0
 1580256000,SK Suhl,0,0,0,0,0,0
 1580342400,SK Suhl,0,0,0,0,0,0
@@ -4003,6 +4171,14 @@ Meldedatum,Landkreis,SummeFall,SummeGenesen,SummeTodesfall,AnzahlFall,AnzahlGene
 1595635200,SK Suhl,21,19,2,0,0,0
 1595721600,SK Suhl,21,19,2,0,0,0
 1595808000,SK Suhl,21,19,2,0,0,0
+1595894400,SK Suhl,21,19,2,0,0,0
+1595980800,SK Suhl,21,19,2,0,0,0
+1596067200,SK Suhl,21,19,2,0,0,0
+1596153600,SK Suhl,21,19,2,0,0,0
+1596240000,SK Suhl,21,19,2,0,0,0
+1596326400,SK Suhl,21,19,2,0,0,0
+1596412800,SK Suhl,21,19,2,0,0,0
+1596499200,SK Suhl,21,19,2,0,0,0
 1580169600,SK Weimar,0,0,0,0,0,0
 1580256000,SK Weimar,0,0,0,0,0,0
 1580342400,SK Weimar,0,0,0,0,0,0
@@ -4180,8 +4356,16 @@ Meldedatum,Landkreis,SummeFall,SummeGenesen,SummeTodesfall,AnzahlFall,AnzahlGene
 1595203200,SK Weimar,72,72,0,0,0,0
 1595289600,SK Weimar,72,72,0,0,0,0
 1595376000,SK Weimar,72,72,0,0,0,0
-1595462400,SK Weimar,81,74,0,9,2,0
-1595548800,SK Weimar,81,74,0,0,0,0
-1595635200,SK Weimar,86,74,0,5,0,0
-1595721600,SK Weimar,86,74,0,0,0,0
-1595808000,SK Weimar,89,74,0,3,0,0
+1595462400,SK Weimar,81,76,0,9,4,0
+1595548800,SK Weimar,81,76,0,0,0,0
+1595635200,SK Weimar,86,79,0,5,3,0
+1595721600,SK Weimar,86,79,0,0,0,0
+1595808000,SK Weimar,89,81,0,3,2,0
+1595894400,SK Weimar,90,81,0,1,0,0
+1595980800,SK Weimar,90,81,0,0,0,0
+1596067200,SK Weimar,90,81,0,0,0,0
+1596153600,SK Weimar,90,81,0,0,0,0
+1596240000,SK Weimar,90,81,0,0,0,0
+1596326400,SK Weimar,90,81,0,0,0,0
+1596412800,SK Weimar,91,81,0,1,0,0
+1596499200,SK Weimar,91,81,0,0,0,0
