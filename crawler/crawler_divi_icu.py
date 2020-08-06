@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import re, os, requests, datetime
+import re, os, json, requests, datetime
 
 
 def get_divi_statistics(URL):
@@ -76,18 +76,61 @@ def get_divi_statistics(URL):
     except:
         return False
     
+    
+def get_divi_statistics_json(URL):
+    
+    headers = {'Pragma': 'no-cache', 'Cache-Control': 'no-cache'}
+    result_array = []
+    
+    try:
+        r = requests.get(URL, headers=headers, allow_redirects=True, timeout=5.0)
+        
+        if r.status_code != 200:
+            return False
+        
+        data = json.loads(r.text)
+        
+        timestamp_label = data['overallSum']['creationTimestamp'].replace("Z", "")
+        timestamp_ger = int(datetime.datetime.strptime(timestamp_label, "%Y-%m-%dT%H:%M:%S").strftime("%s"))
+        result_array.append(timestamp_ger)
+        
+        # data for Thuringia
+        for entry in data['data']:
+            if entry['bundesland'] == "THUERINGEN":
+                num_th1 = entry['intensivBettenBelegt']
+                num_th2 = entry['intensivBettenFrei']
+                num_th0 = num_th1 + num_th2
+                num_th3 = entry['faelleCovidAktuell']
+                num_th4 = entry['faelleCovidAktuellBeatmet']                
+                result_array.append([num_th0, num_th1, num_th2, num_th3, num_th4])
+                break
+        
+        # data for Germany
+        entry = data['overallSum']        
+        num_ger1 = entry['intensivBettenBelegt']
+        num_ger2 = entry['intensivBettenFrei']
+        num_ger0 = num_ger1 + num_ger2
+        num_ger3 = entry['faelleCovidAktuell']
+        num_ger4 = entry['faelleCovidAktuellBeatmet']        
+        result_array.append([num_ger0, num_ger1, num_ger2, num_ger3, num_ger4])
+        
+        return result_array    
+    except:
+        return False
+    
 
 if __name__ == "__main__":
 
     # source
-    URL = "https://diviexchange.z6.web.core.windows.net/laendertabelle1.svg"
+    URL      = "https://diviexchange.z6.web.core.windows.net/laendertabelle1.svg"
+    URL_JSON = "https://www.intensivregister.de/api/public/reporting/laendertabelle"
     
     # data folder
     DATAFOLDER = os.path.dirname(os.path.realpath(__file__)) + "/../data/divi_db_th/"
     DATAFILE1  = DATAFOLDER + "divi_data_th.csv"
     DATAFILE2  = DATAFOLDER + "divi_data_germany.csv"
     
-    num_latest = get_divi_statistics(URL)
+    num_latest = get_divi_statistics_json(URL_JSON)
     
     if (num_latest != False):
         
@@ -106,7 +149,7 @@ if __name__ == "__main__":
         if value_changed:
             # write new csv data
             f = open(DATAFILE1, 'a')
-            f.write("%i,%i,%i,%i,%i,%i,%s\n" % (num_latest[0], num_latest[1][0], num_latest[1][1], num_latest[1][2], num_latest[1][3], num_latest[1][4], URL))
+            f.write("%i,%i,%i,%i,%i,%i,%s\n" % (num_latest[0], num_latest[1][0], num_latest[1][1], num_latest[1][2], num_latest[1][3], num_latest[1][4], URL_JSON))
             f.close()
             
         # get old values for Germany
@@ -124,5 +167,5 @@ if __name__ == "__main__":
         if value_changed:
             # write new csv data
             f = open(DATAFILE2, 'a')
-            f.write("%i,%i,%i,%i,%i,%i,%s\n" % (num_latest[0], num_latest[2][0], num_latest[2][1], num_latest[2][2], num_latest[2][3], num_latest[2][4], URL))
+            f.write("%i,%i,%i,%i,%i,%i,%s\n" % (num_latest[0], num_latest[2][0], num_latest[2][1], num_latest[2][2], num_latest[2][3], num_latest[2][4], URL_JSON))
             f.close()
