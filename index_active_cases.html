@@ -14,7 +14,7 @@
 		<meta name="msapplication-square150x150logo" content="./icons/mediumtile.png">
 		<meta name="msapplication-square310x310logo" content="./icons/largetile.png">
 		<meta property="og:site_name" content="Coronavirus-Fälle in Thüringen">
-		<meta property="og:title" content="Coronavirus-Fälle in Thüringen (RKI)">
+		<meta property="og:title" content="aktive Coronavirus-Fälle in Thüringen">
 		<meta property="og:description" content="Visualisierung der Coronavirus-Fälle in Thüringen">
 		<meta property="og:image" content="/corona/logo.jpg">
 		<meta property="og:type" content="website">
@@ -43,7 +43,6 @@
 			<div class="navLinks">
 				<a target="_self" href="./index.html">Startseite</a>
 				<a target="_self" href="./index_table.html">Tabelle</a>
-				<a target="_self" href="./index_active_cases.html">aktive Fälle</a>
 				<a target="_self" href="./index_th_all.html">alle Regionen</a>
 				<a target="_self" href="./index_map.html">interaktive&nbsp;Karte</a>
 				<hr>
@@ -55,83 +54,40 @@
 		</div>
 	</div>
 	<div class="centerText">
-		<h1 id="TH-RKI">Coronavirus-Fälle in&nbsp;Thüringen (RKI)</h1>
-		Quelle: <a href="https://www.rki.de/DE/Content/InfAZ/N/Neuartiges_Coronavirus/Fallzahlen.html">Robert Koch-Institut</a><br>
+		<h1 id="TH-RKI">aktive Coronavirus-Fälle in&nbsp;Thüringen</h1>
+		geschätzt auf Grundlage der Genesungszahlen des <a href="https://corona.rki.de">Robert Koch-Instituts</a><br>
+		<a target="_self" href="./index_table.html">zur Tabelle mit den Daten</a><br>
+		<br>
 		
-		<div class="graphBlockContainer">
-			<div class="graphBlock">
-				<img src="./plotT5A_RKI.png" alt="Infektionen nach Altersgruppe" title="Infektionen nach Altersgruppe">
-			</div>
-			<div class="graphBlock">
-				<img src="./plotT5D_RKI.png" alt="aktive Fälle nach Altersgruppe" title="aktive Fälle nach Altersgruppe">
-			</div>
-		</div>
 		
-		<div class="graphBlockContainer">
-			<div class="graphBlock">
-				<img src="./plotT5E_RKI.png" alt="Genesungen nach Altersgruppe" title="Genesungen nach Altersgruppe">
-			</div>
-			<div class="graphBlock">
-				<img src="./plotT5B_RKI.png" alt="Verstorbene nach Altersgruppe" title="Verstorbene nach Altersgruppe">
-			</div>
+		<div class="graphBlockContainerMatrix">
+				<img src="./plot3_RKI_TH.png"  alt="aktive Fälle in Thüringen" title="aktive Fälle in Thüringen">
+				<img src="./plot3_RKI_ABG.png" alt="aktive Fälle im Altenburger Land" title="aktive Fälle im Altenburger Land">
+				<img src="./plot3_RKI_EIC.png" alt="aktive Fälle im Eichsfeld" title="aktive Fälle im Eichsfeld">
+				<img src="./plot3_RKI_EA.png" alt="aktive Fälle in Eisenach" title="aktive Fälle in Eisenach">
+				<img src="./plot3_RKI_EF.png" alt="aktive Fälle in Erfurt" title="aktive Fälle in Erfurt">
+				<img src="./plot3_RKI_G.png" alt="aktive Fälle in Gera" title="aktive Fälle in Gera">
+				<img src="./plot3_RKI_GTH.png" alt="aktive Fälle im Landkreis Gotha" title="aktive Fälle im Landkreis Gotha">
+				<img src="./plot3_RKI_GRZ.png" alt="aktive Fälle im Landkreis Greiz" title="aktive Fälle im Landkreis Greiz">
+				<img src="./plot3_RKI_HBN.png" alt="aktive Fälle im Landkreis Hildburghausen" title="aktive Fälle im Landkreis Hildburghausen">
+				<img src="./plot3_RKI_IK.png" alt="aktive Fälle im Ilm-Kreis" title="aktive Fälle im Ilm-Kreis">
+				<img src="./plot3_RKI_J.png" alt="aktive Fälle in Jena" title="aktive Fälle in Jena">
+				<img src="./plot3_RKI_KYF.png" alt="aktive Fälle im Kyffhäuserkreis" title="aktive Fälle im Kyffhäuserkreis">
+				<img src="./plot3_RKI_NDH.png" alt="aktive Fälle im Landkreis Nordhausen" title="aktive Fälle im Landkreis Nordhausen">
+				<img src="./plot3_RKI_SHK.png" alt="aktive Fälle im Saale-Holzland-Kreis" title="aktive Fälle im Saale-Holzland-Kreis">
+				<img src="./plot3_RKI_SOK.png" alt="aktive Fälle im Saale-Orla-Kreis" title="aktive Fälle im Saale-Orla-Kreis">
+				<img src="./plot3_RKI_SLF.png" alt="aktive Fälle im Landkreis Saalfeld-Rudolstadt" title="aktive Fälle im Landkreis Saalfeld-Rudolstadt">
+				<img src="./plot3_RKI_SM.png" alt="aktive Fälle im Landkreis Schmalkalden-Meiningen" title="aktive Fälle im Landkreis Schmalkalden-Meiningen">
+				<img src="./plot3_RKI_SOM.png" alt="aktive Fälle im Landkreis Sömmerda" title="aktive Fälle im Landkreis Sömmerda">
+				<img src="./plot3_RKI_SON.png" alt="aktive Fälle im Landkreis Sonneberg" title="aktive Fälle im Landkreis Sonneberg">
+				<img src="./plot3_RKI_SHL.png" alt="aktive Fälle in Suhl" title="aktive Fälle in Suhl">
+				<img src="./plot3_RKI_UH.png" alt="aktive Fälle im Unstrut-Hainich-Kreis" title="aktive Fälle im Unstrut-Hainich-Kreis">
+				<img src="./plot3_RKI_WAK.png" alt="aktive Fälle im Wartburgkreis" title="aktive Fälle im Wartburgkreis">
+				<img src="./plot3_RKI_WE.png" alt="aktive Fälle in Weimar" title="aktive Fälle in Weimar">
+				<img src="./plot3_RKI_AP.png" alt="aktive Fälle im Weimarer Land" title="aktive Fälle im Weimarer Land">
 		</div>
-		
-		<div class="graphBlockContainer">
-			<div class="graphBlock">
-				<img src="./plotT5C_RKI.png" alt="Fallsterblichkeit nach Altergruppe in Thüringen" title="Fallsterblichkeit nach Altergruppe in Thüringen">
-			</div>
-			<div class="graphBlock">
-				<img src="./plotT1_RKI.png" alt="Coronavirus-Fälle in Thüringen (RKI)" title="Coronavirus-Fälle in Thüringen (RKI)">
-			</div>
-		</div>
-
-		<div class="graphBlockContainer">
-			<div class="graphBlock">
-				<img src="./plotT3_RKI.png" alt="logarithmische Auftragung und Verdopplungszeit" title="logarithmische Auftragung und Verdopplungszeit">
-			</div>
-			<div class="graphBlock">
-				<img src="./plotT2_RKI_Trend3003.png" alt="Fälle in Thüringen (Trend der letzten 7 Tage)" title="Fälle in Thüringen (Trend der letzten 7 Tage)">
-			</div>
-		</div>
-
-		<div class="graphBlockContainer">
-			<div class="graphBlockSpacer">&nbsp;</div>
-			<div class="graphBlock">
-				<img src="./plotT2_RKI_Trend2603.png" alt="Fälle in Thüringen (Trend bis 26.03.)" title="Fälle in Thüringen (Trend bis 26.03.)">
-			</div>
-			<div class="graphBlockSpacer">&nbsp;</div>
-		</div>
-		
 		<br>
 		<br>
-		<h1 id="DE-RKI">Coronavirus-Fälle in&nbsp;Deutschland</h1>
-		Quellen: <a href="https://corona.rki.de/">Robert Koch-Institut</a>, <a href="https://www.intensivregister.de/#/intensivregister">DIVI-Intensivregister</a><br>
-
-		<div class="graphBlockContainer">
-			<div class="graphBlock">
-				<img src="./plotT1_Germany_RKI.png" alt="Coronavirus-Fälle in Deutschland (RKI-Zahlen)" title="Coronavirus-Fälle in Thüringen (RKI-Zahlen)">
-			</div>
-			<div class="graphBlock">
-				<img src="./plotT3_Germany_RKI.png" alt="logarithmische Auftragung und Verdopplungszeit" title="logarithmische Auftragung und Verdopplungszeit">
-			</div>
-		</div>
-		
-		<div class="graphBlockContainer">
-			<div class="graphBlock">
-				<img src="./plotD0_Germany.png" alt="Statistik der Intensivbetten für Deutschland auf Grundlage des DIVI-Intensivregisters" title="Statistik der Intensivbetten für Deutschland auf Grundlage des DIVI-Intensivregisters">
-			</div>
-			<div class="graphBlock">
-				<img src="./plotD2_Germany.png" alt="Statistik der Intensivbetten für Deutschland auf Grundlage des DIVI-Intensivregisters" title="Statistik der Intensivbetten für Deutschland auf Grundlage des DIVI-Intensivregisters">
-			</div>
-		</div>
-		
-		<div class="graphBlockContainer">
-			<div class="graphBlockSpacer">&nbsp;</div>
-			<div class="graphBlock">
-				<img src="./plotD1_Germany.png" alt="Statistik der Intensivbetten für Deutschland auf Grundlage des DIVI-Intensivregisters" title="Statistik der Intensivbetten für Deutschland auf Grundlage des DIVI-Intensivregisters">
-			</div>
-			<div class="graphBlockSpacer">&nbsp;</div>
-		</div>
 		
 		<a target="_self" href="./index.html">&laquo; &nbsp; zurück zur Startseite &nbsp; &laquo;</a>
 		<br>
