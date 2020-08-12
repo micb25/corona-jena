@@ -43,6 +43,10 @@ a:hover {
 	padding-bottom: 15px;
 	align-items: center;
 }
+.graphBlockContainerMatrix img{
+	width: 98%;
+	max-width: 600px;
+}
 .graphBlock {
 	display: inline-block;
 	width: 100%;
