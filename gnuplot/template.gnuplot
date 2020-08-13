@@ -28,6 +28,10 @@ set style line  17 lc rgb '#FF0000' lt 1 lw 2
 set style line  18 lc rgb '#ff8a1e' lt 1 lw 2
 set style line  19 lc rgb '#5c5c5c' lt 1 lw 2
 set style line  21 dt 3
+set style line  31 lc rgb '#0000FF' lt 1 lw 1 pt 7 ps 1.50
+set style line  32 lc rgb '#0000A0' lt 1 lw 1 pt 7 ps 1.50
+set style line  33 lc rgb '#A000A0' lt 1 lw 1 pt 7 ps 1.50
+set style line  34 lc rgb '#600060' lt 1 lw 1 pt 7 ps 1.50
 
 # grid
 set grid xtics ls 21 lc rgb '#aaaaaa'
