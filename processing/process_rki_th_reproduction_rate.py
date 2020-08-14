@@ -11,7 +11,7 @@ if __name__ == "__main__":
     DATAFILE1  = SCRIPTPATH + '/../data/rki_th/reproduction_rates_th.csv'
     
     # COVID19, generation time: https://www.rki.de/DE/Content/Infekt/EpidBull/Archiv/2020/Ausgaben/17_20.pdf
-    generation_time = 4 # 4 days, as assumed by the RKI
+    generation_time = 7 # 4 days, as assumed by the RKI
     
     # 7 day trend
     average_time    = 7 
@@ -39,7 +39,7 @@ if __name__ == "__main__":
                 sum_cases2 = data_array[idx + average_time + generation_time][1] - data_array[idx + generation_time][1]
                 
                 if (sum_cases1 > 0):
-                    rep_rate = sum_cases2 / sum_cases1
+                    rep_rate = pow(sum_cases2 / sum_cases1, 4.0/7.0)
                 else:
                     rep_rate = -1 # R not available
                     
