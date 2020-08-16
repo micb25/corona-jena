@@ -7,11 +7,11 @@ import time, requests, re, os
 def getGRZNumbers(url):
     headers = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
     
-    num_pattern_T = re.compile(r"esamt\<td\srowspan=\"1\"\>([0-9]{1,})")
+    num_pattern_T = re.compile(r"esamt</td><td\srowspan=\"1\"\>([0-9]{1,})")
     num_pattern_R = re.compile(r"genesen.*?([0-9]{1,})\sPerson")
     num_pattern_D = re.compile(r"([0-9]{1,})\sverstorbenen")
     
-    remove_array = { "<p>", "</p>", "<td>", "</td>", "<strong>", "</strong>", "<b>", "</b>", "<br>", "<br />" }
+    remove_array = { "<p>", "</p>", "<td>", "<strong>", "</strong>", "<b>", "</b>", "<br>", "<br />" }
         
     try:
         r = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0)
