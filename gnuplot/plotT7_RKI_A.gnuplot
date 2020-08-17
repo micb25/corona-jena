@@ -35,7 +35,7 @@ plot  \
   "<awk -F, '{if (NR>1&&$2==\"A\") print $1,$5}' ../data/rki_th_by_date/cases_by_day_and_age.csv" using 1:(filter_neg($2)) with lines ls 31 lw 3 title "15-34 Jahre", \
   "<awk -F, '{if (NR>1&&$2==\"A\") print $1,$6}' ../data/rki_th_by_date/cases_by_day_and_age.csv" using 1:(filter_neg($2)) with lines ls 32 lw 3 title "35-59 Jahre", \
   "<awk -F, '{if (NR>1&&$2==\"A\") print $1,$7}' ../data/rki_th_by_date/cases_by_day_and_age.csv" using 1:(filter_neg($2)) with lines ls 33 lw 3 title "60-79 Jahre", \
-  "<awk -F, '{if (NR>1&&$2==\"A\") print $1,$8}' ../data/rki_th_by_date/cases_by_day_and_age.csv" using 1:(filter_neg($2)) with lines ls 34 lw 3 title ">80 Jahre"
+  "<awk -F, '{if (NR>1&&$2==\"A\") print $1,$8}' ../data/rki_th_by_date/cases_by_day_and_age.csv" using 1:(filter_neg($2)) with lines ls 34 lw 3 title "80+ Jahre"
   
 set output '../plotT7_RKI_F.png'
   
@@ -48,7 +48,7 @@ plot  \
   "<awk -F, '{if (NR>1&&$2==\"F\") print $1,$5}' ../data/rki_th_by_date/cases_by_day_and_age.csv" using 1:(filter_neg($2)) with lines ls 31 lw 3 title "15-34 Jahre", \
   "<awk -F, '{if (NR>1&&$2==\"F\") print $1,$6}' ../data/rki_th_by_date/cases_by_day_and_age.csv" using 1:(filter_neg($2)) with lines ls 32 lw 3 title "35-59 Jahre", \
   "<awk -F, '{if (NR>1&&$2==\"F\") print $1,$7}' ../data/rki_th_by_date/cases_by_day_and_age.csv" using 1:(filter_neg($2)) with lines ls 33 lw 3 title "60-79 Jahre", \
-  "<awk -F, '{if (NR>1&&$2==\"F\") print $1,$8}' ../data/rki_th_by_date/cases_by_day_and_age.csv" using 1:(filter_neg($2)) with lines ls 34 lw 3 title ">80 Jahre"
+  "<awk -F, '{if (NR>1&&$2==\"F\") print $1,$8}' ../data/rki_th_by_date/cases_by_day_and_age.csv" using 1:(filter_neg($2)) with lines ls 34 lw 3 title "80+ Jahre"
   
 set output '../plotT7_RKI_M.png'
   
@@ -61,4 +61,4 @@ plot  \
   "<awk -F, '{if (NR>1&&$2==\"M\") print $1,$5}' ../data/rki_th_by_date/cases_by_day_and_age.csv" using 1:(filter_neg($2)) with lines ls 31 lw 3 title "15-34 Jahre", \
   "<awk -F, '{if (NR>1&&$2==\"M\") print $1,$6}' ../data/rki_th_by_date/cases_by_day_and_age.csv" using 1:(filter_neg($2)) with lines ls 32 lw 3 title "35-59 Jahre", \
   "<awk -F, '{if (NR>1&&$2==\"M\") print $1,$7}' ../data/rki_th_by_date/cases_by_day_and_age.csv" using 1:(filter_neg($2)) with lines ls 33 lw 3 title "60-79 Jahre", \
-  "<awk -F, '{if (NR>1&&$2==\"M\") print $1,$8}' ../data/rki_th_by_date/cases_by_day_and_age.csv" using 1:(filter_neg($2)) with lines ls 34 lw 3 title ">80 Jahre"
+  "<awk -F, '{if (NR>1&&$2==\"M\") print $1,$8}' ../data/rki_th_by_date/cases_by_day_and_age.csv" using 1:(filter_neg($2)) with lines ls 34 lw 3 title "80+ Jahre"
