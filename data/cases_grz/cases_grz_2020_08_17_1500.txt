@@ -1,0 +1,36 @@
+<div class="news-single-item">
+  <div class="news-single-rightbox">
+    17.08.2020 15:00
+  </div>
+    <h1>Corona-Fallzahlen in den Städten und Gemeinden des Landkreises</h1>
+    <h2>Stand: 17.08.2020, 15:00  Uhr</h2>
+    <hr class="cl-right" />
+
+    
+    
+    <p>Der Landkreis veröffentlicht hier in regelmäßigen Abständen die Fallzahlen der positiv auf das Corona-Virus getesteten Personen in den Städten und Gemeinden des Landkreises Greiz seit Ausbruch der Pandemie.</p>
+<p>In den Fallzahlen enthalten sind sowohl die bislang als genesen festgestellten 616 Personen sowie die 48 verstorbenen Patienten.</p>
+<p>Die 7-Tage-Inzidenz (Neuinfektionen der letzten 7 Tage pro 100.000 Einwohner) liegt im Landkreis Greiz bei 6,1.</p>
+<p>&nbsp;</p><table class="contenttable"><thead><tr><th class="align-left" scope="col">Ort</th><th scope="col">Fallzahl </th><th></th><th></th><th>Aktiv</th><th></th><th></th><th></th></tr></thead><tbody><tr class="indent"><td><p class="align-left">Auma-Weidatal</p></td><td class="align-center"><p class="bodytext">19</p></td><td></td><td></td><td class="indent">0</td><td></td><td></td></tr><tr class="indent align-justify"><td><p class="align-left">Bad Köstritz</p></td><td class="align-center"><p class="bodytext">19</p></td><td></td><td class="indent"></td><td class="align-center indent">0</td><td></td><td></td></tr><tr><td><p class="align-left">Berga</p></td><td><p class="bodytext">6</p></td><td></td><td></td><td>0</td><td></td><td></td></tr><tr><td rowspan="1"><p class="align-left">Brahmenau</p></td><td rowspan="1"><p class="bodytext">2</p></td><td></td><td></td><td>0</td><td></td><td></td></tr><tr><td rowspan="1" class="align-left"><p class="bodytext">Endschütz</p></td><td rowspan="1"><p class="bodytext">4</p></td><td></td><td></td><td>0</td><td></td><td></td></tr><tr><td><p class="align-left">Greiz</p></td><td><p class="bodytext">226</p></td><td></td><td></td><td>0</td><td></td><td></td></tr><tr><td class="align-left indent" rowspan="1"><p class="bodytext">Großenstein </p></td><td rowspan="1"><p class="bodytext">4</p></td><td></td><td></td><td>3</td><td></td><td></td></tr><tr><td><p class="align-left">Harth-Pöllnitz</p></td><td><p class="bodytext">9</p></td><td></td><td></td><td>0</td><td></td><td></td></tr><tr><td><p class="align-left">Hohenleuben</p></td><td><p class="bodytext">7</p></td><td></td><td></td><td>0</td><td></td><td></td></tr><tr><td rowspan="1" class="align-left"><p class="bodytext">Hirschfeld</p></td><td rowspan="1"><p class="bodytext">2</p></td><td></td><td></td><td>0</td><td></td><td></td></tr><tr><td rowspan="1" class="align-left"><p class="bodytext">Kauern</p></td><td rowspan="1"><p class="bodytext">6</p></td><td></td><td></td><td>0</td><td></td><td></td></tr><tr><td><p class="align-left">Kraftsdorf</p></td><td><p class="bodytext">8</p></td><td></td><td></td><td>1</td><td></td><td></td></tr><tr><td rowspan="1" class="align-left"><p class="bodytext">Kühdorf</p></td><td rowspan="1"><p class="bodytext">2</p></td><td></td><td></td><td>0</td><td></td><td></td></tr><tr><td><p class="align-left">Langenwetzendorf</p></td><td><p class="bodytext">37</p></td><td></td><td></td><td>1</td><td></td><td></td></tr><tr><td class="align-left" rowspan="1"><p class="bodytext">Langenwolschendorf</p></td><td rowspan="1"><p class="bodytext">3</p></td><td></td><td></td><td>0</td><td></td><td></td></tr><tr><td rowspan="1" class="align-left"><p class="bodytext">Lederhose</p></td><td rowspan="1"><p class="bodytext">1</p></td><td></td><td></td><td>0</td><td></td><td></td></tr><tr><td><p class="align-left">Mohlsdorf-Teichwolframsdorf</p></td><td><p class="bodytext">42</p></td><td></td><td></td><td>2</td><td></td><td></td></tr><tr><td class="indent align-left" rowspan="1"><p class="bodytext">Münchenbernsdorf</p></td><td rowspan="1"><p class="bodytext">13</p></td><td></td><td></td><td>5</td><td></td><td></td></tr><tr><td class="indent align-left" rowspan="1"><p class="bodytext">Pölzig</p></td><td rowspan="1"><p class="bodytext">1</p></td><td></td><td></td><td>0</td><td></td><td></td></tr><tr><td rowspan="1" class="align-left"><p class="bodytext">Ronneburg</p></td><td rowspan="1"><p class="bodytext">36</p></td><td></td><td></td><td>0</td><td></td><td></td></tr><tr><td rowspan="1" class="align-left"><p class="bodytext">Rückersdorf</p></td><td rowspan="1"><p class="bodytext">2</p></td><td></td><td></td><td>0</td><td></td><td></td></tr><tr><td rowspan="1" class="align-left"><p class="bodytext">Saara</p></td><td rowspan="1"><p class="bodytext">1</p></td><td></td><td></td><td>0</td><td></td><td></td></tr><tr><td rowspan="1" class="align-left"><p class="bodytext">Seelingstädt</p></td><td rowspan="1"><p class="bodytext">5</p></td><td></td><td></td><td>0</td><td></td><td></td></tr><tr><td rowspan="1" class="align-left"><p class="bodytext">Teichwitz</p></td><td rowspan="1"><p class="bodytext">1</p></td><td></td><td></td><td>0</td><td></td><td></td></tr><tr><td rowspan="1" class="align-left"><p class="bodytext">Weida</p></td><td rowspan="1"><p class="bodytext">55</p></td><td></td><td></td><td>0</td><td></td><td></td></tr><tr><td><p class="align-left">Wünschendorf</p></td><td><p class="bodytext">10</p></td><td></td><td></td><td>3</td><td></td><td></td></tr><tr><td><p class="align-left">Zeulenroda-Triebes</p></td><td><p class="bodytext">159</p></td><td></td><td></td><td>1</td><td></td><td></td></tr><tr><td class="align-left" rowspan="1"><b>gesamt<br /></b></td><td rowspan="1"><b>680<br /></b></td><td></td><td></td><td><b>16</b></td><td></td><td></td></tr></tbody></table><p style="text-indent:35.45pt">&nbsp;</p>
+    <hr class="cl-right" />
+      
+
+            
+           
+
+          
+           
+
+          
+          
+
+          
+          
+
+      
+      
+      
+  <div class="news-single-backlink">
+  <a href="landkreis-greiz/aktuell/" >Zurück</a>
+  </div>
+</div>
