@@ -7,15 +7,13 @@ import time, requests, re, os
 def getSOMNumbers(url):
     headers = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
     
-    num_pattern_T = re.compile(r"([0-9]{1,})\spersonen,[^\.]*?positiv[^\.]*?.")
-    num_pattern_R = re.compile(r"([0-9]{1,})\s[^\.]*?(?:patient|person)[^\.]*?(?:beendet|genesen)\.")
-    num_pattern_D = re.compile(r"([0-9]{1,})\s[^\.]*?(?:patient|person)[^\.]*?(?:verstorben)\.")
-    num_pattern_H = re.compile(r"([0-9]{1,})\s[^\.]*?(?:patient|person)[^\.]*?stationär[^\.]*?\.")
-    
-    remove_array = [ "<p>", "</p>", "<td>", "</td>", "<strong>", "</strong>", "<b>", "</b>", "<br>", "<br />" ]
+    num_pattern_T = re.compile(r"Zahl der Infizierten: ([0-9]{1,})<")
+    num_pattern_R = re.compile(r"Zahl der Genesenen: ([0-9]{1,})<")
+    num_pattern_D = re.compile(r"Zahl der Verstorbenen: ([0-9]{1,})<")
     
     number_array  = {
-                "eine": "1", "zwei": "2","drei": "3",
+                "keine": "0", "keiner": "0",
+                "einer": "1", "eine": "1", "zwei": "2","drei": "3",
                 "vier": "4", "fünf": "5", "sechs": "6",
                 "sieben": "7", "acht": "8", "neun": "9",
                 "zehn": "10", "elf": "11", "zwölf": "12"
@@ -23,26 +21,22 @@ def getSOMNumbers(url):
         
     try:
         r = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0)
-        s = r.text.lower()
+        s = r.text.replace("&#58;", ":")
         
-        for entry in remove_array:
-            s = s.replace(entry, "")
-            
-        for k, r in number_array.items():
-            s = s.replace(k, r)
-        
+        for entry in number_array:
+            s = s.replace(entry, number_array[entry])
+                
         ps1 = num_pattern_T.findall( s )
         ps2 = num_pattern_R.findall( s )
         ps3 = num_pattern_D.findall( s )
-        ps4 = num_pattern_H.findall( s )
         
         num_t = int(ps1[0]) if (len(ps1) >= 1) else -1
         num_r = int(ps2[0]) if (len(ps2) >= 1) else -1
         num_d = int(ps3[0]) if (len(ps3) >= 1) else -1
-        num_h = int(ps4[0]) if (len(ps4) >= 1) else -1
+        num_h = -1
         num_s = -1
         
-        return (num_t, num_r, num_d, num_h, num_s)
+        return [num_t, num_r, num_d, num_h, num_s]
     
     except:
         return False  
@@ -51,10 +45,10 @@ def getSOMNumbers(url):
 if __name__ == "__main__":
     
     DATAFILE = os.path.dirname(os.path.realpath(__file__)) + "/../data/cases_som.csv"
-    URL = "https://www.lra-soemmerda.de/"
+    URL = "https://spweb.lra-soemmerda.de/Seiten/Corona.aspx"
 
     # do the request    
-    num_latest = getSOMNumbers(URL)
+    num_latest = getSOMNumbers(URL)    
 
     if (num_latest != False) and (num_latest[0] > -1):
         
