@@ -58,7 +58,7 @@ if __name__ == "__main__":
             rawdata = df.read().splitlines()
 
         # get latest timestamp
-        timestamp = int(rawdata[-1].split(",")[0])
+        timestamp = int(int(rawdata[-1].split(",")[0])/86400)*86400
         
         last_week = timestamp - 7 * 86400
         
@@ -69,7 +69,7 @@ if __name__ == "__main__":
         for l in rawdata:
             ds = l.split(",")
             if ( len(ds) == 8 ):
-                if ( int(ds[0]) == last_week ):
+                if ( int(int(ds[0])/86400)*86400 == last_week ):
                     area_data[ds[1]] = -int(ds[3])
                 if ( int(ds[0]) == timestamp ):
                     area_data[ds[1]] += int(ds[3])
