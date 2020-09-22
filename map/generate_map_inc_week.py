@@ -71,7 +71,7 @@ if __name__ == "__main__":
             if ( len(ds) == 8 ):
                 if ( int(int(ds[0])/86400)*86400 == last_week ):
                     area_data[ds[1]] = -int(ds[3])
-                if ( int(ds[0]) == timestamp ):
+                if ( int(int(ds[0])/86400)*86400 == timestamp ):
                     area_data[ds[1]] += int(ds[3])
                     sum_cases += area_data[ds[1]]
                     if ( area_data[ds[1]] > max_cases ):
