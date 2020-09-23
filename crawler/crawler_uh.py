@@ -7,7 +7,7 @@ import datetime, requests, re, os
 def getUHNumbers(url):
     headers = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
     
-    num_pattern_T = re.compile(r"aktuell infizierte(?:<\/strong>)?(?:<\/span>)?</td><td.*?>.*?(?:<strong>)?([\+\-0-9]{1,})(?:<\/strong>)?(?:<\/span>)?<\/td>")
+    num_pattern_T = re.compile(r"aktuell infizierter personen(?:<\/strong>)?(?:<\/span>)?</td><td.*?>.*?(?:<strong>)?([\+\-0-9]{1,})(?:<\/strong>)?(?:<\/span>)?<\/td>")
     num_pattern_R = re.compile(r"genesene.*?</td><td.*?>(?:<strong>)?([\+\-0-9]{1,})(?:<\/strong>)?(?:<\/span>)?<\/td>")
     num_pattern_D = re.compile(r"verstorbene.*?</td><td.*?>(?:<strong>)?([\+\-0-9]{1,})(?:<\/strong>)?(?:<\/span>)?<\/td>")
     num_pattern_H = re.compile(r"stationäre.*?</td><td.*?>(?:<strong>)?([\+\-0-9]{1,})(?:<\/strong>)?(?:<\/span>)?<\/td>")
