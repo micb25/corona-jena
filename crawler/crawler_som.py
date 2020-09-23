@@ -10,22 +10,11 @@ def getSOMNumbers(url):
     num_pattern_T = re.compile(r"Zahl der Infizierten: ([0-9]{1,})<")
     num_pattern_R = re.compile(r"Zahl der Genesenen: ([0-9]{1,})<")
     num_pattern_D = re.compile(r"Zahl der Verstorbenen: ([0-9]{1,})<")
-    
-    number_array  = {
-                "keine": "0", "keiner": "0",
-                "einer": "1", "eine": "1", "zwei": "2","drei": "3",
-                "vier": "4", "fünf": "5", "sechs": "6",
-                "sieben": "7", "acht": "8", "neun": "9",
-                "zehn": "10", "elf": "11", "zwölf": "12"
-        }
-        
+            
     try:
         r = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0)
         s = r.text.replace("&#58;", ":")
-        
-        for entry in number_array:
-            s = s.replace(entry, number_array[entry])
-                
+                        
         ps1 = num_pattern_T.findall( s )
         ps2 = num_pattern_R.findall( s )
         ps3 = num_pattern_D.findall( s )
@@ -48,7 +37,7 @@ if __name__ == "__main__":
     URL = "https://spweb.lra-soemmerda.de/Seiten/Corona.aspx"
 
     # do the request    
-    num_latest = getSOMNumbers(URL)    
+    num_latest = getSOMNumbers(URL)
 
     if (num_latest != False) and (num_latest[0] > -1):
         
