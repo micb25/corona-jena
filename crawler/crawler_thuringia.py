@@ -119,9 +119,7 @@ def getTHStatistics(url, latest_case_numbers):
             d.append(int(dHosp[0]) if len(dHosp) > 0 else -1)
             d.append(int(dSev[0]) if len(dSev) > 0 else -1)
             d.append(int(dDec[0]) if len(dDec) > 0 else -1)
-            
-            print(d)
-            
+                        
             res = res + "%i,%s,%i,%i,%i,%i,%i,%i\n" % (data_timestamp, d[0], d[1], d[2], d[3], d[4], d[5], 0)
         
         return [data_timestamp, res]
