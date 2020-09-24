@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 
 import requests, re, os
+from datetime import datetime
 
 
 def saveSMNumbers():
@@ -9,6 +10,7 @@ def saveSMNumbers():
     headers = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
     
     DATADIR = os.path.dirname(os.path.realpath(__file__)) + "/../data/cases_sm/"
+    DATE_STR = datetime.fromtimestamp(datetime.now().timestamp()).strftime('%Y-%m-%d')
     
     try:
         # download the website to get the URL of the document
@@ -31,7 +33,7 @@ def saveSMNumbers():
             return False
         
         # check if document exists and is not empty
-        pdf_local = DATADIR + filename[0]
+        pdf_local = DATADIR + "SM_{}.pdf".format(DATE_STR)
         try:
             fs = os.path.getsize(pdf_local)
         except:
