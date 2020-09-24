@@ -52,7 +52,7 @@ def getTHStatistics(url, latest_case_numbers):
     dp_name    = re.compile(r">([a-zäöüÄÖÜßA-Z\s\-]*?)</h3>")
     dp_new_inf = re.compile(r"<li>Neuinfektionen letzte 24h\s?:?\s?([\+\-0-9]{1,})")
     dp_sum_inf = re.compile(r"<li>Infizierte insgesamt\s?:?\s?([\+\-0-9]{1,})")
-    dp_hosp    = re.compile(r"Patienten stationär\s?:?\s([\+\-0-9]{1,})")
+    dp_hosp    = re.compile(r"Patienten stationär\s?(?:insgesamt)?:?\s([\+\-0-9]{1,})")
     dp_severe  = re.compile(r"schwerer?\s(?:Verläufe|Verlauf)\s?:?\s([\+\-0-9]{1,})")
     dp_dec     = re.compile(r"<li>Verstorbene?\s?:?\s?([\+\-0-9]{1,})")
     
@@ -119,6 +119,8 @@ def getTHStatistics(url, latest_case_numbers):
             d.append(int(dHosp[0]) if len(dHosp) > 0 else -1)
             d.append(int(dSev[0]) if len(dSev) > 0 else -1)
             d.append(int(dDec[0]) if len(dDec) > 0 else -1)
+            
+            print(d)
             
             res = res + "%i,%s,%i,%i,%i,%i,%i,%i\n" % (data_timestamp, d[0], d[1], d[2], d[3], d[4], d[5], 0)
         
