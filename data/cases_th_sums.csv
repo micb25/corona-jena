@@ -163,3 +163,15 @@ date,sum,recovered,dead,hosp,hospcov,severe,url
 1600070400,3790,3490,188,752,436,104,https://www.tmasgff.de/covid-19/fallzahlen
 1600156800,3815,3490,189,757,440,104,https://www.tmasgff.de/covid-19/fallzahlen
 1600243200,3834,3500,189,753,440,104,https://www.tmasgff.de/covid-19/fallzahlen
+1600329600,3865,3530,189,754,440,104,https://www.tmasgff.de/covid-19/fallzahlen
+1600416000,3898,3540,189,755,442,104,https://www.tmasgff.de/covid-19/fallzahlen
+1600675200,3938,3560,189,759,444,104,https://www.tmasgff.de/covid-19/fallzahlen
+1600761600,3958,3580,189,762,445,104,https://www.tmasgff.de/covid-19/fallzahlen
+1600848000,3965,3610,189,762,445,104,https://www.tmasgff.de/covid-19/fallzahlen
+1600934400,4007,3630,190,764,445,104,https://www.tmasgff.de/covid-19/fallzahlen
+1601020800,4024,3660,190,764,446,104,https://www.tmasgff.de/covid-19/fallzahlen
+1601280000,4054,3710,190,770,451,105,https://www.tmasgff.de/covid-19/fallzahlen
+1601366400,4056,3730,190,770,451,105,https://www.tmasgff.de/covid-19/fallzahlen
+1601452800,4075,3760,191,770,451,105,https://www.tmasgff.de/covid-19/fallzahlen
+1601539200,4106,3770,191,772,453,106,https://www.tmasgff.de/covid-19/fallzahlen
+1601625600,4134,3800,191,775,454,106,https://www.tmasgff.de/covid-19/fallzahlen
