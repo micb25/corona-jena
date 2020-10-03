@@ -4,7 +4,7 @@ set output '../plot1_Erfurt.png'
 
 # stats for x
 stats "<awk -F, '{print $2, $3}' ../data/cases_erfurt.csv" using 1 nooutput
-set xrange [ STATS_min - 2.0 * 86400 : STATS_max + 2.0 * 86400 ]
+set xrange [ STATS_min - 2.0 * 86400 : STATS_max + 3.0 * 86400 ]
 set yrange [0:50 < * < 100000]
 
 # latest update
@@ -32,7 +32,7 @@ set offsets 0.00, 0.00, graph 0.40, 0.00
 plot  \
   \
   "<awk -F, '{print $2, $5}' ../data/cases_erfurt.csv | awk '{if ($2 >= 0) print $0}' | awk 'BEGIN{ov=0}{dv=$2-ov;ov=$2;print $1,$2,dv}' | tail -n 1" using 1:2:(sprintf("%i\n(%+i)", $2, $3)) with labels point pt 7 ps 0 right offset char 0.0, 1.8 tc ls 5 notitle, \
-  "<awk -F, '{print $2, $4}' ../data/cases_erfurt.csv | awk '{if ($2 >= 0) print $0}' | awk 'BEGIN{ov=0}{dv=$2-ov;ov=$2;print $1,$2,dv}' | tail -n 1" using 1:2:(sprintf("%i\n(%+i)", $2, $3)) with labels point pt 7 ps 0 right offset char 0.0,-1.0 tc ls 4 notitle, \
+  "<awk -F, '{print $2, $4}' ../data/cases_erfurt.csv | awk '{if ($2 >= 0) print $0}' | awk 'BEGIN{ov=0}{dv=$2-ov;ov=$2;print $1,$2,dv}' | tail -n 1" using 1:2:(sprintf("%i\n(%+i)", $2, $3)) with labels point pt 7 ps 0 right offset char 0.0,-1.8 tc ls 4 notitle, \
   "<awk -F, '{print $2, $3}' ../data/cases_erfurt.csv | awk '{if ($2 >= 0) print $0}' | awk 'BEGIN{ov=0}{dv=$2-ov;ov=$2;print $1,$2,dv}' | tail -n 1" using 1:2:(sprintf("%i\n(%+i)", $2, $3)) with labels point pt 7 ps 0 right offset char 0.0, 1.8 tc ls 1 notitle, \
   \
   "<awk -F, '{print $2, $5}' ../data/cases_erfurt.csv" using 1:(filter_neg($2)) with linespoints ls 5 title "Verstorbene", \

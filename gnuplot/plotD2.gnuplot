@@ -4,11 +4,8 @@ set output '../plotD2.png'
 
 # stats for x
 stats "<awk -F, '{if ( NR > 1 ) print $1}' ../data/divi_db_th/divi_data_th.csv" using 1 nooutput
-set xrange [ STATS_min - 0.5 * 86400 : STATS_max + 16.0 * 86400 ]
-
-# stats for y
-stats "<awk -F, '{if ( NR > 1 ) print $2}' ../data/divi_db_th/divi_data_th.csv" using 1 nooutput
-set yrange [ 0 : 100*(1+int(int(1.40*STATS_max)/100.0)) ]
+set xrange [ STATS_min - 0.5 * 86400 : STATS_max + 30.0 * 86400 ]
+set yrange [0:50 < * < 100000]
 
 # x-axis setup
 unset xlabel
@@ -28,6 +25,8 @@ update_str = "{/*0.75 letztes Update: " . date_cmd . " Uhr}"
 
 set label 1 at graph 0.98, 0.95 update_str right textcolor ls 0
 set label 2 at graph 0.98, 0.90 "{/*0.75 Quelle: DIVI-Intensivregister}" right textcolor ls 0
+
+set offsets 0.00, 0.00, graph 0.40, 0.00
 
 # data
 plot  \
