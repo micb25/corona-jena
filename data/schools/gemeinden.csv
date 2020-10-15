@@ -1,0 +1,638 @@
+ags,rs,gemeinde,landkreis
+16051000,160510000000,Erfurt,Stadt Erfurt
+16052000,160520000000,Gera,Stadt Gera
+16053000,160530000000,Jena,Stadt Jena
+16054000,160540000000,Suhl,Stadt Suhl
+16055000,160550000000,Weimar,Stadt Weimar
+16056000,160560000000,Eisenach,Stadt Eisenach
+16061001,160615008001,Arenshausen,Eichsfeld
+16061002,160615012002,Asbach-Sickenberg,Eichsfeld
+16061003,160615001003,Berlingerode,Eichsfeld
+16061007,160615012007,Birkenfelde,Eichsfeld
+16061012,160615009012,Bodenrode-Westhausen,Eichsfeld
+16061014,160615008014,Bornhagen,Eichsfeld
+16061015,160615001015,Brehme,Eichsfeld
+16061017,160615006017,Breitenworbis,Eichsfeld
+16061018,160615013018,Büttstedt,Eichsfeld
+16061019,160615006019,Buhla,Eichsfeld
+16061021,160615008021,Burgwalde,Eichsfeld
+16061023,160615014023,Dieterode,Eichsfeld
+16061024,160615012024,Dietzenrode,Eichsfeld
+16061024,160615012024,Vatterode,Eichsfeld
+16061026,160615001026,Ecklingerode,Eichsfeld
+16061027,160615013027,Effelder,Eichsfeld
+16061028,160615012028,Eichstruth,Eichsfeld
+16061031,160615001031,Ferna,Eichsfeld
+16061032,160615008032,Freienhagen,Eichsfeld
+16061033,160615008033,Fretterode,Eichsfeld
+16061034,160615009034,Geisleden,Eichsfeld
+16061035,160615014035,Geismar,Eichsfeld
+16061036,160615008036,Gerbershausen,Eichsfeld
+16061037,160615006037,Gernrode,Eichsfeld
+16061039,160615009039,Glasehausen,Eichsfeld
+16061041,160615013041,Großbartloff,Eichsfeld
+16061044,160615006044,Haynrode,Eichsfeld
+16061045,160610045045,Heilbad Heiligenstadt,Eichsfeld
+16061047,160615009047,Heuthen,Eichsfeld
+16061048,160615008048,Hohengandern,Eichsfeld
+16061049,160615009049,Hohes Kreuz,Eichsfeld
+16061056,160615014056,Kella,Eichsfeld
+16061057,160615008057,Kirchgandern,Eichsfeld
+16061058,160615006058,Kirchworbis,Eichsfeld
+16061062,160615014062,Krombach,Eichsfeld
+16061063,160615013063,Küllstedt,Eichsfeld
+16061065,160615012065,Lenterode,Eichsfeld
+16061066,160615008066,Lindewerra,Eichsfeld
+16061067,160615012067,Lutter,Eichsfeld
+16061068,160615012068,Mackenrode,Eichsfeld
+16061069,160615008069,Marth,Eichsfeld
+16061074,160610074074,Niederorschel,Eichsfeld
+16061075,160615014075,Pfaffschwende,Eichsfeld
+16061076,160615009076,Reinholterode,Eichsfeld
+16061077,160615012077,Röhrig,Eichsfeld
+16061078,160615008078,Rohrberg,Eichsfeld
+16061082,160615008082,Rustenfelde,Eichsfeld
+16061083,160615008083,Schachtebich,Eichsfeld
+16061084,160615012084,Schönhagen,Eichsfeld
+16061085,160615014085,Schwobfeld,Eichsfeld
+16061086,160615014086,Sickerode,Eichsfeld
+16061089,160615009089,Steinbach,Eichsfeld
+16061091,160615012091,Steinheuterode,Eichsfeld
+16061094,160615001094,Tastungen,Eichsfeld
+16061096,160615012096,Thalwenden,Eichsfeld
+16061097,160615012097,Uder,Eichsfeld
+16061098,160615014098,Volkerode,Eichsfeld
+16061101,160615013101,Wachstedt,Eichsfeld
+16061102,160615008102,Wahlhausen,Eichsfeld
+16061103,160615001103,Wehnde,Eichsfeld
+16061105,160615014105,Wiesenfeld,Eichsfeld
+16061107,160615009107,Wingerode,Eichsfeld
+16061111,160615012111,Wüstheuterode,Eichsfeld
+16061113,160615014113,Schimberg,Eichsfeld
+16061114,160615001114,Teistungen,Eichsfeld
+16061115,160610115115,Leinefelde-Worbis,Eichsfeld
+16061116,160610116116,Am Ohmberg,Eichsfeld
+16061117,160610117117,Sonnenstein,Eichsfeld
+16061118,160610118118,Dingelstädt,Eichsfeld
+16062005,160620005005,Ellrich,Nordhausen
+16062008,160625053008,Görsbach,Nordhausen
+16062009,160625054009,Großlohra,Nordhausen
+16062024,160625054024,Kehmstedt,Nordhausen
+16062026,160625054026,Kleinfurra,Nordhausen
+16062033,160625054033,Lipprechterode,Nordhausen
+16062037,160625054037,Niedergebra,Nordhausen
+16062041,160620041041,Nordhausen,Nordhausen
+16062049,160620049049,Sollstedt,Nordhausen
+16062054,160625053054,Urbach,Nordhausen
+16062062,160620062062,Hohenstein,Nordhausen
+16062063,160620063063,Werther,Nordhausen
+16062064,160625053064,Heringen,Nordhausen
+16062064,160625053064,Helme,Nordhausen
+16062065,160620065065,Harztor,Nordhausen
+16062066,160625054066,Bleicherode,Nordhausen
+16063003,160635051003,Bad Salzungen,Wartburgkreis
+16063004,160630004004,Barchfeld-Immelborn,Wartburgkreis
+16063006,160635006006,Berka v. d. Hainich,Wartburgkreis
+16063008,160635006008,Bischofroda,Wartburgkreis
+16063011,160635056011,Buttlar,Wartburgkreis
+16063015,160635059015,Dermbach,Wartburgkreis
+16063023,160635059023,Empfertshausen,Wartburgkreis
+16063028,160635006028,Frankenroda,Wartburgkreis
+16063032,160635056032,Geisa,Wartburgkreis
+16063033,160635056033,Gerstengrund,Wartburgkreis
+16063037,160635006037,Hallungen,Wartburgkreis
+16063046,160635006046,Krauthausen,Wartburgkreis
+16063049,160635006049,Lauterbach,Wartburgkreis
+16063051,160635051051,Leimbach,Wartburgkreis
+16063058,160635006058,Nazza,Wartburgkreis
+16063062,160635059062,Oechsen,Wartburgkreis
+16063066,160635057066,Ruhla,Wartburgkreis
+16063068,160635056068,Schleid,Wartburgkreis
+16063071,160635057071,Seebach,Wartburgkreis
+16063076,160630076076,Treffurt,Wartburgkreis
+16063078,160630078078,Unterbreizbach,Wartburgkreis
+16063082,160630082082,Vacha,Wartburgkreis
+16063084,160635059084,Weilar,Wartburgkreis
+16063086,160635059086,Wiesenthal,Wartburgkreis
+16063092,160630092092,Wutha-Farnroda,Wartburgkreis
+16063094,160630094094,Moorgrund,Wartburgkreis
+16063097,160630097097,Gerstungen,Wartburgkreis
+16063098,160630098098,Hörselberg-Hainich,Wartburgkreis
+16063099,160630099099,Bad Liebenstein,Wartburgkreis
+16063101,160630101101,Krayenberggemeinde,Wartburgkreis
+16063103,160630103103,Werra-Suhl-Tal,Wartburgkreis
+16063104,160635006104,Amt Creuzburg,Wartburgkreis
+16064003,160640003003,Bad Langensalza,Unstrut-Hainich-Kreis
+16064004,160645001004,Bad Tennstedt,Unstrut-Hainich-Kreis
+16064005,160645001005,Ballhausen,Unstrut-Hainich-Kreis
+16064007,160645001007,Blankenburg,Unstrut-Hainich-Kreis
+16064009,160645001009,Bruchstedt,Unstrut-Hainich-Kreis
+16064014,160640014014,Dünwald,Unstrut-Hainich-Kreis
+16064019,160645051019,Großvargula,Unstrut-Hainich-Kreis
+16064021,160645001021,Haussömmern,Unstrut-Hainich-Kreis
+16064022,160645051022,Herbsleben,Unstrut-Hainich-Kreis
+16064027,160645001027,Hornsömmern,Unstrut-Hainich-Kreis
+16064032,160645053032,Kammerforst,Unstrut-Hainich-Kreis
+16064033,160645001033,Kirchheilingen,Unstrut-Hainich-Kreis
+16064037,160645055037,Körner,Unstrut-Hainich-Kreis
+16064038,160645001038,Kutzleben,Unstrut-Hainich-Kreis
+16064043,160645055043,Marolterode,Unstrut-Hainich-Kreis
+16064045,160645001045,Mittelsömmern,Unstrut-Hainich-Kreis
+16064046,160640046046,Mühlhausen,Unstrut-Hainich-Kreis
+16064053,160645053053,Oppershausen,Unstrut-Hainich-Kreis
+16064055,160645052055,Rodeberg,Unstrut-Hainich-Kreis
+16064058,160645054058,Schönstedt,Unstrut-Hainich-Kreis
+16064061,160645001061,Sundhausen,Unstrut-Hainich-Kreis
+16064062,160645001062,Tottleben,Unstrut-Hainich-Kreis
+16064064,160645001064,Urleben,Unstrut-Hainich-Kreis
+16064071,160640071071,Unstruttal,Unstrut-Hainich-Kreis
+16064072,160640072072,Menteroda,Unstrut-Hainich-Kreis
+16064073,160640073073,Anrode,Unstrut-Hainich-Kreis
+16064074,160645052074,Südeichsfeld,Unstrut-Hainich-Kreis
+16064075,160645053075,Vogtei,Unstrut-Hainich-Kreis
+16064076,160645054076,Unstrut-Hainich,Unstrut-Hainich-Kreis
+16064077,160645055077,Nottertal-Heilinger Höhen,Unstrut-Hainich-Kreis
+16065001,160655052001,Abtsbessingen,Kyffhäuserkreis
+16065003,160650003003,Bad Frankenhausen,Kyffhäuserkreis
+16065005,160655052005,Bellstedt,Kyffhäuserkreis
+16065008,160655055008,Borxleben,Kyffhäuserkreis
+16065012,160655002012,Clingen,Kyffhäuserkreis
+16065014,160655052014,Ebeleben,Kyffhäuserkreis
+16065016,160655056016,Etzleben,Kyffhäuserkreis
+16065018,160655052018,Freienbessingen,Kyffhäuserkreis
+16065019,160655055019,Gehofen,Kyffhäuserkreis
+16065023,160655002023,Greußen,Kyffhäuserkreis
+16065032,160650032032,Helbedündorf,Kyffhäuserkreis
+16065038,160655052038,Holzsußra,Kyffhäuserkreis
+16065042,160655055042,Kalbsrieth,Kyffhäuserkreis
+16065046,160655055046,Mönchpfiffel-Nikolausrieth,Kyffhäuserkreis
+16065048,160655002048,Niederbösa,Kyffhäuserkreis
+16065051,160655002051,Oberbösa,Kyffhäuserkreis
+16065052,160655056052,Oberheldrungen,Kyffhäuserkreis
+16065056,160655055056,Reinsdorf,Kyffhäuserkreis
+16065058,160655052058,Rockstedt,Kyffhäuserkreis
+16065067,160650067067,Sondershausen,Kyffhäuserkreis
+16065074,160655002074,Topfstedt,Kyffhäuserkreis
+16065075,160655002075,Trebra,Kyffhäuserkreis
+16065077,160655002077,Wasserthaleben,Kyffhäuserkreis
+16065079,160655002079,Westgreußen,Kyffhäuserkreis
+16065082,160655052082,Wolferschwenda,Kyffhäuserkreis
+16065084,160655002084,Großenehrich,Kyffhäuserkreis
+16065085,160650085085,Kyffhäuserland,Kyffhäuserkreis
+16065086,160655055086,Artern,Kyffhäuserkreis
+16065087,160650087087,Roßleben-Wiehe,Kyffhäuserkreis
+16065088,160655056088,An der Schmücke,Kyffhäuserkreis
+16066005,160665014005,Belrieth,Schmalkalden-Meiningen
+16066012,160665005012,Birx,Schmalkalden-Meiningen
+16066013,160665051013,Breitungen,Schmalkalden-Meiningen
+16066015,160665014015,Christes,Schmalkalden-Meiningen
+16066016,160665014016,Dillstädt,Schmalkalden-Meiningen
+16066017,160665014017,Einhausen,Schmalkalden-Meiningen
+16066018,160665014018,Ellingshausen,Schmalkalden-Meiningen
+16066019,160665005019,Erbenhausen,Schmalkalden-Meiningen
+16066022,160665051022,Fambach,Schmalkalden-Meiningen
+16066023,160660023023,Floh-Seligenthal,Schmalkalden-Meiningen
+16066024,160665005024,Frankenheim,Schmalkalden-Meiningen
+16066025,160665013025,Friedelshausen,Schmalkalden-Meiningen
+16066038,160665014038,Kühndorf,Schmalkalden-Meiningen
+16066039,160665014039,Leutersdorf,Schmalkalden-Meiningen
+16066041,160665013041,Mehmels,Schmalkalden-Meiningen
+16066042,160665050042,Meiningen,Schmalkalden-Meiningen
+16066045,160665014045,Neubrunn,Schmalkalden-Meiningen
+16066047,160660047047,Oberhof,Schmalkalden-Meiningen
+16066049,160665014049,Obermaßfeld-Grimmenthal,Schmalkalden-Meiningen
+16066052,160665005052,Oberweid,Schmalkalden-Meiningen
+16066056,160665050056,Rippershausen,Schmalkalden-Meiningen
+16066057,160665014057,Ritschenhausen,Schmalkalden-Meiningen
+16066058,160665014058,Rohr,Schmalkalden-Meiningen
+16066059,160665051059,Rosa,Schmalkalden-Meiningen
+16066061,160665051061,Roßdorf,Schmalkalden-Meiningen
+16066063,160660063063,"Schmalkalden, Kurort",Schmalkalden-Meiningen
+16066064,160665013064,Schwallungen,Schmalkalden-Meiningen
+16066065,160665014065,Schwarza,Schmalkalden-Meiningen
+16066069,160660069069,"Steinbach-Hallenberg, Kurort",Schmalkalden-Meiningen
+16066073,160665050073,Sülzfeld,Schmalkalden-Meiningen
+16066074,160660074074,Brotterode-Trusetal,Schmalkalden-Meiningen
+16066076,160665050076,Untermaßfeld,Schmalkalden-Meiningen
+16066079,160665014079,Utendorf,Schmalkalden-Meiningen
+16066081,160665014081,Vachdorf,Schmalkalden-Meiningen
+16066086,160665013086,Wasungen,Schmalkalden-Meiningen
+16066092,160660092092,Zella-Mehlis,Schmalkalden-Meiningen
+16066093,160660093093,Rhönblick,Schmalkalden-Meiningen
+16066094,160660094094,Grabfeld,Schmalkalden-Meiningen
+16066095,160665005095,Kaltennordheim,Schmalkalden-Meiningen
+16067004,160675007004,Bienstädt,Gotha
+16067009,160675012009,Dachwig,Gotha
+16067011,160675012011,Döllstädt,Gotha
+16067013,160675054013,Emleben,Gotha
+16067016,160675007016,Eschenbergen,Gotha
+16067019,160670019019,Friedrichroda,Gotha
+16067022,160675007022,Friemar,Gotha
+16067026,160675012026,Gierstädt,Gotha
+16067029,160670029029,Gotha,Gotha
+16067033,160675012033,Großfahner,Gotha
+16067036,160675054036,Herrenhof,Gotha
+16067044,160675050044,Luisenthal,Gotha
+16067047,160675007047,Molschleben,Gotha
+16067052,160675007052,Nottleben,Gotha
+16067053,160675050053,Ohrdruf,Gotha
+16067055,160675007055,Pferdingsleben,Gotha
+16067059,160675052059,Schwabhausen,Gotha
+16067063,160675053063,Sonneborn,Gotha
+16067064,160670064064,Bad Tabarz,Gotha
+16067065,160670065065,Tambach-Dietharz,Gotha
+16067067,160675012067,Tonna,Gotha
+16067068,160675007068,Tröchtelborn,Gotha
+16067071,160675007071,Tüttleben,Gotha
+16067072,160670072072,Waltershausen,Gotha
+16067082,160675007082,Zimmernsupra,Gotha
+16067087,160670087087,Nesse-Apfelstädt,Gotha
+16067088,160670088088,Hörsel,Gotha
+16067089,160675052089,Drei Gleichen,Gotha
+16067091,160675053091,Nessetal,Gotha
+16067092,160675054092,Georgenthal,Gotha
+16068001,160685012001,Alperstedt,Sömmerda
+16068002,160685002002,Andisleben,Sömmerda
+16068005,160685005005,Büchel,Sömmerda
+16068007,160685012007,Eckstedt,Sömmerda
+16068009,160685050009,Elxleben,Sömmerda
+16068013,160685009013,Gangloffsömmern,Sömmerda
+16068014,160685002014,Gebesee,Sömmerda
+16068015,160685005015,Griefstedt,Sömmerda
+16068017,160685012017,Großmölsen,Sömmerda
+16068019,160685006019,Großneuhausen,Sömmerda
+16068021,160685012021,Großrudestedt,Sömmerda
+16068022,160685005022,Günstedt,Sömmerda
+16068025,160685009025,Haßleben,Sömmerda
+16068032,160685012032,Kleinmölsen,Sömmerda
+16068033,160685006033,Kleinneuhausen,Sömmerda
+16068034,160685006034,Kölleda,Sömmerda
+16068036,160685012036,Markvippach,Sömmerda
+16068037,160685012037,Nöda,Sömmerda
+16068039,160685012039,Ollendorf,Sömmerda
+16068041,160685006041,Ostramondra,Sömmerda
+16068042,160685006042,Rastenberg,Sömmerda
+16068043,160685005043,Riethgen,Sömmerda
+16068044,160685009044,Riethnordhausen,Sömmerda
+16068045,160685002045,Ringleben,Sömmerda
+16068048,160685012048,Schloßvippach,Sömmerda
+16068049,160685009049,Schwerstedt,Sömmerda
+16068051,160680051051,Sömmerda,Sömmerda
+16068052,160685012052,Sprötau,Sömmerda
+16068053,160685009053,Straußfurt,Sömmerda
+16068055,160685012055,Udestedt,Sömmerda
+16068056,160685012056,Vogelsberg,Sömmerda
+16068057,160685002057,Walschleben,Sömmerda
+16068058,160680058058,Weißensee,Sömmerda
+16068059,160685009059,Werningshausen,Sömmerda
+16068061,160685050061,Witterda,Sömmerda
+16068062,160685009062,Wundersleben,Sömmerda
+16068063,160680063063,Buttstädt,Sömmerda
+16068064,160685005064,Kindelbrück,Sömmerda
+16069001,160695002001,Ahlstädt,Hildburghausen
+16069003,160695002003,Beinerstadt,Hildburghausen
+16069004,160695002004,Bischofrod,Hildburghausen
+16069006,160695051006,Brünn,Hildburghausen
+16069008,160695002008,Dingsleben,Hildburghausen
+16069009,160695002009,Ehrenberg,Hildburghausen
+16069011,160695002011,Eichenberg,Hildburghausen
+16069012,160690012012,Eisfeld,Hildburghausen
+16069016,160695002016,Grimmelshausen,Hildburghausen
+16069017,160695002017,Grub,Hildburghausen
+16069021,160695002021,Henfstädt,Hildburghausen
+16069024,160690024024,Hildburghausen,Hildburghausen
+16069025,160695002025,Kloster Veßra,Hildburghausen
+16069026,160695002026,Lengfeld,Hildburghausen
+16069028,160695002028,Marisfeld,Hildburghausen
+16069035,160695002035,Oberstadt,Hildburghausen
+16069037,160695002037,Reurieth,Hildburghausen
+16069041,160695004041,Schlechtsart,Hildburghausen
+16069042,160690042042,Schleusegrund,Hildburghausen
+16069043,160690043043,Schleusingen,Hildburghausen
+16069044,160695002044,Schmeheim,Hildburghausen
+16069046,160695004046,Schweickershausen,Hildburghausen
+16069047,160695002047,St.Bernhard,Hildburghausen
+16069049,160695004049,Straufhain,Hildburghausen
+16069051,160695002051,Themar,Hildburghausen
+16069052,160695004052,Ummerstadt,Hildburghausen
+16069053,160690053053,Veilsdorf,Hildburghausen
+16069056,160695004056,Westhausen,Hildburghausen
+16069058,160695051058,Auengrund,Hildburghausen
+16069061,160690061061,Masserberg,Hildburghausen
+16069062,160690062062,Römhild,Hildburghausen
+16069063,160695004063,Heldburg,Hildburghausen
+16070001,160705009001,Alkersleben,Ilm-Kreis
+16070004,160700004004,Arnstadt,Ilm-Kreis
+16070006,160705009006,Bösleben-Wüllersleben,Ilm-Kreis
+16070008,160705009008,Dornheim,Ilm-Kreis
+16070011,160705002011,Elgersburg,Ilm-Kreis
+16070012,160705009012,Elleben,Ilm-Kreis
+16070013,160705009013,Elxleben,Ilm-Kreis
+16070028,160700028028,Amt Wachsenburg,Ilm-Kreis
+16070029,160700029029,Ilmenau,Ilm-Kreis
+16070034,160705002034,Martinroda,Ilm-Kreis
+16070041,160705009041,Osthausen-Wülfershausen,Ilm-Kreis
+16070043,160705002043,Plaue,Ilm-Kreis
+16070048,160700048048,Stadtilm,Ilm-Kreis
+16070054,160705009054,Witzleben,Ilm-Kreis
+16070057,160700057057,Geratal,Ilm-Kreis
+16070058,160700058058,Großbreitenbach,Ilm-Kreis
+16071001,160710001001,Apolda,Weimarer Land
+16071003,160710003003,Bad Berka,Weimarer Land
+16071004,160715051004,Bad Sulza,Weimarer Land
+16071005,160715053005,Ballstedt,Weimarer Land
+16071008,160710008008,Blankenhain,Weimarer Land
+16071009,160715008009,Buchfart,Weimarer Land
+16071013,160715008013,Döbritschen,Weimarer Land
+16071015,160715051015,Eberstedt,Weimarer Land
+16071017,160715053017,Ettersburg,Weimarer Land
+16071019,160715008019,Frankendorf,Weimarer Land
+16071022,160715051022,Großheringen,Weimarer Land
+16071025,160715008025,Großschwabhausen,Weimarer Land
+16071027,160715008027,Hammerstedt,Weimarer Land
+16071031,160715008031,Hetschburg,Weimarer Land
+16071032,160715007032,Hohenfelden,Weimarer Land
+16071037,160715008037,Kapellendorf,Weimarer Land
+16071038,160715008038,Kiliansroda,Weimarer Land
+16071042,160715008042,Kleinschwabhausen,Weimarer Land
+16071043,160715007043,Klettbach,Weimarer Land
+16071046,160715007046,Kranichfeld,Weimarer Land
+16071049,160715008049,Lehnstedt,Weimarer Land
+16071053,160715008053,Magdala,Weimarer Land
+16071055,160715008055,Mechelroda,Weimarer Land
+16071056,160715008056,Mellingen,Weimarer Land
+16071059,160715007059,Nauendorf,Weimarer Land
+16071061,160715053061,Neumark,Weimarer Land
+16071064,160715051064,Niedertrebra,Weimarer Land
+16071069,160715051069,Obertrebra,Weimarer Land
+16071071,160715008071,Oettern,Weimarer Land
+16071077,160715051077,Rannstedt,Weimarer Land
+16071079,160715007079,Rittersdorf,Weimarer Land
+16071083,160715051083,Schmiedehausen,Weimarer Land
+16071087,160715007087,Tonndorf,Weimarer Land
+16071089,160715008089,Umpferstedt,Weimarer Land
+16071093,160715008093,Vollersroda,Weimarer Land
+16071095,160715008095,Wiegendorf,Weimarer Land
+16071101,160710101101,Ilmtal-Weinstraße,Weimarer Land
+16071102,160715053102,Am Ettersberg,Weimarer Land
+16071103,160710103103,Grammetal,Weimarer Land
+16072006,160725051006,Goldisthal,Sonneberg
+16072011,160720011011,Lauscha,Sonneberg
+16072013,160725051013,Neuhaus am Rennweg,Sonneberg
+16072015,160720015015,Schalkau,Sonneberg
+16072018,160720018018,Sonneberg,Sonneberg
+16072019,160720019019,Steinach,Sonneberg
+16072023,160720023023,Frankenblick,Sonneberg
+16072024,160720024024,Föritztal,Sonneberg
+16073001,160735054001,Allendorf,Saalfeld-Rudolstadt
+16073002,160735051002,Altenbeuthen,Saalfeld-Rudolstadt
+16073005,160730005005,Bad Blankenburg,Saalfeld-Rudolstadt
+16073006,160735054006,Bechstedt,Saalfeld-Rudolstadt
+16073013,160735012013,Cursdorf,Saalfeld-Rudolstadt
+16073014,160735012014,Deesbach,Saalfeld-Rudolstadt
+16073017,160735012017,Döschnitz,Saalfeld-Rudolstadt
+16073028,160735005028,Gräfenthal,Saalfeld-Rudolstadt
+16073035,160735051035,Hohenwarte,Saalfeld-Rudolstadt
+16073037,160735012037,Katzhütte,Saalfeld-Rudolstadt
+16073038,160735051038,Kaulsdorf,Saalfeld-Rudolstadt
+16073046,160735005046,Lehesten,Saalfeld-Rudolstadt
+16073055,160735012055,Meura,Saalfeld-Rudolstadt
+16073067,160735005067,Probstzella,Saalfeld-Rudolstadt
+16073074,160735012074,Rohrbach,Saalfeld-Rudolstadt
+16073076,160730076076,Rudolstadt,Saalfeld-Rudolstadt
+16073077,160730077077,Saalfeld,Saalfeld-Rudolstadt
+16073082,160735012082,Schwarzburg,Saalfeld-Rudolstadt
+16073084,160735012084,Sitzendorf,Saalfeld-Rudolstadt
+16073094,160735012094,Unterweißbach,Saalfeld-Rudolstadt
+16073106,160730106106,Leutenberg,Saalfeld-Rudolstadt
+16073107,160735051107,Drognitz,Saalfeld-Rudolstadt
+16073109,160730109109,Uhlstädt-Kirchhasel,Saalfeld-Rudolstadt
+16073111,160730111111,Unterwellenborn,Saalfeld-Rudolstadt
+16073112,160735054112,Königsee,Saalfeld-Rudolstadt
+16073113,160735012113,Schwarzatal,Saalfeld-Rudolstadt
+16074001,160745053001,Albersdorf,Saale-Holzland-Kreis
+16074002,160745011002,Altenberga,Saale-Holzland-Kreis
+16074003,160745053003,Bad Klosterlausnitz,Saale-Holzland-Kreis
+16074004,160745011004,Bibra,Saale-Holzland-Kreis
+16074005,160745053005,Bobeck,Saale-Holzland-Kreis
+16074007,160745007007,Bremsnitz,Saale-Holzland-Kreis
+16074008,160745011008,Bucha,Saale-Holzland-Kreis
+16074009,160745051009,Bürgel,Saale-Holzland-Kreis
+16074011,160745015011,Dornburg-Camburg,Saale-Holzland-Kreis
+16074012,160745005012,Crossen an der Elster,Saale-Holzland-Kreis
+16074016,160745011016,Eichenberg,Saale-Holzland-Kreis
+16074017,160745007017,Eineborn,Saale-Holzland-Kreis
+16074018,160745052018,Eisenberg,Saale-Holzland-Kreis
+16074019,160745015019,Frauenprießnitz,Saale-Holzland-Kreis
+16074021,160745011021,Freienorla,Saale-Holzland-Kreis
+16074022,160745007022,Geisenhain,Saale-Holzland-Kreis
+16074024,160745007024,Gneus,Saale-Holzland-Kreis
+16074025,160745052025,Gösen,Saale-Holzland-Kreis
+16074026,160745015026,Golmsdorf,Saale-Holzland-Kreis
+16074028,160745051028,Graitschen b. Bürgel,Saale-Holzland-Kreis
+16074029,160745007029,Großbockedra,Saale-Holzland-Kreis
+16074031,160745011031,Großeutersdorf,Saale-Holzland-Kreis
+16074032,160745015032,Großlöbichau,Saale-Holzland-Kreis
+16074033,160745011033,Großpürschütz,Saale-Holzland-Kreis
+16074034,160745011034,Gumperda,Saale-Holzland-Kreis
+16074036,160745015036,Hainichen,Saale-Holzland-Kreis
+16074037,160745052037,Hainspitz,Saale-Holzland-Kreis
+16074038,160745005038,Hartmannsdorf,Saale-Holzland-Kreis
+16074039,160745005039,Heideland,Saale-Holzland-Kreis
+16074041,160745014041,Hermsdorf,Saale-Holzland-Kreis
+16074042,160745011042,Hummelshain,Saale-Holzland-Kreis
+16074043,160745015043,Jenalöbnitz,Saale-Holzland-Kreis
+16074044,160740044044,Kahla,Saale-Holzland-Kreis
+16074045,160745007045,Karlsdorf,Saale-Holzland-Kreis
+16074046,160745007046,Kleinbockedra,Saale-Holzland-Kreis
+16074047,160745007047,Kleinebersdorf,Saale-Holzland-Kreis
+16074048,160745011048,Kleineutersdorf,Saale-Holzland-Kreis
+16074049,160745011049,Laasdorf,Saale-Holzland-Kreis
+16074051,160745015051,Lehesten,Saale-Holzland-Kreis
+16074052,160745011052,Lindig,Saale-Holzland-Kreis
+16074053,160745007053,Lippersdorf-Erdmannsdorf,Saale-Holzland-Kreis
+16074054,160745015054,Löberschütz,Saale-Holzland-Kreis
+16074055,160745052055,Mertendorf,Saale-Holzland-Kreis
+16074056,160745007056,Meusebach,Saale-Holzland-Kreis
+16074057,160745011057,Milda,Saale-Holzland-Kreis
+16074058,160745050058,Möckern,Saale-Holzland-Kreis
+16074059,160745014059,Mörsdorf,Saale-Holzland-Kreis
+16074061,160745051061,Nausnitz,Saale-Holzland-Kreis
+16074063,160745015063,Neuengönna,Saale-Holzland-Kreis
+16074064,160745007064,Oberbodnitz,Saale-Holzland-Kreis
+16074065,160745011065,Orlamünde,Saale-Holzland-Kreis
+16074066,160745007066,Ottendorf,Saale-Holzland-Kreis
+16074067,160745052067,Petersberg,Saale-Holzland-Kreis
+16074068,160745051068,Poxdorf,Saale-Holzland-Kreis
+16074071,160745007071,Rattelsdorf,Saale-Holzland-Kreis
+16074072,160745005072,Rauda,Saale-Holzland-Kreis
+16074073,160745052073,Rauschwitz,Saale-Holzland-Kreis
+16074074,160745007074,Rausdorf,Saale-Holzland-Kreis
+16074075,160745014075,Reichenbach,Saale-Holzland-Kreis
+16074076,160745011076,Reinstädt,Saale-Holzland-Kreis
+16074077,160745007077,Renthendorf,Saale-Holzland-Kreis
+16074079,160745011079,Rothenstein,Saale-Holzland-Kreis
+16074081,160745050081,Ruttersdorf-Lotschen,Saale-Holzland-Kreis
+16074082,160745053082,Scheiditz,Saale-Holzland-Kreis
+16074084,160745014084,Schleifreisen,Saale-Holzland-Kreis
+16074085,160745053085,Schlöben,Saale-Holzland-Kreis
+16074086,160745053086,Schöngleina,Saale-Holzland-Kreis
+16074087,160745011087,Schöps,Saale-Holzland-Kreis
+16074089,160745011089,Seitenroda,Saale-Holzland-Kreis
+16074091,160745053091,Serba,Saale-Holzland-Kreis
+16074092,160745005092,Silbitz,Saale-Holzland-Kreis
+16074093,160745014093,St.Gangloff,Saale-Holzland-Kreis
+16074094,160745050094,Stadtroda,Saale-Holzland-Kreis
+16074095,160745011095,Sulza,Saale-Holzland-Kreis
+16074096,160745015096,Tautenburg,Saale-Holzland-Kreis
+16074097,160745007097,Tautendorf,Saale-Holzland-Kreis
+16074098,160745053098,Tautenhain,Saale-Holzland-Kreis
+16074099,160745015099,Thierschneck,Saale-Holzland-Kreis
+16074101,160745007101,Tissa,Saale-Holzland-Kreis
+16074102,160745007102,Trockenborn-Wolfersdorf,Saale-Holzland-Kreis
+16074103,160745007103,Tröbnitz,Saale-Holzland-Kreis
+16074104,160745007104,Unterbodnitz,Saale-Holzland-Kreis
+16074105,160745053105,Waldeck,Saale-Holzland-Kreis
+16074106,160745005106,Walpernhain,Saale-Holzland-Kreis
+16074107,160745007107,Waltersdorf,Saale-Holzland-Kreis
+16074108,160745007108,Weißbach,Saale-Holzland-Kreis
+16074109,160745053109,Weißenborn,Saale-Holzland-Kreis
+16074112,160745015112,Wichmar,Saale-Holzland-Kreis
+16074113,160745015113,Zimmern,Saale-Holzland-Kreis
+16074114,160745011114,Zöllnitz,Saale-Holzland-Kreis
+16074116,160745005116,Schkölen,Saale-Holzland-Kreis
+16075006,160755005006,Bodelwitz,Saale-Orla-Kreis
+16075014,160755004014,Dittersdorf,Saale-Orla-Kreis
+16075016,160755005016,Döbritz,Saale-Orla-Kreis
+16075019,160755011019,Dreitzsch,Saale-Orla-Kreis
+16075023,160755013023,Eßbach,Saale-Orla-Kreis
+16075029,160755011029,Geroda,Saale-Orla-Kreis
+16075031,160755005031,Gertewitz,Saale-Orla-Kreis
+16075033,160755004033,Görkwitz,Saale-Orla-Kreis
+16075034,160755004034,Göschitz,Saale-Orla-Kreis
+16075035,160755013035,Gössitz,Saale-Orla-Kreis
+16075039,160755005039,Grobengereuth,Saale-Orla-Kreis
+16075046,160750046046,Hirschberg,Saale-Orla-Kreis
+16075047,160755013047,Keila,Saale-Orla-Kreis
+16075048,160755004048,Kirschkau,Saale-Orla-Kreis
+16075051,160755050051,Kospoda,Saale-Orla-Kreis
+16075054,160755005054,Langenorla,Saale-Orla-Kreis
+16075056,160755005056,Lausnitz b. Neustadt an der Orla,Saale-Orla-Kreis
+16075057,160755011057,Lemnitz,Saale-Orla-Kreis
+16075062,160750062062,Bad Lobenstein,Saale-Orla-Kreis
+16075063,160755004063,Löhma,Saale-Orla-Kreis
+16075065,160755011065,Miesitz,Saale-Orla-Kreis
+16075066,160755011066,Mittelpöllnitz,Saale-Orla-Kreis
+16075068,160755004068,Moßbach,Saale-Orla-Kreis
+16075069,160755013069,Moxa,Saale-Orla-Kreis
+16075072,160755004072,Neundorf ( bei Schleiz ),Saale-Orla-Kreis
+16075073,160755050073,Neustadt an der Orla,Saale-Orla-Kreis
+16075074,160755005074,Nimritz,Saale-Orla-Kreis
+16075075,160755005075,Oberoppurg,Saale-Orla-Kreis
+16075076,160755004076,Oettersdorf,Saale-Orla-Kreis
+16075077,160755005077,Oppurg,Saale-Orla-Kreis
+16075079,160755013079,Paska,Saale-Orla-Kreis
+16075081,160755013081,Peuschen,Saale-Orla-Kreis
+16075083,160755004083,Plothen,Saale-Orla-Kreis
+16075084,160755004084,Pörmitz,Saale-Orla-Kreis
+16075085,160750085085,Pößneck,Saale-Orla-Kreis
+16075087,160755005087,Quaschwitz,Saale-Orla-Kreis
+16075088,160755013088,Ranis,Saale-Orla-Kreis
+16075093,160755011093,Rosendorf,Saale-Orla-Kreis
+16075098,160750098098,Schleiz,Saale-Orla-Kreis
+16075099,160755011099,Schmieritz,Saale-Orla-Kreis
+16075101,160755013101,Schmorda,Saale-Orla-Kreis
+16075102,160755013102,Schöndorf,Saale-Orla-Kreis
+16075103,160755013103,Seisla,Saale-Orla-Kreis
+16075105,160755005105,Solkwitz,Saale-Orla-Kreis
+16075109,160755004109,Tegau,Saale-Orla-Kreis
+16075114,160755011114,Tömmelsdorf,Saale-Orla-Kreis
+16075116,160755011116,Triptis,Saale-Orla-Kreis
+16075119,160755004119,Volkmannsdorf,Saale-Orla-Kreis
+16075121,160755005121,Weira,Saale-Orla-Kreis
+16075124,160755005124,Wernburg,Saale-Orla-Kreis
+16075125,160755013125,Wilhelmsdorf,Saale-Orla-Kreis
+16075127,160755013127,Ziegenrück,Saale-Orla-Kreis
+16075129,160755013129,Krölpa,Saale-Orla-Kreis
+16075131,160750131131,Gefell,Saale-Orla-Kreis
+16075132,160750132132,Tanna,Saale-Orla-Kreis
+16075133,160750133133,Wurzbach,Saale-Orla-Kreis
+16075134,160750134134,Remptendorf,Saale-Orla-Kreis
+16075135,160750135135,Saalburg-Ebersdorf,Saale-Orla-Kreis
+16075136,160750136136,Rosenthal am Rennsteig,Saale-Orla-Kreis
+16076003,160765051003,Bad Köstritz,Greiz
+16076004,160760004004,Berga,Greiz
+16076006,160765008006,Bethenhausen,Greiz
+16076007,160765006007,Bocka,Greiz
+16076008,160765008008,Brahmenau,Greiz
+16076009,160765004009,Braunichswalde,Greiz
+16076012,160765051012,Caaschwitz,Greiz
+16076014,160765053014,Crimla,Greiz
+16076017,160765004017,Endschütz,Greiz
+16076019,160765004019,Gauern,Greiz
+16076022,160760022022,Greiz,Greiz
+16076023,160765008023,Großenstein,Greiz
+16076026,160765051026,Hartmannsdorf,Greiz
+16076027,160765004027,Hilbersdorf,Greiz
+16076028,160765008028,Hirschfeld,Greiz
+16076029,160765056029,Hohenleuben,Greiz
+16076033,160765006033,Hundhaupten,Greiz
+16076034,160765004034,Kauern,Greiz
+16076036,160765008036,Korbußen,Greiz
+16076038,160765056038,Kühdorf,Greiz
+16076039,160765056039,Langenwetzendorf,Greiz
+16076041,160765054041,Langenwolschendorf,Greiz
+16076042,160765006042,Lederhose,Greiz
+16076043,160765004043,Linda b. Weida,Greiz
+16076044,160765006044,Lindenkreuz,Greiz
+16076049,160765006049,Münchenbernsdorf,Greiz
+16076055,160765004055,Paitzdorf,Greiz
+16076058,160765008058,Pölzig,Greiz
+16076059,160765008059,Reichstädt,Greiz
+16076061,160760061061,Ronneburg,Greiz
+16076062,160765004062,Rückersdorf,Greiz
+16076064,160765006064,Saara,Greiz
+16076067,160765008067,Schwaara,Greiz
+16076068,160765006068,Schwarzbach,Greiz
+16076069,160765004069,Seelingstädt,Greiz
+16076074,160765004074,Teichwitz,Greiz
+16076079,160765053079,Weida,Greiz
+16076081,160765054081,Weißendorf,Greiz
+16076084,160765004084,Wünschendorf,Greiz
+16076084,160765004084,Elster,Greiz
+16076086,160765006086,Zedlitz,Greiz
+16076087,160765054087,Zeulenroda-Triebes,Greiz
+16076088,160760088088,Harth-Pöllnitz,Greiz
+16076089,160760089089,Kraftsdorf,Greiz
+16076092,160760092092,Auma-Weidatal,Greiz
+16076093,160760093093,Mohlsdorf-Teichwolframsdorf,Greiz
+16077001,160770001001,Altenburg,Altenburger Land
+16077003,160775052003,Dobitschen,Altenburger Land
+16077005,160775004005,Fockendorf,Altenburger Land
+16077007,160775004007,Gerstenberg,Altenburger Land
+16077008,160775005008,Göhren,Altenburger Land
+16077009,160775005009,Göllnitz,Altenburger Land
+16077011,160775051011,Göpfersdorf,Altenburger Land
+16077012,160775050012,Gößnitz,Altenburger Land
+16077015,160775004015,Haselbach,Altenburger Land
+16077016,160775009016,Heukewalde,Altenburger Land
+16077017,160775050017,Heyersdorf,Altenburger Land
+16077018,160775009018,Jonaswalde,Altenburger Land
+16077022,160775005022,Kriebitzsch,Altenburger Land
+16077023,160775051023,Langenleuba-Niederhain,Altenburger Land
+16077026,160775009026,Löbichau,Altenburger Land
+16077027,160775005027,Lödla,Altenburger Land
+16077028,160770028028,Lucka,Altenburger Land
+16077031,160775005031,Mehna,Altenburger Land
+16077032,160770032032,Meuselwitz,Altenburger Land
+16077034,160775005034,Monstab,Altenburger Land
+16077036,160775051036,Nobitz,Altenburger Land
+16077039,160775050039,Ponitz,Altenburger Land
+16077041,160775009041,Posterstein,Altenburger Land
+16077042,160775005042,Rositz,Altenburger Land
+16077043,160775052043,Schmölln,Altenburger Land
+16077044,160775005044,Starkenberg,Altenburger Land
+16077047,160775009047,Thonhausen,Altenburger Land
+16077048,160775004048,Treben,Altenburger Land
+16077049,160775009049,Vollmershain,Altenburger Land
+16077052,160775004052,Windischleuba,Altenburger Land
