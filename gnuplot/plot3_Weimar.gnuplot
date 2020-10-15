@@ -30,4 +30,5 @@ set offsets 0.00, 0.00, graph 0.15, 0.00
 
 plot  \
   \
+  "<awk -F, '{if ($5>=0) print $1,$5}' ../data/cases_weimar.csv" using 1:(filter_neg($2)) with lines lt 1 lw 3 lc '#ff8a1e' title "davon stationäre Fälle", \
   "<awk -F, '{if (( $2 >= 0 ) && ( $3 >= 0 ) ) print $1,$2-$3-($4>=0?$4:0)}' ../data/cases_weimar.csv" using 1:(filter_neg($2)) with lines lt 1 lw 3 lc '#007af2' title "aktive Fälle"
