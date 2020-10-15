@@ -23,6 +23,7 @@ def getWENumbers(url):
     headers      = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
     num_pattern1 = re.compile(r"von\s(?:insgesamt\s)([0-9]{1,})\spositiv.*\sf.*")
     num_pattern2 = re.compile(r"([0-9]{1,})\sperson.*?(?:geheilt|genesen)")
+    num_pattern4 = re.compile(r"([0-9]{1,})\sperson(?:en)\sin\sstation")
     
     n = getWENumbersRKI()
     
@@ -50,14 +51,15 @@ def getWENumbers(url):
         
         ps1 = num_pattern1.findall( s )
         ps2 = num_pattern2.findall( s )
+        ps4 = num_pattern4.findall( s )
     
         num_t = int(ps1[0]) if len(ps1) >= 1 else -1
         num_r = int(ps2[0]) if len(ps2) >= 1 else -1
         num_d = n[1] # RKI number
-        num_h = -1
+        num_h = int(ps4[0]) if len(ps4) >= 1 else -1
         num_s = -1
     
-        return (num_t, num_r, num_d, num_h, num_s)
+        return [num_t, num_r, num_d, num_h, num_s]
     
     except:
         return False
