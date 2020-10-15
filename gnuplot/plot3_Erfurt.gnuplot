@@ -30,6 +30,6 @@ set offsets 0.00, 0.00, graph 0.15, 0.00
 
 plot  \
   \
-  "<awk -F, '{if (( $3 >= 0 ) && ( $4 >= 0 ) && ( $5 >= 0 )) print $2,$6}' ../data/cases_erfurt.csv" using 1:(filter_neg($2)) with lines lt 1 lw 3 lc '#ff8a1e' title "davon stationäre Fälle", \
-  "<awk -F, '{if (( $3 >= 0 ) && ( $4 >= 0 ) && ( $5 >= 0 )) print $2,$3-$4-$5}' ../data/cases_erfurt.csv" using 1:(filter_neg($2)) with lines lt 1 lw 3 lc '#007af2' title "aktive Fälle"
+  "<awk -F, '{if ($6>=0) print $2,$6}' ../data/cases_erfurt.csv" using 1:(filter_neg($2)) with lines lt 1 lw 3 lc '#ff8a1e' title "davon stationäre Fälle", \
+  "<awk -F, '{if (($3>=0) && ( $4 >= 0 ) && ( $5 >= 0 )) print $2,$3-$4-$5}' ../data/cases_erfurt.csv" using 1:(filter_neg($2)) with lines lt 1 lw 3 lc '#007af2' title "aktive Fälle"
   
