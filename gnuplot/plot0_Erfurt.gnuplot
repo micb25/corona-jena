@@ -27,6 +27,9 @@ stats "<cat ../data/cases_erfurt.csv | awk -F, '{print $2, $4}'" u 2 prefix "B" 
 # gets maximum number of dead people
 stats "<cat ../data/cases_erfurt.csv | awk -F, '{print $2, $5}'" u 2 prefix "C" nooutput
 
+# gets maximum number of dead people
+stats "<cat ../data/cases_erfurt.csv | tail -n 1 | awk -F, '{print $2, $6}'" u 2 prefix "E" nooutput
+
 # calculate diffs
 stats "<awk -F, '!_[$2]++' ../data/cases_erfurt.csv | awk -F, '{if ($3 >= 0) print $2,$3}' | tail -n 2" u 2 prefix "G" nooutput
 
@@ -50,17 +53,20 @@ set yrange [-radius:radius]
 
 pos = 90
 
+filter_inf(x, y)= (y >= 0) ? (x/y) : 0
+
 plot \
-     "<echo 0" u (xpos):(ypos(1)):(sprintf("%i bestätigte Fälle in Erfurt", A_max)) w labels left offset 2.5, 0, \
+     "<echo 0" u (xpos):(ypos(0.25)):(sprintf("%i bestätigte Fälle in Erfurt", A_max)) w labels left offset 2.5, 0, \
      "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(A_max-B_max-C_max)) w circle fc rgb "#007af2", \
-     "<echo 0" u (xpos):(ypos(2)) w p pt 5 ps 4 lc rgb "#007af2", \
-     "<echo 0" u (xpos):(ypos(2)):(sprintf(A_max - B_max - C_max != 1 ? "%i aktive Fälle (%.1f%%)" : "%i aktiver Fall (%.1f%%)", A_max - B_max - C_max, 100*(A_max-B_max-C_max)/A_max)) w labels left offset 2.5, 0, \
+     "<echo 0" u (xpos):(ypos(1.75)) w p pt 5 ps 4 lc rgb "#007af2", \
+     "<echo 0" u (xpos):(ypos(1.75)):(sprintf(A_max - B_max - C_max != 1 ? "%i aktive Fälle (%.1f%%), davon" : "%i aktiver Fall (%.1f%%)", A_max - B_max - C_max, 100*(A_max-B_max-C_max)/A_max)) w labels left offset 2.5, 0, \
      "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(B_max)) w circle fc rgb "#006000", \
-     "<echo 0" u (xpos):(ypos(3)) w p pt 5 ps 4 lc rgb "#006000", \
-     "<echo 0" u (xpos):(ypos(3)):(sprintf("%i Genesene (%.1f%%)", B_max, 100*B_max/A_max)) w labels left offset 2.5, 0, \
+     "<echo 0" u (xpos):(ypos(4)) w p pt 5 ps 4 lc rgb "#006000", \
+     "<echo 0" u (xpos):(ypos(4)):(sprintf("%i Genesene (%.1f%%)", B_max, 100*B_max/A_max)) w labels left offset 2.5, 0, \
      "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(C_max)) w circle fc rgb "#000000", \
-     "<echo 0" u (xpos):(ypos(4)) w p pt 5 ps 4 lc rgb "#000000", \
-     "<echo 0" u (xpos):(ypos(4)):(sprintf("%i Verstorbene (%.1f%%)", C_max, 100*C_max/A_max)) w labels left offset 2.5, 0, \
+     "<echo 0" u (xpos):(ypos(5)) w p pt 5 ps 4 lc rgb "#000000", \
+     "<echo 0" u (xpos):(ypos(5)):(sprintf("%i Verstorbene (%.1f%%)", C_max, 100*C_max/A_max)) w labels left offset 2.5, 0, \
+     "<echo 0" u (xpos):(ypos(2.875)):(sprintf("aktuell stationäre Fälle: %i (%.1f\%)", E_max, 100*filter_inf(E_max, A_max - B_max - C_max))) w labels left offset 2.5, 0, \
      "<echo 0" u (xpos):(ypos(5.5)):(" ") w labels font ", 12" left offset 2.5, 0, \
      "<echo 0" u (xpos):(ypos(6.5)):(update_str) w labels font ", 12" left offset 2.5, 0, \
      "<echo 0" u (xpos):(ypos(7.5)):("Quelle: Stadt Erfurt") w labels font ", 12" left offset 2.5, 0

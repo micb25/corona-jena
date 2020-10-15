@@ -36,7 +36,7 @@ def getEFNumbers(url):
 if __name__ == "__main__":
     
     DATAFILE = os.path.dirname(os.path.realpath(__file__)) + "/../data/cases_erfurt.csv"
-    URL = 'https://www.erfurt.de/ef/de/service/aktuelles/topthemen/coronavirus/index.html'
+    URL = 'http://www.erfurt.de/coronavirus'
     
     # do the request
     num_latest = getEFNumbers(URL)
