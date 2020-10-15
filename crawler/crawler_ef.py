@@ -7,10 +7,10 @@ import datetime, requests, re, os
 def getEFNumbers(url):
     headers = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
     
-    num_pattern_T = re.compile(r"tigte Infektionen</td><td.*?>([0-9]{1,})</td>")
-    num_pattern_R = re.compile(r"<td>.*?[gG]enesen.*?</td><td.*?>([0-9]{1,})</td>")
-    num_pattern_D = re.compile(r"<td>.*?[vV]erstorben.*?</td><td.*?>([0-9]{1,})</td>")
-    num_pattern_H = re.compile(r"<td>.*?station.*?</td><td.*?>([0-9]{1,})</td>")
+    num_pattern_T = re.compile(r"Gesamtzahl\sder\sInfizierten:\s([0-9]{1,})<")
+    num_pattern_R = re.compile(r"Genesene:\s([0-9]{1,})<")
+    num_pattern_D = re.compile(r"Verstorbene:\s([0-9]{1,})<")
+    num_pattern_H = re.compile(r"Patienten\s.*?\saktuell:\s([0-9]{1,})<")
             
     try:
         r = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0)
@@ -36,7 +36,7 @@ def getEFNumbers(url):
 if __name__ == "__main__":
     
     DATAFILE = os.path.dirname(os.path.realpath(__file__)) + "/../data/cases_erfurt.csv"
-    URL = 'https://www.erfurt.de/ef/de/service/aktuelles/topthemen/2020/134840.html'
+    URL = 'https://www.erfurt.de/ef/de/service/aktuelles/topthemen/coronavirus/index.html'
     
     # do the request
     num_latest = getEFNumbers(URL)
