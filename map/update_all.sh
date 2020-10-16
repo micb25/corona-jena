@@ -8,3 +8,4 @@
 ./generate_map_hosp.py > /dev/null
 ./generate_map_ser.py > /dev/null
 ./generate_map_dec.py > /dev/null
+./generate_map_incidence_7d.py > /dev/null
