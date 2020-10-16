@@ -1,0 +1,3 @@
+timestamp,week,capacity,tests,cases_reported_this_week,estimated_pos_rate,source
+1602230400,40,51800,26000,149,0.573,https://www.tmasgff.de/covid-19/testverfahren-und-laborkapazitaeten
+1602835200,41,52500,29000,219,0.755,https://www.tmasgff.de/covid-19/testverfahren-und-laborkapazitaeten
