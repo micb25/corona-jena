@@ -52,29 +52,29 @@ if __name__ == "__main__":
     }
     
     residents_array  = {
-        "Altenburger Land": 90118,
-        "Eichsfeld":  100380,
-        "Eisenach": 42370,
-        "Erfurt":  213699,
-        "Gera": 94152,
-        "Gotha":  135452,
-        "Greiz": 98159,
-        "Hildburghausen": 63553,
-        "Ilm-Kreis":  108742,
-        "Jena": 111407,
-        "Kyffhäuserkreis": 75009,
-        "Nordhausen": 83822,
-        "Saale-Holzland-Kreis": 83051,
-        "Saale-Orla-Kreis": 80868,
-        "Saalfeld-Rudolstadt":  106356,
-        "Schmalkalden-Meiningen": 122347,
-        "Sömmerda": 69655,
-        "Sonneberg": 56196,
-        "Suhl": 34835,
-        "Unstrut-Hainich-Kreis":  102912,
-        "Wartburgkreis":  123025,
-        "Weimar": 65090,
-        "Weimarer Land": 81947
+        "Altenburger Land": 0.90118,
+        "Eichsfeld":  1.00380,
+        "Eisenach": 0.42370,
+        "Erfurt":  2.13699,
+        "Gera": 0.94152,
+        "Gotha":  1.35452,
+        "Greiz": 0.98159,
+        "Hildburghausen": 0.63553,
+        "Ilm-Kreis":  1.08742,
+        "Jena": 1.11407,
+        "Kyffhäuserkreis": 0.75009,
+        "Nordhausen": 0.83822,
+        "Saale-Holzland-Kreis": 0.83051,
+        "Saale-Orla-Kreis": 0.80868,
+        "Saalfeld-Rudolstadt":  1.06356,
+        "Schmalkalden-Meiningen": 1.22347,
+        "Sömmerda": 0.69655,
+        "Sonneberg": 0.56196,
+        "Suhl": 0.34835,
+        "Unstrut-Hainich-Kreis":  1.02912,
+        "Wartburgkreis":  1.23025,
+        "Weimar": 0.65090,
+        "Weimarer Land": 0.81947
     }
     
     try:
@@ -120,10 +120,10 @@ if __name__ == "__main__":
 
         # change labels
         svgdata = svgdata.replace("%TITLE%", "7-Tages-Inzidenz")
-        svgdata = svgdata.replace("%MIN_VAL%", "0 Fälle / 100.000 EW")
-        svgdata = svgdata.replace("%MID_VAL%", "%.1f Fälle / 100.000 EW" % (int(max_cases/2)))
-        svgdata = svgdata.replace("%MAX_VAL%", "%.1f Fälle / 100.000 EW" % (max_cases))               
-        svgdata = svgdata.replace("%LABEL_SUM%", "+%.1f Fälle / 100.000 EW (Thüringen)" % (sum_cases))
+        svgdata = svgdata.replace("%MIN_VAL%", "+0.0 Fälle/100.000 EW")
+        svgdata = svgdata.replace("%MID_VAL%", "%+.1f Fälle/100.000 EW" % (int(max_cases/2)))
+        svgdata = svgdata.replace("%MAX_VAL%", "%+.1f Fälle/100.000 EW" % (max_cases))               
+        svgdata = svgdata.replace("%LABEL_SUM%", "+%.1f Fälle/100.000 EW" % (sum_cases/sum_residents))
             
         now = datetime.fromtimestamp(timestamp)
         svgdata = svgdata.replace("%DATE%", now.strftime("letzte Aktualisierung: %d.%m.%Y"))
