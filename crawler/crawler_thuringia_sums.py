@@ -25,11 +25,11 @@ def strToTimestamp(datetimestr):
 def parseTHData(text):
 
     num_pattern_T1 = re.compile(r"Gesamtzahl der Infizierten\s?:\s?([\+\-0-9]{1,})")
-    num_pattern_R1 = re.compile(r"(?:Gesamtzahl\ der\ Genesenen|Anzahl\ Genesene|Genesene\*)\s?:\s?([\+\-0-9]{1,})")
+    num_pattern_R1 = re.compile(r"(?:Gesamtzahl\ der\ Genesenen|Anzahl\ Genesene|Genesene\**)\s?:\s?([\+\-0-9]{1,})")
     num_pattern_D1 = re.compile(r"[vV]erstorbene\s?:\s([\+\-0-9]{1,})")
-    num_pattern_HI = re.compile(r"Patienten\ stationär\s\/\sGesamt.*?\s?:\s?([\+\-0-9]{1,})")
-    num_pattern_HC = re.compile(r"Patienten\ stationär\s\/\saufgrund.*?\s?:\s?([\+\-0-9]{1,})")
-    num_pattern_S1 = re.compile(r"[sS]chwere Verläufe\s?:\s?([\+\-0-9]{1,})")
+    num_pattern_HI = re.compile(r"Patienten\ stationär\s\(Gesamt.*?:\s?([\+\-0-9]{1,})")
+    num_pattern_HC = re.compile(r"Patienten\ stationär\saufgrund.*?\s?:\s?([\+\-0-9]{1,})")
+    num_pattern_S1 = re.compile(r"[sS]chweren? Verläufe[^:]*\s?:\s?([\+\-0-9]{1,})")
             
     try:
         ps1  = num_pattern_T1.findall( text )
@@ -46,7 +46,7 @@ def parseTHData(text):
         num_hc = int(ps5[0])  if (len(ps5) >= 1) else -1
         num_s  = int(ps6[0])  if (len(ps6) >= 1) else -1
         
-        return (num_t, num_r, num_d, num_hi, num_hc, num_s)
+        return [num_t, num_r, num_d, num_hi, num_hc, num_s]
     
     except:
         return False  
