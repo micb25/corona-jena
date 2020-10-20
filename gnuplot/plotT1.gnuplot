@@ -8,8 +8,8 @@ set xrange [ STATS_min - 2.0 * 86400 : STATS_max + 3.0 * 86400 ]
 set yrange [0:50 < * < 100000]
 
 # latest update
-date_cmd = sprintf("%s", "`awk -F, '{print "@"$1}' ../data/cases_th_sums.csv | tail -n 1 | xargs date +"%d.%m., %H:%M" -d`")
-update_str = "{/*0.75 letztes Update: " . date_cmd . " Uhr}"
+date_cmd = sprintf("%s", "`awk -F, '{print "@"$1}' ../data/cases_th_sums.csv | tail -n 1 | xargs date +"%d.%m.%Y" -d`")
+update_str = "{/*0.75 letzte Aktualisierung: " . date_cmd . "}"
 
 # x-axis setup
 unset xlabel
