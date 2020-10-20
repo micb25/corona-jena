@@ -54,18 +54,21 @@ set yrange [-radius:radius]
 pos = 90
 
 filter_inf(x, y)= (y >= 0) ? (x/y) : 0
+#      "<echo 0" u (centerX+0.02):(centerY-0.03):(radius) w circle fc rgb "#333333", \
 
 plot \
      "<echo 0" u (xpos - 0.2):(ypos(-0.15)):(sprintf("%i bestätigte Fälle in Thüringen", A_max)) w labels left offset 2.5, 0, \
      "<echo 0" u (xpos + 0.20):(ypos(0.70)):(sprintf("≈ %.0f Fälle pro 100.000 EW", A_max / 21.34393 )) w labels left offset 2.5, 0, \
      \
+     "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(B_max)) w circle fc rgb "#006000", \
      "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(A_max-B_max-C_max)) w circle fc rgb "#007af2", \
+     "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(C_max)) w circle fc rgb "#000000", \
+     "<echo 0" u (centerX):(centerY):(radius/2.2) w circle fc rgb "#f2f2f2", \
+     \
      '+' u (xpos):(ypos(1.75)) w p pt 5 ps 4 lc rgb "#007af2", \
      "<echo 0" u (xpos):(ypos(1.75)):(sprintf("%i aktive Fälle* (%.1f%%)", A_max - B_max - C_max, 100*(A_max-B_max-C_max)/A_max)) w labels left offset 2.5, 0, \
-     "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(B_max)) w circle fc rgb "#006000", \
      '+' u (xpos):(ypos(2.75)) w p pt 5 ps 4 lc rgb "#006000", \
      "<echo 0" u (xpos):(ypos(2.75)):(sprintf("%i Genesene* (%.1f%%)", B_max, 100*B_max/A_max)) w labels left offset 2.5, 0, \
-     "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(C_max)) w circle fc rgb "#000000", \
      '+' u (xpos):(ypos(3.75)) w p pt 5 ps 4 lc rgb "#000000", \
      \
      "<echo 0" u (xpos):(ypos(4.75)):(sprintf("stationäre Fälle: %i (%.1f\%)", E_max, 100*filter_inf(E_max, A_max))) w labels left offset 2.5, 0, \
