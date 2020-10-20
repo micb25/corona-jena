@@ -15,8 +15,8 @@ unset tics
 unset border
 
 # latest update
-date_cmd = sprintf("%s", "`awk -F, '{print "@"$1}' ../data/cases_th_sums.csv | tail -n 1 | xargs date +"%d.%m., %H:%M" -d`")
-update_str = "letztes Update: " . date_cmd . " Uhr"
+date_cmd = sprintf("%s", "`awk -F, '{print "@"$1}' ../data/cases_th_sums.csv | tail -n 1 | xargs date +"%d.%m.%Y" -d`")
+update_str = "letzte Aktualisierung: " . date_cmd
 
 # get sum
 stats "<awk -F, '{print $2}' ../data/cases_th_sums.csv | tail -n 1" u 1 prefix "A" nooutput
@@ -73,7 +73,7 @@ plot \
      \
      "<echo 0" u (xpos):(ypos(3.75)):(sprintf("%i Verstorbene (%.1f%%)", C_max, 100*C_max/A_max)) w labels left offset 2.5, 0, \
      \
-     "<echo 0" u (xpos):(ypos(6.75)):("* geschätzt ab dem 26.03.") w labels font ", 12" left offset 2.5, 0, \
+     "<echo 0" u (xpos):(ypos(6.75)):("* geschätzt") w labels font ", 12" left offset 2.5, 0, \
      "<echo 0" u (xpos):(ypos(7.35)):(update_str) w labels font ", 12" left offset 2.5, 0, \
      "<echo 0" u (xpos):(ypos(7.95)):("Quelle: TMASGFF") w labels font ", 12" left offset 2.5, 0
 
