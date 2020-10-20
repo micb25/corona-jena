@@ -56,23 +56,25 @@ pos = 90
 filter_inf(x, y)= (y >= 0) ? (x/y) : 0
 
 plot \
+     "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(B_max-E_max)) w circle fc rgb "#5c5c5c", \
+     "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(C_max)) w circle fc rgb "#006000", \
+     "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(E_max-F_max)) w circle fc rgb "#ff8a1e", \
+     "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(F_max)) w circle fc rgb "#ff2020", \
+     "<echo 0" u (centerX):(centerY):(radius/2.2) w circle fc rgb "#f2f2f2", \
+     \
      "<echo 0" u (xpos - 0.2):(ypos(-0.20)):(sprintf("Intensivbetten in Thüringen: %i", A_max)) w labels left offset 2.5, 0, \
      \
-     "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(C_max)) w circle fc rgb "#006000", \
      '+' u (xpos):(ypos(1.20)) w p pt 5 ps 4 lc rgb "#006000", \
      "<echo 0" u (xpos):(ypos(1.20)):(sprintf("%i freie Intensivbetten (%.1f%%)", C_max, 100*C_max/A_max)) w labels left offset 2.5, 0, \
      \
      "<echo 0" u (xpos):(ypos(2.20)):(sprintf("%i belegte Intensivbetten (%.1f%%), davon:", B_max, 100*B_max/A_max)) w labels left offset 2.5, 0, \
      \
-     "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(B_max-E_max)) w circle fc rgb "#5c5c5c", \
      '+' u (xpos + 0.21):(ypos(3.20)) w p pt 5 ps 4 lc rgb "#5c5c5c", \
      "<echo 0" u (xpos + 0.21):(ypos(3.20)):(sprintf("%i sonstige Fälle (%.1f%%)", B_max-E_max, 100*(B_max-E_max)/B_max)) w labels left offset 2.5, 0, \
      \
-     "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(E_max-F_max)) w circle fc rgb "#ff8a1e", \
      '+' u (xpos + 0.21):(ypos(4.20)) w p pt 5 ps 4 lc rgb "#ff2020", \
      "<echo 0" u (xpos + 0.21):(ypos(4.20)):(F_max!=1?sprintf("%i beatmete COVID19-Fälle (%.1f%%)", F_max, 100*(F_max)/B_max):sprintf("%i beatmeter COVID19-Fall (%.1f%%)", F_max, 100*(F_max)/B_max)) w labels left offset 2.5, 0, \
      \
-     "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(F_max)) w circle fc rgb "#ff2020", \
      '+' u (xpos + 0.21):(ypos(5.20)) w p pt 5 ps 4 lc rgb "#ff8a1e", \
      "<echo 0" u (xpos + 0.21):(ypos(5.20)):(E_max-F_max!=1?sprintf("%i weitere COVID19-Fälle (%.1f%%)", E_max-F_max, 100*(E_max-F_max)/B_max):sprintf("%i weiterer COVID19-Fall (%.1f%%)", E_max-F_max, 100*(E_max-F_max)/B_max)) w labels left offset 2.5, 0, \
      \
