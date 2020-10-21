@@ -4,7 +4,7 @@ set output '../plotD1_Germany.png'
 
 # stats for x
 stats "<awk -F, '{if ( NR > 1 ) print $1}' ../data/divi_db_th/divi_data_germany.csv" using 1 nooutput
-set xrange [ STATS_min - 0.5 * 86400 : STATS_max + 16.0 * 86400 ]
+set xrange [ STATS_min - 0.5 * 86400 : STATS_max + 24.0 * 86400 ]
 
 # stats for y
 stats "<awk -F, '{if ( NR > 1 ) print $5}' ../data/divi_db_th/divi_data_germany.csv" using 1 nooutput
