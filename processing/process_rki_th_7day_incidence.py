@@ -7,36 +7,11 @@ import os, pandas as pd, numpy as np, datetime
 if __name__ == "__main__":
     
     SCRIPTPATH = os.path.dirname(os.path.realpath(__file__))
-    SOURCEPATH = SCRIPTPATH + '/../data/'
-    SOURCEFILE = SOURCEPATH + 'cases_rki_db_th.csv'
-    OUTPUTFILE = SOURCEPATH + 'cases_rki_7day_incidence.csv'
+    SOURCEPATH = SCRIPTPATH + '/../data/rki_th_by_date/'
+    SOURCEFILE = SOURCEPATH + 'cases_by_day_and_region.csv'
+    OUTPUTFILE = SCRIPTPATH + '/../data/cases_rki_7day_incidence.csv'
         
-    regions = {
-        "Thüringen": "TH",
-        "LK Altenburger Land": "ABG",
-        "LK Eichsfeld": "EIC",
-        "SK Eisenach": "EA",
-        "SK Erfurt": "EF",
-        "SK Gera": "G",
-        "LK Gotha": "GTH",
-        "LK Greiz": "GRZ",
-        "LK Hildburghausen": "HBN",
-        "LK Ilm-Kreis": "IK",
-        "SK Jena": "J",
-        "LK Kyffhäuserkreis": "KYF",
-        "LK Nordhausen": "NDH",
-        "LK Saale-Holzland-Kreis": "SHK",
-        "LK Saale-Orla-Kreis": "SOK",
-        "LK Saalfeld-Rudolstadt": "SLF",
-        "LK Schmalkalden-Meiningen": "SM",
-        "LK Sömmerda": "SOM",
-        "LK Sonneberg": "SON",
-        "SK Suhl": "SHL",
-        "LK Unstrut-Hainich-Kreis": "UH",
-        "LK Wartburgkreis": "WAK",
-        "SK Weimar": "WE",
-        "LK Weimarer Land": "AP"
-    }
+    regions = [ 'TH', 'ABG', 'EIC', 'EA', 'EF', 'G', 'GTH', 'GRZ', 'HBN', 'IK', 'J', 'KYF', 'NDH', 'SHK', 'SOK', 'SLF', 'SM', 'SOM', 'SON', 'SHL', 'UH', 'WAK', 'WE', 'AP' ]
     
     # number of residents per city/county; values taken from:
     # https://statistik.thueringen.de/datenbank/TabAnzeige.asp?tabelle=gg000102&startpage=99&vorspalte=1&felder=2&zeit=2018%7C%7Cs1
@@ -63,38 +38,39 @@ if __name__ == "__main__":
         "UH":  102912,
         "WAK":  123025,
         "WE": 65090,
-        "AP": 81947
+        "AP": 81947,
+        "TH": 2143145
     }
     
     df = pd.read_csv(SOURCEFILE, sep=",", decimal=".", encoding='utf-8')
-    dates_df = sorted(list(df.Meldedatum.unique()))
+    df['Datum'] = df.apply(lambda r: int(r['Datum']/86400)*86400, axis=1)
+    dates_df = sorted(list(df.Datum.unique()))
     dates = [ ]
-    today = int(datetime.datetime.now().strftime("%s"))
-    
+        
     date = dates_df[0]
-    while ( date < today ):
+    while ( date <= dates_df[-1] ):
         dates.append(date)
         date += 86400
     
-    columns = ['Meldedatum']
-    columns.extend( [ regions[x] for x in regions ] )
+    columns = ['Datum']
+    columns.extend( [ x for x in regions ] )
     data = np.zeros((len(dates), len(columns)), dtype=float)
-
+    
     for i, date in enumerate(dates):
         data[i][0] = date
         
-        for j, district in enumerate(regions):
+        for j, district in enumerate(columns[1:]):
             
+            num_cases = -1
             last_week = date - 7 * 86400
             
-            if district != 'Thüringen':
-                num_cases = 100000 / residents_array[regions[district]] * df.loc[ (df.Meldedatum >= last_week) & (df.Meldedatum <= date) & (df.Landkreis == district) ]['AnzahlFall'].sum()
-            else:
-                num_cases = 100000 / 2143145 * df.loc[ (df.Meldedatum >= last_week) & (df.Meldedatum <= date) ]['AnzahlFall'].sum()
+            cases = df.loc[ (df.Datum >= last_week) & (df.Datum <= date) & (df.Region == district) ]
+            if len(cases) == 8:
+                num_cases = 100000 / residents_array[district] * ( int(cases.iloc[-1]['SummeFall']) - int(cases.iloc[0]['SummeFall']) )
                 
             data[i][j+1] = num_cases
     
     dfB = pd.DataFrame(columns=columns, data=data)
-    dfB['Meldedatum'] = dfB['Meldedatum'].astype(int)
+    dfB['Datum'] = dfB['Datum'].astype(int)
     dfB.to_csv(OUTPUTFILE, sep=",", decimal=".", encoding='utf-8', float_format='%.2f', index=False)
             
