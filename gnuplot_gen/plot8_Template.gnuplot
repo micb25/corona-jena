@@ -88,9 +88,12 @@ set datafile separator ","
 threshold_low(x) = 35.0
 threshold_high(x) = 50.0
 
+# filter negative values
+filter_neg(x)=(x>=0)?(x):(1/0)
+
 plot  \
   \
   threshold_low(x) with lines ls 1 notitle, \
   threshold_high(x) with lines ls 2 notitle, \
-  "../data/cases_rki_7day_incidence.csv" using 1:(column(%COLIDX%)) with lines lt 1 lw 3 lc '#047495' title "7-Tages-Inzidenz"
+  "../data/cases_rki_7day_incidence.csv" using 1:(filter_neg(column(%COLIDX%))) with lines lt 1 lw 3 lc '#047495' title "7-Tages-Inzidenz"
   
