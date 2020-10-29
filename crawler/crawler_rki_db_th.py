@@ -77,9 +77,10 @@ if __name__ == "__main__":
         f.writerow(header)
         
         offset = 0
-        chunk_size = 32000
+        chunk_size = 4000
         while(True):
             
+            print("requestion {} with offset {}".format(chunk_size, offset))
             data = rki_db_query(offset=offset, chunk_size=chunk_size)
             
             cases = data["features"]
