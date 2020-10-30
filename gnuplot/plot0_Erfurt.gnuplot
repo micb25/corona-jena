@@ -27,7 +27,7 @@ stats "<cat ../data/cases_erfurt.csv | awk -F, '{print $2, $4}'" u 2 prefix "B" 
 # gets maximum number of dead people
 stats "<cat ../data/cases_erfurt.csv | awk -F, '{print $2, $5}'" u 2 prefix "C" nooutput
 
-# gets maximum number of dead people
+# hospitalized
 stats "<cat ../data/cases_erfurt.csv | tail -n 1 | awk -F, '{print $2, $6}'" u 2 prefix "E" nooutput
 
 # calculate diffs
@@ -64,7 +64,7 @@ plot \
      "<echo 0" u (centerX):(centerY):(radius/2.2) w circle fc rgb "#f2f2f2", \
      \
      "<echo 0" u (xpos):(ypos(1.75)) w p pt 5 ps 4 lc rgb "#007af2", \
-     "<echo 0" u (xpos):(ypos(1.75)):(sprintf(A_max - B_max - C_max != 1 ? "%i aktive Fälle (%.1f%%), davon" : "%i aktiver Fall (%.1f%%)", A_max - B_max - C_max, 100*(A_max-B_max-C_max)/A_max)) w labels left offset 2.5, 0, \
+     "<echo 0" u (xpos):(ypos(1.75)):(sprintf(A_max - B_max - C_max != 1 ? "%i aktive Fälle (%.1f%%), davon" : "%i aktiver Fall (%.1f%%), davon", A_max - B_max - C_max, 100*(A_max-B_max-C_max)/A_max)) w labels left offset 2.5, 0, \
      "<echo 0" u (xpos):(ypos(4)) w p pt 5 ps 4 lc rgb "#006000", \
      "<echo 0" u (xpos):(ypos(4)):(sprintf("%i Genesene (%.1f%%)", B_max, 100*B_max/A_max)) w labels left offset 2.5, 0, \
      "<echo 0" u (xpos):(ypos(5)) w p pt 5 ps 4 lc rgb "#000000", \
