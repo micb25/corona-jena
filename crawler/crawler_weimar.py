@@ -21,34 +21,16 @@ def getWENumbersRKI():
 
 def getWENumbers(url):
     headers      = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
-    num_pattern1 = re.compile(r"von\s(?:insgesamt\s)([0-9]{1,})\spositiv.*\sf.*")
-    num_pattern2 = re.compile(r"([0-9]{1,})\sperson.*?(?:geheilt|genesen)")
-    num_pattern4 = re.compile(r"([0-9]{1,})\sperson(?:en)?\sin\sstation")
+    num_pattern1 = re.compile(r"positiv getesteten: ([0-9]{1,})")
+    num_pattern2 = re.compile(r"genesenen: ([0-9]{1,})")
+    num_pattern4 = re.compile(r"klinikum behandelten: ([0-9]{1,})")
     
     n = getWENumbersRKI()
     
     try:
         r = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0)
         s = r.text.lower()
-        
-        replace_array  = {
-                "eine": "1",
-                "zwei": "2",
-                "drei": "3",
-                "vier": "4",
-                "fünf": "5",
-                "sechs": "6",
-                "sieben": "7",
-                "acht": "8",
-                "neun": "9",
-                "zehn": "10",
-                "elf": "11",
-                "zwölf": "12"
-        }
-        
-        for k, r in replace_array.items():
-            s = s.replace(k, r)
-        
+                
         ps1 = num_pattern1.findall( s )
         ps2 = num_pattern2.findall( s )
         ps4 = num_pattern4.findall( s )
