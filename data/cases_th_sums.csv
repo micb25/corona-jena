@@ -188,3 +188,15 @@ date,sum,recovered,dead,hosp,hospcov,severe,url
 1602921600,4793,4070,198,834,496,113,https://twitter.com/thueringende/status/1317406079114989570
 1603006000,4881,4090,199,837,499,114,https://twitter.com/thueringende/status/1317777397442355200
 1603094400,4913,4130,199,841,502,115,https://www.tmasgff.de/covid-19/fallzahlen
+1603180800,5000,4170,201,846,504,115,https://www.tmasgff.de/covid-19/fallzahlen
+1603267200,5098,4220,201,860,515,117,https://www.tmasgff.de/covid-19/fallzahlen
+1603353600,5250,4250,201,872,525,118,https://www.tmasgff.de/covid-19/fallzahlen
+1603440000,5394,4310,201,883,531,118,https://www.tmasgff.de/covid-19/fallzahlen
+1603526400,5546,4370,202,896,540,119,https://www.tmasgff.de/covid-19/fallzahlen
+1603616400,5802,4400,202,910,545,120,https://www.tmasgff.de/covid-19/fallzahlen
+1603702800,5863,4480,203,920,552,120,https://www.tmasgff.de/covid-19/fallzahlen
+1603789200,5938,4590,203,924,556,122,https://www.tmasgff.de/covid-19/fallzahlen
+1603875600,6200,4690,203,935,561,122,https://www.tmasgff.de/covid-19/fallzahlen
+1603962000,6383,4770,203,951,574,123,https://www.tmasgff.de/covid-19/fallzahlen
+1604048400,6624,4870,204,978,589,125,https://www.tmasgff.de/covid-19/fallzahlen
+1604134800,6951,4960,207,996,599,125,https://www.tmasgff.de/covid-19/fallzahlen
