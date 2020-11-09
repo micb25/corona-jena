@@ -4,11 +4,11 @@ set output '../plotT1_Germany_RKI.png'
 
 # stats for y
 stats "<awk -F, '{ print $1 }' ../data/cases_germany_total_rki.csv" using 1 nooutput
-set xrange [ STATS_min - 86400 : STATS_max + 1.0 * 86400 ]
+set xrange [ STATS_min : STATS_max ]
 
 # stats for y
 stats "<awk -F, '{ print $2 }' ../data/cases_germany_total_rki.csv" using 1 nooutput
-set yrange [ 0 : int(4.5/3.0*STATS_max) ]
+set yrange [ 0 : 1000000 < * < 10000000 ]
 
 # x-axis setup
 unset xlabel
@@ -22,10 +22,13 @@ set ylabel 'Gesamtzahl der Fälle in Deutschland'
 # key
 set key at graph 0.02, 0.98 left top invert spacing 1.2 box ls 3
 
+set offsets graph 0.02, graph 0.02, graph 0.20, 0.00
+
+set label 1 at graph 0.98, 0.95 update_str right textcolor ls 0
+set label 2 at graph 0.98, 0.90 "{/*0.75 Quelle: Robert Koch-Institut}" right textcolor ls 0
+
 # data
 plot  \
-  1/0 lc rgb '#f2f2f2' title "{/*0.75 Quelle: Robert Koch-Institut}", \
-  1/0 lc rgb '#f2f2f2' title update_str, \
   "<awk -F, '{print $1, $2, $4}' ../data/cases_germany_total_rki.csv | awk '{if ($3 >= 0) print $0}' | awk 'BEGIN{ov=0}{dv=$3-ov;ov=$3;print $1,$3,dv}' | tail -n 1" using 1:2:(sprintf("%i (%+i)", $2, $3)) with labels point pt 7 right offset char -0.0, 0.8 tc ls 5 notitle, \
   "<awk -F, '{print $1, $2, $4}' ../data/cases_germany_total_rki.csv | awk '{if ($2 >= 0) print $0}' | awk 'BEGIN{ov=0}{dv=$2-ov;ov=$2;print $1,$2,dv}' | tail -n 1" using 1:2:(sprintf("%i (%+i)", $2, $3)) with labels point pt 7 right offset char -0.0, 0.8 tc ls 1 notitle, \
   "<cat ../data/cases_germany_total_rki.csv | awk -F, '{if ($4 >= 0) print $1, $4}'" using 1:(filter_neg($2)) with linespoints ls 5 title "Verstorbene", \
