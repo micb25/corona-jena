@@ -69,7 +69,7 @@ set label 5 at graph 0.99, 0.15 label_double right offset 0, 2.0 textcolor ls 0
 
 set label 6 at graph 0.99, 0.08 update_str . "{/*0.75 ; Quelle: Robert Koch-Institut}" font ",12" right textcolor ls 0
 
-set offsets graph 0.02, graph 0.02, graph 0.40, 0.00
+set offsets graph 0.02, graph 0.02, graph 0.00, 0.00
 
 # data
 plot  \
