@@ -34,12 +34,12 @@ gA(x) = ymin * exp( log(2) / 21 * x)
 gC(x) = ymin * exp( log(2) / 28 * x)
 
 ymin = 10
-ymax = 100000
+ymax = 1000000
 
 # x-axis setup
 unset xlabel
-set xtics 7*86400
-set mxtics 7
+set xtics 14*86400
+set mxtics 2
 set xdata time
 set timefmt "%s"
 set format x "%d.%m."
@@ -55,31 +55,29 @@ set mytics 10
 set key at graph 0.02, 0.98 left top invert spacing 1.2 box ls 3
 
 # label_trend = sprintf("f({/Arial-Italic x}) = (%.3f±%.3f) e^{(%.3f±%.3f) {/Arial-Italic x}}", a, a_err, b, b_err)
-set label 2 at graph 0.99, 0.04 right "Hilfslinien entsprechen Fallzahl-Verdopplung alle {/Linux-Libertine-O-Italic N} Tage" textcolor ls 0
+set label 1 at graph 0.99, 0.03 right "Hilfslinien entsprechen Fallzahl-Verdopplung alle {/Linux-Libertine-O-Italic N} Tage." font ",12" textcolor ls 0
 
-set label 4 at first 15*86400 + xmin, first gB(16) right "2 Tage" textcolor ls 0
-set label 6 at first (xmin+86400*30), first gD( 32 ) right "4 Tage" textcolor ls 0
-set label 7 at first xmax - 0.5 * 86400, first gG( ((xmax-xmin)/86400) -  8) right "7 Tage" textcolor ls 0
-set label 8 at first xmax - 0.5 * 86400, first gH( ((xmax-xmin)/86400) - 11) right "14 Tage" textcolor ls 0
+# set label 4 at first 15*86400 + xmin, first gB(16) right "2 Tage" textcolor ls 0
+# set label 6 at first (xmin+86400*30), first gD( 32 ) right "4 Tage" textcolor ls 0
+# set label 7 at first xmax - 0.5 * 86400, first gG( ((xmax-xmin)/86400) -  8) right "7 Tage" textcolor ls 0
+# set label 2 at first xmax - 0.5 * 86400, first gH( ((xmax-xmin)/86400) - 11) right "14 Tage" textcolor ls 0
 set label 3 at first xmax - 0.5 * 86400, first gA( ((xmax-xmin)/86400) - 11) right "21 Tage" textcolor ls 0
-set label 5 at first xmax - 0.5 * 86400, first gC( ((xmax-xmin)/86400) - 13) right "28 Tage" textcolor ls 0
+set label 4 at first xmax - 0.5 * 86400, first gC( ((xmax-xmin)/86400) - 13) right "28 Tage" textcolor ls 0
 
-label_double = log(2) / b > 28 ? sprintf(" Verdopplungszeit\n >28 Tage") : sprintf(" Verdopplungszeit\n ≈%.f Tage", log(2) / b )
-set label 9 at first fitmax, first f((fitmin - xmin_o) / 86400) label_double right offset 0, 2.0 textcolor ls 0
+label_double = log(2) / b > 28 ? sprintf("aktuelle Verdopplungszeit:\n >28 Tage") : sprintf("aktuelle Verdopplungszeit:\n ≈%.f Tage", log(2) / b )
+set label 5 at graph 0.99, 0.15 label_double right offset 0, 2.0 textcolor ls 0
+
+set label 6 at graph 0.99, 0.08 update_str . "{/*0.75 ; Quelle: Robert Koch-Institut}" font ",12" right textcolor ls 0
+
+set offsets graph 0.02, graph 0.02, graph 0.40, 0.00
 
 # data
 plot  \
-  [xmin:xmax] 1/0 lc rgb '#f2f2f2' title "{/*0.75 Quelle: Robert Koch-Institut}", \
-  1/0 lc rgb '#f2f2f2' title update_str, \
   gA((x - xmin)/86400) w l ls 2 notitle, \
-  gB((x - xmin)/86400) w l ls 2 notitle, \
   gC((x - xmin)/86400) w l ls 2 notitle, \
-  gD((x - xmin)/86400) w l ls 2 notitle, \
-  gG((x - xmin)/86400) w l ls 2 notitle, \
-  gH((x - xmin)/86400) w l ls 2 notitle, \
-  1/0 w l ls 12 title  "exponentieller Fit (letzte 7 Tage)", \
+  1/0 w l ls 12 lw 3 title  "exponentieller Fit (letzte 7 Tage)", \
   "<awk -F, '{print $1,$2,$3}' ../data/cases_thuringia_rki.csv" using 1:2 with linespoints ls 1 title "bestätigte Fälle", \
-  [fitmin:fitmax] f((x - xmin_o)/86400) w l ls 12 notitle
+  [fitmin:fitmax] f((x - xmin_o)/86400) w l ls 12 lw 3 notitle
   
   # [xmin:] '+' using 1:(fmin(($1 - xmin_o)/86400)):(fmax((x - xmin_o)/86400)) with filledcurves closed ls 2 title "Fehlerbereich Trend", \
   # f((x - xmin_o)/86400) w l ls 2 title "exponentieller Trend", \
