@@ -36,6 +36,9 @@ a:hover {
 	padding-bottom: 15px;
 	align-items: center;
 }
+.graphBlockContainerItem {
+	display: inline-block;
+}
 .graphBlockContainerMatrix {
 	width: calc(100% - 20px);
 	vertical-align: middle;
