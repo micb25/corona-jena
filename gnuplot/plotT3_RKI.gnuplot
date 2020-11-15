@@ -18,7 +18,7 @@ fitmaxo = (fitmax - xmin_o) / 86400
 a = 3000.0
 b = 0.03
 f(x) = a * exp( b * x )
-fit [fitmino:fitmaxo] f(x) "<awk -F, '{print $1,$2,$3}' ../data/cases_thuringia_rki.csv" using (($1 - xmin_o) / 86400):2 via a, b
+fit [fitmino:fitmaxo] f(x) "<awk -F, '{if ($2>0) print $1,$2,$3}' ../data/cases_thuringia_rki.csv" using (($1 - xmin_o) / 86400):2 via a, b
 
 ferr(x) = sqrt( (a_err*exp(b*x))*(a_err*exp(b*x)) + (b_err*a*b*exp(b*x))*(b_err*a*b*exp(b*x)) )
 fmin(x) = f(x) - ferr(x)
@@ -76,7 +76,7 @@ plot  \
   gA((x - xmin)/86400) w l ls 2 notitle, \
   gC((x - xmin)/86400) w l ls 2 notitle, \
   1/0 w l ls 12 lw 3 title  "exponentieller Fit (letzte 7 Tage)", \
-  "<awk -F, '{print $1,$2,$3}' ../data/cases_thuringia_rki.csv" using 1:2 with linespoints ls 1 title "bestätigte Fälle", \
+  "<awk -F, '{if ($2>0) print $1,$2,$3}' ../data/cases_thuringia_rki.csv" using 1:2 with linespoints ls 1 title "bestätigte Fälle", \
   [fitmin:fitmax] f((x - xmin_o)/86400) w l ls 12 lw 3 notitle
   
   # [xmin:] '+' using 1:(fmin(($1 - xmin_o)/86400)):(fmax((x - xmin_o)/86400)) with filledcurves closed ls 2 title "Fehlerbereich Trend", \
