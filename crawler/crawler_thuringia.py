@@ -83,12 +83,15 @@ def getTHStatistics(url, latest_case_numbers):
         # get all district data
         pv = district_pattern.findall(raw_text)
         for entry in pv:
-            dName = dp_name.findall(entry)
-            dNew  = dp_new_inf.findall(entry)
-            dSum  = dp_sum_inf.findall(entry)
-            dHosp = dp_hosp.findall(entry)
-            dSev  = dp_severe.findall(entry)
-            dDec  = dp_dec.findall(entry)
+            
+            entry_str = entry.replace(".", "")
+            
+            dName = dp_name.findall(entry_str)
+            dNew  = dp_new_inf.findall(entry_str)
+            dSum  = dp_sum_inf.findall(entry_str)
+            dHosp = dp_hosp.findall(entry_str)
+            dSev  = dp_severe.findall(entry_str)
+            dDec  = dp_dec.findall(entry_str)
             
             d = []
             d.append(dName[0] if len(dName) > 0 else "")
