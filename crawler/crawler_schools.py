@@ -15,7 +15,7 @@ def getFilteredJSONdata(url):
         
         rp = replace_pattern.findall(s)
         if ( len(rp) > 0 ):
-            return [json.loads(rp[0].encode('utf-8')), rp[0]]
+            return [json.loads(rp[0]), rp[0]]
         
     except:
         return [False, False]
