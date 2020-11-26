@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import datetime, requests, re, os
+import datetime, requests, re, os, sys
 
 
 def getWENumbersRKI():
@@ -54,6 +54,10 @@ if __name__ == "__main__":
     
     # do the request
     num_latest = getWENumbers(URL)
+    
+    # sanity checks
+    if (num_latest[1] > num_latest[0]) or (num_latest[2] > num_latest[0]):
+        sys.exit(0)
     
     if (num_latest != False) and (num_latest[0] > -1):
         # get old values
