@@ -30,6 +30,9 @@ stats "<cat ../data/cases_weimar.csv | awk -F, '{print $2, $4}'" u 2 prefix "C" 
 # hospitalized
 stats "<cat ../data/cases_weimar.csv | awk -F, '{print $2, $5}'" u 2 prefix "E" nooutput
 
+# get 7-day incidence
+stats "<awk -F, '{print $24}' ../data/cases_rki_7day_incidence.csv | tail -n 1" using 1 prefix "I" nooutput
+
 angle(x)=x*360/A_max
 
 centerX=-0.15
@@ -65,6 +68,10 @@ plot \
      "<echo 0" u (xpos):(ypos(5)) w p pt 5 ps 4 lc rgb "#000000", \
      "<echo 0" u (xpos):(ypos(5)):(sprintf("%i %s (%.1f%%)", C_max, (C_max == 1 ? "Verstorbener" : "Verstorbene"), 100*C_max/A_max)) w labels left offset 2.5, 0, \
      "<echo 0" u (xpos):(ypos(2.875)):(sprintf("aktuell stationäre Fälle: %i (%.1f\%)", E_max, 100*filter_inf(E_max, A_max - B_max - C_max))) w labels left offset 2.5, 0, \
+     \
+     "<echo 0" u (centerX):(centerY):("7-Tages-\nInzidenz:") w labels center offset 0.0, +1.2, \
+     "<echo 0" u (centerX):(centerY):(sprintf("%.1f", I_max)) w labels font ",24" center offset 0.0, -1.00, \
+     \
      "<echo 0" u (xpos):(ypos(5.5)):(" ") w labels font ", 12" left offset 2.5, 0, \
      "<echo 0" u (xpos):(ypos(6.5)):(update_str) w labels font ", 12" left offset 2.5, 0, \
      "<echo 0" u (xpos):(ypos(7.5)):("Quelle: Stadt Weimar") w labels font ", 12" left offset 2.5, 0

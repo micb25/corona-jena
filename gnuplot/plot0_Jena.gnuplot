@@ -33,6 +33,9 @@ stats "<awk -F, '{print $1,$2,$3,$4,$5,$6}' ../data/cases_jena_opendata.csv | ta
 # get number of severe
 stats "<awk -F, '{print $1,$2,$3,$4,$5,$6}' ../data/cases_jena_opendata.csv | tail -n 1" u 6 prefix "F" nooutput
 
+# get 7-day incidence
+stats "<awk -F, '{print $12}' ../data/cases_rki_7day_incidence.csv | tail -n 1" using 1 prefix "I" nooutput
+
 angle(x)=x*360/A_max
 
 centerX=-0.15
@@ -68,6 +71,10 @@ plot \
      "<echo 0" u (xpos):(ypos(6.00)):(sprintf("%i Verstorbene (%.1f%%)", C_max, 100*C_max/A_max)) w labels left offset 2.5, 0, \
      "<echo 0" u (xpos + 1.5):(ypos(2.75)):(sprintf("stationäre Fälle: %i (%.1f\%)", E_max, 100*filter_inf(E_max, A_max - B_max - C_max))) w labels right offset 2.5, 0, \
      "<echo 0" u (xpos + 1.5):(ypos(3.75)):(sprintf("schwere Verläufe: %i (%.1f\%)", F_max, 100*filter_inf(F_max, A_max - B_max - C_max))) w labels right offset 2.5, 0, \
+     \
+     "<echo 0" u (centerX):(centerY):("7-Tages-\nInzidenz:") w labels center offset 0.0, +1.2, \
+     "<echo 0" u (centerX):(centerY):(sprintf("%.1f", I_max)) w labels font ",24" center offset 0.0, -1.00, \
+     \
      "<echo 0" u (xpos):(ypos(7.10)):(update_str) w labels font ", 12" left offset 2.5, 0, \
      "<echo 0" u (xpos):(ypos(7.85)):("Quelle: Stadt Jena") w labels font ", 12" left offset 2.5, 0
      

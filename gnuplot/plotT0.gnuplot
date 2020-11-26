@@ -34,7 +34,7 @@ stats "<awk -F, '{print $5}' ../data/cases_th_sums.csv | tail -n 1" u 1 prefix "
 stats "<awk -F, '{print $7}' ../data/cases_th_sums.csv | tail -n 1" u 1 prefix "F" nooutput
 
 # get 7-day incidence
-stats "<awk -F, '{print $7}' ../data/cases_rki_7day_incidence.csv | tail -n 1" using 1 prefix "I" nooutput
+stats "<awk -F, '{print $2}' ../data/cases_rki_7day_incidence.csv | tail -n 1" using 1 prefix "I" nooutput
 
 diff_c = F_max - F_min
 
