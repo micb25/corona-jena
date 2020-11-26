@@ -63,7 +63,7 @@ plot \
      "<echo 0" u (xpos):(ypos(4)) w p pt 5 ps 4 lc rgb "#006000", \
      "<echo 0" u (xpos):(ypos(4)):(sprintf("%i Genesene (%.1f%%)", B_max, 100*B_max/A_max)) w labels left offset 2.5, 0, \
      "<echo 0" u (xpos):(ypos(5)) w p pt 5 ps 4 lc rgb "#000000", \
-     "<echo 0" u (xpos):(ypos(5)):(sprintf("%i Verstorbene (%.1f%%)", C_max, 100*C_max/A_max)) w labels left offset 2.5, 0, \
+     "<echo 0" u (xpos):(ypos(5)):(sprintf("%i %s (%.1f%%)", C_max, (C_max == 1 ? "Verstorbener" : "Verstorbene"), 100*C_max/A_max)) w labels left offset 2.5, 0, \
      "<echo 0" u (xpos):(ypos(2.875)):(sprintf("aktuell stationäre Fälle: %i (%.1f\%)", E_max, 100*filter_inf(E_max, A_max - B_max - C_max))) w labels left offset 2.5, 0, \
      "<echo 0" u (xpos):(ypos(5.5)):(" ") w labels font ", 12" left offset 2.5, 0, \
      "<echo 0" u (xpos):(ypos(6.5)):(update_str) w labels font ", 12" left offset 2.5, 0, \
