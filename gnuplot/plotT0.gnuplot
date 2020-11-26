@@ -33,6 +33,9 @@ stats "<awk -F, '{print $5}' ../data/cases_th_sums.csv | tail -n 1" u 1 prefix "
 # get severe
 stats "<awk -F, '{print $7}' ../data/cases_th_sums.csv | tail -n 1" u 1 prefix "F" nooutput
 
+# get 7-day incidence
+stats "<awk -F, '{print $7}' ../data/cases_rki_7day_incidence.csv | tail -n 1" using 1 prefix "I" nooutput
+
 diff_c = F_max - F_min
 
 angle(x)=x*360/A_max
@@ -75,6 +78,9 @@ plot \
      "<echo 0" u (xpos):(ypos(5.75)):(sprintf("schwere Verläufe: %i (%.1f\%)", F_max, 100*filter_inf(F_max, A_max))) w labels left offset 2.5, 0, \
      \
      "<echo 0" u (xpos):(ypos(3.75)):(sprintf("%i Verstorbene (%.1f%%)", C_max, 100*C_max/A_max)) w labels left offset 2.5, 0, \
+     \
+     "<echo 0" u (centerX):(centerY):("7-Tages-\nInzidenz:") w labels center offset 0.0, +1.2, \
+     "<echo 0" u (centerX):(centerY):(sprintf("%.1f", I_max)) w labels font ",24" center offset 0.0, -1.00, \
      \
      "<echo 0" u (xpos):(ypos(6.75)):("* geschätzter Wert") w labels font ", 12" left offset 2.5, 0, \
      "<echo 0" u (xpos):(ypos(7.35)):(update_str) w labels font ", 12" left offset 2.5, 0, \
