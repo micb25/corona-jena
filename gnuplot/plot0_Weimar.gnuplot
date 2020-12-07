@@ -19,16 +19,16 @@ date_cmd = sprintf("%s", "`awk -F, '{print "@"$1}' ../data/cases_weimar.csv | ta
 update_str = "letztes Update: " . date_cmd . " Uhr"
 
 # gets sum of infected people
-stats "<cat ../data/cases_weimar.csv | awk -F, '{print $2, $2}'" u 2 prefix "A" nooutput
+stats "<cat ../data/cases_weimar.csv | tail -n 1 | awk -F, '{print $2, $2}'" u 2 prefix "A" nooutput
 
 # gets maximum number of recovered people
-stats "<cat ../data/cases_weimar.csv | awk -F, '{print $2, $3}'" u 2 prefix "B" nooutput
+stats "<cat ../data/cases_weimar.csv | tail -n 1 | awk -F, '{print $2, $3}'" u 2 prefix "B" nooutput
 
 # gets maximum number of deceased
-stats "<cat ../data/cases_weimar.csv | awk -F, '{print $2, $4}'" u 2 prefix "C" nooutput
+stats "<cat ../data/cases_weimar.csv | tail -n 1 | awk -F, '{print $2, $4}'" u 2 prefix "C" nooutput
 
 # hospitalized
-stats "<cat ../data/cases_weimar.csv | awk -F, '{print $2, $5}'" u 2 prefix "E" nooutput
+stats "<cat ../data/cases_weimar.csv | tail -n 1 | awk -F, '{print $2, $5}'" u 2 prefix "E" nooutput
 
 # get 7-day incidence
 stats "<awk -F, '{print $24}' ../data/cases_rki_7day_incidence.csv | tail -n 1" using 1 prefix "I" nooutput
