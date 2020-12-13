@@ -16,6 +16,9 @@ if __name__ == "__main__":
     TEMPLATE_C = SCRIPTPATH + "/plot5C_Template.gnuplot"
     GNUPFILE_C = SCRIPTPATH + "/plot5C.gnuplot"
     
+    TEMPLATE_D = SCRIPTPATH + "/plot5D_Template.gnuplot"
+    GNUPFILE_D = SCRIPTPATH + "/plot5D.gnuplot"
+    
     province_array = [
         ("LK Altenburger Land", "ABG", "im Altenburger Land"),
         ("LK Eichsfeld", "EIC", "im Eichsfeld"),
@@ -59,16 +62,21 @@ if __name__ == "__main__":
             
         with open(TEMPLATE_C, "r") as df:
             datafile_c = df.read()
+            
+        with open(TEMPLATE_D, "r") as df:
+            datafile_d = df.read()
         
         # iterate all entries
         for entry in province_array:
             gnuplot_source_a = datafile_a
             gnuplot_source_b = datafile_b
             gnuplot_source_c = datafile_c
+            gnuplot_source_d = datafile_d
             for re in enumerate(replace_array):
                 gnuplot_source_a = gnuplot_source_a.replace(re[1], entry[re[0]])
                 gnuplot_source_b = gnuplot_source_b.replace(re[1], entry[re[0]])
                 gnuplot_source_c = gnuplot_source_c.replace(re[1], entry[re[0]])
+                gnuplot_source_d = gnuplot_source_d.replace(re[1], entry[re[0]])
 
             # write gnuplot files
             with open(GNUPFILE_A, "w") as gpf:
@@ -83,13 +91,18 @@ if __name__ == "__main__":
                 gpf.write(gnuplot_source_c)
                 gpf.close()
                 
+            with open(GNUPFILE_D, "w") as gpf:
+                gpf.write(gnuplot_source_d)
+                gpf.close()
+                
             # run gnuplot
             os.system("gnuplot {} >/dev/null 2>&1".format(GNUPFILE_A))
             os.system("gnuplot {} >/dev/null 2>&1".format(GNUPFILE_B))
             os.system("gnuplot {} >/dev/null 2>&1".format(GNUPFILE_C))
+            os.system("gnuplot {} >/dev/null 2>&1".format(GNUPFILE_D))
         
         # clean-up
-        os.system( "rm -f {} {} {}".format(GNUPFILE_A, GNUPFILE_B, GNUPFILE_C) )
+        os.system( "rm -f {} {} {} {}".format(GNUPFILE_A, GNUPFILE_B, GNUPFILE_C, GNUPFILE_D) )
         
     except:
         print("Error occured!")
