@@ -85,6 +85,7 @@ if __name__ == "__main__":
 
         # get latest timestamp
         timestamp = int(int(rawdata[-1].split(",")[0])/86400)*86400
+        timestamp_last = int(rawdata[-1].split(",")[0])
         
         last_week = timestamp - 7 * 86400
         
@@ -98,7 +99,7 @@ if __name__ == "__main__":
             if ( len(ds) == 8 ):
                 if ( int(int(ds[0])/86400)*86400 == last_week ):
                     area_data[ds[1]] = -int(ds[3])
-                if ( int(int(ds[0])/86400)*86400 == timestamp ):
+                if ( int(ds[0]) == timestamp_last ):
                     area_data[ds[1]] += int(ds[3])
                     sum_cases += area_data[ds[1]]
                     area_data[ds[1]] /= residents_array[ds[1]]
