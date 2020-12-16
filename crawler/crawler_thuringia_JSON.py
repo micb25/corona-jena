@@ -38,8 +38,8 @@ def readTHdata(data_file):
 
     types = {
         "cases": {
-            "id": 0,
-            "de": "Fallzahlen",
+            "id": 4,
+            "de": "Fallzahlen (Summe)",
             "color": "#0000d3",
             "unit": "Fälle",
             "unit1": "Fall",
@@ -47,7 +47,7 @@ def readTHdata(data_file):
             "source": "TMASGFF"
         },
         "caseres" : {
-            "id": 1,
+            "id": 3,
             "de": "Fälle / 100&thinsp;000 EW",
             "color": "#0000D3",
             "unit": "Fälle / 100&thinsp;000 EW",
@@ -64,7 +64,7 @@ def readTHdata(data_file):
             "source": "TMASGFF"
         },
         "diffweek": {
-            "id": 3,
+            "id": 1,
             "de": "Entwicklung zur Vorwoche",
             "color": "#A000FFFF",
             "unit": "Fälle",
@@ -74,7 +74,7 @@ def readTHdata(data_file):
             "source": "TMASGFF"
         },
         "reldiffweek": {
-            "id": 4,
+            "id": 0,
             "de": "7-Tages-Inzidenz",
             "color": "#A000FFFF",
             "unit": "Fälle / 100&thinsp;000 EW",
@@ -84,7 +84,7 @@ def readTHdata(data_file):
         },
         "hospinf": {
             "id": 5,
-            "de": "stationäre Fälle mit COVID19",
+            "de": "stationäre Fälle mit COVID-19",
             "color": "#FF891D",
             "unit": "Fälle",
             "unit1": "Fall",
@@ -102,22 +102,47 @@ def readTHdata(data_file):
         },
         "deceased": {
             "id": 7,
-            "de": "Todesfälle",
+            "de": "Todesfälle (Summe)",
             "color": "#333333",
             "unit": "Verstorbene",
             "unit1": "Verstorbene(r)",
             "showSum": 1,
             "source": "TMASGFF"
         },
-        "casedens" : { 
+        "deceasedrel": {
             "id": 8,
+            "de": "Todesfälle / 100&thinsp;000 EW",
+            "color": "#333333",
+            "unit": "Verstorbene / 100&thinsp;000 EW",
+            "unit1": "Verstorbene(r)",
+            "source": "TMASGFF"
+        },
+        "deceaseddiffweek": {
+            "id": 9,
+            "de": "Todesfälle (letzte 7 Tage)",
+            "color": "#333333",
+            "unit": "Verstorbene",
+            "unit1": "Verstorbene(r)",
+            "showSum": 1,
+            "pm" : 1,
+            "source": "TMASGFF"
+        },
+        "cfr": {
+            "id": 10,
+            "de": "Fallsterblichkeit",
+            "color": "#333333",
+            "unit": "%",
+            "source": "TMASGFF"
+        },
+        "casedens" : { 
+            "id": 11,
             "de": "flächenbezogene Fallzahlen",
             "color": "#0000D3",
             "unit": "Fälle / km²",
             "source": "TMASGFF, statistik.thueringen.de"
         },
         "res" : {
-            "id": 9,
+            "id": 12,
             "de": 'Einwohner',
             "color": '#00A000',
             "unit": 'EW',
@@ -125,7 +150,7 @@ def readTHdata(data_file):
             "source": "statistik.thueringen.de"
         },
         "area" : {
-            "id": 10,
+            "id": 13,
             "de": 'Fläche',
             "color": '#00A000',
             "unit": 'km²',
@@ -133,7 +158,7 @@ def readTHdata(data_file):
             "source": "statistik.thueringen.de"
         },
         "dens" : {
-            "id": 11,
+            "id": 14,
             "de": 'Einwohnerdichte',
             "color": '#00A000',
             "unit": 'EW / km²',
@@ -164,9 +189,12 @@ def readTHdata(data_file):
                             regions[key]["hospinf"]  = int(line_data[4])
                             regions[key]["severe"]   = int(line_data[5])
                             regions[key]["deceased"] = int(line_data[6])
+                            regions[key]["deceaseddiffweek"] = int(line_data[6])
                             regions[key]["casedens"] = regions[key]["cases"] / regions[key]["area"]
                             regions[key]["caseres"] = regions[key]["cases"] / regions[key]["res"]*100000
                             regions[key]["dens"] = regions[key]["res"] / regions[key]["area"]
+                            regions[key]["deceasedrel"] = regions[key]["deceased"] / regions[key]["res"]*100000 
+                            regions[key]["cfr"] = 100.0* regions[key]["deceased"] / int(line_data[3])
                     
         else:
             return False
@@ -185,6 +213,8 @@ def readTHdata(data_file):
                         if regions[key]["name"] == line_data[1]:
                             regions[key]["diffweek"] -= int(line_data[3])
                             regions[key]["reldiffweek"] = regions[key]["diffweek"] / regions[key]["res"]*100000
+                            regions[key]["deceaseddiffweek"] -= int(line_data[6])
+                            
         else:
             for key in regions:
                 regions[key]["diffweek"] = 0
