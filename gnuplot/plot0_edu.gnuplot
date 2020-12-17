@@ -41,8 +41,8 @@ stats "<cat ../data/schools/TH_schools.csv | tail -n 1 | awk -F, '{print $8}'" u
 sum_K = A_max + B_max + C_max
 sum_S = D_max + E_max + F_max
 
-angleK(x)=x*360/sum_K
-angleS(x)=x*360/sum_S
+angleK(x)=x*360/sum_K - 0.001
+angleS(x)=x*360/sum_S - 0.001
 
 centerX=-0.20
 centerY=0
