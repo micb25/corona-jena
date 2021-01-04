@@ -80,10 +80,10 @@ if __name__ == "__main__":
             
         date_day = int(rawdate[0][0])
         date_month = int(rawdate[0][1])
-        if len(rawdate[0]) < 3:
+        if len(rawdate[0]) <= 3:
             date_year = int(rawdate[0][2])
         if date_year == 0:
-            date_year = 2020
+            date_year = datetime.datetime.now().year
         elif date_year < 2020:
             date_year += 2000
         
