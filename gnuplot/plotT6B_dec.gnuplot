@@ -4,7 +4,7 @@ set output '../plotT6B_dec.png'
 
 # get last update
 date_cmd = sprintf("%s", "`awk -F, '{print "@"$1+86400}' ../data/cases_rki_db_th.csv | tail -n 1 | xargs date +"%d.%m.%Y" -d`")
-update_str = "{/*0.75 (Stand: " . date_cmd . "; Quelle: Thüringer Landesregierung)}"
+update_str = "{/*0.75 Stand: " . date_cmd . "; Quelle: TMASGFF}"
 
 set label 1 at graph 0.98, 0.95 "{/Linux-Libertine-O-Bold Coronavirus-Todesfälle pro Kalenderwoche in Thüringen}" right textcolor ls 0
 set label 2 at graph 0.98, 0.90 update_str right textcolor ls 0
