@@ -2,47 +2,30 @@
 # -*- coding: utf-8 -*-
 
 import time, requests, re, os
-
-
-def getGeraNumbersRKI():
-    RKIFILE = os.path.dirname(os.path.realpath(__file__)) + "/../data/rki_th/current_cases_by_region.csv"
-    try:
-        with open(RKIFILE, 'r') as df:
-            raw_data = df.read().splitlines()
-        for l in raw_data:
-            if ( l[0:2] == 'G,' ):
-                current_values = l.split(",")[1:6]
-                return (int(current_values[2]), int(current_values[3]))
-        
-        return (-1, -1)
-    except:
-        return (-1, -1)
-    
+  
 
 def getGeraNumbers(url):
     headers      = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
-    num_pattern1 = re.compile(r"getestete\sPersonen:?\s([0-9]{1,})[\s,]")
-    num_pattern2 = re.compile(r"genesene\sPersonen:?\s?([0-9]{1,})[,\s]")
-    num_pattern3 = re.compile(r"verstorbene\sPersonen:?\s?([0-9]{1,})")
-    
-    # n = getGeraNumbersRKI()
-    n = (-1, -1)
+    num_pattern1 = re.compile(r"infektionen\sgesamt:?\s([0-9]{1,})[\s,]")
+    num_pattern2 = re.compile(r"genesen:?\s?([0-9]{1,})[,\s]")
+    num_pattern3 = re.compile(r"verstorben:?\s?([0-9]{1,})[,\s]")
     
     try:
     
         r = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0)
+        s = r.text.lower().replace('.', '')
         
-        ps1 = num_pattern1.findall( r.text )
-        ps2 = num_pattern2.findall( r.text )
-        ps3 = num_pattern3.findall( r.text )
+        ps1 = num_pattern1.findall( s )
+        ps2 = num_pattern2.findall( s )
+        ps3 = num_pattern3.findall( s )
         
-        num_t = int(ps1[0]) if ( len(ps1) >= 1 ) else n[0]
+        num_t = int(ps1[0]) if ( len(ps1) >= 1 ) else -1
         num_r = int(ps2[0]) if ( len(ps2) >= 1 ) else -1
-        num_d = int(ps3[0]) if ( len(ps3) >= 1 ) else n[1]
+        num_d = int(ps3[0]) if ( len(ps3) >= 1 ) else -1
         num_h = -1
         num_s = -1
         
-        return (num_t, num_r, num_d, num_h, num_s)
+        return [num_t, num_r, num_d, num_h, num_s]
     
     except:
         return False
