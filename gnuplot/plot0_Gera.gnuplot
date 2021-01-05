@@ -16,9 +16,6 @@ unset key
 unset tics
 unset border
 
-# latest update
-update_str = "letztes Update: " . system("date +%d.%m.,\\ %H\\:%M") . " Uhr"
-
 # gets sum of infected people
 stats "<cat ../data/cases_gera.csv | tail -n 1 | awk -F, '{print $2}'" u 1 prefix "A" nooutput
 
@@ -30,6 +27,9 @@ stats "<cat ../data/cases_gera.csv | tail -n 1 | awk -F, '{print $4}'" u 1 prefi
 
 # calculate diffs
 stats "<awk -F, '!_[$2]++' ../data/cases_gera.csv | awk -F, '{if ($2 >= 0) print $1,\",\",$2}' | tail -n 2" u 2 prefix "G" nooutput
+
+# get 7-day incidence
+stats "<awk -F, '{print $7}' ../data/cases_rki_7day_incidence.csv | tail -n 1" using 1 prefix "I" nooutput
 
 # latest update
 date_cmd = sprintf("%s", "`awk -F, '{print "@"$1}' ../data/cases_gera.csv | tail -n 1 | xargs date +"%d.%m., %H:%M" -d`")
@@ -68,6 +68,10 @@ plot \
      "<echo 0" u (xpos):(ypos(3)):(sprintf("%i Genesene (%.1f%%)", B_max, 100*B_max/A_max)) w labels left offset 2.5, 0, \
      "<echo 0" u (xpos):(ypos(4)) w p pt 5 ps 4 lc rgb "#000000", \
      "<echo 0" u (xpos):(ypos(4)):(sprintf("%i Verstorbene (%.1f%%)", C_max, 100*C_max/A_max)) w labels left offset 2.5, 0, \
+     \
+     "<echo 0" u (centerX):(centerY):("7-Tages-\nInzidenz:") w labels center offset 0.0, +1.2, \
+     "<echo 0" u (centerX):(centerY):(sprintf("%.1f", I_max)) w labels font ",24" center offset 0.0, -1.00, \
+     \
      "<echo 0" u (xpos):(ypos(5.5)):(" ") w labels font ", 12" left offset 2.5, 0, \
      "<echo 0" u (xpos):(ypos(6.5)):(update_str) w labels font ", 12" left offset 2.5, 0, \
      "<echo 0" u (xpos):(ypos(7.5)):("Quelle: Stadt Gera") w labels font ", 12" left offset 2.5, 0
