@@ -8,9 +8,9 @@ def getABGNumbers(url):
     headers = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
     
     num_pattern_T = re.compile(r"([0-9]{1,})\spersonen\smit\sdem\scoronavirus\sinfiziert")
-    num_pattern_R = re.compile(r"([0-9]{1,})\spersonen\s(?:bereits\s)?genese")
+    num_pattern_R = re.compile(r"([0-9]{1,})\spersonen\s(?:bereits|sind\s)?genese")
     num_pattern_D = re.compile(r"zahl\sder\sverstorbenen: ([0-9]{1,})")
-    num_pattern_H = re.compile(r"([0-9]{1,})\spatient.*?in stationärer behandlung")    
+    num_pattern_H = re.compile(r"([0-9]{1,})\spatient[^\.]{1,}station")
     
     remove_array = [ "<p>", "</p>", "<td>", "</td>", "<strong>", "</strong>", "<b>", "</b>", "<br>", "<br />" ]
     
@@ -42,7 +42,7 @@ def getABGNumbers(url):
         num_h = int(ps4[0]) if (len(ps4) >= 1) else -1
         num_s = -1
         
-        return (num_t, num_r, num_d, num_h, num_s)
+        return [num_t, num_r, num_d, num_h, num_s]
     
     except:
         return False  
