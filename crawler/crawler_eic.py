@@ -15,11 +15,13 @@ def getEICNumbers(url):
     
     try:
         r = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0)
-        ps1 = num_pattern_T.findall( r.text )
-        ps2 = num_pattern_R.findall( r.text )
-        ps3 = num_pattern_D.findall( r.text )
-        ps4 = num_pattern_H.findall( r.text )
-        ps5 = num_pattern_S.findall( r.text )
+        s = r.text.replace('.', '')
+        
+        ps1 = num_pattern_T.findall( s )
+        ps2 = num_pattern_R.findall( s )
+        ps3 = num_pattern_D.findall( s )
+        ps4 = num_pattern_H.findall( s )
+        ps5 = num_pattern_S.findall( s )
         
         num_t = int(ps1[0]) if (len(ps1) >= 1) else -1
         num_r = int(ps2[0]) if (len(ps2) >= 1) else -1
@@ -27,7 +29,7 @@ def getEICNumbers(url):
         num_h = int(ps4[0]) if (len(ps4) >= 1) else -1
         num_s = int(ps5[0]) if (len(ps5) >= 1) else -1
         
-        return (num_t, num_r, num_d, num_h, num_s)
+        return [num_t, num_r, num_d, num_h, num_s]
     
     except:
         return False  
