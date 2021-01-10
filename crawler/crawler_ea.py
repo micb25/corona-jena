@@ -8,6 +8,8 @@ def getEANumbers(url):
     headers = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
     
     num_pattern_T = re.compile(r"Infektionen in der kreisfreien Stadt Eisenach:\s?([0-9]{1,})")
+    num_pattern_R = re.compile(r"Infektionen in der kreisfreien Stadt Eisenach:\s?[0-9]{1,}\s\(davon\s([0-9]{1,})\saktiv\)")
+    num_pattern_D = re.compile(r"[0-9]{1,}\s?\(([0-9]{1,})\sPersonen\sin\sEisenach\sund\s[0-9]{1,}\sPersonen\sim\sWartburgkreis\)")
     
     remove_array = { "<p>", "</p>", "<td>", "</td>", "<strong>", "</strong>"  }
     
@@ -19,14 +21,20 @@ def getEANumbers(url):
             s = s.replace(entry, "")
         
         ps1 = num_pattern_T.findall( s )
+        ps2 = num_pattern_R.findall( s )
+        ps3 = num_pattern_D.findall( s )
         
         num_t = int(ps1[0]) if (len(ps1) >= 1) else -1
-        num_r = -1
-        num_d = -1
+        num_d = int(ps3[0]) if (len(ps3) >= 1) else -1
         num_h = -1
         num_s = -1
         
-        return (num_t, num_r, num_d, num_h, num_s)
+        if (len(ps2) >= 1) and (num_t > 0) and (num_d > 0):
+            num_r = num_t - num_d - int(ps2[0])
+        else:
+            num_r = -1
+        
+        return [num_t, num_r, num_d, num_h, num_s]
     
     except:
         return False  
