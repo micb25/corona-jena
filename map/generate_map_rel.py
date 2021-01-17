@@ -52,31 +52,31 @@ if __name__ == "__main__":
     }
     
     # number of residents per city/county; values taken from:
-    # https://statistik.thueringen.de/datenbank/TabAnzeige.asp?tabelle=gg000102&startpage=99&vorspalte=1&felder=2&zeit=2018%7C%7Cs1
+    # https://statistik.thueringen.de/datenbank/TabAnzeige.asp?tabelle=gg000102&startpage=99&vorspalte=1&felder=2&zeit=2019%7C%7Cs1
     residents_array  = {
-        "Altenburger Land": 90118,
-        "Eichsfeld":  100380,
-        "Eisenach": 42370,
-        "Erfurt":  213699,
-        "Gera": 94152,
-        "Gotha":  135452,
-        "Greiz": 98159,
-        "Hildburghausen": 63553,
-        "Ilm-Kreis":  108742,
-        "Jena": 111407,
-        "Kyffhäuserkreis": 75009,
-        "Nordhausen": 83822,
-        "Saale-Holzland-Kreis": 83051,
-        "Saale-Orla-Kreis": 80868,
-        "Saalfeld-Rudolstadt":  106356,
-        "Schmalkalden-Meiningen": 122347,
-        "Sömmerda": 69655,
-        "Sonneberg": 56196,
-        "Suhl": 34835,
-        "Unstrut-Hainich-Kreis":  102912,
-        "Wartburgkreis":  123025,
-        "Weimar": 65090,
-        "Weimarer Land": 81947
+        "Altenburger Land":        89393,
+        "Eichsfeld":              100006,
+        "Eisenach":                42250,
+        "Erfurt":                 213981,
+        "Gera":                    93125,
+        "Gotha":                  134908,
+        "Greiz":                   97398,
+        "Hildburghausen":          63197,
+        "Ilm-Kreis":              106249,
+        "Jena":                   111343,
+        "Kyffhäuserkreis":         74212,
+        "Nordhausen":              83416,
+        "Saale-Holzland-Kreis":    82950,
+        "Saale-Orla-Kreis":        80312,
+        "Saalfeld-Rudolstadt":    103199,
+        "Schmalkalden-Meiningen": 124916,
+        "Sömmerda":                69427,
+        "Sonneberg":               57717,
+        "Suhl":                    36789,
+        "Unstrut-Hainich-Kreis":  102232,
+        "Wartburgkreis":          118974,
+        "Weimar":                  65228,
+        "Weimarer Land":           82156
     }
     
     try:
