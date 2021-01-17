@@ -15,7 +15,7 @@ def getEANumbers(url):
     
     try:
         r = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0)
-        s = r.text
+        s = r.text.replace("&nbsp;", " ")
         
         for entry in remove_array:
             s = s.replace(entry, "")
