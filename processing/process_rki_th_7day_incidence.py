@@ -14,32 +14,32 @@ if __name__ == "__main__":
     regions = [ 'TH', 'ABG', 'EIC', 'EA', 'EF', 'G', 'GTH', 'GRZ', 'HBN', 'IK', 'J', 'KYF', 'NDH', 'SHK', 'SOK', 'SLF', 'SM', 'SOM', 'SON', 'SHL', 'UH', 'WAK', 'WE', 'AP' ]
     
     # number of residents per city/county; values taken from:
-    # https://statistik.thueringen.de/datenbank/TabAnzeige.asp?tabelle=gg000102&startpage=99&vorspalte=1&felder=2&zeit=2018%7C%7Cs1
+    # https://statistik.thueringen.de/datenbank/TabAnzeige.asp?tabelle=gg000102&startpage=99&vorspalte=1&felder=2&zeit=2019%7C%7Cs1
     residents_array  = {
-        "ABG": 90118,
-        "EIC":  100380,
-        "EA": 42370,
-        "EF":  213699,
-        "G": 94152,
-        "GTH":  135452,
-        "GRZ": 98159,
-        "HBN": 63553,
-        "IK":  108742,
-        "J": 111407,
-        "KYF": 75009,
-        "NDH": 83822,
-        "SHK": 83051,
-        "SOK": 80868,
-        "SLF":  106356,
-        "SM": 122347,
-        "SOM": 69655,
-        "SON": 56196,
-        "SHL": 34835,
-        "UH":  102912,
-        "WAK":  123025,
-        "WE": 65090,
-        "AP": 81947,
-        "TH": 2143145
+        "ABG":    89393,
+        "EIC":   100006,
+        "EA":     42250,
+        "EF":    213981,
+        "G":      93125,
+        "GTH":   134908,
+        "GRZ":    97398,
+        "HBN":    63197,
+        "IK":    106249,
+        "J":     111343,
+        "KYF":    74212,
+        "NDH":    83416,
+        "SHK":    82950,
+        "SOK":    80312,
+        "SLF":   103199,
+        "SM":    124916,
+        "SOM":    69427,
+        "SON":    57717,
+        "SHL":    36789,
+        "UH":    102232,
+        "WAK":   118974,
+        "WE":     65228,
+        "AP":     82156,
+        "TH":   2133378
     }
     
     df = pd.read_csv(SOURCEFILE, sep=",", decimal=".", encoding='utf-8')

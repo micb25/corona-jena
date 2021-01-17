@@ -51,30 +51,32 @@ if __name__ == "__main__":
         "Weimarer Land": "%FC_AP%"
     }
     
+    # number of residents per city/county / 100000; values taken from:
+    # https://statistik.thueringen.de/datenbank/TabAnzeige.asp?tabelle=gg000102&startpage=99&vorspalte=1&felder=2&zeit=2019%7C%7Cs1
     residents_array  = {
-        "Altenburger Land": 0.90118,
-        "Eichsfeld":  1.00380,
-        "Eisenach": 0.42370,
-        "Erfurt":  2.13699,
-        "Gera": 0.94152,
-        "Gotha":  1.35452,
-        "Greiz": 0.98159,
-        "Hildburghausen": 0.63553,
-        "Ilm-Kreis":  1.08742,
-        "Jena": 1.11407,
-        "Kyffhäuserkreis": 0.75009,
-        "Nordhausen": 0.83822,
-        "Saale-Holzland-Kreis": 0.83051,
-        "Saale-Orla-Kreis": 0.80868,
-        "Saalfeld-Rudolstadt":  1.06356,
-        "Schmalkalden-Meiningen": 1.22347,
-        "Sömmerda": 0.69655,
-        "Sonneberg": 0.56196,
-        "Suhl": 0.34835,
-        "Unstrut-Hainich-Kreis":  1.02912,
-        "Wartburgkreis":  1.23025,
-        "Weimar": 0.65090,
-        "Weimarer Land": 0.81947
+        "Altenburger Land":       0.89393,
+        "Eichsfeld":              1.00006,
+        "Eisenach":               0.42250,
+        "Erfurt":                 2.13981,
+        "Gera":                   0.93125,
+        "Gotha":                  1.34908,
+        "Greiz":                  0.97398,
+        "Hildburghausen":         0.63197,
+        "Ilm-Kreis":              1.06249,
+        "Jena":                   1.11343,
+        "Kyffhäuserkreis":        0.74212,
+        "Nordhausen":             0.83416,
+        "Saale-Holzland-Kreis":   0.82950,
+        "Saale-Orla-Kreis":       0.80312,
+        "Saalfeld-Rudolstadt":    1.03199,
+        "Schmalkalden-Meiningen": 1.24916,
+        "Sömmerda":               0.69427,
+        "Sonneberg":              0.57717,
+        "Suhl":                   0.36789,
+        "Unstrut-Hainich-Kreis":  1.02232,
+        "Wartburgkreis":          1.18974,
+        "Weimar":                 0.65228,
+        "Weimarer Land":          0.82156
     }
     
     try:
