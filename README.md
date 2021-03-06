@@ -59,6 +59,8 @@ Art der Datenerhebung auf Homepage (Legende):
 - awk
 - ImageMagick
 
+[Installationsanweisungen (Englisch)](INSTALL.md)
+
 ## weitere Projekte
 
 Eine Liste weiterer ähnlicher Github-Projekte, die COVID19-Daten für Deutschland erfassen und auswerten:
