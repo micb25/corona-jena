@@ -23,8 +23,8 @@ set key at graph 0.02, 0.98 left top invert spacing 1.2 box ls 3
 date_cmd = sprintf("%s", "`awk -F, '{print "@"$1}' ../data/cases_th_sums.csv | tail -n 1 | xargs date +"%d.%m.%Y" -d`")
 update_str = "{/*0.75 letzte Aktualisierung: " . date_cmd . "}"
 
-set label 1 at graph 0.98, 0.95 update_str right textcolor ls 0
-set label 2 at graph 0.98, 0.90 "{/*0.75 Quelle: TMASGFF}" right textcolor ls 0
+set label 1 at graph 0.99, 0.98 update_str right textcolor ls 0
+set label 2 at graph 0.99, 0.93 "{/*0.75 Quelle: TMASGFF}" right textcolor ls 0
 
 set offsets graph 0.01, graph 0.12, graph 0.20, 0.00
 
