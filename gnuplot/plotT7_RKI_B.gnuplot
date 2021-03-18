@@ -19,7 +19,7 @@ set format x "%d.%m."
 
 # y-axis setup
 set ylabel 'Fallzahlenverhältnis zur Bevölkerungszahl in Thüringen'
-set format y "%.1f%%"
+set format y "%.0f%%"
 
 # key
 set key at graph 0.02, 0.98 left top spacing 1.1 box ls 3
