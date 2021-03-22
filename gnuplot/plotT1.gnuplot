@@ -5,7 +5,7 @@ set output '../plotT1.png'
 # stats for x
 stats "<awk -F, '{if ( NR > 1 ) print int($1/86400)*86400}' ../data/cases_th_sums.csv" using 1 nooutput
 set xrange [ STATS_min : STATS_max ]
-set yrange [0:50 < * < 100000]
+set yrange [0:*]
 
 # latest update
 date_cmd = sprintf("%s", "`awk -F, '{print "@"$1}' ../data/cases_th_sums.csv | tail -n 1 | xargs date +"%d.%m.%Y" -d`")
