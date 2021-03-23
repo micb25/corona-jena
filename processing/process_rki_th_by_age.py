@@ -6,10 +6,11 @@ import os, json, csv
 
 if __name__ == "__main__":
     
-    SCRIPTPATH = os.path.dirname(os.path.realpath(__file__))
-    SOURCEPATH = SCRIPTPATH + '/../data/'
-    SOURCEFILE = SOURCEPATH + 'cases_rki_db_th.csv'
-    OUTPUTFILE = SOURCEPATH + 'rki_th_by_date/cases_by_day_and_age.csv'
+    SCRIPTPATH  = os.path.dirname(os.path.realpath(__file__))
+    SOURCEPATH  = SCRIPTPATH + '/../data/'
+    SOURCEFILE  = SOURCEPATH + 'cases_rki_db_th.csv'
+    OUTPUTFILE  = SOURCEPATH + 'rki_th_by_date/cases_by_day_and_age.csv'
+    OUTPUTFILE2 = SOURCEPATH + 'rki_th_by_date/new_cases_by_day_and_age.csv'
         
     row_index_meldedatum = -1
     row_index_refdatum = -1
@@ -64,6 +65,10 @@ if __name__ == "__main__":
     data_f = []
     data_m = []    
     
+    inc_data_a = []
+    inc_data_f = []
+    inc_data_m = []    
+    
     current_timestamp = sorted_cases_th[0][0]
     for case in sorted_cases_th:
         if case[0] > current_timestamp:
@@ -83,6 +88,12 @@ if __name__ == "__main__":
                         cases_per_age_group_m['A15-A34'], cases_per_age_group_m['A35-A59'], 
                         cases_per_age_group_m['A60-A79'], cases_per_age_group_m['A80+'] 
                     ]
+            
+            if current_timestamp > sorted_cases_th[0][0]:
+                inc_data_a.append( [current_timestamp, 'A', arr_a[0]-data_a[-1][2], arr_a[1]-data_a[-1][3], arr_a[2]-data_a[-1][4], arr_a[3]-data_a[-1][5], arr_a[4]-data_a[-1][6], arr_a[5]-data_a[-1][7] ] )
+                inc_data_f.append( [current_timestamp, 'F', arr_f[0]-data_f[-1][2], arr_f[1]-data_f[-1][3], arr_f[2]-data_f[-1][4], arr_f[3]-data_f[-1][5], arr_f[4]-data_f[-1][6], arr_f[5]-data_f[-1][7] ] )
+                inc_data_m.append( [current_timestamp, 'M', arr_m[0]-data_m[-1][2], arr_m[1]-data_m[-1][3], arr_m[2]-data_m[-1][4], arr_m[3]-data_m[-1][5], arr_m[4]-data_m[-1][6], arr_m[5]-data_m[-1][7] ] )
+            
             data_a.append( [current_timestamp, 'A', arr_a[0], arr_a[1], arr_a[2], arr_a[3], arr_a[4], arr_a[5] ] )
             data_f.append( [current_timestamp, 'F', arr_f[0], arr_f[1], arr_f[2], arr_f[3], arr_f[4], arr_f[5] ] )
             data_m.append( [current_timestamp, 'M', arr_m[0], arr_m[1], arr_m[2], arr_m[3], arr_m[4], arr_m[5] ] )
@@ -109,3 +120,12 @@ if __name__ == "__main__":
         csvfile.write(csv_data)
         csvfile.close()
     
+    csv_header = "timestamp,gender,A00-A04,A05-A14,A15-A34,A35-A59,A60-A79,A80,ALL+\n"
+    csv_data = csv_header
+    for i, r in enumerate(inc_data_a):
+        csv_data += "{},{},{},{},{},{},{},{},{}\n".format(r[0], r[1], r[2], r[3], r[4], r[5], r[6], r[7], sum(r[2:8]))
+        
+    with open(OUTPUTFILE2, 'w') as csvfile:
+        csvfile.write(csv_data)
+        csvfile.close()
+        
