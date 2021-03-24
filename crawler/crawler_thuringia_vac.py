@@ -14,7 +14,7 @@ if __name__ == "__main__":
     
     if r.ok:            
         # write new data
-        f = open(DATAFILE, 'a')
+        f = open(DATAFILE, 'w')
         f.write(r.text)
         f.close()
             
