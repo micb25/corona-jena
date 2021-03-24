@@ -124,6 +124,10 @@ if __name__ == "__main__":
     csv_data = csv_header
     for i, r in enumerate(inc_data_a):
         csv_data += "{},{},{},{},{},{},{},{},{}\n".format(r[0], r[1], r[2], r[3], r[4], r[5], r[6], r[7], sum(r[2:8]))
+        f = inc_data_f[i]
+        csv_data += "{},{},{},{},{},{},{},{},{}\n".format(f[0], f[1], f[2], f[3], f[4], f[5], f[6], f[7], sum(f[2:8]))
+        m = inc_data_m[i]
+        csv_data += "{},{},{},{},{},{},{},{},{}\n".format(m[0], m[1], m[2], m[3], m[4], m[5], m[6], m[7], sum(m[2:8]))
         
     with open(OUTPUTFILE2, 'w') as csvfile:
         csvfile.write(csv_data)
