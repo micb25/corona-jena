@@ -70,4 +70,4 @@ plot  \
   \
   "<awk -F, '{if (NR>1&&$3==16) print $1,100*$5/2133378}' ../data/RKI_COVID19_Impfquotenmonitoring.csv" using 1:(filter_neg($2)) with lines ls 40  lw 3 title "Erstimpfungen   ", \
   "<awk -F, '{if (NR>1&&$3==16) print $1,100*$11/2133378}' ../data/RKI_COVID19_Impfquotenmonitoring.csv" using 1:(filter_neg($2)) with lines ls 41 lw 3 title "Zweitimpfungen   ", \
-  [ STATS_max - 14 * 86400 : STATS_max ] f(x) with lines ls 12 title "14-Tage-Trend"
+  [ STATS_max - 14 * 86400 : STATS_max ] f(x) with lines ls 12 title "14-Tage-Trend   "
