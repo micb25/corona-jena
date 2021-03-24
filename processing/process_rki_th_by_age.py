@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import os, json, csv
+import os, csv, pandas as pd
 
 
 if __name__ == "__main__":
@@ -11,6 +11,7 @@ if __name__ == "__main__":
     SOURCEFILE  = SOURCEPATH + 'cases_rki_db_th.csv'
     OUTPUTFILE  = SOURCEPATH + 'rki_th_by_date/cases_by_day_and_age.csv'
     OUTPUTFILE2 = SOURCEPATH + 'rki_th_by_date/new_cases_by_day_and_age.csv'
+    OUTPUTFILE3 = SOURCEPATH + 'rki_th_by_date/incidence_by_day_and_age.csv'
         
     row_index_meldedatum = -1
     row_index_refdatum = -1
@@ -38,7 +39,11 @@ if __name__ == "__main__":
         for row in raw_data:
             num_cases = int(row[row_index_num_cases])
             for i in range (num_cases):
-                timestamp = min(row[row_index_meldedatum], row[row_index_refdatum])            
+                # use either 'Meldedatum' or 'Erkrankungsbeginn'
+                # timestamp = min(row[row_index_meldedatum], row[row_index_refdatum])            
+                
+                # use 'Meldedatum'
+                timestamp = row[row_index_meldedatum]
                 age_group = row[row_index_age_group]
                 cases_th.append( [timestamp, row[row_index_gender], age_group ] )
             
@@ -120,7 +125,7 @@ if __name__ == "__main__":
         csvfile.write(csv_data)
         csvfile.close()
     
-    csv_header = "timestamp,gender,A00-A04,A05-A14,A15-A34,A35-A59,A60-A79,A80,ALL+\n"
+    csv_header = "timestamp,gender,A00-A04,A05-A14,A15-A34,A35-A59,A60-A79,A80+,ALL\n"
     csv_data = csv_header
     for i, r in enumerate(inc_data_a):
         csv_data += "{},{},{},{},{},{},{},{},{}\n".format(r[0], r[1], r[2], r[3], r[4], r[5], r[6], r[7], sum(r[2:8]))
@@ -133,3 +138,62 @@ if __name__ == "__main__":
         csvfile.write(csv_data)
         csvfile.close()
         
+    genders = ['A', 'F', 'M']
+    columns = ['A00-A04', 'A05-A14', 'A15-A34', 'A35-A59', 'A60-A79', 'A80+', 'ALL']
+    pop = {
+            'A_ALL': 2133378,
+            'F_ALL': 1077382,
+            'M_ALL': 1055996,
+            
+            'A_A00-A04': 90338,
+            'F_A00-A04': 44119,
+            'M_A00-A04': 46219,
+            
+            'A_A05-A14': 181978,
+            'F_A05-A14': 88419,
+            'M_A05-A14': 93559,
+            
+            'A_A15-A34': 397268,
+            'F_A15-A34': 187832,
+            'M_A15-A34': 209436,
+            
+            'A_A35-A59': 733338,
+            'F_A35-A59': 353489,
+            'M_A35-A59': 379849,
+            
+            'A_A60-A79': 560974,
+            'F_A60-A79': 296464,
+            'M_A60-A79': 264510,
+            
+            'A_A80+': 169482,
+            'F_A80+': 107059,
+            'M_A80+': 62423
+    }
+        
+    df = pd.read_csv(OUTPUTFILE2, sep=',', decimal='.', encoding='utf-8')
+    df['timestamp'] = df.apply(lambda r: int(r['timestamp']/86400)*86400, axis=1)
+    
+    for c in columns:
+        df['inc_{}'.format(c)] = 0
+    
+    df_a = df.loc[df.gender == 'A']
+    df_f = df.loc[df.gender == 'F']
+    df_m = df.loc[df.gender == 'M']
+    
+    for c in columns:
+    
+        ser_a  = df_a[c].rolling(min_periods=1, window=7).sum().div( pop['{}_{}'.format('A', c)] / 100000 )
+        for i in ser_a.index.tolist():
+            df.loc[i, 'inc_{}'.format(c)] = ser_a[i]
+            
+        ser_f  = df_f[c].rolling(min_periods=1, window=7).sum().div( pop['{}_{}'.format('F', c)] / 100000 )
+        for i in ser_f.index.tolist():
+            df.loc[i, 'inc_{}'.format(c)] = ser_f[i]
+            
+        ser_m  = df_m[c].rolling(min_periods=1, window=7).sum().div( pop['{}_{}'.format('M', c)] / 100000 )
+        for i in ser_m.index.tolist():
+            df.loc[i, 'inc_{}'.format(c)] = ser_m[i]
+        
+    df.drop(columns, inplace=True, axis=1)
+    df.to_csv(OUTPUTFILE3, sep=',', decimal='.', encoding='utf-8', float_format='%.2f', index=False)
+    
