@@ -40,12 +40,12 @@ if __name__ == "__main__":
             num_cases = int(row[row_index_num_cases])
             for i in range (num_cases):
                 # use either 'Meldedatum' or 'Erkrankungsbeginn'
-                # timestamp = min(row[row_index_meldedatum], row[row_index_refdatum])            
+                timestamp = min(row[row_index_meldedatum], row[row_index_refdatum])            
                 
                 # use 'Meldedatum'
-                timestamp = row[row_index_meldedatum]
+                reporting_ts = row[row_index_meldedatum]
                 age_group = row[row_index_age_group]
-                cases_th.append( [timestamp, row[row_index_gender], age_group ] )
+                cases_th.append( [timestamp, row[row_index_gender], age_group, reporting_ts ] )
             
                 if age_group not in age_groups:
                     age_groups.append( age_group )
@@ -68,11 +68,7 @@ if __name__ == "__main__":
     
     data_a = []
     data_f = []
-    data_m = []    
-    
-    inc_data_a = []
-    inc_data_f = []
-    inc_data_m = []    
+    data_m = []
     
     current_timestamp = sorted_cases_th[0][0]
     for case in sorted_cases_th:
@@ -93,8 +89,81 @@ if __name__ == "__main__":
                         cases_per_age_group_m['A15-A34'], cases_per_age_group_m['A35-A59'], 
                         cases_per_age_group_m['A60-A79'], cases_per_age_group_m['A80+'] 
                     ]
+
+            data_a.append( [current_timestamp, 'A', arr_a[0], arr_a[1], arr_a[2], arr_a[3], arr_a[4], arr_a[5] ] )
+            data_f.append( [current_timestamp, 'F', arr_f[0], arr_f[1], arr_f[2], arr_f[3], arr_f[4], arr_f[5] ] )
+            data_m.append( [current_timestamp, 'M', arr_m[0], arr_m[1], arr_m[2], arr_m[3], arr_m[4], arr_m[5] ] )
             
-            if current_timestamp > sorted_cases_th[0][0]:
+        cases_per_age_group_a[case[2]] += 1
+        if case[1] == 'W':
+            cases_per_age_group_f[case[2]] += 1
+        elif case[1] == 'M':
+            cases_per_age_group_m[case[2]] += 1   
+            
+        # min('Refdatum', 'Meldedatum')
+        current_timestamp = case[0]
+    
+    csv_header = "timestamp,gender,A00-A04,A05-A14,A15-A34,A35-A59,A60-A79,A80+\n"
+    csv_data = csv_header
+    for i, r in enumerate(data_a):
+        csv_data += "{},{},{},{},{},{},{},{}\n".format(r[0], r[1], r[2], r[3], r[4], r[5], r[6], r[7])
+        f = data_f[i]
+        csv_data += "{},{},{},{},{},{},{},{}\n".format(f[0], f[1], f[2], f[3], f[4], f[5], f[6], f[7])
+        m = data_m[i]
+        csv_data += "{},{},{},{},{},{},{},{}\n".format(m[0], m[1], m[2], m[3], m[4], m[5], m[6], m[7])
+    
+    with open(OUTPUTFILE, 'w') as csvfile:
+        csvfile.write(csv_data)
+        csvfile.close()
+        
+    # repeat everything, but this time use 'Meldedatum' for incidence calculation
+    
+    cases_per_age_group_a = {}
+    cases_per_age_group_f = {}
+    cases_per_age_group_m = {}
+    for age_group in age_groups:
+        cases_per_age_group_a[age_group] = 0
+        cases_per_age_group_f[age_group] = 0
+        cases_per_age_group_m[age_group] = 0
+    
+    data_a = []
+    data_f = []
+    data_m = []    
+    
+    inc_data_a = []
+    inc_data_f = []
+    inc_data_m = []  
+    
+    timestamp_array.clear()
+    for case_data in sorted_cases_th:
+        if case_data[3] not in timestamp_array:
+            timestamp_array.append( case_data[3] )
+    
+    # sort data by 'Meldedatum'
+    sorted_timestamp_array = sorted(timestamp_array, key=lambda t: t[0])
+    sorted_cases_th = sorted(cases_th, key=lambda t: t[3])
+    
+    current_timestamp = sorted_cases_th[0][3]
+    for case in sorted_cases_th:
+        if case[3] > current_timestamp:
+            arr_a = [ 
+                        cases_per_age_group_a['A00-A04'], cases_per_age_group_a['A05-A14'], 
+                        cases_per_age_group_a['A15-A34'], cases_per_age_group_a['A35-A59'], 
+                        cases_per_age_group_a['A60-A79'], cases_per_age_group_a['A80+'] 
+                    ]
+            
+            arr_f = [ 
+                        cases_per_age_group_f['A00-A04'], cases_per_age_group_f['A05-A14'], 
+                        cases_per_age_group_f['A15-A34'], cases_per_age_group_f['A35-A59'], 
+                        cases_per_age_group_f['A60-A79'], cases_per_age_group_f['A80+'] 
+                    ]
+            arr_m = [ 
+                        cases_per_age_group_m['A00-A04'], cases_per_age_group_m['A05-A14'], 
+                        cases_per_age_group_m['A15-A34'], cases_per_age_group_m['A35-A59'], 
+                        cases_per_age_group_m['A60-A79'], cases_per_age_group_m['A80+'] 
+                    ]
+            
+            if current_timestamp > sorted_cases_th[0][3]:
                 inc_data_a.append( [current_timestamp, 'A', arr_a[0]-data_a[-1][2], arr_a[1]-data_a[-1][3], arr_a[2]-data_a[-1][4], arr_a[3]-data_a[-1][5], arr_a[4]-data_a[-1][6], arr_a[5]-data_a[-1][7] ] )
                 inc_data_f.append( [current_timestamp, 'F', arr_f[0]-data_f[-1][2], arr_f[1]-data_f[-1][3], arr_f[2]-data_f[-1][4], arr_f[3]-data_f[-1][5], arr_f[4]-data_f[-1][6], arr_f[5]-data_f[-1][7] ] )
                 inc_data_m.append( [current_timestamp, 'M', arr_m[0]-data_m[-1][2], arr_m[1]-data_m[-1][3], arr_m[2]-data_m[-1][4], arr_m[3]-data_m[-1][5], arr_m[4]-data_m[-1][6], arr_m[5]-data_m[-1][7] ] )
@@ -109,21 +178,8 @@ if __name__ == "__main__":
         elif case[1] == 'M':
             cases_per_age_group_m[case[2]] += 1   
             
-        current_timestamp = case[0]
-    
-    csv_header = "timestamp,gender,A00-A04,A05-A14,A15-A34,A35-A59,A60-A79,A80+\n"
-    csv_data = csv_header
-    for i, r in enumerate(data_a):
-        csv_data += "{},{},{},{},{},{},{},{}\n".format(r[0], r[1], r[2], r[3], r[4], r[5], r[6], r[7])
-        f = data_f[i]
-        csv_data += "{},{},{},{},{},{},{},{}\n".format(f[0], f[1], f[2], f[3], f[4], f[5], f[6], f[7])
-        m = data_m[i]
-        csv_data += "{},{},{},{},{},{},{},{}\n".format(m[0], m[1], m[2], m[3], m[4], m[5], m[6], m[7])
-    
-    
-    with open(OUTPUTFILE, 'w') as csvfile:
-        csvfile.write(csv_data)
-        csvfile.close()
+        # 'Meldedatum'
+        current_timestamp = case[3]
     
     csv_header = "timestamp,gender,A00-A04,A05-A14,A15-A34,A35-A59,A60-A79,A80+,ALL\n"
     csv_data = csv_header

@@ -32,6 +32,8 @@ set style line  31 lc rgb '#0000FF' lt 1 lw 1 pt 7 ps 1.50
 set style line  32 lc rgb '#0000A0' lt 1 lw 1 pt 7 ps 1.50
 set style line  33 lc rgb '#A000A0' lt 1 lw 1 pt 7 ps 1.50
 set style line  34 lc rgb '#600060' lt 1 lw 1 pt 7 ps 1.50
+set style line  35 lc rgb '#0060c0' lt 1 lw 1 pt 7 ps 1.50
+set style line  36 lc rgb '#008080' lt 1 lw 1 pt 7 ps 1.50
 
 # grid
 set grid xtics ls 21 lc rgb '#aaaaaa'
@@ -40,7 +42,7 @@ set grid ytics ls 21 lc rgb '#aaaaaa'
 # misc
 set samples 30
 set style increment default
- set style fill transparent solid 0.20 border
+set style fill transparent solid 0.20 border
 
 # axes
 set xtics 14*86400 out nomirror rotate by 90 offset 0, -1.8 scale 1.2
