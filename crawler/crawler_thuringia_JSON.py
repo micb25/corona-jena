@@ -82,26 +82,26 @@ def readTHdata(data_file):
             "pm" : 1,
             "source": "TMASGFF"
         },
-        "hospinf": {
-            "id": 5,
-            "de": "stationäre Fälle mit COVID-19",
-            "color": "#FF891D",
-            "unit": "Fälle",
-            "unit1": "Fall",
-            "showSum": 1,
-            "source": "TMASGFF"
-        },
-        "severe": {
-            "id": 6,
-            "de": "schwere Verläufe",
-            "color": "#D30000",
-            "unit": "Fälle",
-            "unit1": "Fall",
-            "showSum": 1,
-            "source": "TMASGFF"
-        },
+        #"hospinf": {
+        #    "id": 5,
+        #    "de": "stationäre Fälle mit COVID-19",
+        #    "color": "#FF891D",
+        #    "unit": "Fälle",
+        #    "unit1": "Fall",
+        #    "showSum": 1,
+        #    "source": "TMASGFF"
+        #},
+        #"severe": {
+        #    "id": 6,
+        #    "de": "schwere Verläufe",
+        #    "color": "#D30000",
+        #    "unit": "Fälle",
+        #    "unit1": "Fall",
+        #    "showSum": 1,
+        #    "source": "TMASGFF"
+        #},
         "deceased": {
-            "id": 7,
+            "id": 5,
             "de": "Todesfälle (Summe)",
             "color": "#333333",
             "unit": "Verstorbene",
@@ -110,7 +110,7 @@ def readTHdata(data_file):
             "source": "TMASGFF"
         },
         "deceasedrel": {
-            "id": 8,
+            "id": 6,
             "de": "Todesfälle / 100&thinsp;000 EW",
             "color": "#333333",
             "unit": "Verstorbene / 100&thinsp;000 EW",
@@ -118,7 +118,7 @@ def readTHdata(data_file):
             "source": "TMASGFF"
         },
         "deceaseddiffweek": {
-            "id": 9,
+            "id": 7,
             "de": "Todesfälle (letzte 7 Tage)",
             "color": "#333333",
             "unit": "Verstorbene",
@@ -128,21 +128,21 @@ def readTHdata(data_file):
             "source": "TMASGFF"
         },
         "cfr": {
-            "id": 10,
+            "id": 8,
             "de": "Fallsterblichkeit",
             "color": "#333333",
             "unit": "%",
             "source": "TMASGFF"
         },
         "casedens" : { 
-            "id": 11,
+            "id": 9,
             "de": "flächenbezogene Fallzahlen",
             "color": "#0000D3",
             "unit": "Fälle / km²",
             "source": "TMASGFF, statistik.thueringen.de"
         },
         "res" : {
-            "id": 12,
+            "id": 10,
             "de": 'Einwohner',
             "color": '#00A000',
             "unit": 'EW',
@@ -150,7 +150,7 @@ def readTHdata(data_file):
             "source": "statistik.thueringen.de"
         },
         "area" : {
-            "id": 13,
+            "id": 11,
             "de": 'Fläche',
             "color": '#00A000',
             "unit": 'km²',
@@ -158,7 +158,7 @@ def readTHdata(data_file):
             "source": "statistik.thueringen.de"
         },
         "dens" : {
-            "id": 14,
+            "id": 12,
             "de": 'Einwohnerdichte',
             "color": '#00A000',
             "unit": 'EW / km²',
