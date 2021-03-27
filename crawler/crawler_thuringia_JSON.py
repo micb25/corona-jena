@@ -71,7 +71,7 @@ def readTHdata(data_folder):
             "unit1": "Fall",
             "pm" : 1,
             "showSum": 1,
-            "source": "TMASGFF"
+            "source": "eigene Berechnung; TMASGFF"
         },
         "reldiffweek": {
             "id": 0,
@@ -80,7 +80,7 @@ def readTHdata(data_folder):
             "unit": "Fälle / 100&thinsp;000 EW",
             "unit1": "Fall / 100&thinsp;000 EW",
             "pm" : 1,
-            "source": "eigene Berechnung mit RKI-Rohdaten"
+            "source": "eigene Berechnung; RKI"
         },
         #"hospinf": {
         #    "id": 5,
@@ -115,7 +115,7 @@ def readTHdata(data_folder):
             "color": "#333333",
             "unit": "Verstorbene / 100&thinsp;000 EW",
             "unit1": "Verstorbene(r)",
-            "source": "TMASGFF"
+            "source": "eigene Berechnung; TMASGFF"
         },
         "deceaseddiffweek": {
             "id": 7,
@@ -132,7 +132,7 @@ def readTHdata(data_folder):
             "de": "Fallsterblichkeit",
             "color": "#333333",
             "unit": "%",
-            "source": "TMASGFF"
+            "source": "eigene Berechnung; TMASGFF"
         },
         "casedens" : { 
             "id": 9,
