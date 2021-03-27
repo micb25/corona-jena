@@ -5,13 +5,20 @@ import os
 from datetime import datetime
 
 
-def value_to_color(i, imax):
-    try:
-        # simple blue color gradient
-        val = int( 254 - int( 223.0 * float(i) / float(imax) ) )
-        return "#{:02x}{:02x}ff".format( val, val )
-    except:
-        return "#ffffff"
+def value_to_color(i):
+    if ( i >= 500 ):
+        return "#{:02x}{:02x}{:02x}".format( 91, 24, 155 )
+    elif ( i >= 200 ):
+        return "#{:02x}{:02x}{:02x}".format( 178, 117, 221 )
+    elif ( i >= 100 ):
+        return "#{:02x}{:02x}{:02x}".format( 172, 19, 22 )
+    elif ( i >= 50 ):
+        return "#{:02x}{:02x}{:02x}".format( 235, 26, 31 )
+    elif ( i >= 35 ):
+        return "#{:02x}{:02x}{:02x}".format( 241, 137, 74 )
+    elif ( i >= 15 ):
+        return "#{:02x}{:02x}{:02x}".format( 254, 255, 177 )
+    return "#ffffff"
 
 
 if __name__ == "__main__":
@@ -88,14 +95,14 @@ if __name__ == "__main__":
             if ( int(area_data[k]) < 0 ):
                 area_data[k] = -1
                 
-            area_color = value_to_color(area_data[k], max_value)
+            area_color = value_to_color(area_data[k])
             svgdata = svgdata.replace(r, area_color)
 
         # change labels
         svgdata = svgdata.replace("%TITLE%", "7-Tages-Inzidenz")
-        svgdata = svgdata.replace("%MIN_VAL%", "+0 Fälle/100.000 EW")
-        svgdata = svgdata.replace("%MID_VAL%", "%+.0f Fälle/100.000 EW" % (int(max_value/2)))
-        svgdata = svgdata.replace("%MAX_VAL%", "%+.0f Fälle/100.000 EW" % (max_value))               
+        svgdata = svgdata.replace("%MIN_VAL%", "")
+        svgdata = svgdata.replace("%MID_VAL%", "")
+        svgdata = svgdata.replace("%MAX_VAL%", "")
         svgdata = svgdata.replace("%LABEL_SUM%", "+%.0f Fälle/100.000 EW" % (inc_th))
             
         now = datetime.fromtimestamp(timestamp)
@@ -108,7 +115,7 @@ if __name__ == "__main__":
         
         # create png
         os.system( "convert -resize 800x628 -background '#f2f2f2' -alpha remove -alpha off {} {}".format(SVGFILE, PNGFILET) )
-        os.system( "convert {} gradient.png -gravity northwest -geometry +552+95 -composite -quality 70 {}".format(PNGFILET, JPGFILE) )
+        os.system( "convert {} gradient_bg.png -gravity northwest -geometry +552+95 -composite -quality 90 {}".format(PNGFILET, JPGFILE) )
         os.system( "rm -f {}".format(PNGFILET) )
         
     except:
