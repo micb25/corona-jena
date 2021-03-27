@@ -257,6 +257,8 @@ function changeViewTo( id ) {
 	} else {
 		document.getElementById( 'tspan_sum' ).innerHTML = "";
 	}
+	// set source
+	document.getElementById( 'tspan_source' ).innerHTML = "Quelle: " + json.types[ currentType ][ 'source' ];
 	// set legend upper limit
 	document.getElementById( 'upperCount' ).innerHTML = formatValue( maxArray[ currentType ] );
 	document.getElementById( 'mapHeadline' ).innerHTML = json.types[ currentType ][ langKey ];
