@@ -18,7 +18,7 @@ if __name__ == "__main__":
     
     SCRIPTPATH = os.path.dirname(os.path.realpath(__file__))
     
-    DATAFILE = SCRIPTPATH + "/../data/cases_thuringia.csv"
+    DATAFILE = SCRIPTPATH + "/../data/cases_rki_7day_incidence.csv"
     TEMPLATE = SCRIPTPATH + "/TH.svg.template"
     SVGFILE  = SCRIPTPATH + "/map_th.svg"
     JPGFILE  = SCRIPTPATH + "/../map_th_incidence_week.jpg"
@@ -51,64 +51,34 @@ if __name__ == "__main__":
         "Weimarer Land": "%FC_AP%"
     }
     
-    # number of residents per city/county / 100000; values taken from:
-    # https://statistik.thueringen.de/datenbank/TabAnzeige.asp?tabelle=gg000102&startpage=99&vorspalte=1&felder=2&zeit=2019%7C%7Cs1
-    residents_array  = {
-        "Altenburger Land":       0.89393,
-        "Eichsfeld":              1.00006,
-        "Eisenach":               0.42250,
-        "Erfurt":                 2.13981,
-        "Gera":                   0.93125,
-        "Gotha":                  1.34908,
-        "Greiz":                  0.97398,
-        "Hildburghausen":         0.63197,
-        "Ilm-Kreis":              1.06249,
-        "Jena":                   1.11343,
-        "Kyffhäuserkreis":        0.74212,
-        "Nordhausen":             0.83416,
-        "Saale-Holzland-Kreis":   0.82950,
-        "Saale-Orla-Kreis":       0.80312,
-        "Saalfeld-Rudolstadt":    1.03199,
-        "Schmalkalden-Meiningen": 1.24916,
-        "Sömmerda":               0.69427,
-        "Sonneberg":              0.57717,
-        "Suhl":                   0.36789,
-        "Unstrut-Hainich-Kreis":  1.02232,
-        "Wartburgkreis":          1.18974,
-        "Weimar":                 0.65228,
-        "Weimarer Land":          0.82156
-    }
-    
     try:
         
         # read data file
         with open(DATAFILE, "r") as df:
             rawdata = df.read().splitlines()
-
-        # get latest timestamp
-        timestamp = int(int(rawdata[-1].split(",")[0])/86400)*86400
-        timestamp_last = int(rawdata[-1].split(",")[0])
+            
+        columns = rawdata[0].split(",")[2:]
+        last_line = rawdata[-1].split(",")
+        timestamp = int(last_line.pop(0))
         
-        last_week = timestamp - 7 * 86400
+        # convert to float
+        for i, entry in enumerate(last_line):
+            last_line[i] = float(entry)
         
+        # 7-day incidence for TH
+        inc_th = last_line.pop(0)
+        
+        # get maximum value
+        max_value = max(last_line)
+                
         # count total cases and assign cases
-        sum_cases = 0
-        sum_residents = 0
-        max_cases = 0
         area_data = {}
-        for l in rawdata:
-            ds = l.split(",")
-            if ( len(ds) == 8 ):
-                if ( int(int(ds[0])/86400)*86400 == last_week ):
-                    area_data[ds[1]] = -int(ds[3])
-                if ( int(ds[0]) == timestamp_last ):
-                    area_data[ds[1]] += int(ds[3])
-                    sum_cases += area_data[ds[1]]
-                    area_data[ds[1]] /= residents_array[ds[1]]
-                    sum_residents += residents_array[ds[1]]
-                    if ( area_data[ds[1]] > max_cases ):
-                        max_cases = area_data[ds[1]]
-
+        
+        for k, r in replace_array.items():
+            key = r[4:]
+            col_idx = columns.index(key[:-1])
+            area_data[k] = last_line[col_idx]
+        
         # read SVG template
         with open(TEMPLATE, "r") as df:
             svgdata = df.read()
@@ -118,15 +88,15 @@ if __name__ == "__main__":
             if ( int(area_data[k]) < 0 ):
                 area_data[k] = -1
                 
-            area_color = value_to_color(area_data[k], max_cases)
+            area_color = value_to_color(area_data[k], max_value)
             svgdata = svgdata.replace(r, area_color)
 
         # change labels
         svgdata = svgdata.replace("%TITLE%", "7-Tages-Inzidenz")
         svgdata = svgdata.replace("%MIN_VAL%", "+0.0 Fälle/100.000 EW")
-        svgdata = svgdata.replace("%MID_VAL%", "%+.1f Fälle/100.000 EW" % (int(max_cases/2)))
-        svgdata = svgdata.replace("%MAX_VAL%", "%+.1f Fälle/100.000 EW" % (max_cases))               
-        svgdata = svgdata.replace("%LABEL_SUM%", "+%.1f Fälle/100.000 EW" % (sum_cases/sum_residents))
+        svgdata = svgdata.replace("%MID_VAL%", "%+.1f Fälle/100.000 EW" % (int(max_value/2)))
+        svgdata = svgdata.replace("%MAX_VAL%", "%+.1f Fälle/100.000 EW" % (max_value))               
+        svgdata = svgdata.replace("%LABEL_SUM%", "+%.1f Fälle/100.000 EW" % (inc_th))
             
         now = datetime.fromtimestamp(timestamp)
         svgdata = svgdata.replace("%DATE%", now.strftime("letzte Aktualisierung: %d.%m.%Y"))
