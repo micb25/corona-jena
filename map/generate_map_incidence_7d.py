@@ -93,10 +93,10 @@ if __name__ == "__main__":
 
         # change labels
         svgdata = svgdata.replace("%TITLE%", "7-Tages-Inzidenz")
-        svgdata = svgdata.replace("%MIN_VAL%", "+0.0 Fälle/100.000 EW")
-        svgdata = svgdata.replace("%MID_VAL%", "%+.1f Fälle/100.000 EW" % (int(max_value/2)))
-        svgdata = svgdata.replace("%MAX_VAL%", "%+.1f Fälle/100.000 EW" % (max_value))               
-        svgdata = svgdata.replace("%LABEL_SUM%", "+%.1f Fälle/100.000 EW" % (inc_th))
+        svgdata = svgdata.replace("%MIN_VAL%", "+0 Fälle/100.000 EW")
+        svgdata = svgdata.replace("%MID_VAL%", "%+.0f Fälle/100.000 EW" % (int(max_value/2)))
+        svgdata = svgdata.replace("%MAX_VAL%", "%+.0f Fälle/100.000 EW" % (max_value))               
+        svgdata = svgdata.replace("%LABEL_SUM%", "+%.0f Fälle/100.000 EW" % (inc_th))
             
         now = datetime.fromtimestamp(timestamp)
         svgdata = svgdata.replace("%DATE%", now.strftime("letzte Aktualisierung: %d.%m.%Y"))
