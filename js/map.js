@@ -68,19 +68,44 @@ function rgbTohex( rgbColor ) {
 }
 
 // src: https://stackoverflow.com/questions/16360533/calculate-color-hex-having-2-colors-and-percent-position
-function valueToColor(i, max, maxColor ) {
-	outputType = typeof outputType !== 'undefined' ? outputType : 'hex';
-	whiteRGB = { r: 255, g: 255, b: 255 };
-	var resultColor = whiteRGB;
-	if ( i > 0 ) {
-		var ratio = parseFloat( i ) / parseFloat( max );
-		maxColorRGB = hexTorgb( maxColor );
-		resultColor['r'] = Math.ceil( maxColorRGB['r'] * ratio + whiteRGB[ 'r' ] * (1-ratio) );
-		resultColor['g'] = Math.ceil( maxColorRGB['g'] * ratio + whiteRGB[ 'g' ] * (1-ratio) );
-		resultColor['b'] = Math.ceil( maxColorRGB['b'] * ratio + whiteRGB[ 'b' ] * (1-ratio) );
+function valueToColor(i, max, maxColor, use_alternative_palette ) {
+	if ( !use_alternative_palette ) {
+		
+		outputType = typeof outputType !== 'undefined' ? outputType : 'hex';
+		whiteRGB = { r: 255, g: 255, b: 255 };
+		var resultColor = whiteRGB;
+		if ( i > 0 ) {
+			var ratio = parseFloat( i ) / parseFloat( max );
+			maxColorRGB = hexTorgb( maxColor );
+			resultColor['r'] = Math.ceil( maxColorRGB['r'] * ratio + whiteRGB[ 'r' ] * (1-ratio) );
+			resultColor['g'] = Math.ceil( maxColorRGB['g'] * ratio + whiteRGB[ 'g' ] * (1-ratio) );
+			resultColor['b'] = Math.ceil( maxColorRGB['b'] * ratio + whiteRGB[ 'b' ] * (1-ratio) );
 
+		}
+		return rgbTohex( resultColor );
+	} else {
+		// inspired by RiskLayer's 7-day-incidence color scheme
+		if ( i >= 500.0 ) {
+			return rgbTohex( { r: 91, g: 24, b: 155 } );
+		}
+		else if ( i >= 200 ) {
+			return rgbTohex( { r: 178, g: 117, b: 221 } );
+		}
+		else if ( i >= 100 ) {
+			return rgbTohex( { r: 172, g: 19, b: 22 } );
+		}
+		else if ( i >= 50 ) {
+			return rgbTohex( { r: 235, g: 26, b: 31 } );
+		}
+		else if ( i >= 35 ) {
+			return rgbTohex( { r: 241, g: 137, b: 74 } );
+		}
+		else if ( i >= 15 ) {
+			return rgbTohex( { r: 254, g: 255, b: 177 } );
+		}
+		// default color
+		return rgbTohex( { r: 255, g: 255, b: 255 } );
 	}
-	return rgbTohex( resultColor );
 }
 
 function getOverlayTextColor( bgColor ) {
@@ -204,6 +229,18 @@ function showUnits( ) {
 	document.getElementById( 'cases_tspan_count' ).innerHTML = '';
 }
 
+function showLegend( ) {
+	// hide legend and labels
+	document.getElementById( 'legend' ).style.display = 'block';
+	document.getElementById( 'colorGradient' ).style.display = 'block';
+}
+
+function hideLegend( ) {
+	// hide legend and labels
+	document.getElementById( 'legend' ).style.display = 'none';
+	document.getElementById( 'colorGradient' ).style.display = 'none';
+}
+
 function m_over_region( id ) {
 	id = id.split( '_' );
 
@@ -240,12 +277,13 @@ function changeViewTo( id ) {
 	}
 	document.getElementById( id ).className = "menu_focus";
 	currentType = id.split('_')[1];
+	is_7d_incidence = currentType == 'reldiffweek';
 
 	for (var regionKey in json.values) {
 		// populate result array to be able to read out the data on mouse over
 		resultArray[ regionKey ] = {};
 		resultArray[ regionKey ]['value'] = json.values[ regionKey ][ currentType ];
-		resultArray[ regionKey ]['color'] = valueToColor( resultArray[ regionKey ]['value'], maxArray[ currentType ], json.types[ currentType ][ 'color' ] );
+		resultArray[ regionKey ]['color'] = valueToColor( resultArray[ regionKey ]['value'], maxArray[ currentType ], json.types[ currentType ][ 'color' ], is_7d_incidence );
 		// apply color to map
 		document.getElementById( 'path_'+ regionKey ).style.fill = resultArray[ regionKey ]['color'];
 		document.getElementById( 'text_'+ regionKey ).style.fill = getOverlayTextColor( resultArray[ regionKey ]['color'] );
@@ -259,13 +297,20 @@ function changeViewTo( id ) {
 	}
 	// set source
 	document.getElementById( 'tspan_source' ).innerHTML = "Quelle: " + json.types[ currentType ][ 'source' ];
+	// hide/show legend
+	if ( !is_7d_incidence )
+	{
+		showLegend();
+	} else {
+		hideLegend();
+	}
 	// set legend upper limit
 	document.getElementById( 'upperCount' ).innerHTML = formatValue( maxArray[ currentType ] );
 	document.getElementById( 'mapHeadline' ).innerHTML = json.types[ currentType ][ langKey ];
 	document.getElementById( 'cases_text_headline' ).innerHTML = json.types[ currentType ][ langKey ];
 	showUnits();
 	// init color legend
-	document.getElementById('upperLimitColor').setAttribute("stop-color", valueToColor( 1, 1, json.types[ currentType ][ 'color' ] ) );
+	document.getElementById('upperLimitColor').setAttribute("stop-color", valueToColor( 1, 1, json.types[ currentType ][ 'color' ], is_7d_incidence ) );
 	url = window.location.href.split("#");
 	window.history.pushState("", document.getElementById( 'mapHeadline' ).innerHTML, url[0] + "#" + currentType);
 }
