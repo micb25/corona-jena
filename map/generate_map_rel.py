@@ -123,7 +123,7 @@ if __name__ == "__main__":
         
         # create png
         os.system( "convert -resize 800x628 -background '#f2f2f2' -alpha remove -alpha off {} {}".format(SVGFILE, PNGFILET) )
-        os.system( "convert {} gradient.png -gravity northwest -geometry +552+95 -composite -quality 70 {}".format(PNGFILET, JPGFILE) )
+        os.system( "convert {} gradient.png -gravity northwest -geometry +552+95 -composite -quality 80 {}".format(PNGFILET, JPGFILE) )
         os.system( "rm -f {}".format(PNGFILET) )
         
     except:
