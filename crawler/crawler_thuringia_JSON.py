@@ -4,7 +4,7 @@
 import os, json
 
 
-def readTHdata(data_file):
+def readTHdata(data_folder):
     
     timestamp_array    = []
     timestamp_last     = -1
@@ -80,7 +80,7 @@ def readTHdata(data_file):
             "unit": "Fälle / 100&thinsp;000 EW",
             "unit1": "Fall / 100&thinsp;000 EW",
             "pm" : 1,
-            "source": "TMASGFF"
+            "source": "eigene Berechnung mit RKI-Rohdaten"
         },
         #"hospinf": {
         #    "id": 5,
@@ -167,7 +167,7 @@ def readTHdata(data_file):
     }
     
     try:
-        with open(data_file, 'r') as df:
+        with open(data_folder + "cases_thuringia.csv", 'r') as df:
             raw_data = df.read().splitlines()[1:]
             
         for line in raw_data:
@@ -212,13 +212,26 @@ def readTHdata(data_file):
                     for key in regions:
                         if regions[key]["name"] == line_data[1]:
                             regions[key]["diffweek"] -= int(line_data[3])
-                            regions[key]["reldiffweek"] = regions[key]["diffweek"] / regions[key]["res"]*100000
                             regions[key]["deceaseddiffweek"] -= int(line_data[6])
                             
         else:
             for key in regions:
                 regions[key]["diffweek"] = 0
-                regions[key]["reldiffweek"] = 0
+                
+        # 7-day incidence (RKI data)
+        with open(data_folder + "cases_rki_7day_incidence.csv", "r") as df:
+            rawdata = df.read().splitlines()
+            
+        columns = rawdata[0].split(",")[2:]
+        last_line = rawdata[-1].split(",")[2:]
+        
+        # convert to float
+        for i, entry in enumerate(last_line):
+            last_line[i] = float(entry)
+        
+        for key in regions:
+            col_idx = columns.index(key)
+            regions[key]["reldiffweek"] = last_line[col_idx]
             
     except:
         return False
@@ -239,11 +252,10 @@ if __name__ == "__main__":
     ###########################################################################
 
     DATA_FOLDER = os.path.dirname(os.path.realpath(__file__)) + "/../data/"
-    
-    CSV_FILE  = DATA_FOLDER + "cases_thuringia.csv"    
+       
     JSON_FILE = DATA_FOLDER + "cases_thuringia.json"
     
-    data = readTHdata(CSV_FILE)
+    data = readTHdata(DATA_FOLDER)
     
     if data != False:
         f = open(JSON_FILE, 'w')
