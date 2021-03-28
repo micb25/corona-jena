@@ -31,6 +31,7 @@ def getWENumbers(url):
     try:
         r = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0)
         s = r.text.lower().replace('.', '')
+        s = s.replace("</span>", "").replace("<span style=\"color:black\">", "")
                 
         ps1 = num_pattern1.findall( s )
         ps2 = num_pattern2.findall( s )
