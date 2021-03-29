@@ -190,7 +190,7 @@ svg #region_names tspan, svg #region_names text {
 
 svg #Districts_Color path {
 	fill: none;
-	stroke: #F9F9F9;
+	stroke: #adadad;
 	stroke-width: 1.25;
 	stroke-linejoin: round;
 	stroke-miterlimit: 4;
