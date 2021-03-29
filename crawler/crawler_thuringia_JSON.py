@@ -79,7 +79,6 @@ def readTHdata(data_folder):
             "color": "#A000FFFF",
             "unit": "Fälle / 100&thinsp;000 EW",
             "unit1": "Fall / 100&thinsp;000 EW",
-            "pm" : 1,
             "source": "RKI; eigene Berechnung"
         },
         #"active": {
