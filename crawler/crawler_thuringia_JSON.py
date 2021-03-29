@@ -38,7 +38,7 @@ def readTHdata(data_folder):
 
     types = {
         "cases": {
-            "id": 5,
+            "id": 4,
             "de": "Fallzahlen (Summe)",
             "color": "#0000d3",
             "unit": "Fälle",
@@ -47,14 +47,14 @@ def readTHdata(data_folder):
             "source": "RKI"
         },
         "caseres" : {
-            "id": 4,
+            "id": 3,
             "de": "Fälle / 100&thinsp;000 EW",
             "color": "#0000D3",
             "unit": "Fälle / 100&thinsp;000 EW",
             "source": "RKI"
         },
         "diff": {
-            "id": 3,
+            "id": 2,
             "de": "Entwicklung zum Vortag",
             "color": "#A000FFFF",
             "unit": "Fälle",
@@ -64,7 +64,7 @@ def readTHdata(data_folder):
             "source": "RKI"
         },
         "diffweek": {
-            "id": 2,
+            "id": 1,
             "de": "Entwicklung zur Vorwoche",
             "color": "#A000FFFF",
             "unit": "Fälle",
@@ -82,15 +82,15 @@ def readTHdata(data_folder):
             "pm" : 1,
             "source": "RKI; eigene Berechnung"
         },
-        "active": {
-            "id": 1,
-            "de": "aktive Fälle",
-            "color": "#0000d3",
-            "unit": "aktive Fälle",
-            "unit1": "aktiver Fall",
-            "showSum": 1,
-            "source": "RKI; eigene Berechnung"
-        },
+        #"active": {
+        #    "id": 1,
+        #    "de": "aktive Fälle",
+        #    "color": "#0000d3",
+        #    "unit": "aktive Fälle",
+        #    "unit1": "aktiver Fall",
+        #    "showSum": 1,
+        #    "source": "RKI; eigene Berechnung"
+        #},
         #"hospinf": {
         #    "id": 5,
         #    "de": "stationäre Fälle mit COVID-19",
@@ -110,7 +110,7 @@ def readTHdata(data_folder):
         #    "source": "TMASGFF"
         #},
         "deceased": {
-            "id": 6,
+            "id": 5,
             "de": "Todesfälle (Summe)",
             "color": "#333333",
             "unit": "Verstorbene",
@@ -119,7 +119,7 @@ def readTHdata(data_folder):
             "source": "RKI"
         },
         "deceasedrel": {
-            "id": 7,
+            "id": 6,
             "de": "Todesfälle / 100&thinsp;000 EW",
             "color": "#333333",
             "unit": "Verstorbene / 100&thinsp;000 EW",
@@ -127,7 +127,7 @@ def readTHdata(data_folder):
             "source": "RKI; eigene Berechnung"
         },
         "deceaseddiffweek": {
-            "id": 8,
+            "id": 7,
             "de": "Todesfälle (letzte 7 Tage)",
             "color": "#333333",
             "unit": "Verstorbene",
@@ -137,21 +137,21 @@ def readTHdata(data_folder):
             "source": "RKI; eigene Berechnung"
         },
         "cfr": {
-            "id": 9,
+            "id": 8,
             "de": "Fallsterblichkeit",
             "color": "#333333",
             "unit": "%",
             "source": "RKI; eigene Berechnung"
         },
         "casedens" : { 
-            "id": 10,
+            "id": 9,
             "de": "flächenbezogene Fallzahlen",
             "color": "#0000D3",
             "unit": "Fälle / km²",
             "source": "RKI, statistik.thueringen.de"
         },
         "res" : {
-            "id": 11,
+            "id": 10,
             "de": 'Einwohner',
             "color": '#00A000',
             "unit": 'EW',
@@ -159,7 +159,7 @@ def readTHdata(data_folder):
             "source": "statistik.thueringen.de"
         },
         "area" : {
-            "id": 12,
+            "id": 11,
             "de": 'Fläche',
             "color": '#00A000',
             "unit": 'km²',
@@ -167,7 +167,7 @@ def readTHdata(data_folder):
             "source": "statistik.thueringen.de"
         },
         "dens" : {
-            "id": 13,
+            "id": 12,
             "de": 'Einwohnerdichte',
             "color": '#00A000',
             "unit": 'EW / km²',
@@ -213,7 +213,7 @@ def readTHdata(data_folder):
             if key != 'TH':
                 regions[key]["dens"] = regions[key]["res"] / regions[key]["area"]
                 regions[key]["cases"] = cases
-                regions[key]["active"] = cases - recovered - deceased
+                # regions[key]["active"] = cases - recovered - deceased
                 regions[key]["casedens"] = cases / regions[key]["area"]
                 regions[key]["caseres"] = cases / regions[key]["res"]*100000
                 regions[key]["deceased"] = deceased
