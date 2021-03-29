@@ -68,43 +68,58 @@ function rgbTohex( rgbColor ) {
 }
 
 // src: https://stackoverflow.com/questions/16360533/calculate-color-hex-having-2-colors-and-percent-position
+function valueToColorGradient(ratio, firstColor, secondColor) {
+	return {
+		'r': Math.ceil( secondColor['r'] * ratio + firstColor[ 'r' ] * (1-ratio) ),
+		'g': Math.ceil( secondColor['g'] * ratio + firstColor[ 'g' ] * (1-ratio) ),
+		'b': Math.ceil( secondColor['b'] * ratio + firstColor[ 'b' ] * (1-ratio) )
+	};
+}
+
 function valueToColor(i, max, maxColor, use_alternative_palette ) {
 	if ( !use_alternative_palette ) {
-		
-		outputType = typeof outputType !== 'undefined' ? outputType : 'hex';
-		whiteRGB = { r: 255, g: 255, b: 255 };
-		var resultColor = whiteRGB;
-		if ( i > 0 ) {
+		var resultColor = { r: 255, g: 255, b: 255 };
+		if ( i >= 0 ) {
 			var ratio = parseFloat( i ) / parseFloat( max );
 			maxColorRGB = hexTorgb( maxColor );
-			resultColor['r'] = Math.ceil( maxColorRGB['r'] * ratio + whiteRGB[ 'r' ] * (1-ratio) );
-			resultColor['g'] = Math.ceil( maxColorRGB['g'] * ratio + whiteRGB[ 'g' ] * (1-ratio) );
-			resultColor['b'] = Math.ceil( maxColorRGB['b'] * ratio + whiteRGB[ 'b' ] * (1-ratio) );
-
+			resultColor = valueToColorGradient(ratio, { r: 255, g: 255, b: 255 }, maxColorRGB);
 		}
 		return rgbTohex( resultColor );
 	} else {
 		// inspired by RiskLayer's 7-day-incidence color scheme
-		if ( i >= 500.0 ) {
-			return rgbTohex( { r: 91, g: 24, b: 155 } );
+		var color_palette = [
+			{ r:   0, g:   0, b:   0 },
+			{ r:  91, g:  24, b: 155 },
+			{ r: 178, g: 117, b: 221 },
+			{ r: 172, g:  19, b:  22 },
+			{ r: 235, g:  26, b:  31 },
+			{ r: 241, g: 137, b:  74 },
+			{ r: 254, g: 255, b: 177 },
+			{ r: 255, g: 255, b: 255 }
+		];
+		
+		if ( i >= 1000.0 ) {
+			return rgbTohex( color_palette[0] );
+		}
+		else if ( i >= 500.0 ) {
+			return rgbTohex( valueToColorGradient((i-500)/500,  color_palette[1], color_palette[0] ) );
 		}
 		else if ( i >= 200 ) {
-			return rgbTohex( { r: 178, g: 117, b: 221 } );
+			return rgbTohex( valueToColorGradient((i-200)/300,  color_palette[2], color_palette[1] ) );
 		}
 		else if ( i >= 100 ) {
-			return rgbTohex( { r: 172, g: 19, b: 22 } );
+			return rgbTohex( valueToColorGradient((i-100)/100,  color_palette[3], color_palette[2] ) );
 		}
 		else if ( i >= 50 ) {
-			return rgbTohex( { r: 235, g: 26, b: 31 } );
+			return rgbTohex( valueToColorGradient((i-50)/50,    color_palette[4], color_palette[3] ) );
 		}
 		else if ( i >= 35 ) {
-			return rgbTohex( { r: 241, g: 137, b: 74 } );
+			return rgbTohex( valueToColorGradient((i-35)/15,    color_palette[5], color_palette[4] ) );
 		}
 		else if ( i >= 15 ) {
-			return rgbTohex( { r: 254, g: 255, b: 177 } );
+			return rgbTohex( valueToColorGradient((i-15)/20,    color_palette[6], color_palette[5] ) );
 		}
-		// default color
-		return rgbTohex( { r: 255, g: 255, b: 255 } );
+		return rgbTohex( valueToColorGradient(Math.max(i,0)/15, color_palette[7], color_palette[6] ) );
 	}
 }
 
