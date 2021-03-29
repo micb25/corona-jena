@@ -233,12 +233,14 @@ function showLegend( ) {
 	// hide legend and labels
 	document.getElementById( 'legend' ).style.display = 'block';
 	document.getElementById( 'colorGradient' ).style.display = 'block';
+	document.getElementById( 'legend_incidence' ).style.display = 'none';
 }
 
 function hideLegend( ) {
 	// hide legend and labels
 	document.getElementById( 'legend' ).style.display = 'none';
 	document.getElementById( 'colorGradient' ).style.display = 'none';
+	document.getElementById( 'legend_incidence' ).style.display = 'block';
 }
 
 function m_over_region( id ) {
