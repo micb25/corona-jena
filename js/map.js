@@ -277,7 +277,7 @@ function changeViewTo( id ) {
 	}
 	document.getElementById( id ).className = "menu_focus";
 	currentType = id.split('_')[1];
-	is_7d_incidence = currentType == 'reldiffweek';
+	is_7d_incidence = currentType == 'incidence';
 
 	for (var regionKey in json.values) {
 		// populate result array to be able to read out the data on mouse over
