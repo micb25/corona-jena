@@ -18,7 +18,7 @@ if __name__ == "__main__":
     
     SCRIPTPATH = os.path.dirname(os.path.realpath(__file__))
     
-    DATAFILE = SCRIPTPATH + "/../data/cases_thuringia.csv"
+    DATAFILE = SCRIPTPATH + "/../data/rki_th_by_date/cases_by_day_and_region.csv"
     TEMPLATE = SCRIPTPATH + "/TH.svg.template"
     SVGFILE  = SCRIPTPATH + "/map_th.svg"
     JPGFILE  = SCRIPTPATH + "/../map_th.jpg"
@@ -26,53 +26,58 @@ if __name__ == "__main__":
     
     # list of placeholders for the colors in the SVG template
     replace_array  = {
-        "Altenburger Land": "%FC_ABG%",
-        "Eichsfeld": "%FC_EIC%",
-        "Eisenach": "%FC_EA%",
-        "Erfurt": "%FC_EF%",
-        "Gera": "%FC_G%",
-        "Gotha": "%FC_GTH%",
-        "Greiz": "%FC_GRZ%",
-        "Hildburghausen": "%FC_HBN%",
-        "Ilm-Kreis": "%FC_IK%",
-        "Jena": "%FC_J%",
-        "Kyffhäuserkreis": "%FC_KYF%",
-        "Nordhausen": "%FC_NDH%",
-        "Saale-Holzland-Kreis": "%FC_SHK%",
-        "Saale-Orla-Kreis": "%FC_SOK%",
-        "Saalfeld-Rudolstadt": "%FC_SLF%",
-        "Schmalkalden-Meiningen": "%FC_SM%",
-        "Sömmerda": "%FC_SOM%",
-        "Sonneberg": "%FC_SON%",
-        "Suhl": "%FC_SHL%",
-        "Unstrut-Hainich-Kreis": "%FC_UH%",
-        "Wartburgkreis": "%FC_WAK%",
-        "Weimar": "%FC_WE%",
-        "Weimarer Land": "%FC_AP%"
+        "ABG": "%FC_ABG%",
+        "EIC": "%FC_EIC%",
+        "EA": "%FC_EA%",
+        "EF": "%FC_EF%",
+        "G": "%FC_G%",
+        "GTH": "%FC_GTH%",
+        "GRZ": "%FC_GRZ%",
+        "HBN": "%FC_HBN%",
+        "IK": "%FC_IK%",
+        "J": "%FC_J%",
+        "KYF": "%FC_KYF%",
+        "NDH": "%FC_NDH%",
+        "SHK": "%FC_SHK%",
+        "SOK": "%FC_SOK%",
+        "SLF": "%FC_SLF%",
+        "SM": "%FC_SM%",
+        "SOM": "%FC_SOM%",
+        "SON": "%FC_SON%",
+        "SHL": "%FC_SHL%",
+        "UH": "%FC_UH%",
+        "WAK": "%FC_WAK%",
+        "WE": "%FC_WE%",
+        "AP": "%FC_AP%"
     }
     
     try:
-        
-        # read data file
+        # read RKI data file
         with open(DATAFILE, "r") as df:
-            rawdata = df.read().splitlines()
-
-        # get latest timestamp
-        timestamp = int(rawdata[-1].split(",")[0])
+            rawdata = df.read().splitlines()[-24:]
+            
+        th_data = []
+        for line in rawdata:
+            line_data = line.split(",")
+            for i, e in enumerate(line_data):
+                if i != 1:
+                    line_data[i] = int(e)
+                    
+            th_data.append( line_data )
         
-        # count total cases and assign cases
-        sum_cases = 0
-        max_cases = 0
+        # get latest timestamp
+        timestamp = int(th_data[0][0])
+        
+        cases_tmp = [th_data[i][1:3] for i in range(0, len(th_data))]
         area_data = {}
-        for l in rawdata:
-            ds = l.split(",")
-            if ( len(ds) == 8 ):
-                if ( int(ds[0]) == timestamp ):
-                    area_data[ds[1]] = int(ds[3])
-                    sum_cases += int(ds[3])
-                    if ( int(ds[3]) > max_cases ):
-                        max_cases = int(ds[3])
-
+        max_cases = 0
+        sum_cases = 0
+        for key, c in cases_tmp:
+            if key != 'TH':
+                area_data[key] = c
+                max_cases = max(c, max_cases)
+                sum_cases += c
+                        
         # read SVG template
         with open(TEMPLATE, "r") as df:
             svgdata = df.read()

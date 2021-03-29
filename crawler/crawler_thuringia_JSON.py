@@ -38,49 +38,58 @@ def readTHdata(data_folder):
 
     types = {
         "cases": {
-            "id": 4,
+            "id": 5,
             "de": "Fallzahlen (Summe)",
             "color": "#0000d3",
             "unit": "Fälle",
             "unit1": "Fall",
             "showSum": 1,
-            "source": "TMASGFF"
+            "source": "RKI"
         },
         "caseres" : {
-            "id": 3,
+            "id": 4,
             "de": "Fälle / 100&thinsp;000 EW",
             "color": "#0000D3",
             "unit": "Fälle / 100&thinsp;000 EW",
-            "source": "TMASGFF"
+            "source": "RKI"
         },
         "diff": {
-            "id": 2,
+            "id": 3,
             "de": "Entwicklung zum Vortag",
             "color": "#A000FFFF",
             "unit": "Fälle",
             "unit1": "Fall",
             "pm" : 1,
             "showSum": 1,
-            "source": "TMASGFF"
+            "source": "RKI"
         },
         "diffweek": {
-            "id": 1,
+            "id": 2,
             "de": "Entwicklung zur Vorwoche",
             "color": "#A000FFFF",
             "unit": "Fälle",
             "unit1": "Fall",
             "pm" : 1,
             "showSum": 1,
-            "source": "eigene Berechnung; TMASGFF"
+            "source": "RKI; eigene Berechnung"
         },
-        "reldiffweek": {
+        "incidence": {
             "id": 0,
             "de": "7-Tages-Inzidenz",
             "color": "#A000FFFF",
             "unit": "Fälle / 100&thinsp;000 EW",
             "unit1": "Fall / 100&thinsp;000 EW",
             "pm" : 1,
-            "source": "eigene Berechnung; RKI"
+            "source": "RKI; eigene Berechnung"
+        },
+        "active": {
+            "id": 1,
+            "de": "aktive Fälle",
+            "color": "#0000d3",
+            "unit": "aktive Fälle",
+            "unit1": "aktiver Fall",
+            "showSum": 1,
+            "source": "RKI; eigene Berechnung"
         },
         #"hospinf": {
         #    "id": 5,
@@ -101,48 +110,48 @@ def readTHdata(data_folder):
         #    "source": "TMASGFF"
         #},
         "deceased": {
-            "id": 5,
+            "id": 6,
             "de": "Todesfälle (Summe)",
             "color": "#333333",
             "unit": "Verstorbene",
             "unit1": "Verstorbene(r)",
             "showSum": 1,
-            "source": "TMASGFF"
+            "source": "RKI"
         },
         "deceasedrel": {
-            "id": 6,
+            "id": 7,
             "de": "Todesfälle / 100&thinsp;000 EW",
             "color": "#333333",
             "unit": "Verstorbene / 100&thinsp;000 EW",
             "unit1": "Verstorbene(r)",
-            "source": "eigene Berechnung; TMASGFF"
+            "source": "RKI; eigene Berechnung"
         },
         "deceaseddiffweek": {
-            "id": 7,
+            "id": 8,
             "de": "Todesfälle (letzte 7 Tage)",
             "color": "#333333",
             "unit": "Verstorbene",
             "unit1": "Verstorbene(r)",
             "showSum": 1,
             "pm" : 1,
-            "source": "TMASGFF"
+            "source": "RKI; eigene Berechnung"
         },
         "cfr": {
-            "id": 8,
+            "id": 9,
             "de": "Fallsterblichkeit",
             "color": "#333333",
             "unit": "%",
-            "source": "eigene Berechnung; TMASGFF"
+            "source": "RKI; eigene Berechnung"
         },
         "casedens" : { 
-            "id": 9,
+            "id": 10,
             "de": "flächenbezogene Fallzahlen",
             "color": "#0000D3",
             "unit": "Fälle / km²",
-            "source": "TMASGFF, statistik.thueringen.de"
+            "source": "RKI, statistik.thueringen.de"
         },
         "res" : {
-            "id": 10,
+            "id": 11,
             "de": 'Einwohner',
             "color": '#00A000',
             "unit": 'EW',
@@ -150,7 +159,7 @@ def readTHdata(data_folder):
             "source": "statistik.thueringen.de"
         },
         "area" : {
-            "id": 11,
+            "id": 12,
             "de": 'Fläche',
             "color": '#00A000',
             "unit": 'km²',
@@ -158,7 +167,7 @@ def readTHdata(data_folder):
             "source": "statistik.thueringen.de"
         },
         "dens" : {
-            "id": 12,
+            "id": 13,
             "de": 'Einwohnerdichte',
             "color": '#00A000',
             "unit": 'EW / km²',
@@ -166,58 +175,7 @@ def readTHdata(data_folder):
         }
     }
     
-    try:
-        with open(data_folder + "cases_thuringia.csv", 'r') as df:
-            raw_data = df.read().splitlines()[1:]
-            
-        for line in raw_data:
-            timestamp = int(line.split(",")[0])
-            if timestamp not in timestamp_array:
-                timestamp_array.append(timestamp)
-                
-        if len(timestamp_array) > 0:
-            timestamp_last = timestamp_array[-1]
-            
-            for line in raw_data:
-                line_data = line.split(",")
-                if int(line_data[0]) == timestamp_last:
-                    for key in regions:
-                        if regions[key]["name"] == line_data[1]:
-                            regions[key]["cases"]    = int(line_data[3])
-                            regions[key]["diff"]     = int(line_data[2])
-                            regions[key]["diffweek"] = int(line_data[3])
-                            regions[key]["hospinf"]  = int(line_data[4])
-                            regions[key]["severe"]   = int(line_data[5])
-                            regions[key]["deceased"] = int(line_data[6])
-                            regions[key]["deceaseddiffweek"] = int(line_data[6])
-                            regions[key]["casedens"] = regions[key]["cases"] / regions[key]["area"]
-                            regions[key]["caseres"] = regions[key]["cases"] / regions[key]["res"]*100000
-                            regions[key]["dens"] = regions[key]["res"] / regions[key]["area"]
-                            regions[key]["deceasedrel"] = regions[key]["deceased"] / regions[key]["res"]*100000 
-                            regions[key]["cfr"] = 100.0* regions[key]["deceased"] / int(line_data[3])
-                    
-        else:
-            return False
-        
-        for ts in timestamp_array:
-            timestamp_delta = (timestamp_last - ts) / 86400
-            if ( timestamp_delta >= 6.5 ) and ( timestamp_delta < 7.5 ):
-                timestamp_lastweek = ts
-                break
-            
-        if timestamp_lastweek > 0:
-            for line in raw_data:
-                line_data = line.split(",")
-                if int(line_data[0]) == timestamp_lastweek:
-                    for key in regions:
-                        if regions[key]["name"] == line_data[1]:
-                            regions[key]["diffweek"] -= int(line_data[3])
-                            regions[key]["deceaseddiffweek"] -= int(line_data[6])
-                            
-        else:
-            for key in regions:
-                regions[key]["diffweek"] = 0
-                
+    try:                        
         # 7-day incidence (RKI data)
         with open(data_folder + "cases_rki_7day_incidence.csv", "r") as df:
             rawdata = df.read().splitlines()
@@ -231,8 +189,43 @@ def readTHdata(data_folder):
         
         for key in regions:
             col_idx = columns.index(key)
-            regions[key]["reldiffweek"] = last_line[col_idx]
+            regions[key]["incidence"] = last_line[col_idx]
             
+            
+        # RKI data
+        with open(data_folder + "rki_th_by_date/cases_by_day_and_region.csv", "r") as df:
+            rawdata = df.read().splitlines()[-192:]
+            
+        th_data = []
+        for line in rawdata:
+            line_data = line.split(",")
+            for i, e in enumerate(line_data):
+                if i != 1:
+                    line_data[i] = int(e)
+                    
+            th_data.append( line_data )
+        
+        cases_total = [th_data[i][1:5] for i in range(168, len(th_data))]
+        cases_yesterday = [th_data[i][1:5] for i in range(144, 168)]
+        cases_week_ago = [th_data[i][1:5] for i in range(0, 24)]
+        
+        for i, [key, cases, recovered, deceased] in enumerate(cases_total):
+            if key != 'TH':
+                regions[key]["dens"] = regions[key]["res"] / regions[key]["area"]
+                regions[key]["cases"] = cases
+                regions[key]["active"] = cases - recovered - deceased
+                regions[key]["casedens"] = cases / regions[key]["area"]
+                regions[key]["caseres"] = cases / regions[key]["res"]*100000
+                regions[key]["deceased"] = deceased
+                regions[key]["deceasedrel"] = deceased / regions[key]["res"]*100000
+                regions[key]["cfr"] = 100.0 * deceased / cases
+                
+                regions[key]["diff"] = cases - cases_yesterday[i][1]
+                regions[key]["diffweek"] = cases - cases_week_ago[i][1]
+                regions[key]["deceaseddiffweek"] = deceased - cases_week_ago[i][3]
+        
+        timestamp_last = th_data[-1][0]
+        
     except:
         return False
     
