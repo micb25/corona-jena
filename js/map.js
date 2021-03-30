@@ -137,6 +137,20 @@ function getOverlayTextColor( bgColor ) {
 	return resultColor;
 }
 
+function getShadowColor( bgColor ) {
+	var bgColorRGB = hexTorgb( bgColor );
+	var resultColor = '#000000';
+	hsp = Math.sqrt(
+		0.299 * (bgColorRGB['r'] ** 2) +
+		0.587 * (bgColorRGB['g'] ** 2) +
+		0.114 * (bgColorRGB['b'] ** 2)
+	);
+	if ( hsp > 0.6*255 ) {
+		resultColor = '#808080';
+	}
+	return resultColor;
+}
+
 function hide_region_texts(	) {
 	document.getElementById( 'show_value_labels' ).style.display = 'none';
 	document.getElementById( 'show_name_labels' ).style.display = 'inline-block';
@@ -161,6 +175,7 @@ function hide_region_texts(	) {
 		// create a new label with the value
 		var node = document.createElementNS("http://www.w3.org/2000/svg", 'tspan');//createElement("tspan");
 		node.setAttribute("id", 'tsc_' + region );
+		node.setAttribute("style", "font-size: 24px; font-weight: bold;");
 		if ( y > 0 ) node.setAttribute("y", y);
 		node.innerHTML = formatValue( resultArray[ region ]['value'] );
 		document.getElementById( 'text_' + region ).appendChild( node );
@@ -303,8 +318,8 @@ function changeViewTo( id ) {
 		resultArray[ regionKey ]['color'] = valueToColor( resultArray[ regionKey ]['value'], maxArray[ currentType ], json.types[ currentType ][ 'color' ], is_7d_incidence );
 		// apply color to map
 		document.getElementById( 'path_'+ regionKey ).style.fill = resultArray[ regionKey ]['color'];
+		document.getElementById( 'text_'+ regionKey ).setAttribute("style", "text-shadow: 2px 2px 4px " + getShadowColor( resultArray[ regionKey ]['color'] ) + ";");
 		document.getElementById( 'text_'+ regionKey ).style.fill = getOverlayTextColor( resultArray[ regionKey ]['color'] );
-		
 	}
 	// show sum
 	if ( 'showSum' in json.types[ currentType ] ) {
