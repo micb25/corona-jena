@@ -57,8 +57,8 @@ def readTHdata(data_folder):
             "id": 2,
             "de": "Entwicklung zum Vortag",
             "color": "#A000FFFF",
-            "unit": "Fälle",
-            "unit1": "Fall",
+            "unit": "Neuinfektionen",
+            "unit1": "Neuinfektion",
             "pm" : 1,
             "showSum": 1,
             "source": "RKI"
@@ -67,8 +67,8 @@ def readTHdata(data_folder):
             "id": 1,
             "de": "Entwicklung zur Vorwoche",
             "color": "#A000FFFF",
-            "unit": "Fälle",
-            "unit1": "Fall",
+            "unit": "Neuinfektionen",
+            "unit1": "Neuinfektion",
             "pm" : 1,
             "showSum": 1,
             "source": "RKI; eigene Berechnung"
