@@ -34,6 +34,9 @@
 		<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
 		<link rel="stylesheet" type="text/css" href="./css/styles.css">
 		<link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
+		<!-- <link rel="preload" href="./data/cases_thuringia.json" as="fetch"> -->
+		<link rel="preload" href="./thuringia.svg" as="object">
+		<script src="./js/map_preview.js"></script>
 		<base target="_blank">
 	</head>
 	<body>
@@ -108,19 +111,27 @@
 		
 		<div class="mapBlockContainer">
 			<div class="mapBlock">
-				<a target="_self" href="./index_map.html#incidence"><img src="./map_th_incidence_week.jpg" alt="7-Tages-Inzidenz" title="7-Tages-Inzidenz" style="margin-left: 20px; width: 90%; max-width: 600px;"></a>
+				<a target="_self" href="./index_map.html#incidence">
+					<object data="./thuringia.svg" type="image/svg+xml" id="thuringiaMap1" alt="7-Tages-Inzidenz" title="7-Tages-Inzidenz" width="90%" style="margin-left: 0px; max-width: 600px;" onload="initializeMap(1);"></object>
+				</a>
 			</div>
 			<div class="mapBlock">
-				<a target="_self" href="./index_map.html#diff"><img src="./map_th_inc.jpg" alt="Entwicklung der Fallzahlen zum Vortag" title="Entwicklung der Fallzahlen zum Vortag" style="margin-left: 20px; width: 90%; max-width: 600px;"></a>
+				<a target="_self" href="./index_map.html#diff">
+					<object data="./thuringia.svg" type="image/svg+xml" id="thuringiaMap2" alt="Entwicklung der Fallzahlen zum Vortag" title="Entwicklung der Fallzahlen zum Vortag" width="90%" style="margin-left: 0px; max-width: 600px;" onload="initializeMap(2);"></object>
+				</a>
 			</div>
 		</div>
 
 		<div class="mapBlockContainer">
 			<div class="mapBlock">
-				<a target="_self" href="./index_map.html#diffweek"><img src="./map_th_inc_week.jpg" alt="Entwicklung der Fallzahlen zur Vorwoche" title="Entwicklung der Fallzahlen zur Vorwoche"></a>
+				<a target="_self" href="./index_map.html#diffweek">
+					<object data="./thuringia.svg" type="image/svg+xml" id="thuringiaMap3" alt="Entwicklung der Fallzahlen zur Vorwoche" title="Entwicklung der Fallzahlen zur Vorwoche" width="90%" style="margin-left: 0px; max-width: 600px;" onload="initializeMap(3);"></object>
+				</a>
 			</div>
 			<div class="mapBlock">
-				<a target="_self" href="./index_map.html#cases"><img src="./map_th.jpg" alt="Thüringenkarte" title="Thüringenkarte" style="margin-left: 20px; width: 90%; max-width: 600px;"></a>
+				<a target="_self" href="./index_map.html#cases">
+					<object data="./thuringia.svg" type="image/svg+xml" id="thuringiaMap4" alt="Fallzahlen (Summe)" title="Fallzahlen (Summe)" width="90%" style="margin-left: 0px; max-width: 600px;" onload="initializeMap(4);"></object>
+				</a>
 			</div>
 		</div>
 		
@@ -137,7 +148,9 @@
 
 		<div class="mapBlockContainer">
 			<div class="mapBlock">
-				<a target="_self" href="./index_map.html#deceased"><img src="./map_th_dec.jpg" alt="Verstorbene in Thüringen" title="Verstorbene in Thüringen" style="margin-left: 20px; width: 90%; max-width: 600px;"></a>
+				<a target="_self" href="./index_map.html#deceased">
+					<object data="./thuringia.svg" type="image/svg+xml" id="thuringiaMap5" alt="Verstorbene in Thüringen" title="Verstorbene in Thüringen" width="90%" style="margin-left: 0px; max-width: 600px;" onload="initializeMap(5);"></object>
+				</a>
 			</div>
 			<div class="graphBlock">
 				<img src="./plotD0.png" class="piechart" alt="Statistik der Intensivbetten für Thüringen auf Grundlage des DIVI-Intensivregisters" title="Statistik der Intensivbetten für Thüringen auf Grundlage des DIVI-Intensivregisters">
