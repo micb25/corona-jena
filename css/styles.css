@@ -178,7 +178,7 @@ svg#thuringiaMap {
 svg text {
 	font-family: arial;
 	text-align: center;
-	text-anchor: middle
+	text-anchor: middle;
 }
 
 svg #Districts_Color, svg #region_names tspan, svg #region_names text {
