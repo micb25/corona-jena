@@ -56,7 +56,7 @@ def readTHdata(data_folder):
         "diff": {
             "id": 2,
             "de": "Entwicklung zum Vortag",
-            "color": "#0000d3",
+            "color": "#0165fc",
             "unit": "Neuinfektionen",
             "unit1": "Neuinfektion",
             "pm" : 1,
