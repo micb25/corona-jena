@@ -6,23 +6,25 @@ import time, requests, re, os
 
 def getGeraNumbers(url):
     headers      = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
-    num_pattern1 = re.compile(r"infektionen\sgesamt:?\s([0-9]{1,})[\s,]")
-    num_pattern2 = re.compile(r"genesen:?\s?([0-9]{1,})[,\s]")
-    num_pattern3 = re.compile(r"verstorben:?\s?([0-9]{1,})[,\s]")
+    num_pattern1 = re.compile(r"\s([0-9]{1,})\s{1,}\([+-]?\s?([0-9]{1,})\)\s{1,}([0-9]{1,})\s{1,}\([+-]?\s?([0-9]{1,})\)\s{1,}([0-9]{1,})\s{1,}\([+-]?\s?([0-9]{1,})\)\s{1,}([0-9]{1,})\s{1,}\([+-]?\s?([0-9]{1,})\)\s{1,}")
+    num_pattern2 = re.compile(r"aus gera.*?\s([0-9]{1,})\s")
     
     try:
     
         r = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0)
-        s = r.text.lower().replace('.', '')
+        s = r.text.lower().replace('.', '').replace('\n', ' ')
+        s = re.sub(r"<td[^>]*>", ' ', s)
+        s = re.sub(r"<p[^>]*>", ' ', s)
+        s = re.sub(r"</p>", ' ', s)
+        s = re.sub(r"</td>", ' ', s)
         
         ps1 = num_pattern1.findall( s )
         ps2 = num_pattern2.findall( s )
-        ps3 = num_pattern3.findall( s )
-        
-        num_t = int(ps1[0]) if ( len(ps1) >= 1 ) else -1
-        num_r = int(ps2[0]) if ( len(ps2) >= 1 ) else -1
-        num_d = int(ps3[0]) if ( len(ps3) >= 1 ) else -1
-        num_h = -1
+                
+        num_t = int(ps1[0][2]) if ( len(ps1) >= 1 ) else -1
+        num_r = int(ps1[0][4]) if ( len(ps1) >= 1 ) else -1
+        num_d = int(ps1[0][6]) if ( len(ps1) >= 1 ) else -1
+        num_h = int(ps2[0]) if ( len(ps2) >= 1 ) else -1
         num_s = -1
         
         return [num_t, num_r, num_d, num_h, num_s]
