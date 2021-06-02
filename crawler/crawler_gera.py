@@ -6,7 +6,7 @@ import time, requests, re, os
 
 def getGeraNumbers(url):
     headers      = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
-    num_pattern1 = re.compile(r"\s([0-9]{1,})\s{1,}\([+-]?\s?([0-9]{1,})\)\s{1,}([0-9]{1,})\s{1,}\([+-]?\s?([0-9]{1,})\)\s{1,}([0-9]{1,})\s{1,}\([+-]?\s?([0-9]{1,})\)\s{1,}([0-9]{1,})\s{1,}\([+-]?\s?([0-9]{1,})\)\s{1,}([0-9]{1,})\s{1,}\([+-]?\s?([0-9]{1,})\)\s{1,}")
+    num_pattern1 = re.compile(r"\s([0-9]{1,})\s{1,}\([+-]?\s?([0-9]{1,})\)\s{1,}([0-9]{1,})\s{1,}([0-9]{1,})\s{1,}\([+-]?\s?([0-9]{1,})\)\s{1,}([0-9]{1,})\s{1,}\([+-]?\s?([0-9]{1,})\)\s{1,}([0-9]{1,})\s{1,}\([+-]?\s?([0-9]{1,})\)\s{1,}")
     num_pattern2 = re.compile(r"aus gera.*?\s([0-9]{1,})\s")
     
     try:
@@ -21,9 +21,9 @@ def getGeraNumbers(url):
         ps1 = num_pattern1.findall( s )
         ps2 = num_pattern2.findall( s )
                 
-        num_t = int(ps1[0][4]) if ( len(ps1) >= 1 ) else -1
-        num_r = int(ps1[0][6]) if ( len(ps1) >= 1 ) else -1
-        num_d = int(ps1[0][8]) if ( len(ps1) >= 1 ) else -1
+        num_t = int(ps1[0][3]) if ( len(ps1) >= 1 ) else -1
+        num_r = int(ps1[0][5]) if ( len(ps1) >= 1 ) else -1
+        num_d = int(ps1[0][7]) if ( len(ps1) >= 1 ) else -1
         num_h = int(ps2[0]) if ( len(ps2) >= 1 ) else -1
         num_s = -1
         
