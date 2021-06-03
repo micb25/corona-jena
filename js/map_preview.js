@@ -184,6 +184,9 @@ function getPrefix( value ) {
 }
 
 function formatValue( value ) {
+	if ( ( currentType == 'incidence' ) && ( value < 0 ) )
+		return "*";
+
 	if ( value > 1000000 ) {
 		result = Math.floor( value / 1000000 ) + '.';
 		if ( (Math.floor(value % 1000000) / 1000) < 10 ) {
