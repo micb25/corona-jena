@@ -56,6 +56,14 @@ pos = 90
 
 filter_inf(x, y)= (y >= 0) ? (x/y) : 0
 
+if ( I_max < 0 ) {
+        sdi_str = "%s"
+        sdi = "?"
+} else {
+        sdi_str = "%.1f"
+        sdi = I_max
+} 
+
 plot \
      "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(B_max)) w circle fc rgb "#006000", \
      "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(A_max-B_max-C_max)) w circle fc rgb "#007af2", \
@@ -73,7 +81,7 @@ plot \
      "<echo 0" u (xpos + 1.5):(ypos(3.75)):(sprintf("schwere Verläufe: %i (%.1f\%)", F_max, 100*filter_inf(F_max, A_max - B_max - C_max))) w labels right offset 2.5, 0, \
      \
      "<echo 0" u (centerX):(centerY):("7-Tages-\nInzidenz:") w labels center offset 0.0, +1.2, \
-     "<echo 0" u (centerX):(centerY):(sprintf("%.1f", I_max)) w labels font ",24" center offset 0.0, -1.00, \
+     "<echo 0" u (centerX):(centerY):(sprintf(sdi_str, sdi)) w labels font ",24" center offset 0.0, -1.00, \
      \
      "<echo 0" u (xpos):(ypos(7.10)):(update_str) w labels font ", 12" left offset 2.5, 0, \
      "<echo 0" u (xpos):(ypos(7.85)):("Quelle: Stadt Jena") w labels font ", 12" left offset 2.5, 0

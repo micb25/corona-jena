@@ -55,6 +55,14 @@ set yrange [-radius:radius]
 
 pos = 90
 
+if ( I_max < 0 ) {
+        sdi_str = "%s"
+        sdi = "?"
+} else {
+        sdi_str = "%.1f"
+        sdi = I_max
+} 
+
 plot \
      "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(B_max)) w circle fc rgb "#006000", \
      "<echo 0" u (centerX):(centerY):(radius):(pos):(pos=pos+angle(A_max-B_max-C_max)) w circle fc rgb "#007af2", \
@@ -70,7 +78,7 @@ plot \
      "<echo 0" u (xpos):(ypos(4)):(sprintf("%i Verstorbene (%.1f%%)", C_max, 100*C_max/A_max)) w labels left offset 2.5, 0, \
      \
      "<echo 0" u (centerX):(centerY):("7-Tages-\nInzidenz:") w labels center offset 0.0, +1.2, \
-     "<echo 0" u (centerX):(centerY):(sprintf("%.1f", I_max)) w labels font ",24" center offset 0.0, -1.00, \
+     "<echo 0" u (centerX):(centerY):(sprintf(sdi_str, sdi)) w labels font ",24" center offset 0.0, -1.00, \
      \
      "<echo 0" u (xpos):(ypos(5.5)):(" ") w labels font ", 12" left offset 2.5, 0, \
      "<echo 0" u (xpos):(ypos(6.5)):(update_str) w labels font ", 12" left offset 2.5, 0, \
