@@ -6,34 +6,32 @@ import os, json
 
 def readTHdata(data_folder):
     
-    timestamp_array    = []
     timestamp_last     = -1
-    timestamp_lastweek = -1
     
     regions = {
-        "ABG": { "name": "Altenburger Land", "res": 90118, "area": 569.40 },
-        "EIC": { "name": "Eichsfeld", "res": 100380, "area": 943.07 },
-        "EA":  { "name": "Eisenach", "res": 42370, "area": 104.17 },
-        "EF":  { "name": "Erfurt", "res": 213699, "area": 269.91 },
-        "G":   { "name": "Gera", "res": 94152, "area": 152.18 },
-        "GTH": { "name": "Gotha", "res": 135452, "area": 936.08 },
-        "GRZ": { "name": "Greiz", "res": 98159, "area": 845.98 },
-        "HBN": { "name": "Hildburghausen", "res": 63553, "area": 938.42 },
-        "IK":  { "name": "Ilm-Kreis", "res": 108742, "area": 843.71 },
-        "J":   { "name": "Jena", "res": 111407, "area": 114.77 },
-        "KYF": { "name": "Kyffhäuserkreis", "res": 75009, "area": 1037.91 },
-        "NDH": { "name": "Nordhausen", "res": 83822, "area": 713.90 },
-        "SHK": { "name": "Saale-Holzland-Kreis", "res": 83051, "area": 815.24 },
-        "SOK": { "name": "Saale-Orla-Kreis", "res": 80868, "area": 1151.30 },
-        "SLF": { "name": "Saalfeld-Rudolstadt", "res": 106356, "area": 1036.03 },
-        "SM":  { "name": "Schmalkalden-Meiningen", "res": 122347, "area": 1210.73 },
-        "SOM": { "name": "Sömmerda", "res": 69655, "area": 806.86 },
-        "SON": { "name": "Sonneberg", "res": 56196, "area": 433.61 },
-        "SHL": { "name": "Suhl", "res": 34835, "area": 103.03 },
-        "UH":  { "name": "Unstrut-Hainich-Kreis", "res": 102912, "area": 979.69 },
-        "WAK": { "name": "Wartburgkreis", "res": 123025, "area": 1307.44 },
-        "WE":  { "name": "Weimar", "res": 65090, "area": 84.48 },
-        "AP":  { "name": "Weimarer Land", "res": 81947, "area": 804.48 }
+        "ABG": { "name": "Altenburger Land", "res": 90118, "area": 569.40, "AGS": 16077 },
+        "EIC": { "name": "Eichsfeld", "res": 100380, "area": 943.07, "AGS": 16061 },
+        "EA":  { "name": "Eisenach", "res": 42370, "area": 104.17, "AGS": 16056 },
+        "EF":  { "name": "Erfurt", "res": 213699, "area": 269.91, "AGS": 16051 },
+        "G":   { "name": "Gera", "res": 94152, "area": 152.18, "AGS": 16052 },
+        "GTH": { "name": "Gotha", "res": 135452, "area": 936.08, "AGS": 16067 },
+        "GRZ": { "name": "Greiz", "res": 98159, "area": 845.98, "AGS": 16076 },
+        "HBN": { "name": "Hildburghausen", "res": 63553, "area": 938.42, "AGS": 16069 },
+        "IK":  { "name": "Ilm-Kreis", "res": 108742, "area": 843.71, "AGS": 16070 },
+        "J":   { "name": "Jena", "res": 111407, "area": 114.77, "AGS": 16053 },
+        "KYF": { "name": "Kyffhäuserkreis", "res": 75009, "area": 1037.91, "AGS": 16065 },
+        "NDH": { "name": "Nordhausen", "res": 83822, "area": 713.90, "AGS": 16062 },
+        "SHK": { "name": "Saale-Holzland-Kreis", "res": 83051, "area": 815.24, "AGS": 16074 },
+        "SOK": { "name": "Saale-Orla-Kreis", "res": 80868, "area": 1151.30, "AGS": 16075 },
+        "SLF": { "name": "Saalfeld-Rudolstadt", "res": 106356, "area": 1036.03, "AGS": 16073 },
+        "SM":  { "name": "Schmalkalden-Meiningen", "res": 122347, "area": 1210.73, "AGS": 16066 },
+        "SOM": { "name": "Sömmerda", "res": 69655, "area": 806.86, "AGS": 16068 },
+        "SON": { "name": "Sonneberg", "res": 56196, "area": 433.61, "AGS": 16072 },
+        "SHL": { "name": "Suhl", "res": 34835, "area": 103.03, "AGS": 16054 },
+        "UH":  { "name": "Unstrut-Hainich-Kreis", "res": 102912, "area": 979.69, "AGS": 16064 },
+        "WAK": { "name": "Wartburgkreis", "res": 123025, "area": 1307.44, "AGS": 16063 },
+        "WE":  { "name": "Weimar", "res": 65090, "area": 84.48, "AGS": 16055 },
+        "AP":  { "name": "Weimarer Land", "res": 81947, "area": 804.48, "AGS": 16071 }
     }
 
     types = {
