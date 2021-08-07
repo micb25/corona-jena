@@ -36,3 +36,14 @@ if __name__ == "__main__":
         df.drop(df[ df.LandkreisId_Impfort < 16000 ].index, inplace=True);
         df.to_csv(DATAFILE3, sep=',', index=False);
         
+    DATAFILE4 = os.path.dirname(os.path.realpath(__file__)) + "/../data/RKI_COVID19_Impfquotenmonitoring_Thuringia.csv"
+    URL3 = 'https://raw.githubusercontent.com/micb25/RKI_COVID19_DATA/master/Impfquotenmonitoring/RKI_COVID19_Impfquotenmonitoring_Thuringia.csv'
+    
+    r = requests.get(URL3, headers=headers, allow_redirects=True, timeout=5.0)
+    
+    if r.ok:            
+        # write new data
+        f = open(DATAFILE4, 'w')
+        f.write(r.text)
+        f.close()
+        
