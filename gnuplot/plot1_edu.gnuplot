@@ -38,20 +38,20 @@ set offsets graph 0.02, graph 0.15, graph 0.15, 0.00
 
 # data
 #   "<awk -F, '{print $1, $4}' ../data/schools/TH_schools.csv | awk '{if ($2 >= 0) print $0}' | awk 'BEGIN{ov=0}{dv=$2-ov;ov=$2;print $1,$2,dv}' | tail -n 1" using 1:2:(sprintf("%i\n(%+i)", $2, $3)) with labels point pt 7 ps 0 right offset char 7.0, 0.3 tc ls 81 notitle, \
-#   "<awk -F, '{print $1, $4}' ../data/schools/TH_schools.csv" using 1:(filter_neg($2)) with linespoints ls 81 title "    Kitas Stufe GELB", \
 
 plot  \
   "<awk -F, '{print $1, $5}' ../data/schools/TH_schools.csv | awk '{if ($2 >= 0) print $0}' | awk 'BEGIN{ov=0}{dv=$2-ov;ov=$2;print $1,$2,dv}' | tail -n 1" using 1:2:(sprintf("%i\n(%+i)", $2, $3)) with labels point pt 7 ps 0 right offset char 7.0, 0.3 tc ls 82 notitle, \
   \
-  "<awk -F, '{print $1, $5}' ../data/schools/TH_schools.csv" using 1:(filter_neg($2)) with linespoints ls 82 title "    Kitas Stufe ROT"
+  "<awk -F, '{print $1, $5}' ../data/schools/TH_schools.csv" using 1:(filter_neg($2)) with linespoints ls 82 title "    Kitas Stufe ROT", \
+  "<awk -F, '{print $1, $4}' ../data/schools/TH_schools.csv" using 1:(filter_neg($2)) with linespoints ls 81 title "    Kitas Stufe GELB", \
 
 set output '../plot1_edu_s.png'
 
 # data
 #   "<awk -F, '{print $1, $7}' ../data/schools/TH_schools.csv | awk '{if ($2 >= 0) print $0}' | awk 'BEGIN{ov=0}{dv=$2-ov;ov=$2;print $1,$2,dv}' | tail -n 1" using 1:2:(sprintf("%i\n(%+i)", $2, $3)) with labels point pt 7 ps 0 right offset char 7.0, 0.3 tc ls 83 notitle, \
-#   "<awk -F, '{print $1, $7}' ../data/schools/TH_schools.csv" using 1:(filter_neg($2)) with linespoints ls 83 title "    Schulen Stufe GELB", \
 
 plot  \
   "<awk -F, '{print $1, $8}' ../data/schools/TH_schools.csv | awk '{if ($2 >= 0) print $0}' | awk 'BEGIN{ov=0}{dv=$2-ov;ov=$2;print $1,$2,dv}' | tail -n 1" using 1:2:(sprintf("%i\n(%+i)", $2, $3)) with labels point pt 7 ps 0 right offset char 7.0, 0.3 tc ls 84 notitle, \
   \
-  "<awk -F, '{print $1, $8}' ../data/schools/TH_schools.csv" using 1:(filter_neg($2)) with linespoints ls 84 title "    Schulen Stufe ROT"
+  "<awk -F, '{print $1, $8}' ../data/schools/TH_schools.csv" using 1:(filter_neg($2)) with linespoints ls 84 title "    Schulen Stufe ROT", \
+  "<awk -F, '{print $1, $7}' ../data/schools/TH_schools.csv" using 1:(filter_neg($2)) with linespoints ls 83 title "    Schulen Stufe GELB", \
