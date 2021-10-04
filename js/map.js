@@ -324,6 +324,14 @@ function changeViewTo( id ) {
 		document.getElementById( 'text_'+ regionKey ).setAttribute("style", "text-shadow: 2px 2px 4px " + getShadowColor( resultArray[ regionKey ]['color'] ) + ";");
 		document.getElementById( 'text_'+ regionKey ).style.fill = getOverlayTextColor( resultArray[ regionKey ]['color'] );
 	}
+	// fix for Eisenach
+	resultArray[ "EA" ] = {};
+	resultArray[ "EA" ]['value'] = json.values[ "WAK" ][ currentType ];
+	resultArray[ "EA" ]['color'] = valueToColor( resultArray[ "WAK" ]['value'], maxArray[ currentType ], json.types[ currentType ][ 'color' ], is_7d_incidence );
+	// apply color to map
+	document.getElementById( 'path_'+ "EA" ).style.fill = resultArray[ "WAK" ]['color'];
+	document.getElementById( 'text_'+ "EA" ).setAttribute("style", "display: none; text-shadow: 2px 2px 4px " + getShadowColor( resultArray[ "WAK" ]['color'] ) + ";");
+	document.getElementById( 'text_'+ "EA" ).style.fill = getOverlayTextColor( resultArray[ "WAK" ]['color'] );
 	// show sum
 	if ( 'showSum' in json.types[ currentType ] ) {
 		document.getElementById( 'tspan_sum' ).innerHTML = formatValue(Math.floor(sumArray[ currentType ])) + '&thinsp;' + json.types[ currentType ][ 'unit' ] + " insgesamt";
