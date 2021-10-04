@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import os, pandas as pd, numpy as np, datetime
+import os, pandas as pd, numpy as np
 
 
 if __name__ == "__main__":
@@ -66,7 +66,15 @@ if __name__ == "__main__":
             
             cases = df.loc[ (df.Datum >= last_week) & (df.Datum <= date) & (df.Region == district) ]
             if len(cases) == 8:
-                num_cases = 100000 / residents_array[district] * ( int(cases.iloc[-1]['SummeFall']) - int(cases.iloc[0]['SummeFall']) )
+                if ( date < 1632960000 ): # 2021-10-01
+                    num_cases = 100000 / residents_array[district] * ( int(cases.iloc[-1]['SummeFall']) - int(cases.iloc[0]['SummeFall']) )
+                else:
+                    if ( district == 'EA' ):
+                        num_cases = -1.0
+                    elif ( district == 'WAK' ):
+                        num_cases = 100000 / ( residents_array['EA'] + residents_array['WAK'] ) * ( int(cases.iloc[-1]['SummeFall']) - ( int(cases.iloc[0]['SummeFall']) + (0 if date >= 86400*7 + 1632960000 else 1975) ))
+                    else:
+                        num_cases = 100000 / residents_array[district] * ( int(cases.iloc[-1]['SummeFall']) - int(cases.iloc[0]['SummeFall']) )
                 
             data[i][j+1] = num_cases
     
