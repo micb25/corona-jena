@@ -287,6 +287,15 @@ function changeViewTo(obj, id) {
 		obj.contentDocument.getElementById( 'text_'+ regionKey ).style.textAnchor = "middle";
 	}
 
+	// fix for Eisenach
+	resultArray[ "EA" ] = {};
+	resultArray[ "EA" ]['value'] = json.values[ "WAK" ][ currentType ];
+	resultArray[ "EA" ]['color'] = valueToColor( resultArray[ "WAK" ]['value'], maxArray[ currentType ], json.types[ currentType ][ 'color' ], is_7d_incidence );
+
+	obj.contentDocument.getElementById( 'path_'+ "EA" ).style.fill = resultArray[ "WAK" ]['color'];
+	obj.contentDocument.getElementById( 'text_'+ "EA" ).setAttribute("style", "display: none; text-shadow: 2px 2px 4px " + getShadowColor( resultArray[ "WAK" ]['color'] ) + ";");
+	obj.contentDocument.getElementById( 'text_'+ "EA" ).style.fill = getOverlayTextColor( resultArray[ "WAK" ]['color'] );
+	
 	// hack: apply style
 	obj.contentDocument.getElementById( 'tspan_timestamp' ).style.textAlign = "center";
 	obj.contentDocument.getElementById( 'tspan_timestamp' ).style.textAnchor = "middle";
