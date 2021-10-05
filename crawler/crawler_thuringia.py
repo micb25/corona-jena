@@ -16,6 +16,8 @@ def strToTimestamp(datetimestr):
         s = s.replace(key, months[key])
             
     complex_date_pattern = re.compile(r"([0-9]{1,2})\.\s?([0-9]{1,2})\s?\.?\s?([0-9]{2,4}),?\s?([0-9]{0,2})")
+
+    s = s.replace(".09.21,", ".21,") # hot-fix for "Stand: 05.10.09.21, 0:00 Uhr"
         
     try:    
         pd = complex_date_pattern.findall(s)

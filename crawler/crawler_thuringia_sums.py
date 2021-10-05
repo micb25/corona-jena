@@ -65,6 +65,8 @@ if __name__ == "__main__":
     headers = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
     r = requests.get(URL, headers=headers, allow_redirects=True, timeout=5.0)
     s = r.text.replace("\t", "")
+
+    s = s.replace(".09.21,", ".21,") # hot-fix for "Stand: 05.10.09.21, 0:00 Uhr"
     
     # parse data
     rawdata = th_data_pattern.findall( s )
