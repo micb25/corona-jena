@@ -24,7 +24,7 @@ def getWENumbers(url):
     num_pattern1 = re.compile(r"positiv getesteten: ([0-9]{1,})")
     num_pattern2 = re.compile(r"genesenen: ([0-9]{1,})")
     num_pattern3 = re.compile(r"verstorbenen: ([0-9]{1,})")
-    num_pattern4 = re.compile(r"kliniken behandelten: ([0-9]{1,})")
+    num_pattern4 = re.compile(r"kliniken\s{1,}behandelten: ([0-9]{1,})")
     
     n = getWENumbersRKI()
     
