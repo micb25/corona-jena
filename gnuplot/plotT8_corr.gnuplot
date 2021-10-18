@@ -39,21 +39,9 @@ h = 10
 hosp(x) = h/100 * x
 
 NUM_AGS = 6
-array age_groups[NUM_AGS]
-age_groups[1]  = "00-04"
-age_groups[2]  = "05-14"
-age_groups[3]  = "15-34"
-age_groups[4]  = "35-59"
-age_groups[5]  = "60-79"
-age_groups[6]  = "80+"
+age_groups(n) = word("00-04 05-14 15-34 35-59 60-79 80+", n)
 
-array fns[NUM_AGS]
-fns[1] = "../plotT8_Corr_A.png"
-fns[2] = "../plotT8_Corr_B.png"
-fns[3] = "../plotT8_Corr_C.png"
-fns[4] = "../plotT8_Corr_D.png"
-fns[5] = "../plotT8_Corr_E.png"
-fns[6] = "../plotT8_Corr_F.png"
+fns(n) = word("plotT8_Corr_A plotT8_Corr_B plotT8_Corr_C plotT8_Corr_D plotT8_Corr_E plotT8_Corr_F", n)
 
 set label 3 at graph 0.98, 0.80 update_str right textcolor ls 0
 
@@ -65,17 +53,17 @@ set colorbox front
 
 do for [i=0:NUM_AGS-1] {
 	
-	set output fns[i+1]
+	set output sprintf("../%s.png", fns(i+1) )
 	
 	h = 10
-	fit hosp(x) "<awk -F, '{if ($2==\"" . age_groups[i+1] . "\") print $0}' ../data/RKI_TH_Inc_Hosp_Correlation.csv" using ($4):($3) via h
+	fit hosp(x) "<awk -F, '{if ($2==\"" . age_groups(i+1) . "\") print $0}' ../data/RKI_TH_Inc_Hosp_Correlation.csv" using ($4):($3) via h
 
 	set label 1 at graph 0.98, 0.95 "Hospitalisierungswahrscheinlichkeit" right textcolor ls 0 
 	set label 2 at graph 0.98, 0.88 sprintf("pro Fall: %.2f%% ± %.2f%%", h, h_err) right textcolor ls 0 
-	set title sprintf("{/Arial-Bold 7-Tage-Inzidenz und -Hospitalisierungsinzidenz in TH (%s Jahre)}", age_groups[i+1])
+	set title sprintf("{/Arial-Bold 7-Tage-Inzidenz und -Hospitalisierungsinzidenz in TH (%s Jahre)}", age_groups(i+1))
 
 	plot  \
-	"<awk -F, '{if ($2==\"" . age_groups[i+1] . "\") print $0}' ../data/RKI_TH_Inc_Hosp_Correlation.csv" using ($4):($3):($1) with points pt 7 ps 1 palette title "Daten", \
+	"<awk -F, '{if ($2==\"" . age_groups(i+1) . "\") print $0}' ../data/RKI_TH_Inc_Hosp_Correlation.csv" using ($4):($3):($1) with points pt 7 ps 1 palette title "Daten", \
 	hosp(x) ls 5 dt "-" title "linearer Fit"
 }
   
