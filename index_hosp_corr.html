@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>Coronavirus-Fälle in Thüringen</title>
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta http-equiv="refresh" content="3600">
+		<meta name="author" content="Michael Böhme">
+		<meta name="robots" content="all"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="theme-color" content="#176fa1">
+		<meta name="keywords" content="Corona, COVID, COVID19, Coronavirus, Jena, Weimar, Erfurt, Thüringen, Statistik, Michael Böhme">
+		<meta name="description" content="Zusammenfassung und Visualisierung der Coronavirus-Fälle in Jena, Erfurt, Weimar und Thüringen">
+		<meta name="msapplication-square70x70logo" content="./icons/smalltile.png">
+		<meta name="msapplication-square150x150logo" content="./icons/mediumtile.png">
+		<meta name="msapplication-square310x310logo" content="./icons/largetile.png">
+		<meta property="og:site_name" content="Coronavirus-Fälle in Thüringen">
+		<meta property="og:title" content="Coronavirus-Fälle in Thüringen">
+		<meta property="og:description" content="Visualisierung der Coronavirus-Fälle in Thüringen">
+		<meta property="og:image" content="/corona/logo.jpg">
+		<meta property="og:type" content="website">
+		<meta property="og:image:type" content="image/jpeg">
+		<meta property="og:image:width" content="300">
+		<meta property="og:image:height" content="300">
+		<meta property="og:url" content="https://www.michael-böhme.de/corona">
+		<meta property="og:locale" content="de_DE">
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:site" content="@theochemiker" />
+		<meta name="twitter:creator" content="@theochemiker" />
+		<meta name="twitter:title" content="Coronavirus-Fälle in Thüringen" />
+		<meta name="twitter:image" content="https://xn--michael-bhme-djb.de/corona/logo.jpg" />
+		<meta name="twitter:description" content="Visualisierung der Coronavirus-Fälle in Thüringen" />
+		<link rel="icon" href="./favicon.ico" type="image/x-icon">
+		<link rel="shortcut icon" href="./icons/android-icon.png" sizes="196x196">
+		<link rel="apple-touch-icon" href="./icons/apple-touch-icon.png">
+		<link rel="stylesheet" type="text/css" href="./css/styles.css">
+		<link rel="stylesheet" type="text/css" href="./css/font-awesome.min.css">
+		<!-- <link rel="preload" href="./data/cases_thuringia.json" as="fetch"> -->
+		<link rel="preload" href="./thuringia.svg" as="object">
+		<script src="./js/map_preview.js"></script>
+		<base target="_blank">
+	</head>
+	<body>
+	<div class="navBar">
+		<div class="navDropdown">
+			<button class="navButton"><i class="fa fa-bars" aria-hidden="true"></i></button>
+			<div class="navLinks">
+				<a target="_self" href="./index_map.html">interaktive&nbsp;Karte</a>
+				<a target="_self" href="./index_table.html">Tabelle</a>
+				<a target="_self" href="./index_active_cases.html">aktive Fälle</a>
+				<a target="_self" href="./index_th_all.html">alle Regionen</a>
+				<a target="_self" href="./index_rki.html">RKI-Daten</a>
+				<hr>
+				<a target="_self" href="#Info">Info</a>
+			</div>
+		</div>
+	</div>
+	<div class="centerText">
+		<br>
+		<b>Übersicht aller Thüringer Landkreise und Städte:</b> &nbsp; <a target="_self" href="./index_map.html">interaktive&nbsp;Karte</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;<a target="_self" href="./index_table.html">Tabelle</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;<a target="_self" href="./index_th_all.html">Grafiken</a><br>
+		<a target="_self" href="./index_7d_incidence.html"><b>7-Tages-Inzidenz</b></a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;<a target="_self" href="./index_active_cases.html">aktive&nbsp;Fälle</a>&nbsp;&nbsp;&middot;&nbsp;&nbsp;<a target="_self" href="./index_r.html">Reproduktionsrate für Thüringen</a><br>
+		<br>
+		<h1 id="TH-RKI">Korrelation nach&nbsp;Altersgruppen</h1>
+		Quelle: <a href="https://corona.rki.de/">Robert Koch-Institut</a><br>
+		
+		<div class="graphBlockContainer">
+			<div class="graphBlock">
+				<img src="./plotT8_Corr_A.png" alt="Korrelation zwischen 7-Tage-Inzidenz und 7-Tage-Hospitalisierungsinzidenz in Thüringen (Altersgruppe 0-4 Jahre)" title="Korrelation zwischen 7-Tage-Inzidenz und 7-Tage-Hospitalisierungsinzidenz in Thüringen (Altersgruppe 0-4 Jahre)">
+			</div>
+			<div class="graphBlock">
+				<img src="./plotT8_Corr_B.png" alt="Korrelation zwischen 7-Tage-Inzidenz und 7-Tage-Hospitalisierungsinzidenz in Thüringen (Altersgruppe 5-14 Jahre)" title="Korrelation zwischen 7-Tage-Inzidenz und 7-Tage-Hospitalisierungsinzidenz in Thüringen (Altersgruppe 5-14 Jahre)">
+			</div>
+		</div>
+
+		<div class="graphBlockContainer">
+			<div class="graphBlock">
+				<img src="./plotT8_Corr_C.png" alt="Korrelation zwischen 7-Tage-Inzidenz und 7-Tage-Hospitalisierungsinzidenz in Thüringen (Altersgruppe 15-34 Jahre)" title="Korrelation zwischen 7-Tage-Inzidenz und 7-Tage-Hospitalisierungsinzidenz in Thüringen (Altersgruppe 15-34 Jahre)">
+			</div>
+			<div class="graphBlock">
+				<img src="./plotT8_Corr_D.png" alt="Korrelation zwischen 7-Tage-Inzidenz und 7-Tage-Hospitalisierungsinzidenz in Thüringen (Altersgruppe 35-59 Jahre)" title="Korrelation zwischen 7-Tage-Inzidenz und 7-Tage-Hospitalisierungsinzidenz in Thüringen (Altersgruppe 35-59 Jahre)">
+			</div>
+		</div>
+
+		<div class="graphBlockContainer">
+			<div class="graphBlock">
+				<img src="./plotT8_Corr_E.png" alt="Korrelation zwischen 7-Tage-Inzidenz und 7-Tage-Hospitalisierungsinzidenz in Thüringen (Altersgruppe 60-79 Jahre)" title="Korrelation zwischen 7-Tage-Inzidenz und 7-Tage-Hospitalisierungsinzidenz in Thüringen (Altersgruppe 60-79 Jahre)">
+			</div>
+			<div class="graphBlock">
+				<img src="./plotT8_Corr_F.png" alt="Korrelation zwischen 7-Tage-Inzidenz und 7-Tage-Hospitalisierungsinzidenz in Thüringen (Altersgruppe 80+ Jahre)" title="Korrelation zwischen 7-Tage-Inzidenz und 7-Tage-Hospitalisierungsinzidenz in Thüringen (Altersgruppe 80+ Jahre)">
+			</div>
+		</div>
+		
+		<br>
+		<br>
+		<h1 id="Info">Info über diese Seite</h1>
+		<br>
+		Die Daten können je nach Quelle und Uhrzeit variieren und werden stündlich aktualisiert.<br>
+		<br>
+		Die 7-Tages-Inzidenz basiert auf eigenen Berechnungen anhand der vom RKI veröffentlichten Fälle der letzten 7 Tage.<br>
+		<br>
+		<a href="https://www.uni-jena.de/200422_Boehme_Interview">Interview</a> &nbsp;&middot;&nbsp; <a href="https://github.com/micb25/corona-jena/blob/master/README.md">Zusammenfassung</a> &nbsp;&middot;&nbsp; <a href="https://github.com/micb25/corona-jena/blob/master/data/README.md">Daten</a> &nbsp;&middot;&nbsp; <a href="https://github.com/micb25/corona-jena">Quellcode</a><br>
+		<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=HGW4VMH2XP5WY&amp;source=url">☕ &nbsp; Kaffee spendieren &nbsp; ☕</a><br>
+		<br>
+		Autor: <a href="https://www.michael-böhme.de/">Michael Böhme</a><br>
+		mit Unterstützung von <a href="https://floriankleiner.de">Florian Kleiner</a><br>
+		Abbildungen sind lizensiert unter <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/de/">CC BY-NC-SA</a><br>
+		<br>
+		<br>
+		</div>
+	</body>
+</html>
