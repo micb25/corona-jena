@@ -14,7 +14,7 @@ def getEFNumbers(url):
             
     try:
         r = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0)
-        s = r.text.replace("\n", "").replace("\t", "")
+        s = r.text.replace("\n", "").replace("\t", "").replace(".", "")
                         
         ps1 = num_pattern_T.findall( s )
         ps2 = num_pattern_R.findall( s )
@@ -27,7 +27,7 @@ def getEFNumbers(url):
         num_h = int(ps4[0]) if (len(ps4) >= 1) else -1
         num_s = -1
         
-        return (num_t, num_r, num_d, num_h, num_s)
+        return [num_t, num_r, num_d, num_h, num_s]
     
     except:
         return False  
