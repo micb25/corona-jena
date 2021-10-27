@@ -1,119 +1,103 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-import os, sys, requests, pandas as pd
-from datetime import datetime
+import os, sys, requests, csv, urllib.parse
 
-class RKI_GitHub:
 
-    BASEURL = "https://media.githubusercontent.com/media/robert-koch-institut/SARS-CoV-2_Infektionen_in_Deutschland/master/Archiv/"
-    CSVFILE = os.path.dirname(os.path.realpath(__file__)) + "/../data/cases_rki_db_th.csv"
-    COLS = "Meldedatum,Datenstand,Landkreis,AnzahlFall,AnzahlTodesfall,NeuerFall,NeuerTodesfall,Geschlecht,Altersgruppe,Refdatum,AnzahlGenesen,NeuGenesen".split(",")
+def rki_db_query(offset = 0, chunk_size = 8000):
+    
+    # RKI databases: 
+    # - Coronafälle_in_den_Bundesländern
+    # - Covid19_RKI_Sums
+    #       AnzahlFall, AnzahlTodesfall, SummeFall	, SummeTodesfall, ObjectId, Datenstand, Meldedatum	,
+    #       Bundesland, IdBundesland, Landkreis, IdLandkreis, AnzahlGenesen	, SummeGenesen
+    # - Deutschland_Bundesländergrenzen_2018
+    # - Inzidenzen
+    # - RKI_COVID19:
+    #       IdBundesland, Bundesland, Landkreis, Altersgruppe, Geschlecht, AnzahlFall, AnzahlTodesfall, ObjectId, Meldedatum, IdLandkreis,
+    #       Datenstand, NeuerFall, NeuerTodesfall, Refdatum, NeuGenesen, AnzahlGenesen
+    # - RKI_Landkreisdaten  
+    
+    url = 'https://services7.arcgis.com/mOBPykOjAyBO2ZKk/arcgis/rest/services/RKI_COVID19/FeatureServer/0/query?'
+    headers = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
 
-    AGS = {
-        16051: "SK Erfurt",
-        16052: "SK Gera",
-        16053: "SK Jena",
-        16054: "SK Suhl",
-        16055: "SK Weimar",
-        16056: "SK Eisenach",
-        16061: "LK Eichsfeld",
-        16062: "LK Nordhausen",
-        16063: "LK Wartburgkreis",
-        16064: "LK Unstrut-Hainich-Kreis",
-        16065: "LK Kyffhäuserkreis",
-        16066: "LK Schmalkalden-Meiningen",
-        16067: "LK Gotha",
-        16068: "LK Sömmerda",
-        16069: "LK Hildburghausen",
-        16070: "LK Ilm-Kreis",
-        16071: "LK Weimarer Land",
-        16072: "LK Sonneberg",
-        16073: "LK Saalfeld-Rudolstadt",
-        16074: "LK Saale-Holzland-Kreis",
-        16075: "LK Saale-Orla-Kreis",
-        16076: "LK Greiz",
-        16077: "LK Altenburger Land"
-    }
-
-    def get_csv_url(self, isodate=""):
-        return "{}{}_Deutschland_SarsCov2_Infektionen.csv".format(RKI_GitHub.BASEURL, isodate if isodate != "" else self.isodate)
-
-    def is_day_available(self, isodate=""):
-        URL = self.get_csv_url(isodate)
-        r = requests.head(URL)
-        return r.status_code == 200
-
-    def was_data_scraped(self, isodate=""):
-        try:
-            isodatestr = isodate if (isodate != "") else datetime.now().strftime("%Y-%m-%d")
-            with open(self.CSVFILE, "r") as csvfile:
-                csv_header = csvfile.readline()
-                csv_line = csvfile.readline()
-                cols = csv_header.split(",")
-                fields = csv_line.split(",") 
-                last_date = fields[ cols.index('Datenstand') ].replace("\"", "")
-                last_date = last_date[6:10] + "-" + last_date[3:5] + "-" + last_date[0:2] 
-                return last_date == isodatestr
-        except:
-            return False
-
-    def scrape(self, isodate="", force=False):
-        if not self.is_day_available(isodate):
-            return False
-        if (force == False) and (self.was_data_scraped(isodate)):
+    qry_params = urllib.parse.urlencode(
+    {
+            "where": "IdBundesland=16", # Thuringia only
+            "outFields": "Meldedatum,Datenstand,Landkreis,AnzahlFall,AnzahlTodesfall,NeuerFall,NeuerTodesfall,Geschlecht,Altersgruppe,Refdatum,AnzahlGenesen,NeuGenesen",
+            # "outFields": "*", # everything
+            "returnGeometry": "false",
+            "orderByFields": "Meldedatum asc",
+            "resultOffset": offset,
+            "resultRecordCount": chunk_size,
+            "f": "json"
+        }
+    )
+    
+    url += qry_params
+    
+    try:    
+        r = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0)
+        
+        if r.status_code != 200:
             return False
         
-        # download
-        os.system( "curl {} --output {} > /dev/null".format(self.get_csv_url(isodate), RKI_GitHub.CSVFILE) )
-
-        # filter TH using awk
-        os.system( "cat {0} | awk -F, '{1}' > {0}.tmp && mv {0}.tmp {0}".format(RKI_GitHub.CSVFILE, "{if ($1>=16000) print $0}") )
-
-        return self.prepare_data()
-
-    def prepare_data(self):
-
-        try:
-            df = pd.read_csv(RKI_GitHub.CSVFILE)
-            cols = list(df.columns)
-        except:
-            return False
-
-        if 'Datenstand' in cols:
-            return True
-
-        # transform 'IdLandkreis' to 'Landkreis'
-        df['Landkreis'] = ""
-        df['Landkreis'] = df['IdLandkreis'].apply(lambda r: RKI_GitHub.AGS[r])
-        df.drop('IdLandkreis', axis=1, inplace=True)
-
-        # add date
-        df['Datenstand'] = self.RKI_datestr
-
-        # convert 'Meldedatum' and 'RefDatum' to timestamps
-        df['Meldedatum'] = df['Meldedatum'].apply(lambda r: int(datetime.strptime(r, "%Y-%m-%d").timestamp()) )
-        df['Refdatum'] = df['Refdatum'].apply(lambda r: int(datetime.strptime(r, "%Y-%m-%d").timestamp()) )
-
-        # reorder columns
-        df = df[ RKI.COLS ]
-
-        # sort by Meldedatum
-        df.sort_values(['Meldedatum'])
-
-        # export CSV
-        df.to_csv(RKI_GitHub.CSVFILE, index=False)
-
-        return True
-
-    def __init__(self, isodate=""):
-        self.isodate = isodate if  (isodate != "") else datetime.now().strftime("%Y-%m-%d")
-        self.RKI_datestr = "{}.{}.{}, 00:00 Uhr".format(self.isodate[8:10], self.isodate[5:7], self.isodate[0:4])
-
+        return r.json()
+        
+    except:
+        return False
+    
 
 if __name__ == "__main__":
 
     DATAFILE = os.path.dirname(os.path.realpath(__file__)) + "/../data/cases_rki_db_th.csv"
+    
+    data = rki_db_query()
+    
+    if data == False:
+        sys.exit()
 
-    RKI = RKI_GitHub()
-    RKI.scrape()
+    header = data["fields"]
+    header = [h["name"] for h in header]
+    
+    # remove 'ObjectId' field
+    header.remove("ObjectId")
+    
+    index_date = 0
+    index_refdate = 0
+    for h in enumerate(header):
+        if ( h[1] == 'Meldedatum' ):
+            index_date = h[0]
+        if ( h[1] == 'Refdatum' ):
+            index_refdate = h[0]
+        
+    try:
+        
+        f = csv.writer(open(DATAFILE, "w+"))
+        f.writerow(header)
+        
+        offset = 0
+        chunk_size = 4000
+        while(True):
+            
+            print("requestion {} with offset {}".format(chunk_size, offset))
+            data = rki_db_query(offset=offset, chunk_size=chunk_size)
+            
+            cases = data["features"]
+            
+            if not cases:
+                break
+            
+            for c in cases:
+                row = [c["attributes"][h] for h in header]
+                
+                # dates need to be divided by 1000 to obtain unix timestamps
+                row[index_date] = int(row[index_date] / 1000.0)
+                row[index_refdate] = int(row[index_refdate] / 1000.0)
+                f.writerow(row)
+            
+            offset += chunk_size
+        
+    except:
+        sys.exit()
+    
