@@ -38,6 +38,6 @@ set offsets graph 0.00, graph 0.00, graph 0.20, 0.00
 
 # data
 plot  \
-  "<awk -F, 'BEGIN{for(i=0;i<7;i++){a[i]=0}}{if (NR>1&&$2==\"00+\") {if ($1>=1584352800) {for(i=0; i<6; i++){a[i]=a[i+1]};a[6]=$5;b=0;for(i=0;i<7; i++){b=b+a[i]};print int($1/86400)*86400,b/7;}}}' ../data/RKI_TH_Hospitalisierung.csv" using 1:2 with lines lw 2 lt rgb "#b66215" title " 2020/2021", \
-  "<awk -F, 'BEGIN{for(i=0;i<7;i++){a[i]=0}}{if (NR>1&&$2==\"00+\") {if ($1>=1584352800) {for(i=0; i<6; i++){a[i]=a[i+1]};a[6]=$5;b=0;for(i=0;i<7; i++){b=b+a[i]};print int($1/86400)*86400,b/7;}}}' ../data/RKI_TH_Hospitalisierung.csv" using ($1-365*86400):2 with lines lw 2 lt rgb "#ff8a1e" title " 2021/2022"
+  "<awk -F, 'BEGIN{for(i=0;i<7;i++){a[i]=0}}{if (NR>1&&$2==\"00+\") {if ($1>=1584352800) {for(i=0; i<6; i++){a[i]=a[i+1]};a[6]=$5;b=0;for(i=0;i<7; i++){b=b+a[i]};print int($1/86400)*86400,b/7;}}}' ../data/RKI_TH_Hospitalisierung.csv" using ($1-365*86400):2 with lines lw 2 lt rgb "#ff8a1e" title " 2021/2022", \
+  "<awk -F, 'BEGIN{for(i=0;i<7;i++){a[i]=0}}{if (NR>1&&$2==\"00+\") {if ($1>=1584352800) {for(i=0; i<6; i++){a[i]=a[i+1]};a[6]=$5;b=0;for(i=0;i<7; i++){b=b+a[i]};print int($1/86400)*86400,b/7;}}}' ../data/RKI_TH_Hospitalisierung.csv" using 1:2 with lines lw 2 lt rgb "#b66215" title " 2020/2021"
   

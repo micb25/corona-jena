@@ -38,6 +38,6 @@ set offsets graph 0.00, graph 0.00, graph 0.20, 0.00
 
 # data
 plot  \
-  "<awk -F, '{if (NR>1) {print $1,$5}}' ../data/divi_db_th/divi_data_th.csv" using 1:2 with lines lw 2 lt rgb "#b66215" title " 2020/2021", \
-  "<awk -F, '{if (NR>1) {print $1,$5}}' ../data/divi_db_th/divi_data_th.csv" using ($1-365*86400):2 with lines lw 2 lt rgb "#ff8a1e" title " 2021/2022"
+  "<awk -F, '{if (NR>1) {print $1,$5}}' ../data/divi_db_th/divi_data_th.csv" using ($1-365*86400):2 with lines lw 2 lt rgb "#ff8a1e" title " 2021/2022", \
+  "<awk -F, '{if (NR>1) {print $1,$5}}' ../data/divi_db_th/divi_data_th.csv" using 1:2 with lines lw 2 lt rgb "#b66215" title " 2020/2021"
   
