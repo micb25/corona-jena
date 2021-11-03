@@ -37,10 +37,10 @@ set label 2 at graph 0.98, 0.90 update_str right textcolor ls 0
 
 # data
 plot  \
-  "<awk -F, '{if (NR>1) {a[\"A00\"]=($6+$7)/2133378;a[\"A12-A17\"]=$4/104207;a[\"A18-A59\"]=$5/1078457;a[\"A60+\"]=$7/730456;b[\"A00\"]=($10+$11)/2133378;b[\"A12-A17\"]=$8/104207;b[\"A18-A59\"]=$9/1078457;b[\"A60+\"]=$11/730456;}}END{ for (i in a) { print i, a[i], b[i] }}' ../data/RKI_COVID19_Impfquotenmonitoring_Thuringia.csv | sort -k 1" using (100*$2) with histograms lt rgb "#02ab2e" title "Erstimpfung", \
+  "<awk -F, '{if (NR>1) {a[\"A00\"]=($6+$7)/2120237;a[\"A12-A17\"]=$4/104207;a[\"A18-A59\"]=$5/1078457;a[\"A60+\"]=$7/730456;b[\"A00\"]=($10+$11)/2120237;b[\"A12-A17\"]=$8/104207;b[\"A18-A59\"]=$9/1078457;b[\"A60+\"]=$11/730456;}}END{ for (i in a) { print i, a[i], b[i] }}' ../data/RKI_COVID19_Impfquotenmonitoring_Thuringia.csv | sort -k 1" using (100*$2) with histograms lt rgb "#02ab2e" title "Erstimpfung", \
   "" using (100*$3) with histograms lt rgb "#0b4008" title "vollständig geimpft", \
   \
-  "<awk -F, '{if (NR>1) {a[\"A00\"]=($6+$7)/2133378;a[\"A12-A17\"]=$4/104207;a[\"A18-A59\"]=$5/1078457;a[\"A60+\"]=$7/730456;b[\"A00\"]=($10+$11)/2133378;b[\"A12-A17\"]=$8/104207;b[\"A18-A59\"]=$9/1078457;b[\"A60+\"]=$11/730456;}}END{ for (i in a) { print i, a[i], b[i] }}' ../data/RKI_COVID19_Impfquotenmonitoring_Thuringia.csv | sort -k 1" using (column(0) - 0.17):(100*$2):($2>0?(sprintf("{/*0.85 %.1f%%}", 100*$2)):"") with labels center offset 0.0, 0.7 notitle, \
+  "<awk -F, '{if (NR>1) {a[\"A00\"]=($6+$7)/2120237;a[\"A12-A17\"]=$4/104207;a[\"A18-A59\"]=$5/1078457;a[\"A60+\"]=$7/730456;b[\"A00\"]=($10+$11)/2120237;b[\"A12-A17\"]=$8/104207;b[\"A18-A59\"]=$9/1078457;b[\"A60+\"]=$11/730456;}}END{ for (i in a) { print i, a[i], b[i] }}' ../data/RKI_COVID19_Impfquotenmonitoring_Thuringia.csv | sort -k 1" using (column(0) - 0.17):(100*$2):($2>0?(sprintf("{/*0.85 %.1f%%}", 100*$2)):"") with labels center offset 0.0, 0.7 notitle, \
   "" using (column(0) + 0.17):(100*$3):($3>0?(sprintf("{/*0.85 %.1f%%}", 100*$3)):"") with labels center offset 0.0, 0.7 notitle
   
   

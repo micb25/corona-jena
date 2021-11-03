@@ -24,10 +24,10 @@ set format x "%d.%m."
 m = 1
 n = -STATS_min
 f(x) = m * x + n
-fit [ STATS_max - 14 * 86400 : STATS_max ] f(x) "<awk -F, '{if (NR>1&&$3==16) print $1,100*$5/2133378}' ../data/RKI_COVID19_Impfquotenmonitoring.csv" using 1:(filter_neg($2)) via m, n
+fit [ STATS_max - 14 * 86400 : STATS_max ] f(x) "<awk -F, '{if (NR>1&&$3==16) print $1,100*$5/2120237}' ../data/RKI_COVID19_Impfquotenmonitoring.csv" using 1:(filter_neg($2)) via m, n
 
 vac_per_day_rel = m * 86400
-vac_per_day = vac_per_day_rel * 2133378 / 100.0
+vac_per_day = vac_per_day_rel * 2120237 / 100.0
 
 # y-axis setup
 set ylabel 'Bevölkerungsanteil'
@@ -73,15 +73,15 @@ set offsets 0.00, graph 0.10, graph 0.30, 0.00
 
 plot  \
   \
-  "<awk -F, '{if (NR>1&&$3==16) print $1,100*$5/2133378}' ../data/RKI_COVID19_Impfquotenmonitoring.csv" using 1:(filter_neg($2)) with lines ls 40  lw 3 title "Erstimpfungen", \
-  "<awk -F, '{if (NR>1&&$3==16) print $1,100*$11/2133378}' ../data/RKI_COVID19_Impfquotenmonitoring.csv" using 1:(filter_neg($2)) with lines ls 41 lw 3 title "Zweitimpfungen", \
-  "<awk -F, '{if (NR>1&&$3==16) print $1,100*$13/2133378}' ../data/RKI_COVID19_Impfquotenmonitoring.csv" using 1:(filter_neg($2)) with lines ls 42 lw 3 title "Auffrischimpfungen", \
-  "<awk -F, '{if (NR>1&&$3==16) print 86400*30*6+$1,100*$11/2133378}' ../data/RKI_COVID19_Impfquotenmonitoring.csv" using 1:(filter_neg($2)) with lines ls 43 title "{/*0.9 Auffrischimpfungen (theoretisch)}", \
+  "<awk -F, '{if (NR>1&&$3==16) print $1,100*$5/2120237}' ../data/RKI_COVID19_Impfquotenmonitoring.csv" using 1:(filter_neg($2)) with lines ls 40  lw 3 title "Erstimpfungen", \
+  "<awk -F, '{if (NR>1&&$3==16) print $1,100*$11/2120237}' ../data/RKI_COVID19_Impfquotenmonitoring.csv" using 1:(filter_neg($2)) with lines ls 41 lw 3 title "Zweitimpfungen", \
+  "<awk -F, '{if (NR>1&&$3==16) print $1,100*$13/2120237}' ../data/RKI_COVID19_Impfquotenmonitoring.csv" using 1:(filter_neg($2)) with lines ls 42 lw 3 title "Auffrischimpfungen", \
+  "<awk -F, '{if (NR>1&&$3==16) print 86400*30*6+$1,100*$11/2120237}' ../data/RKI_COVID19_Impfquotenmonitoring.csv" using 1:(filter_neg($2)) with lines ls 43 title "{/*0.9 Auffrischimpfungen (theoretisch)}", \
   1/0 title "{/*0.9 Zweitimpfungen + 6 Monate}" lc rgb "#f2f2f2", \
   \
   [ STATS_max - 14 * 86400 : STATS_max ] f(x) with lines ls 12 notitle, \
   \
-  "<awk -F, '{if (NR>1&&$3==16) print $1,100*$5/2133378}' ../data/RKI_COVID19_Impfquotenmonitoring.csv | tail -n 1" using 1:2:(sprintf("%.1f%%", $2)) with labels point pt 7 ps 0 right offset char 5, +0.3 tc ls 40 notitle, \
-  "<awk -F, '{if (NR>1&&$3==16) print $1,100*$11/2133378}' ../data/RKI_COVID19_Impfquotenmonitoring.csv | tail -n 1" using 1:2:(sprintf("%.1f%%", $2)) with labels point pt 7 ps 0 right offset char 5, -0.3 tc ls 41 notitle, \
-  "<awk -F, '{if (NR>1&&$3==16) print 86400*30*6+$1,100*$11/2133378}' ../data/RKI_COVID19_Impfquotenmonitoring.csv | tail -n 1" using 1:2:(sprintf("%.1f%%", $2)) with labels point pt 7 ps 0 right offset char 5, +0.3 tc ls 43 notitle, \
-  "<awk -F, '{if (NR>1&&$3==16) print $1,100*$13/2133378}' ../data/RKI_COVID19_Impfquotenmonitoring.csv | tail -n 1" using 1:2:(sprintf("%.1f%%", $2)) with labels point pt 7 ps 0 right offset char 5, 0.0 tc ls 42 notitle
+  "<awk -F, '{if (NR>1&&$3==16) print $1,100*$5/2120237}' ../data/RKI_COVID19_Impfquotenmonitoring.csv | tail -n 1" using 1:2:(sprintf("%.1f%%", $2)) with labels point pt 7 ps 0 right offset char 5, +0.3 tc ls 40 notitle, \
+  "<awk -F, '{if (NR>1&&$3==16) print $1,100*$11/2120237}' ../data/RKI_COVID19_Impfquotenmonitoring.csv | tail -n 1" using 1:2:(sprintf("%.1f%%", $2)) with labels point pt 7 ps 0 right offset char 5, -0.3 tc ls 41 notitle, \
+  "<awk -F, '{if (NR>1&&$3==16) print 86400*30*6+$1,100*$11/2120237}' ../data/RKI_COVID19_Impfquotenmonitoring.csv | tail -n 1" using 1:2:(sprintf("%.1f%%", $2)) with labels point pt 7 ps 0 right offset char 5, +0.3 tc ls 43 notitle, \
+  "<awk -F, '{if (NR>1&&$3==16) print $1,100*$13/2120237}' ../data/RKI_COVID19_Impfquotenmonitoring.csv | tail -n 1" using 1:2:(sprintf("%.1f%%", $2)) with labels point pt 7 ps 0 right offset char 5, 0.0 tc ls 42 notitle
