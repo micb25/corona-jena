@@ -36,6 +36,8 @@ set style line  35 lc rgb '#0060c0' lt 1 lw 1 pt 7 ps 1.50
 set style line  36 lc rgb '#008080' lt 1 lw 1 pt 7 ps 1.50
 set style line  40 lc rgb '#137e6d' lt 1 lw 3 pt 7 ps 1.50
 set style line  41 lc rgb '#0b4008' lt 1 lw 3 pt 7 ps 1.50
+set style line  42 lc rgb '#0d9419' lt 1 lw 3 pt 7 ps 1.50
+set style line  43 lc rgb '#0d9419' lt 1 lw 3 pt 7 ps 1.50 dt "."
 
 # grid
 set grid xtics ls 21 lc rgb '#aaaaaa'
