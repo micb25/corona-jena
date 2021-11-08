@@ -34,6 +34,9 @@ set boxwidth 1.0 relative
 set label 1 at graph 0.98, 0.95 "{/Linux-Libertine-O-Bold*0.87 gemeldete COVID19-Todesfälle pro Tag in Thüringen (7-Tage-Mittelwert)}" right textcolor ls 0
 set label 2 at graph 0.98, 0.90 update_str right textcolor ls 0
 
+set arrow from 1609455600, graph 0 to 1609455600, graph 0.85 nohead ls 3 lc rgb '#B0000000' back
+set label 3  at graph 0.52, 0.05 "Jahreswechsel" left textcolor ls 2
+
 set offsets graph 0.00, graph 0.00, graph 0.20, 0.00
 
 # data
