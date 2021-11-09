@@ -6,6 +6,8 @@ import os, sys, requests, csv, urllib.parse
 
 def rki_db_query(offset = 0, chunk_size = 8000):
     
+    # rki_key_data_v
+    # DIVI_Intensivregister_Landkreise
     # RKI databases: 
     # - Coronafälle_in_den_Bundesländern
     # - Covid19_RKI_Sums
