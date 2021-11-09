@@ -20,7 +20,7 @@ set xdata time
 set timefmt "%s"
 set format x "%d.%m."
 
-# fit
+# fit 1st
 m = 1
 n = -STATS_min
 f(x) = m * x + n
@@ -28,6 +28,24 @@ fit [ STATS_max - 14 * 86400 : STATS_max ] f(x) "<awk -F, '{if (NR>1&&$3==16) pr
 
 vac_per_day_rel = m * 86400
 vac_per_day = vac_per_day_rel * 2120237 / 100.0
+
+# fit 2nd
+m2 = 1
+n2 = -STATS_min
+g(x) = m2 * x + n2
+fit [ STATS_max - 14 * 86400 : STATS_max ] g(x) "<awk -F, '{if (NR>1&&$3==16) print $1,100*$11/2120237}' ../data/RKI_COVID19_Impfquotenmonitoring.csv" using 1:(filter_neg($2)) via m2, n2
+
+vac_2nd_per_day_rel = m2 * 86400
+vac_2nd_per_day = vac_2nd_per_day_rel * 2120237 / 100.0
+
+# fit 3rd
+m3 = 1
+n3 = -STATS_min
+h(x) = m3 * x + n3
+fit [ STATS_max - 14 * 86400 : STATS_max ] h(x) "<awk -F, '{if (NR>1&&$3==16) print $1,100*$13/2120237}' ../data/RKI_COVID19_Impfquotenmonitoring.csv" using 1:(filter_neg($2)) via m3, n3
+
+vac_3rd_per_day_rel = m3 * 86400
+vac_3rd_per_day = vac_3rd_per_day_rel * 2120237 / 100.0
 
 # y-axis setup
 set ylabel 'Bevölkerungsanteil'
@@ -44,29 +62,31 @@ set label 1 at graph 0.98, 0.95 "{/Linux-Libertine-O-Bold geimpfte Bevölkerung 
 set label 2 at graph 0.98, 0.90 "{/Linux-Libertine-O-Bold Thüringen}" right textcolor ls 0
 set label 10 at graph 0.98, 0.85 update_str right textcolor ls 0
 
-set label 3 at graph 0.03, 0.65 "{/Linux-Libertine-O-Bold*0.9 14-Tage-Trend (Erstimpfungen):}" left textcolor ls 0
+set label 3 at graph 0.03, 0.655 "{/Linux-Libertine-O-Bold*0.9 Täglich (14-Tage-Trend):}" left textcolor ls 0
 
 if ( vac_per_day_rel > 0 ) {
-	set label 4 at graph 0.04, 0.60 sprintf("{/*0.8 %+.0f Impfungen pro Tag}", vac_per_day) left textcolor ls 0
-	set label 5 at graph 0.04, 0.55 sprintf("{/*0.8 %+.2f%% geimpfter Anteil pro Tag}", vac_per_day_rel) left textcolor ls 0
+	set label 7 at graph 0.04, 0.60 sprintf("{/*0.8 %.0f Impfungen:}", vac_per_day + vac_2nd_per_day + vac_3rd_per_day) left textcolor ls 0
+	set label 4 at graph 0.04, 0.55 sprintf("{/*0.8 %.0f (%+.2f%%) Erstimpfungen}", vac_per_day, vac_per_day_rel) left textcolor ls 0
+	set label 5 at graph 0.04, 0.50 sprintf("{/*0.8 %.0f (%+.2f%%) Zweitimpfungen}", vac_2nd_per_day, vac_2nd_per_day_rel) left textcolor ls 0
+	set label 6 at graph 0.04, 0.45 sprintf("{/*0.8 %.0f (%+.2f%%) Auffrischimpfungen}", vac_3rd_per_day, vac_3rd_per_day_rel) left textcolor ls 0
 
-	line = 0.50
-	achievement_25 = (25 - f(STATS_max) ) / vac_per_day_rel
-	achievement_50 = (50 - f(STATS_max) ) / vac_per_day_rel
-	achievement_75 = (75 - f(STATS_max) ) / vac_per_day_rel
-	
-	if ( achievement_25 > 0 ) {
-		set label 6 at graph 0.04, line sprintf("{/*0.8 25%% erreicht in %.0f Tagen}", achievement_25) left textcolor ls 0
-		line = line - 0.05
-	}
-	if ( achievement_50 > 0 ) {
-		set label 7 at graph 0.04, line sprintf("{/*0.8 50%% erreicht in %.0f Tagen}", achievement_50) left textcolor ls 0
-		line = line - 0.05
-	}
-	if ( achievement_75 > 0 ) {
-		set label 8 at graph 0.04, line sprintf("{/*0.8 75%% erreicht in %.0f Tagen}", achievement_75) left textcolor ls 0
-		line = line - 0.05
-	}
+# 	line = 0.50
+# 	achievement_25 = (25 - f(STATS_max) ) / vac_per_day_rel
+# 	achievement_50 = (50 - f(STATS_max) ) / vac_per_day_rel
+# 	achievement_75 = (75 - f(STATS_max) ) / vac_per_day_rel
+# 	
+# 	if ( achievement_25 > 0 ) {
+# 		set label 6 at graph 0.04, line sprintf("{/*0.8 25%% erreicht in %.0f Tagen}", achievement_25) left textcolor ls 0
+# 		line = line - 0.05
+# 	}
+# 	if ( achievement_50 > 0 ) {
+# 		set label 7 at graph 0.04, line sprintf("{/*0.8 50%% erreicht in %.0f Tagen}", achievement_50) left textcolor ls 0
+# 		line = line - 0.05
+# 	}
+# 	if ( achievement_75 > 0 ) {
+# 		set label 8 at graph 0.04, line sprintf("{/*0.8 75%% erreicht in %.0f Tagen}", achievement_75) left textcolor ls 0
+# 		line = line - 0.05
+# 	}
 }
 
 set offsets 0.00, graph 0.10, graph 0.30, 0.00
@@ -78,8 +98,6 @@ plot  \
   "<awk -F, '{if (NR>1&&$3==16) print $1,100*$13/2120237}' ../data/RKI_COVID19_Impfquotenmonitoring.csv" using 1:(filter_neg($2)) with lines ls 42 lw 3 title "Auffrischimpfungen", \
   "<awk -F, '{if (NR>1&&$3==16) print 86400*30*6+$1,100*$11/2120237}' ../data/RKI_COVID19_Impfquotenmonitoring.csv" using 1:(filter_neg($2)) with lines ls 43 title "{/*0.9 Auffrischimpfungen (theoretisch)}", \
   1/0 title "{/*0.9 Zweitimpfungen + 6 Monate}" lc rgb "#f2f2f2", \
-  \
-  [ STATS_max - 14 * 86400 : STATS_max ] f(x) with lines ls 12 notitle, \
   \
   "<awk -F, '{if (NR>1&&$3==16) print $1,100*$5/2120237}' ../data/RKI_COVID19_Impfquotenmonitoring.csv | tail -n 1" using 1:2:(sprintf("%.1f%%", $2)) with labels point pt 7 ps 0 right offset char 5, +0.3 tc ls 40 notitle, \
   "<awk -F, '{if (NR>1&&$3==16) print $1,100*$11/2120237}' ../data/RKI_COVID19_Impfquotenmonitoring.csv | tail -n 1" using 1:2:(sprintf("%.1f%%", $2)) with labels point pt 7 ps 0 right offset char 5, -0.3 tc ls 41 notitle, \
