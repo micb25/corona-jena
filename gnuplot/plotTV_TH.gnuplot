@@ -24,7 +24,7 @@ set format x "%d.%m."
 m = 1
 n = -STATS_min
 f(x) = m * x + n
-fit [ STATS_max - 14 * 86400 : STATS_max ] f(x) "<awk -F, '{if (NR>1&&$3==16) print $1,100*$5/2120237}' ../data/RKI_COVID19_Impfquotenmonitoring.csv" using 1:(filter_neg($2)) via m, n
+fit [ STATS_max - 7 * 86400 : STATS_max ] f(x) "<awk -F, '{if (NR>1&&$3==16) print $1,100*$5/2120237}' ../data/RKI_COVID19_Impfquotenmonitoring.csv" using 1:(filter_neg($2)) via m, n
 
 vac_per_day_rel = m * 86400
 vac_per_day = vac_per_day_rel * 2120237 / 100.0
@@ -33,7 +33,7 @@ vac_per_day = vac_per_day_rel * 2120237 / 100.0
 m2 = 1
 n2 = -STATS_min
 g(x) = m2 * x + n2
-fit [ STATS_max - 14 * 86400 : STATS_max ] g(x) "<awk -F, '{if (NR>1&&$3==16) print $1,100*$11/2120237}' ../data/RKI_COVID19_Impfquotenmonitoring.csv" using 1:(filter_neg($2)) via m2, n2
+fit [ STATS_max - 7 * 86400 : STATS_max ] g(x) "<awk -F, '{if (NR>1&&$3==16) print $1,100*$11/2120237}' ../data/RKI_COVID19_Impfquotenmonitoring.csv" using 1:(filter_neg($2)) via m2, n2
 
 vac_2nd_per_day_rel = m2 * 86400
 vac_2nd_per_day = vac_2nd_per_day_rel * 2120237 / 100.0
@@ -42,7 +42,7 @@ vac_2nd_per_day = vac_2nd_per_day_rel * 2120237 / 100.0
 m3 = 1
 n3 = -STATS_min
 h(x) = m3 * x + n3
-fit [ STATS_max - 14 * 86400 : STATS_max ] h(x) "<awk -F, '{if (NR>1&&$3==16) print $1,100*$13/2120237}' ../data/RKI_COVID19_Impfquotenmonitoring.csv" using 1:(filter_neg($2)) via m3, n3
+fit [ STATS_max - 7 * 86400 : STATS_max ] h(x) "<awk -F, '{if (NR>1&&$3==16) print $1,100*$13/2120237}' ../data/RKI_COVID19_Impfquotenmonitoring.csv" using 1:(filter_neg($2)) via m3, n3
 
 vac_3rd_per_day_rel = m3 * 86400
 vac_3rd_per_day = vac_3rd_per_day_rel * 2120237 / 100.0
@@ -62,7 +62,7 @@ set label 1 at graph 0.98, 0.95 "{/Linux-Libertine-O-Bold geimpfte Bevölkerung 
 set label 2 at graph 0.98, 0.90 "{/Linux-Libertine-O-Bold Thüringen}" right textcolor ls 0
 set label 10 at graph 0.98, 0.85 update_str right textcolor ls 0
 
-set label 3 at graph 0.03, 0.655 "{/Linux-Libertine-O-Bold*0.9 Täglich (14-Tage-Trend):}" left textcolor ls 0
+set label 3 at graph 0.03, 0.655 "{/Linux-Libertine-O-Bold*0.9 Täglich (7-Tage-Trend):}" left textcolor ls 0
 
 if ( vac_per_day_rel > 0 ) {
 	set label 7 at graph 0.04, 0.60 sprintf("{/*0.8 %.0f Impfungen:}", vac_per_day + vac_2nd_per_day + vac_3rd_per_day) left textcolor ls 0
