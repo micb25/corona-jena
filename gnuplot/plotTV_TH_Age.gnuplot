@@ -3,7 +3,7 @@ load "template.gnuplot"
 set output '../plotTV_TH_Age.png'
 
 # get last update
-date_cmd = sprintf("%s", "`awk -F, '{print "@"$1+86400}' ../data/RKI_COVID19_Impfquotenmonitoring_Thuringia.csv | tail -n 1 | xargs date +"%d.%m.%Y" -d`")
+date_cmd = sprintf("%s", "`awk -F, '{print "@"int($1/86400)*86400}' ../data/RKI_COVID19_Impfquotenmonitoring_Thuringia.csv | tail -n 1 | xargs date +"%d.%m.%Y" -d`")
 update_str = "{/*0.75 (Stand: " . date_cmd . "; Quelle: RKI)}"
 
 # x-axis setup
