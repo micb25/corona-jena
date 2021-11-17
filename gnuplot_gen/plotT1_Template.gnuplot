@@ -6,24 +6,6 @@ set output '../plotT1_%FILENAME%.png'
 date_cmd = sprintf("%s", "`awk -F, '{print "@"$1}' ../data/cases_thuringia.csv | tail -n 1 | xargs date +"%d.%m.%Y" -d`")
 update_str = "{/*0.75 letztes Update: " . date_cmd . "}"
 
-# stats for x
-stats "<awk -F, '{if ($2==\"%NAME%\")a[$1]+=$4}END{for(i in a) print int(i/86400)*86400,a[i]}' ../data/cases_thuringia.csv | sort -n -k1" using 1 nooutput
-set xrange [ STATS_min : STATS_max + 2.0 * 86400 ]
-
-# stats for y
-stats "<awk -F, '{if ($2==\"%NAME%\")a[$1]+=$4}END{for(i in a) print int(i/86400)*86400,a[i]}' ../data/cases_thuringia.csv | awk '{if ($2 >= 0) print $0}' | sort -n -k1" using 2 nooutput
-
-if ( STATS_max > 200 ) {
-	set yrange [ 0 : 100*int(1+int(1.35*STATS_max)/100.0) ]
-} else {
-	if ( STATS_max > 50 ) {
-		set yrange [ 0 : 50*int(1+int(1.35*STATS_max)/50.0) ]
-	} else {
-		set yrange [ 0 : 10*int(1+int(1.35*STATS_max)/10.0) ]
-	}
-}
-
-
 # x-axis setup
 unset xlabel
 set xdata time
@@ -38,6 +20,8 @@ set key at graph 0.02, 0.98 left top invert spacing 1.2 box ls 3
 
 set label 1 at graph 0.98, 0.95 update_str right textcolor ls 0
 set label 2 at graph 0.98, 0.90 "{/*0.75 Quelle: TMASGFF}" right textcolor ls 0
+
+set offsets graph 0.01, graph 0.01, graph 0.20, 0.00
 
 # data
 plot  \
