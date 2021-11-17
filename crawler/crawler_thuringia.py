@@ -47,16 +47,14 @@ def strToTimestamp(datetimestr):
 
 def getTHStatistics(url, latest_case_numbers):
     # general patterns
-    date_pattern     = re.compile(r"Stand: (.*?)</")
-    district_pattern = re.compile(r"(<div class=\"accordion__item\".*?</div></div></div></div></div>)")
+    date_pattern = re.compile(r"Stand: ([0-9]{1,2}).([0-9]{1,2}).([0-9]{2,4})")
+    district_pattern = re.compile(r"(<h3 class=\"accordion__title\">.*?<\/div>\s{0,}<\/div>\s{0,}<\/div>\s{0,}<\/div>\s{0,})")
     
     # district patterns
     dp_name    = re.compile(r">([a-zäöüÄÖÜßA-Z\s\-]*?)</h3>")
-    dp_new_inf = re.compile(r"<li>Neuinfektionen letzte 24h\s?:?\s?([\+\-0-9]{1,})")
-    dp_sum_inf = re.compile(r"<li>Infizierte insgesamt\s?:?\s?([\+\-0-9]{1,})")
-    dp_hosp    = re.compile(r"Patienten stationär\s?(?:insgesamt)?:?\s([\+\-0-9]{1,})")
-    dp_severe  = re.compile(r"schwerer?\s(?:Verläufe|Verlauf)\s?:?\s([\+\-0-9]{1,})")
-    dp_dec     = re.compile(r"<li>Verstorbene?\s?:?\s?([\+\-0-9]{1,})")
+    dp_new_inf = re.compile(r"<div class=\"[^\"]{1,}\">\s{0,}([0-9+-]{1,})\s{0,}</div>\s{0,}<div class=\"[^\"]{1,}\">Neuinfektionen</div>")
+    dp_sum_inf = re.compile(r"<div class=\"[^\"]{1,}\">\s{0,}([0-9+-]{1,})\s{1,}Infizierte\s{1,}gesamt\s{0,}</div>")
+    dp_dec     = re.compile(r"<div class=\"[^\"]{1,}\">\s{0,}Verstorbene\s{0,}</div>\s{0,}<div class=\"[^\"]{1,}\">[^<]*?\s{1,}([0-9+-]{1,})\s{1,}gesamt</div>")
     
     data_timestamp = 0
     
@@ -69,15 +67,13 @@ def getTHStatistics(url, latest_case_numbers):
         r = requests.get(url, headers=headers, allow_redirects=True, timeout=5.0)
         
         # filter some stuff
-        raw_text = r.text.replace("\n", "").replace("\r", "").replace("<p>", "").replace("</p>", "").replace("*", "")
+        raw_text = r.text.replace("\n", " ").replace("\r", " ").replace("<p>", "").replace("</p>", "").replace("*", "")
         
         # get the timestamp and try to recognize missing updated date labels
         pd = date_pattern.findall( raw_text )
         for date_entry in pd:
-            current_timestamp = strToTimestamp(date_entry)
-            if current_timestamp > data_timestamp:
-                data_timestamp = current_timestamp
-                
+            data_timestamp = int(datetime.datetime(year=int(pd[0][2]), month=int(pd[0][1]), day=int(pd[0][0]), hour=8).strftime("%s"))
+                                
         # return if date could not be read
         if data_timestamp == 0:
             return False
@@ -91,13 +87,11 @@ def getTHStatistics(url, latest_case_numbers):
             dName = dp_name.findall(entry_str)
             dNew  = dp_new_inf.findall(entry_str)
             dSum  = dp_sum_inf.findall(entry_str)
-            dHosp = dp_hosp.findall(entry_str)
-            dSev  = dp_severe.findall(entry_str)
             dDec  = dp_dec.findall(entry_str)
             
             d = []
             d.append(dName[0] if len(dName) > 0 else "")
-            
+                        
             # try to verify/fix per day
             if len(dNew) > 0:
                 if (len(dSum) > 0) and (len(dName) > 0):
@@ -121,8 +115,8 @@ def getTHStatistics(url, latest_case_numbers):
                     d.append(0)
                 
             d.append(int(dSum[0]) if len(dSum) > 0 else -1)
-            d.append(int(dHosp[0]) if len(dHosp) > 0 else -1)
-            d.append(int(dSev[0]) if len(dSev) > 0 else -1)
+            d.append(-1)
+            d.append(-1)
             d.append(int(dDec[0]) if len(dDec) > 0 else -1)
                         
             res = res + "%i,%s,%i,%i,%i,%i,%i,%i\n" % (data_timestamp, d[0], d[1], d[2], d[3], d[4], d[5], 0)
