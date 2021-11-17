@@ -24,29 +24,20 @@ def strToTimestamp(datetimestr):
 
 def parseTHData(text):
 
-    num_pattern_T1 = re.compile(r"Gesamtzahl der Infizierten\s?:\s?([\+\-0-9]{1,})")
-    num_pattern_R1 = re.compile(r"(?:Gesamtzahl\ der\ Genesenen|Anzahl\ Genesene|Genesene\**)\s?:\s?([\+\-0-9]{1,})")
-    num_pattern_D1 = re.compile(r"[vV]erstorbene\s?:\s([\+\-0-9]{1,})")
-    num_pattern_HI = re.compile(r"Patienten\ stationär\s\(Gesamt.*?:\s?([\+\-0-9]{1,})")
-    num_pattern_HC = re.compile(r"Patienten\ stationär\saufgrund.*?\s?:\s?([\+\-0-9]{1,})")
-    num_pattern_S1 = re.compile(r"[sS]chweren? Verläufe[^:]*\s?:\s?([\+\-0-9]{1,})")
+    num_pattern_T1 = re.compile(r"<div class=\"[^\"]{1,}\">\s{0,}Neuinfektionen\s{0,}<\/div>\s{0,}<div class=\"[^\"]{1,}\">\s{0,}([0-9\.]{1,})\s{1,}gesamt\s{0,}<\/div>")
+    num_pattern_R1 = re.compile(r"<div class=\"[^\"]{1,}\">\s{0,}([0-9\.]{1,})\s{0,}<\/div>\s{0,}<div class=\"[^\"]{1,}\">Genesene<\/div>")
+    num_pattern_D1 = re.compile(r"<div class=\"[^\"]{1,}\">Verstorbene<\/div>\s{0,}<div class=\"[^\"]{1,}\">[^<]{1,}\s{1,}([0-9\.]{1,})\s{1,}gesamt\s{0,}<\/div>")
             
     try:
         ps1  = num_pattern_T1.findall( text )
         ps2  = num_pattern_R1.findall( text )
         ps3  = num_pattern_D1.findall( text )
-        ps4  = num_pattern_HI.findall( text )
-        ps5  = num_pattern_HC.findall( text )
-        ps6  = num_pattern_S1.findall( text )
                                         
         num_t  = int(ps1[0])  if (len(ps1) >= 1) else -1
         num_r  = int(ps2[0])  if (len(ps2) >= 1) else -1
         num_d  = int(ps3[0])  if (len(ps3) >= 1) else -1
-        num_hi = int(ps4[0])  if (len(ps4) >= 1) else -1
-        num_hc = int(ps5[0])  if (len(ps5) >= 1) else -1
-        num_s  = int(ps6[0])  if (len(ps6) >= 1) else -1
         
-        return [num_t, num_r, num_d, num_hi, num_hc, num_s]
+        return [num_t, num_r, num_d, -1, -1, -1]
     
     except:
         return False  
@@ -58,16 +49,14 @@ if __name__ == "__main__":
     URL = 'https://www.tmasgff.de/covid-19/fallzahlen'
     
     # RE pattern for TMASGFF data
-    th_data_pattern = re.compile(r"<h2>(Gesamt.*?)<\/div>")
+    th_data_pattern = re.compile(r"<main id=\"main\">.*</main>")
     th_date_pattern = re.compile(r"Stand: ([0-9]{1,2}).([0-9]{1,2}).([0-9]{2,4})")
         
     # do the request
     headers = { 'Pragma': 'no-cache', 'Cache-Control': 'no-cache' }
     r = requests.get(URL, headers=headers, allow_redirects=True, timeout=5.0)
-    s = r.text.replace("\t", "")
+    s = r.text.replace("\t", " ").replace("\n", " ")
 
-    s = s.replace(".09.21,", ".21,") # hot-fix for "Stand: 05.10.09.21, 0:00 Uhr"
-    
     # parse data
     rawdata = th_data_pattern.findall( s )
     if ( len(rawdata) > 0 ):
