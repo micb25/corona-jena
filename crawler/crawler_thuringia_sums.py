@@ -26,7 +26,7 @@ def parseTHData(text):
 
     num_pattern_T1 = re.compile(r"<div class=\"[^\"]{1,}\">\s{0,}Neuinfektionen\s{0,}<\/div>\s{0,}<div class=\"[^\"]{1,}\">\s{0,}([0-9\.]{1,})(?:\s{1,}gesamt)?\s{0,}<\/div>")
     num_pattern_R1 = re.compile(r"<div class=\"[^\"]{1,}\">\s{0,}([0-9\.]{1,})\s{0,}<\/div>\s{0,}<div class=\"[^\"]{1,}\">Genesene<\/div>")
-    num_pattern_D1 = re.compile(r"<div class=\"[^\"]{1,}\">Verstorbene<\/div>\s{0,}<div class=\"[^\"]{1,}\">\s{0,}([0-9\.]{1,})(?:\s{1,}gesamt)?\s{0,}<\/div>")
+    num_pattern_D1 = re.compile(r"<div class=\"[^\"]{1,}\">Verstorbene<\/div>\s{0,}<div class=\"[^\"]{1,}\">(?:[^<]{1,})?\s{0,}([0-9\.]{4,})(?:\s{1,}gesamt)?\s{0,}<\/div>")
             
     try:
         ps1  = num_pattern_T1.findall( text )
