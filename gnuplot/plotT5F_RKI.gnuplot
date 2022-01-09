@@ -3,7 +3,7 @@ load "template.gnuplot"
 set output '../plotT5F_RKI.png'
 
 # get last update
-date_cmd = sprintf("%s", "`awk -F, '{print "@"$1+86400}' ../data/RKI_TH_Hospitalisierung.csv | tail -n 1 | xargs date +"%d.%m.%Y" -d`")
+date_cmd = sprintf("%s", "`awk -F, '{print "@"$1}' ../data/RKI_TH_Hospitalisierung.csv | tail -n 1 | xargs date +"%d.%m.%Y" -d`")
 update_str = "{/*0.75 (Stand: " . date_cmd . "; Quelle: RKI; ggf. Nachmeldungen möglich)}"
 
 # x-axis setup
