@@ -5,7 +5,7 @@ set output '../plotT7_RKI_A.png'
 # stats for x
 stats "<awk -F, '{if (NR>1) print int($1/86400)*86400}' ../data/rki_th_by_date/cases_by_day_and_age.csv" using 1 nooutput
 set xrange [ 1583712000 - 0.5 * 86400 : STATS_max + 0.5 * 86400 ]
-set yrange [0:50 < * < 100000]
+set yrange [0:50 < * ]
 
 # latest update
 date_cmd = sprintf("%s", "`awk -F, '{print "@"$1+7200}' ../data/cases_th_sums.csv | tail -n 1 | xargs date +"%d.%m." -d`")
@@ -26,7 +26,7 @@ set key at graph 0.02, 0.98 left top spacing 1.1 box ls 3
 set label 1 at graph 0.98, 0.95 "{/Linux-Libertine-O-Bold Fallzahlen in Thüringen nach Altersgruppe}" right textcolor ls 0
 set label 2 at graph 0.98, 0.90 update_str right textcolor ls 0
 
-set offsets 0.00, 0.00, graph 0.425, 0.00
+set offsets 0.00, 0.00, graph 0.20, 0.00
 
 plot  \
   \
