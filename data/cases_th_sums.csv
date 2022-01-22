@@ -646,3 +646,4 @@ date,sum,recovered,dead,hosp,hospcov,severe,url
 1642582800,305487,278140,6304,18584,12022,1789,https://www.tmasgff.de/covid-19/fallzahlen
 1642669200,306823,279470,6316,18613,12033,1792,https://www.tmasgff.de/covid-19/fallzahlen
 1642755600,308064,280410,6334,18644,12048,1798,https://www.tmasgff.de/covid-19/fallzahlen
+1642842000,309165,281010,6341,-1,-1,-1,https://www.tmasgff.de/covid-19/fallzahlen
