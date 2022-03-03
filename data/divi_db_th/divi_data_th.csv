@@ -4521,3 +4521,10 @@ Datum,IntensivbettenGesamt,IntensivbettenBelegt,IntensivBettenFrei,COVID19Faelle
 1646204700,681,559,122,49,20,https://www.intensivregister.de/api/public/reporting/laendertabelle
 1646208300,683,559,124,49,20,https://www.intensivregister.de/api/public/reporting/laendertabelle
 1646211900,686,562,124,50,20,https://www.intensivregister.de/api/public/reporting/laendertabelle
+1646280300,686,560,126,50,20,https://www.intensivregister.de/api/public/reporting/laendertabelle
+1646283900,688,561,127,50,22,https://www.intensivregister.de/api/public/reporting/laendertabelle
+1646287500,691,560,131,53,23,https://www.intensivregister.de/api/public/reporting/laendertabelle
+1646291100,690,565,125,50,24,https://www.intensivregister.de/api/public/reporting/laendertabelle
+1646298300,690,569,121,50,24,https://www.intensivregister.de/api/public/reporting/laendertabelle
+1646301900,690,568,122,48,24,https://www.intensivregister.de/api/public/reporting/laendertabelle
+1646305500,680,564,116,48,24,https://www.intensivregister.de/api/public/reporting/laendertabelle
