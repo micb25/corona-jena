@@ -39,11 +39,11 @@ set style increment default
  set style fill transparent solid 0.20 border
 
 # axes
-set xtics 28*86400 out nomirror rotate by 90 offset 0, -1.8 scale 1.2
+set xtics 28*86400 out nomirror rotate by 90 offset 0, -2.6 scale 1.0
 set mxtics 4
 
 set format y '%6.0f'
-set ytics out nomirror scale 1.2
+set ytics out nomirror scale 1.0 offset +0.6, 0.0
 set mytics 2
 
 set key opaque
@@ -59,7 +59,7 @@ set output '../plot3_RKI_%FILENAME%.png'
 # stats for x
 stats "<awk -F, '{print $1}' ../data/rki_th_by_date/cases_by_day_and_region.csv" using 1 nooutput
 set xrange [ STATS_min - 2.0 * 86400 : STATS_max + 2.0 * 86400 ]
-set yrange [0:20 < * < 100000]
+set yrange [0:20 < * < 900000]
 
 # latest update
 date_cmd = sprintf("%s", "`awk -F, '{print "@"$1}' ../data/rki_th_by_date/cases_by_day_and_region.csv | tail -n 1 | xargs date +"%d.%m.%Y" -d`")
@@ -69,7 +69,7 @@ update_str = "{/*0.75 letzte Aktualisierung: " . date_cmd . "; Quelle: Robert Ko
 unset xlabel
 set xdata time
 set timefmt "%s"
-set format x "%d.%m."
+set format x "%d.%m.%y"
 
 # y-axis setup
 set ylabel 'aktive Coronavirus-Fälle %REGION%'
