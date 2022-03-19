@@ -22,7 +22,8 @@ update_str = "letzte Aktualisierung: " . date_cmd
 stats "<awk -F, '{print $2}' ../data/cases_th_sums.csv | tail -n 1" u 1 prefix "A" nooutput
 
 # get recovered
-stats "<awk -F, '{print $3}' ../data/cases_th_sums.csv | tail -n 1" u 1 prefix "B" nooutput
+# stats "<awk -F, '{print $3}' ../data/cases_th_sums.csv | tail -n 1" u 1 prefix "B" nooutput
+stats "<awk -F, '{if ($2==\"TH\") print $1,$4}' ../data/rki_th_by_date/cases_by_day_and_region.csv | tail -n 1" u 2 prefix "B" nooutput
 
 # get deceased
 stats "<awk -F, '{print $4}' ../data/cases_th_sums.csv | tail -n 1" u 1 prefix "C" nooutput
@@ -84,5 +85,5 @@ plot \
      \
      "<echo 0" u (xpos):(ypos(6.75)):("* geschätzter Wert") w labels font ", 12" left offset 2.5, 0, \
      "<echo 0" u (xpos):(ypos(7.35)):(update_str) w labels font ", 12" left offset 2.5, 0, \
-     "<echo 0" u (xpos):(ypos(7.95)):("Quelle: TMASGFF") w labels font ", 12" left offset 2.5, 0
+     "<echo 0" u (xpos):(ypos(7.95)):("Quelle: TMASGFF, RKI") w labels font ", 12" left offset 2.5, 0
 
