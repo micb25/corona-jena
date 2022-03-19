@@ -39,11 +39,11 @@ set style increment default
  set style fill transparent solid 0.20 border
 
 # axes
-set xtics 28*86400 out nomirror rotate by 90 offset 0, -1.8 scale 1.2
+set xtics 28*86400 out nomirror rotate by 90 offset 0, -2.6 scale 1.0
 set mxtics 4
 
 set format y '%3.0f'
-set ytics out nomirror scale 1.2
+set ytics out nomirror scale 1.0 offset +0.5, 0.0
 set mytics 2
 
 set key opaque
@@ -69,10 +69,10 @@ update_str = "{/*0.75 letzte Aktualisierung: " . date_cmd . "; Quelle: RKI}"
 unset xlabel
 set xdata time
 set timefmt "%s"
-set format x "%d.%m."
+set format x "%d.%m.%y"
 
 # y-axis setup
-set ylabel 'Neuinfektionen in 7 Tagen pro 100 000 EW'
+set ylabel 'Neuinfektionen in 7 Tagen pro 100 000 EW' offset +0.5, 0.0
 #unset ylabel
 
 # key
@@ -93,9 +93,5 @@ threshold_hot_spot(x) = 200.0
 filter_neg(x)=(x>=0)?(x):(1/0)
 
 plot  \
-  \
-  threshold_low(x) with lines ls 1 notitle, \
-  threshold_high(x) with lines ls 2 notitle, \
-  threshold_hot_spot(x) with lines ls 2 lc '#8f1402' notitle, \
   "../data/cases_rki_7day_incidence.csv" using 1:(filter_neg(column(%COLIDX%))) with lines lt 1 lw 3 lc '#047495' title "7-Tages-Inzidenz"
   
