@@ -26,13 +26,13 @@ stats "<awk -F, '{print $2}' ../data/cases_th_sums.csv | tail -n 1" u 1 prefix "
 stats "<awk -F, '{if ($2==\"TH\") print $1,$4}' ../data/rki_th_by_date/cases_by_day_and_region.csv | tail -n 1" u 2 prefix "B" nooutput
 
 # get deceased
-stats "<awk -F, '{print $4}' ../data/cases_th_sums.csv | tail -n 1" u 1 prefix "C" nooutput
+stats "<awk -F, '{print $4}' ../data/cases_th_sums.csv | grep -v \\\\-1 | tail -n 1" u 1 prefix "C" nooutput
 
 # get hosp
-stats "<awk -F, '{print $5}' ../data/cases_th_sums.csv | tail -n 1" u 1 prefix "E" nooutput
+stats "<awk -F, '{print $5}' ../data/cases_th_sums.csv | grep -v \\\\-1 | tail -n 1" u 1 prefix "E" nooutput
 
 # get severe
-stats "<awk -F, '{print $7}' ../data/cases_th_sums.csv | tail -n 1" u 1 prefix "F" nooutput
+stats "<awk -F, '{print $7}' ../data/cases_th_sums.csv | grep -v \\\\-1 | tail -n 1" u 1 prefix "F" nooutput
 
 # get 7-day incidence
 stats "<awk -F, '{print $2}' ../data/cases_rki_7day_incidence.csv | tail -n 1" using 1 prefix "I" nooutput
