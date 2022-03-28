@@ -220,6 +220,7 @@ function formatValue( value ) {
 		return "*";
 		
 	if ( value > 1000000 ) {
+		value = Math.round(value);
 		result = Math.floor( value / 1000000 ) + '&thinsp;';
 		if ( (Math.floor(value % 1000000) / 1000) < 10 ) {
 			result += '00';
@@ -235,6 +236,7 @@ function formatValue( value ) {
 		result += value % 1000;
 	}
 	else if ( value > 1000 ) {
+		value = Math.round(value);
 		result = Math.round( value - Math.floor( value / 1000 ) * 1000 );
 		if ( result < 10 ) {
 			result = '00' + result;
