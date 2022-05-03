@@ -1,4 +1,4 @@
-zeit,erkrankte,genesene,tote,stationaer,schwerer-verlauf,neu-erkrankte,aktive-faelle
+ï»¿zeit,erkrankte,genesene,tote,stationaer,schwerer-verlauf,neu-erkrankte,aktive-faelle
 1583932500,0,0,0,0,0,0,0
 1584176400,2,0,0,0,0,2,2
 1584219780,8,0,0,0,0,6,8
@@ -765,3 +765,4 @@ zeit,erkrankte,genesene,tote,stationaer,schwerer-verlauf,neu-erkrankte,aktive-fa
 1651010399,33858,32706,140,10,0,0,1012
 1651096799,34153,32706,141,10,0,259,1306
 1651183199,34289,32731,141,10,0,136,1417
+1651528780,34501,32731,141,1,0,128,1629
