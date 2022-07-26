@@ -35,12 +35,13 @@ set label 1 at graph 0.98, 0.95 "{/Linux-Libertine-O-Bold Hospitalisierungen pro
 set label 2 at graph 0.98, 0.90 update_str right textcolor ls 0
 
 set arrow from 1609455600, graph 0 to 1609455600, graph 0.85 nohead ls 3 lc rgb '#B0000000' back
-set label 3  at graph 0.52, 0.05 "Jahreswechsel" left textcolor ls 2
+set label 3  at graph 0.52, 0.03 "Jahreswechsel" left textcolor ls 2
 
 set offsets graph 0.00, graph 0.00, graph 0.20, 0.00
 
 # data
 plot  \
+  "<awk -F, 'BEGIN{for(i=0;i<7;i++){a[i]=0}}{if (NR>1&&$2==\"00+\") {if ($1>=1584352800) {for(i=0; i<6; i++){a[i]=a[i+1]};a[6]=$5;b=0;for(i=0;i<7; i++){b=b+a[i]};print int($1/86400)*86400,b/7;}}}' ../data/RKI_TH_Hospitalisierung.csv" using ($1-730*86400):2 with lines lw 2 lt rgb "#ffc512" title " 2022/2023", \
   "<awk -F, 'BEGIN{for(i=0;i<7;i++){a[i]=0}}{if (NR>1&&$2==\"00+\") {if ($1>=1584352800) {for(i=0; i<6; i++){a[i]=a[i+1]};a[6]=$5;b=0;for(i=0;i<7; i++){b=b+a[i]};print int($1/86400)*86400,b/7;}}}' ../data/RKI_TH_Hospitalisierung.csv" using ($1-365*86400):2 with lines lw 2 lt rgb "#ff8a1e" title " 2021/2022", \
-  "<awk -F, 'BEGIN{for(i=0;i<7;i++){a[i]=0}}{if (NR>1&&$2==\"00+\") {if ($1>=1584352800) {for(i=0; i<6; i++){a[i]=a[i+1]};a[6]=$5;b=0;for(i=0;i<7; i++){b=b+a[i]};print int($1/86400)*86400,b/7;}}}' ../data/RKI_TH_Hospitalisierung.csv" using 1:2 with lines lw 2 lt rgb "#b66215" title " 2020/2021"
+  "<awk -F, 'BEGIN{for(i=0;i<7;i++){a[i]=0}}{if (NR>1&&$2==\"00+\") {if ($1>=1584352800) {for(i=0; i<6; i++){a[i]=a[i+1]};a[6]=$5;b=0;for(i=0;i<7; i++){b=b+a[i]};print int($1/86400)*86400,b/7;}}}' ../data/RKI_TH_Hospitalisierung.csv" using 1:2 with lines lw 2 lt rgb "#c45508" title " 2020/2021"
   

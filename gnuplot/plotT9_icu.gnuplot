@@ -35,12 +35,13 @@ set label 1 at graph 0.98, 0.95 "{/Linux-Libertine-O-Bold mit COVID-19 belegte I
 set label 2 at graph 0.98, 0.90 update_str right textcolor ls 0
 
 set arrow from 1609455600, graph 0 to 1609455600, graph 0.85 nohead ls 3 lc rgb '#B0000000' back
-set label 3  at graph 0.52, 0.05 "Jahreswechsel" left textcolor ls 2
+set label 3  at graph 0.52, 0.03 "Jahreswechsel" left textcolor ls 2
 
 set offsets graph 0.00, graph 0.00, graph 0.20, 0.00
 
 # data
 plot  \
+  "<awk -F, '{if (NR>1) {print $1,$5}}' ../data/divi_db_th/divi_data_th.csv" using ($1-720*86400):2 with lines lw 2 lt rgb "#ffc512" title " 2021/2022", \
   "<awk -F, '{if (NR>1) {print $1,$5}}' ../data/divi_db_th/divi_data_th.csv" using ($1-365*86400):2 with lines lw 2 lt rgb "#ff8a1e" title " 2021/2022", \
-  "<awk -F, '{if (NR>1) {print $1,$5}}' ../data/divi_db_th/divi_data_th.csv" using 1:2 with lines lw 2 lt rgb "#b66215" title " 2020/2021"
+  "<awk -F, '{if (NR>1) {print $1,$5}}' ../data/divi_db_th/divi_data_th.csv" using 1:2 with lines lw 2 lt rgb "#c45508" title " 2020/2021"
   
