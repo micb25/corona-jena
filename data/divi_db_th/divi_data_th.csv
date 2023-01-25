@@ -6776,3 +6776,11 @@ Datum,IntensivbettenGesamt,IntensivbettenBelegt,IntensivBettenFrei,COVID19Faelle
 1674536725,714,549,165,13,6,https://www.intensivregister.de/api/public/reporting/laendertabelle
 1674540315,716,565,151,13,6,https://www.intensivregister.de/api/public/reporting/laendertabelle
 1674547516,716,566,150,13,6,https://www.intensivregister.de/api/public/reporting/laendertabelle
+1674601515,716,566,150,12,5,https://www.intensivregister.de/api/public/reporting/laendertabelle
+1674605125,716,563,153,12,5,https://www.intensivregister.de/api/public/reporting/laendertabelle
+1674619515,716,560,156,12,5,https://www.intensivregister.de/api/public/reporting/laendertabelle
+1674623115,721,565,156,11,6,https://www.intensivregister.de/api/public/reporting/laendertabelle
+1674626716,721,564,157,9,6,https://www.intensivregister.de/api/public/reporting/laendertabelle
+1674630316,721,567,154,9,6,https://www.intensivregister.de/api/public/reporting/laendertabelle
+1674633915,722,567,155,9,6,https://www.intensivregister.de/api/public/reporting/laendertabelle
+1674637516,722,566,156,9,6,https://www.intensivregister.de/api/public/reporting/laendertabelle
