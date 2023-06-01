@@ -39,8 +39,8 @@ set style increment default
  set style fill transparent solid 0.20 border
 
 # axes
-set xtics 28*86400 out nomirror rotate by 90 offset 0, -2.6 scale 1.0
-set mxtics 4
+set xtics 3*365*86400/12 out nomirror rotate by 90 offset 0, -2.6 scale 1.0
+set mxtics 3
 
 set format y '%3.0f'
 set ytics out nomirror scale 1.0 offset +0.5, 0.0
@@ -51,15 +51,12 @@ set border back
 
 set object 1 rectangle from screen -0.1,-0.1 to screen 1.1,1.1 fc rgb "#f2f2f2" behind
 
-# filter negative values
-filter_neg(x)=(x>=0)?(x):(1/0)
-
 set output '../plot8_RKI_%FILENAME%.png'
 
 # stats for x
 stats "<awk -F, '{print $1}' ../data/cases_rki_7day_incidence.csv" using 1 nooutput
-set xrange [ STATS_min - 2.0 * 86400 : STATS_max + 2.0 * 86400 ]
-set yrange [0:100 < * < 100000]
+set xrange [1585692000:*]
+set yrange [0:100 < * < 5000]
 
 # latest update
 date_cmd = sprintf("%s", "`awk -F, '{print "@"$1}' ../data/cases_rki_7day_incidence.csv | tail -n 1 | xargs date +"%d.%m.%Y" -d`")
@@ -69,11 +66,10 @@ update_str = "{/*0.75 letzte Aktualisierung: " . date_cmd . "; Quelle: RKI}"
 unset xlabel
 set xdata time
 set timefmt "%s"
-set format x "%d.%m.%y"
+set format x "%m.%Y"
 
 # y-axis setup
 set ylabel 'Neuinfektionen in 7 Tagen pro 100 000 EW' offset +0.5, 0.0
-#unset ylabel
 
 # key
 set key at graph 0.02, 0.98 left top invert spacing 1.2 box ls 3
@@ -85,13 +81,9 @@ set offsets 0.00, 0.00, graph 0.25, 0.00
 
 set datafile separator ","
 
-threshold_low(x) = 35.0
-threshold_high(x) = 50.0
-threshold_hot_spot(x) = 200.0
-
-# filter negative values
-filter_neg(x)=(x>=0)?(x):(1/0)
+# filter values
+filter_val(x)=(x>=0&&x<5000)?(x):(1/0)
 
 plot  \
-  "../data/cases_rki_7day_incidence.csv" using 1:(filter_neg(column(%COLIDX%))) with lines lt 1 lw 3 lc '#047495' title "7-Tages-Inzidenz"
+  "../data/cases_rki_7day_incidence.csv" using 1:(filter_val(column(%COLIDX%))) with lines lt 1 lw 3 lc '#047495' title "7-Tages-Inzidenz"
   
