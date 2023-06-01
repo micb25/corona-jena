@@ -36,11 +36,11 @@ set grid ytics ls 21 lc rgb '#aaaaaa'
 # misc
 set samples 30
 set style increment default
- set style fill transparent solid 0.20 border
+set style fill transparent solid 0.20 border
 
 # axes
-set xtics 28*86400 out nomirror rotate by 90 offset 0, -2.6 scale 1.0
-set mxtics 4
+set xtics 3*365*86400/12 out nomirror rotate by 90 offset 0, -2.6 scale 1.0
+set mxtics 3
 
 set format y '%6.0f'
 set ytics out nomirror scale 1.0 offset +0.6, 0.0
@@ -58,7 +58,7 @@ set output '../plot3_RKI_%FILENAME%.png'
 
 # stats for x
 stats "<awk -F, '{print $1}' ../data/rki_th_by_date/cases_by_day_and_region.csv" using 1 nooutput
-set xrange [ STATS_min - 2.0 * 86400 : STATS_max + 2.0 * 86400 ]
+set xrange [1585692000:*]
 set yrange [0:20 < * < 900000]
 
 # latest update
@@ -69,11 +69,7 @@ update_str = "{/*0.75 letzte Aktualisierung: " . date_cmd . "; Quelle: Robert Ko
 unset xlabel
 set xdata time
 set timefmt "%s"
-set format x "%d.%m.%y"
-
-# y-axis setup
-set ylabel 'aktive Coronavirus-Fälle %REGION%'
-unset ylabel
+set format x "%m.%Y"
 
 # key
 set key at graph 0.02, 0.98 left top invert spacing 1.2 box ls 3
