@@ -1,6 +1,6 @@
 load "template.gnuplot"
 
-set xtics 7*86400 out nomirror rotate by 90 offset 0, -1.8 scale 1.2
+set xtics 7*86400 out nomirror rotate by 90 offset 0, -2.6 scale 1.2
 set mxtics 7
 
 set output '../plotT7D_RKI_A.png'
@@ -18,7 +18,7 @@ update_str = "{/*0.75 (letztes Update: " . date_cmd . "; Quelle: eigene Berechnu
 unset xlabel
 set xdata time
 set timefmt "%s"
-set format x "%d.%m."
+set format x "%d.%m.%y"
 
 # y-axis setup
 set ylabel 'Neuinfektionen in 7 Tagen pro 100.000 EW'

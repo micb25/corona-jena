@@ -42,7 +42,7 @@ set xtics 14*86400
 set mxtics 2
 set xdata time
 set timefmt "%s"
-set format x "%d.%m."
+set format x "%m.%Y"
 set xrange [xmin:xmax]
 
 # y-axis setup

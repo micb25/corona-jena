@@ -14,7 +14,7 @@ set yrange [ 0 : 4.0 ]
 unset xlabel
 set xdata time
 set timefmt "%s"
-set format x "%d.%m."
+set format x "%m.%Y"
 set format y "%.1f"
 
 # y-axis setup

@@ -13,7 +13,7 @@ set xrange [ STATS_min : STATS_max ]
 # x-axis setup
 set xdata time
 set timefmt "%s"
-set format x "%d.%m."
+set format x "%m.%Y"
 
 # y-axis setup
 unset ylabel

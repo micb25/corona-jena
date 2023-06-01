@@ -15,7 +15,7 @@ update_str = "{/*0.75 (letztes Update: " . date_cmd . "; Quelle: eigene Berechnu
 unset xlabel
 set xdata time
 set timefmt "%s"
-set format x "%d.%m."
+set format x "%m.%Y"
 
 # y-axis setup
 set ylabel 'Neuinfektionen in 7 Tagen pro 100.000 EW'

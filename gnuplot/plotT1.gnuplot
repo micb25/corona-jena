@@ -15,7 +15,7 @@ update_str = "{/*0.75 letzte Aktualisierung: " . date_cmd . "}"
 unset xlabel
 set xdata time
 set timefmt "%s"
-set format x "%d.%m."
+set format x "%m.%Y"
 
 # y-axis setup
 set ylabel 'Gesamtzahl der Fälle in Thüringen'

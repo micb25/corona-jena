@@ -15,7 +15,7 @@ update_str = "{/*0.75 (letztes Update: " . date_cmd . "; Quelle: RKI; ggf. Nachm
 unset xlabel
 set xdata time
 set timefmt "%s"
-set format x "%d.%m."
+set format x "%d.%m.%y"
 
 # y-axis setup
 set ylabel 'Summe der Hospitalisierungen in Thüringen'

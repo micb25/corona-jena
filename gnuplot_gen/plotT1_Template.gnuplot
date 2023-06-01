@@ -10,7 +10,7 @@ update_str = "{/*0.75 letztes Update: " . date_cmd . "}"
 unset xlabel
 set xdata time
 set timefmt "%s"
-set format x "%d.%m."
+set format x "%m.%Y"
 
 # y-axis setup
 set ylabel 'Zahl der Fälle %NAMEYLABEL%'

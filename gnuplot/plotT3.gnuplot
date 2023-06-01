@@ -42,7 +42,7 @@ ymax = 100000
 unset xlabel
 set xdata time
 set timefmt "%s"
-set format x "%d.%m."
+set format x "%m.%Y"
 set xrange [xmin:xmax]
 
 # y-axis setup

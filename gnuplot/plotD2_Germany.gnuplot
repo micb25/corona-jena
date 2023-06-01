@@ -11,7 +11,7 @@ set yrange [ 0 : 30000 < * < 100000 ]
 unset xlabel
 set xdata time
 set timefmt "%s"
-set format x "%d.%m."
+set format x "%m.%Y"
 
 # y-axis setup
 set ylabel 'Intensivbetten in Deutschland'
