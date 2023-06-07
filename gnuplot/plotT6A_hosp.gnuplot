@@ -7,7 +7,7 @@ date_cmd = sprintf("%s", "`awk -F, '{print "@"$1+86400}' ../data/RKI_TH_Hospital
 update_str = "{/*0.75 (Stand: " . date_cmd . "; Quelle: RKI; ggf. Nachmeldungen möglich)}"
 
 # stats for x
-stats "<awk -F, '{if ( NR > 1 ) print int($1/86400)*86400}' ../data/cases_th_sums.csv" using 1 nooutput
+stats "<awk -F, '{if (NR>1&&$2==\"00+\") print $1}' ../data/RKI_TH_Hospitalisierung.csv" using 1 nooutput
 set xrange [ STATS_min : STATS_max ]
 
 # x-axis setup
