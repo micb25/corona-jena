@@ -82,7 +82,8 @@ def get_divi_statistics_json(URL):
     headers = {'Pragma': 'no-cache', 'Cache-Control': 'no-cache'}
     result_array = []
     
-    try:
+    # try:
+    if True:
         r = requests.get(URL, headers=headers, allow_redirects=True, timeout=5.0)
         
         if r.status_code != 200:
@@ -90,33 +91,33 @@ def get_divi_statistics_json(URL):
         
         data = json.loads(r.text)
         
-        timestamp_label = data['overallSum']['creationTimestamp'].replace("Z", "")
+        timestamp_label = data['creationTimestamp'].replace("Z", "")
         timestamp_ger = int(datetime.datetime.strptime(timestamp_label, "%Y-%m-%dT%H:%M:%S").strftime("%s"))
         result_array.append(timestamp_ger)
         
         # data for Thuringia
         for entry in data['data']:
-            if entry['bundesland'] == "THUERINGEN":
-                num_th1 = entry['intensivBettenBelegt']
-                num_th2 = entry['intensivBettenFrei']
+            if entry['bundesland_name'] == "THUERINGEN":
+                num_th1 = entry['intensivbetten_belegt']
+                num_th2 = entry['intensivbetten_frei']
                 num_th0 = num_th1 + num_th2
-                num_th3 = entry['faelleCovidAktuell']
-                num_th4 = entry['faelleCovidAktuellBeatmet']                
+                num_th3 = entry['faelle_covid_aktuell']
+                num_th4 = entry['faelle_covid_aktuell_invasiv_beatmet']                
                 result_array.append([num_th0, num_th1, num_th2, num_th3, num_th4])
                 break
         
         # data for Germany
         entry = data['overallSum']        
-        num_ger1 = entry['intensivBettenBelegt']
-        num_ger2 = entry['intensivBettenFrei']
+        num_ger1 = entry['intensivbetten_belegt']
+        num_ger2 = entry['intensivbetten_frei']
         num_ger0 = num_ger1 + num_ger2
-        num_ger3 = entry['faelleCovidAktuell']
-        num_ger4 = entry['faelleCovidAktuellBeatmet']        
+        num_ger3 = entry['faelle_covid_aktuell']
+        num_ger4 = entry['faelle_covid_aktuell_invasiv_beatmet']        
         result_array.append([num_ger0, num_ger1, num_ger2, num_ger3, num_ger4])
         
         return result_array    
-    except:
-        return False
+    #except:
+    #    return False
     
 
 if __name__ == "__main__":
